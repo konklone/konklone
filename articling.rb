@@ -10,6 +10,10 @@ get '/' do
   end.join "\n\n<br/><br/>"
 end
 
+get "/articles.json" do
+  Article.all.to_json
+end
+
 
 class Article
   include MongoMapper::Document
