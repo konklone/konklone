@@ -24,7 +24,10 @@ class Article
   include MongoMapper::Document
   
   key :slug, String, :required => true, :index => true
+  key :title, String
+  key :body, String
   
+  ensure_index :type
   ensure_index :tags
   ensure_index :source
   ensure_index :private
@@ -48,4 +51,29 @@ class Article
     title.gsub(/'/, '').gsub(/[^\w\d]+/, '-').gsub(/^-/, '').gsub(/-$/, '').downcase
   end
   
+  # until I figure out foreign keys properly
+  def comments
+    Comment.all :conditions => {:article_slug => slug}
+  end
+  
+end
+
+
+class Comment
+  include MongoMapper::Document
+  
+  key :article_slug, String, :required => true, :index => true
+  key :author_name, String, :index => true
+  key :body, String
+  
+  ensure_index :imported_at
+  ensure_index :source
+  ensure_index :hidden
+  
+  timestamps!
+  
+  # until I figure out foreign keys properly
+  def article
+    Article.find_by_slug article_slug
+  end
 end
