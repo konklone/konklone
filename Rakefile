@@ -1,4 +1,3 @@
-desc 'Loads environment'
 task :environment do
   require 'rubygems'
   require 'bundler/setup'
