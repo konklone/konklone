@@ -2,3 +2,4 @@
 /config/config.yml
 /vendor/gems
 /vendor/cache
+/config.ru
