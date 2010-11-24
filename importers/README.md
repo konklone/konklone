@@ -1,0 +1,1 @@
+Each blogX.rb script requires a corresponding blogX folder to be present, containing the original blog materials in question. Not included in source control.
