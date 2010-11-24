@@ -1,6 +1,19 @@
-#!/usr/bin/env ruby
+# Imports all blog posts and comments from my first blog
+namespace :blog1 do
+  desc "Import posts and comments from blog1"
+  task :import => :environment do
+    current_dir = Dir.pwd
+    Dir.chdir "importers/blog1"
+    
+    Post.delete_all :conditions => {:source => "blog1"}
+    Comment.delete_all :conditions => {:source => "blog1"}
 
-require 'config/environment'
+    get_posts
+    get_comments
+    
+    Dir.chdir current_dir
+  end
+end
 
 def clean(text)
   text = text.strip
@@ -160,12 +173,3 @@ def get_comments
 
   puts "Comments loaded: #{comment_count-1}"
 end
-
-
-Post.delete_all :conditions => {:source => "blog1"}
-Comment.delete_all :conditions => {:source => "blog1"}
-
-Dir.chdir "importers/blog1"
-
-get_posts
-get_comments
