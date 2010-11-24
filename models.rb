@@ -31,10 +31,10 @@ class Comment
   include Mongoid::Document
   include Mongoid::Timestamps
   
-  referenced_in :art
+  referenced_in :post
   
   field :author
-  field :url
+  field :author_url
   field :body
   field :imported_at, :type => DateTime
   field :source
@@ -46,11 +46,5 @@ class Comment
   index :hidden
   index :ip
   
-  validates_presence_of :author
   validates_presence_of :body
-  
-  # until I figure out foreign keys properly
-  def post
-    Post.first :conditions => {:slug => article_slug}
-  end
 end

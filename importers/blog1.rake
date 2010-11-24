@@ -77,9 +77,10 @@ def get_posts
       end
       
       Post.create!(
-        :title => title, 
-        :created_at => time,  
+        :title => title,
         :body => body,
+        :created_at => time,  
+        :updated_at => time,
         
         :tags => [],
         :post_type => ["blog"],
@@ -93,7 +94,7 @@ def get_posts
     end
   end
 
-  puts "Posts loaded: #{post_count-1}"
+  puts "Posts loaded: #{post_count-1}\n\n"
 end
 
 
@@ -148,28 +149,35 @@ def get_comments
         exit
       end
       
+      if body.blank?
+        puts "Missing body for author [#{author_name}] on #{filename}, skipping comment"
+        next
+      end
+      
+      attributes = {
+        :author => author_name,
+        :author_url => author_url,
+        :created_at => time,
+        :updated_at => time,
+        :body => body,
+        
+        :imported_at => Time.now,
+        :source => "blog1",
+        :hidden => false,
+        
+        :source_filename => filename
+      }
+      comment = post.comments.build attributes
+      
       begin
-        attributes = {
-          :author_name => author_name,
-          :author_url => author_url,
-          :created_at => time,
-          :body => body,
-          
-          :imported_at => Time.now,
-          :source => "blog1",
-          :hidden => false,
-          
-          :source_filename => filename
-        }
-        post.comments.create! attributes
+        comment.save!
       rescue
-        puts "ERROR SAVING COMMENT #{i} BY #{author_name} on #{filename}, attributes:\n#{attributes.inspect}"
-        exit
+        puts "\nERROR SAVING COMMENT #{i} BY #{author_name} on #{filename}, attributes:\n#{attributes.inspect}\n#{comment.errors.full_messages.inspect}"
       end
     end
     
     comment_count += entries.size
   end
 
-  puts "Comments loaded: #{comment_count-1}"
+  puts "Comments loaded: #{comment_count-1}\n\n"
 end

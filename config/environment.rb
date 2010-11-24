@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'mongoid'
+require 'mongoid/slug'
 
 def config
   @config ||= YAML.load_file File.join(File.dirname(__FILE__), "config.yml")
