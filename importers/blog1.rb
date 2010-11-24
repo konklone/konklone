@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require 'articling'
+require 'config/environment'
 
 def clean(text)
   text = text.strip
@@ -29,8 +29,8 @@ def urlify(url)
   url and url !~ /^http:\/\// ? "http://#{url}" : url
 end
 
-def get_articles
-  article_count = 1
+def get_posts
+  post_count = 1
   # get the oldest, just in archive files, without any comments
   filenames = Dir.glob 'archives/*.htm'
   filenames.each do |filename|
@@ -63,26 +63,24 @@ def get_articles
         puts "#{filename}: #{title}"
       end
       
-      Article.create!(
-        :slug => Article.slug_for(title),
-        :tags => [],
-        :type => "blog",
-        :private => true,
-        
-        :imported_at => Time.now,
-        :source => "blog1", 
-        
+      Post.create!(
         :title => title, 
         :created_at => time,  
         :body => body,
         
+        :tags => [],
+        :post_type => ["blog"],
+        :private => true,
+        
+        :imported_at => Time.now,
+        :source => "blog1", 
         :source_filename => filename
       )
-      article_count += 1
+      post_count += 1
     end
   end
 
-  puts "Articles loaded: #{article_count-1}"
+  puts "Posts loaded: #{post_count-1}"
 end
 
 
@@ -101,8 +99,8 @@ def get_comments
       title = lowercase_tags title[1]
     end
 
-    unless article = Article.first(:conditions => {:title => title})
-      puts "COULDN'T LOCATE ARTICLE BY TITLE: #{title} from #{filename}"
+    unless post = Post.first(:conditions => {:title => title})
+      puts "COULDN'T LOCATE POST BY TITLE: #{title} from #{filename}"
       exit
     end
     
@@ -124,8 +122,8 @@ def get_comments
       if time = comment.match(/<span class="date">--\s?(.+?)<\/span>/i)
         time = Time.parse time[1]
       else
-        # we'll absorb the parent article's time, then
-        time = article.created_at
+        # we'll absorb the parent post's time, then
+        time = post.created_at
       end
       
       if body = comment.match(/<br><br>Comment:<br>(.*?)<br><br><\/div>/im)
@@ -139,7 +137,6 @@ def get_comments
       
       begin
         attributes = {
-          :article_slug => article.slug,
           :author_name => author_name,
           :author_url => author_url,
           :created_at => time,
@@ -151,7 +148,7 @@ def get_comments
           
           :source_filename => filename
         }
-        Comment.create! attributes
+        post.comments.create! attributes
       rescue
         puts "ERROR SAVING COMMENT #{i} BY #{author_name} on #{filename}, attributes:\n#{attributes.inspect}"
         exit
@@ -165,10 +162,10 @@ def get_comments
 end
 
 
-Article.delete_all :conditions => {:source => "blog1"}
+Post.delete_all :conditions => {:source => "blog1"}
 Comment.delete_all :conditions => {:source => "blog1"}
 
 Dir.chdir "importers/blog1"
 
-get_articles
+get_posts
 get_comments

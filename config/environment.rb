@@ -10,3 +10,12 @@ configure do
 end
 
 require 'models'
+
+# reload in development without starting server
+configure(:development) do |config|
+  require 'sinatra/reloader'
+  config.also_reload "config/environment.rb"
+  config.also_reload "models.rb"
+end
+
+set :logging, false
