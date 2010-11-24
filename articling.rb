@@ -1,9 +1,16 @@
 #!/usr/bin/env ruby
 
-require 'rubygems'
-require 'sinatra'
+require 'config/environment'
 
-require 'mongoid'
+# reload in development without starting server
+configure(:development) do |config|
+  require 'sinatra/reloader'
+  config.also_reload "config/environment.rb"
+  config.also_reload "models.rb"
+end
+
+
+set :logging, false
 
 configure do
   Mongoid.database = Mongo::DB.new('articling-mongoid', Mongo::Connection.new)
@@ -28,15 +35,17 @@ end
 class Article
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Slug
   
-  field :slug, :type => String # required
-  field :title, :type => String
-  field :body, :type => String
-  field :article_type, :type => String
+  field :source
+  field :title
+  field :body
+  field :article_type
   field :tags, :type => Array
-  field :source, :type => String
   field :private, :type => Boolean
   field :imported_at, :type => DateTime
+  
+  slug :title
   
   index :slug
   index :article_type
@@ -45,22 +54,7 @@ class Article
   index :private
   index :imported_at
   
-  
-  def self.slug_for(title)
-    original = slugify title
-    attempt = original.dup
-    
-    attempts = 1
-    while Article.first(:conditions => {:slug => attempt}) and attempts < 100 # failsafe against infinite looping
-      attempts += 1
-      attempt = "#{original}-#{attempts}"
-    end
-    attempt
-  end
-  
-  def self.slugify(title)
-    title.gsub(/'/, '').gsub(/[^\w\d]+/, '-').gsub(/^-/, '').gsub(/-$/, '').downcase
-  end
+  validates_uniqueness_of :slug, :allow_nil => true
   
   # until I figure out foreign keys properly
   def comments

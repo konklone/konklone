@@ -1,0 +1,5 @@
+:mongoid:
+  host: localhost
+  database: blog
+  raise_not_found_error: false
+  logger: # leaving blank suppresses logging, to enable delete this line
