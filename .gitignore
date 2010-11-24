@@ -1,2 +1,4 @@
 /importers/blog1/
 /config/config.yml
+/vendor/gems
+/vendor/cache
