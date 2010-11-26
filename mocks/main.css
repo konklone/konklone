@@ -1,7 +1,10 @@
-body {padding: 20px;}
+body {
+  padding: 20px;
+}
 
 hr {
   border-top-color: #336699;
+  clear: both;
 }
 
 hr:first-of-type {
@@ -17,6 +20,7 @@ article, hr, body>header {
 body>header h1, body>header h2 {
   text-align: center;
   font-size: 300%;
+  font-weight: normal;
 }
 
 body>header {
@@ -30,4 +34,15 @@ article {
 
 section {
   float: right;
+  padding: 15px;
+}
+
+section h1 a {
+  font-size: 150%;
+  color: #336699;
+}
+
+section h2 a {
+  font-size: 80%;
+  color: #6699aa;
 }
