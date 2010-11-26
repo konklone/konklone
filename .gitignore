@@ -3,3 +3,5 @@
 /vendor/gems
 /vendor/cache
 /config.ru
+/mocks/*.mp3
+/mocks/*.ogg
