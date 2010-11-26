@@ -1,0 +1,33 @@
+body {padding: 20px;}
+
+hr {
+  border-top-color: #336699;
+}
+
+hr:first-of-type {
+  border-top-color: #339966;
+  margin-bottom: 40px;
+}
+
+article, hr, body>header {
+  width: 700px;
+  margin: 0 auto;
+}
+
+body>header h1, body>header h2 {
+  text-align: center;
+  font-size: 300%;
+}
+
+body>header {
+  margin-bottom: 20px;
+}
+
+article {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+section {
+  float: right;
+}

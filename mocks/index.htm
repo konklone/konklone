@@ -5,7 +5,7 @@
 
   <title>Mill Industries</title>
   
-  <link rel="stylesheet" href="html5.css" />
+  <link rel="stylesheet" href="html5-reset.css" />
   <link rel="stylesheet" href="main.css" />
   <link rel="alternate" href="/rss.xml" type="application/rss+xml" title="RSS Feed" />
   
@@ -15,22 +15,25 @@
 <body>
   
   <header>
-    <hgroup>
-      <h1>Sleep and Water</h1>
-      <h2>Subheading</h2>
-    </hgroup>
+    <h1>Oubliette</h1>
   </header>
   
-  <article class="brief">
-    <header>
+  <hr />
+  
+  <article>
+    <header style="display: none">
       <h1>Title-less Post</h1>
     </header>
     
     <section>
-      <time datetime="2010-11-21" pubdate>Nov 21</time>
       <h1>
-        <a href="/slug-for-a-title-less-post">8 comments</a>
+        <a href="/slug-for-a-title-less-post">
+          <time datetime="2010-11-21" pubdate>Nov 21</time>
+        </a>
       </h1>
+      <h2>
+        <a href="/slug-for-a-title-less-post">8 comments</a>
+      </h2>
     </section>
     
     <p>
@@ -42,8 +45,53 @@
     </p>
   </article>
   
-  <article class="song">
-    <audio cl
+  <hr/>
+  
+  <article>
+    <header style="display: none">
+      <h1>A Song</h1>
+    </header>
+    
+    <section>
+      <h1>
+        <a href="/a-song">
+          <time datetime="2010-10-20" pubdate>Oct 20</time>
+        </a>
+      </h1>
+      <h2>
+        <a href="/a-song">1 comment</a>
+      </h2>
+    </section>
+    
+    <audio src="/songs/a-song.mp3"></audio>
+    
+    <h1>Song Artist</h1>
+    <h2>Title of the Song</h2>
+    
+  </article>
+  
+  <hr />
+  
+  <article class="article">
+    <header>
+      <h1>A Serious Article</h1>
+    </header>
+    
+    <section>
+      <h1>
+        <a href="/a-serious-article">
+          <time datetime="2009-08-20" pubdate>Aug 20, 2009</time>
+        </a>
+      </h1>
+    </section>
+    
+    <p>
+      This is the first paragraph of a titled article, which may be viewed in its entirety or only an excerpt shown. Unlike my current site, I think I should include a separate excerpt field on an article, which if present will cause just the excerpt to be shown with a "more" link of some sort.
+    </p>
+    
+    <p>
+      My leading contender for a "more" link is a large column-wide bar with an arrow or something. Full articles will have a more dedicated presentation on their own permalink page. I'm not sure yet if the commenting workflow will differ between "articles" with titles, and regular articles. Certainly it'd be technically easier if there was no difference.
+    </p>
   </article>
   
 </body>
