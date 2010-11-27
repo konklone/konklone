@@ -1,19 +1,36 @@
 body {
-  padding: 20px;
+  padding: 40px 20px;
 }
+
+a {text-decoration: none;}
+a:hover {text-decoration: underline;}
+
+
+/** Colors **/
 
 hr {
-  border-top-color: #336699;
-  clear: both;
+  border-top-color: #4488aa;
 }
 
-hr:first-of-type {
-  border-top-color: #339966;
+body>header h1, body>header h2 {
+  color: #228844;
+}
+
+audio~h1, audio~h2, section h1 a, section h2 a, article header h1 a {
+  color: #224466;
+}
+
+
+/** Main structure **/
+
+body>header {
   margin-bottom: 40px;
 }
 
+hr {clear: both;}
+
 article, hr, body>header {
-  width: 700px;
+  width: 750px;
   margin: 0 auto;
 }
 
@@ -23,26 +40,68 @@ body>header h1, body>header h2 {
   font-weight: normal;
 }
 
-body>header {
-  margin-bottom: 20px;
+article {
+  margin: 50px auto;
 }
 
-article {
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
+
+/* floating date stamp */
 
 section {
   float: right;
-  padding: 15px;
+  padding-left: 25px;
+  padding-bottom: 20px;
 }
 
 section h1 a {
-  font-size: 150%;
-  color: #336699;
+  font-size: 18pt;
+}
+
+section h2 {
+  margin: 6px auto; text-align: center;
 }
 
 section h2 a {
-  font-size: 80%;
-  color: #6699aa;
+  text-decoration: none;
+  font-size: 10pt;
+}
+
+
+/* Regular posts */
+
+article header h1 a {
+  font-size: 18pt;
+}
+
+article p {
+  font-size: 12pt;
+  line-height: 24px;
+  margin: 20px 0;
+}
+
+
+/* Songs */
+
+audio+a {
+  background-image: url(play.png);
+  display: block; text-indent: -9999em;
+  width: 80px; height: 80px;
+  margin-right: 20px; 
+  margin-bottom: 20px;
+  float: left;
+}
+
+audio~h1 {
+  font-size: 18pt;
+  padding-top: 10px;
+}
+
+audio~h2 {
+  font-size: 12pt;
+  margin-top: 10px;
+  line-height: 22px;
+}
+
+audio~p {
+  clear: both;
 }
