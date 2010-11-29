@@ -34,6 +34,8 @@ article, hr, body>header {
   margin: 0 auto;
 }
 
+hr {width: 375px;}
+
 body>header h1, body>header h2 {
   text-align: center;
   font-size: 300%;
@@ -41,7 +43,7 @@ body>header h1, body>header h2 {
 }
 
 article {
-  margin: 50px auto;
+  margin: 70px auto;
 }
 
 
