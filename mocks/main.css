@@ -16,7 +16,7 @@ body>header h1, body>header h2 {
   color: #228844;
 }
 
-audio~h1, audio~h2, section h1 a, section h2 a, article header h1 a {
+audio+a+h1, audio+a+h1+h2, section h1 a, section h2 a, article header h1 a {
   color: #224466;
 }
 
