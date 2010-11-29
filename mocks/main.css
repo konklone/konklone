@@ -47,22 +47,21 @@ article {
 
 /* floating date stamp */
 
-section {
+article section {
   float: right;
+  margin-top: 10px;
+  margin-right: 30px;
   padding-left: 25px;
   padding-bottom: 20px;
+  text-align: center;
 }
 
-section h1 a {
-  font-size: 18pt;
+article section h1 {
+  font-size: 16pt;
 }
 
-section h2 {
-  margin: 6px auto; text-align: center;
-}
-
-section h2 a {
-  text-decoration: none;
+article section h2 {
+  margin: 6px 0; 
   font-size: 10pt;
 }
 
@@ -91,12 +90,12 @@ audio+a {
   float: left;
 }
 
-audio~h1 {
+audio+a+h1 {
   font-size: 18pt;
   padding-top: 10px;
 }
 
-audio~h2 {
+audio+a+h1+h2 {
   font-size: 12pt;
   margin-top: 10px;
   line-height: 22px;
@@ -105,3 +104,5 @@ audio~h2 {
 audio~p {
   clear: both;
 }
+
+/* Audio that begins at the top of a post, bump it down a bit */
