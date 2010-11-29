@@ -70,10 +70,10 @@ article section h2 {
 
 /* Regular posts */
 
+article header {margin-bottom: 20px;}
 article header h1 a {display: none;}
-
-article header h1 a[href] {
-  display: inline;
+article header h1 a[href] {display: inline;}
+article header h1 {
   font-size: 18pt;
 }
 
