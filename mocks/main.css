@@ -1,6 +1,8 @@
 body {
-  padding: 20px 20px 30px 20px;
-  
+  padding: 20px 20px 17px 20px;
+  border-top: 5px solid #228844;
+  border-bottom: 5px solid #228844;
+  font-family: "times new roman", serif;
 }
 
 h1,h2,h3,h4,h5,h6 {font-weight: normal;}
@@ -11,17 +13,20 @@ a:hover {text-decoration: underline;}
 
 /** Colors **/
 
-hr {
-  border-top-color: #4488aa;
-}
+hr {border-top-color: #4488aa;}
+body>header h1, body>header h2 {color: #116633;}
+audio+a+h1, audio+a+h1+h2, section h1 a, section h2 a, article header h1 a {color: #224466;}
+footer hr {border-top-color: #118844;}
+footer p a {color: #118844; text-decoration: underline;}
 
-body>header h1, body>header h2 {
-  color: #116633;
-}
+/* Font sizes */
 
-audio+a+h1, audio+a+h1+h2, section h1 a, section h2 a, article header h1 a {
-  color: #224466;
-}
+body>header h1     {font-size: 24pt;}
+article header h1  {font-size: 20pt;}
+article section h1 {font-size: 18pt;}
+article section h2 {font-size: 12pt;}
+article p          {font-size: 14pt;}
+footer p           {font-size: 10pt;}
 
 
 /** Main structure **/
@@ -33,29 +38,23 @@ body>header, article, hr, footer {
   margin: 0 auto;
 }
 
-hr {width: 375px;}
+hr {width: 375px; margin: 70px auto;}
 
-body>header h1, body>header h2 {
-  text-align: center;
-  font-size: 26pt;
-}
+body>header {display: none;}
 
 article {
-  margin: 70px auto;
+  margin: 20px auto;
 }
 
 footer p {
-  margin-top: 25px;
-  font-size: 10pt;
-  text-align: center;
+  margin-top: 17px; text-align: center;
 }
 
 footer hr {
   width: 750px;
+  margin: 50px auto 0 auto;
   border-top-width: 1px;
-  border-top-color: #118844;
 }
-
 
 /* floating date stamp */
 
@@ -68,14 +67,7 @@ article section {
   text-align: center;
 }
 
-article section h1 {
-  font-size: 18pt;
-}
-
-article section h2 {
-  margin: 8px 0 6px 0;
-  font-size: 12pt;
-}
+article section h2 {margin: 8px 0 6px 0;}
 
 
 /* Regular posts */
@@ -83,12 +75,9 @@ article section h2 {
 article header {margin-bottom: 20px;}
 article header h1 a {display: none;}
 article header h1 a[href] {display: inline;}
-article header h1 {
-  font-size: 20pt;
-}
+
 
 article p {
-  font-size: 14pt;
   line-height: 29px;
   margin: 20px 0;
 }
@@ -107,7 +96,7 @@ audio+a {
 
 audio+a+h1 {
   font-size: 18pt;
-  padding-top: 10px;
+  padding-top: 14px;
 }
 
 audio+a+h1+h2 {
@@ -119,5 +108,3 @@ audio+a+h1+h2 {
 audio+a+h1+h2+p {
   clear: both;
 }
-
-/* Audio that begins at the top of a post, bump it down a bit */
