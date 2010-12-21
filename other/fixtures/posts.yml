@@ -1,0 +1,25 @@
+--- 
+- slug: a-longer-second-post
+  created_at: 2010-12-21 11:12:32 Z
+  title: A Longer Second Post
+  body: |-
+    This is the first paragraph of a titled article, which may be viewed in its entirety or only an excerpt shown. Unlike my current site, I think I should include a separate excerpt field on an article, which if present will cause just the excerpt to be shown with a "more" link of some sort.
+    
+    My leading contender for a "more" link is a large column-wide bar with an arrow or something. Full articles will have a more dedicated presentation on their own permalink page. I'm not sure yet if the commenting workflow will differ between "articles" with titles, and regular articles. Certainly it'd be technically easier if there was no difference.
+  draft: true
+  private: false
+  updated_at: 2010-12-21 11:55:07 Z
+  _id: 4d10941cae85c1248f000001
+  published_at: 2010-12-21 11:12:32 Z
+- slug: big-first-test-post
+  created_at: 2010-12-21 11:10:54 Z
+  title: Big First Test Post
+  body: |-
+    This is the first paragraph of a titled article, which may be viewed in its entirety or only an excerpt shown. Unlike my current site, I think I should include a separate excerpt field on an article, which if present will cause just the excerpt to be shown with a "more" link of some sort.
+    
+    My leading contender for a "more" link is a large column-wide bar with an arrow or something. Full articles will have a more dedicated presentation on their own permalink page. I'm not sure yet if the commenting workflow will differ between "articles" with titles, and regular articles. Certainly it'd be technically easier if there was no difference.
+  draft: true
+  private: false
+  updated_at: 2010-12-21 11:55:07 Z
+  _id: 4d10941cae85c1248f000002
+  published_at: 2010-12-21 11:10:54 Z

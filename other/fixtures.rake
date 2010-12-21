@@ -22,10 +22,16 @@ def restore_fixture(name)
   model = name.singularize.camelize.constantize
   model.delete_all
   
-  YAML::load_file("other/fixtures/#{collection}.yml").each do |row|
+  YAML::load_file("other/fixtures/#{name}.yml").each do |row|
     record = model.new
     row.keys.each do |field|
-      record[field] = row[field] if row[field]
+      if row[field]
+        if field =~ /_id$/
+          record[field] = BSON::ObjectId(row[field])
+        else
+          record[field] = row[field] 
+        end
+      end
     end
     record.save
   end
@@ -34,10 +40,10 @@ def restore_fixture(name)
 end
 
 def dump_fixture(name)
-  collection = MongoMapper.database.collection name
+  collection = Mongoid.database.collection name
   records = []
   
-  collection.find({}, {:limit => 5}).each do |record|
+  collection.find({}).each do |record|
     records << record_to_hash(record)
   end
   
@@ -54,11 +60,12 @@ def record_to_hash(record)
   
   new_record = {}
   
-  record.delete '_id'
   record.each do |key, value|
   
     if value.class == Array
       new_record[key] = value.map {|object| record_to_hash object}
+    elsif value.class == BSON::ObjectId
+      new_record[key] = value.to_s
     else
       new_record[key] = record_to_hash value
     end
