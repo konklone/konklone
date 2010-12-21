@@ -145,6 +145,8 @@ ol li header cite {
   font-style: normal;
 }
 
+ol li header cite a {text-decoration: underline;}
+
 ol li header time {
   float: right;
   margin-top: 2px;

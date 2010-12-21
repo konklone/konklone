@@ -1,7 +1,8 @@
-/importers/blog1/
+/other/importers/blog1/
+/other/mocks/*.mp3
+/other/mocks/*.ogg
+
 /config/config.yml
 /vendor/gems
 /vendor/cache
 /config.ru
-/mocks/*.mp3
-/mocks/*.ogg

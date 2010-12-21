@@ -4,5 +4,11 @@ task :environment do
   require 'config/environment'
 end
 
-load 'importers/fixtures.rake'
-load 'importers/blog1.rake'
+load 'other/fixtures.rake'
+load 'other/importers/blog1.rake'
+
+desc "Create indexes on posts and comments"
+task :create_indexes => :environment do
+  Post.create_indexes
+  Comment.create_indexes
+end

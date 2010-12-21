@@ -13,7 +13,7 @@ namespace :fixtures do
   end
   
   def all_fixtures
-    Dir.glob("fixtures/*.yml").map {|f| File.basename(f, ".yml")}
+    Dir.glob("other/fixtures/*.yml").map {|f| File.basename(f, ".yml")}
   end
 
 end
@@ -22,7 +22,7 @@ def restore_fixture(name)
   model = name.singularize.camelize.constantize
   model.delete_all
   
-  YAML::load_file("fixtures/#{collection}.yml").each do |row|
+  YAML::load_file("other/fixtures/#{collection}.yml").each do |row|
     record = model.new
     row.keys.each do |field|
       record[field] = row[field] if row[field]
@@ -41,8 +41,8 @@ def dump_fixture(name)
     records << record_to_hash(record)
   end
   
-  FileUtils.mkdir_p "fixtures"
-  File.open("fixtures/#{name}.yml", "w") do |file|
+  FileUtils.mkdir_p "other/fixtures"
+  File.open("other/fixtures/#{name}.yml", "w") do |file|
     YAML.dump records, file
   end
   

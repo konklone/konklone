@@ -81,14 +81,15 @@ def get_posts
         :body => body,
         :created_at => time,  
         :updated_at => time,
+        :published_at => time,
         
         :tags => [],
         :post_type => ["blog"],
         :private => true,
         
         :imported_at => Time.now,
-        :source => "blog1", 
-        :source_filename => filename
+        :import_source => "blog1", 
+        :import_source_filename => filename
       )
       post_count += 1
     end
@@ -162,10 +163,10 @@ def get_comments
         :body => body,
         
         :imported_at => Time.now,
-        :source => "blog1",
-        :hidden => false,
-        
-        :source_filename => filename
+        :import_source => "blog1",
+        :import_source_filename => filename,
+      
+        :hidden => false
       }
       comment = post.comments.build attributes
       
