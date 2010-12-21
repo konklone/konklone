@@ -6,6 +6,10 @@ helpers do
     "/post/#{post.slug}"
   end
   
+  def comment_path(post)
+    "#{post_path post}/comments"
+  end
+  
   def h(text)
     Rack::Utils.escape_html(text)
   end

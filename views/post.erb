@@ -15,10 +15,9 @@
   </footer>
 </article>
 
-<% if post.comments.any? %>
-
-  <ol>
-    <% post.comments.each do |comment| %>
+<ol>
+  <% if post.comments.visible.count > 0 %>
+    <% post.comments.visible.asc(:created_at).each do |comment| %>
       <li>
         <header>
           <cite>
@@ -39,15 +38,23 @@
         
       </li>
     <% end %>
-    
-  </ol>
-<% end %>
+  <% end %>
+</ol>
 
 <section>
-  <form>
-    <input type="text" placeholder="name" required />
-    <input type="url" placeholder="website" />
-    <textarea name="comment" required></textarea>
+  <a name="comment-form"></a>
+  <% if new_comment and new_comment.errors.any? %>
+    <p>Comments must have a name and a body.</p>
+  <% end %>
+  
+  <form method="post" action="<%= comment_path post %>#comment-form">
+    <input name="comment[author]" type="text" placeholder="name" required 
+      <% if new_comment %>value="<%= new_comment.author %>"<% end %>
+      />
+    <input name="comment[author_url]" type="url" placeholder="website" 
+      <% if new_comment %>value="<%= new_comment.author_url %>"<% end %>
+      />
+    <textarea name="comment[body]" name="comment" required><% if new_comment %><%= h new_comment.body %><% end %></textarea>
     <input type="submit" value="Post" />
   </form>
 </section>
