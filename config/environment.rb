@@ -17,6 +17,7 @@ configure(:development) do |config|
   require 'sinatra/reloader'
   config.also_reload "config/environment.rb"
   config.also_reload "models.rb"
+  config.also_reload "helpers.rb"
 end
 
 set :logging, false

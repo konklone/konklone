@@ -1,0 +1,53 @@
+<article>
+  <header>
+    <h1>
+      <a href="<%= post_path post %>">
+        <%= h post.title %>
+      </a>
+    </h1>
+  </header>
+  
+  <%= post_body post.body %>
+  
+  <footer>
+    <time datetime="<%= short_datetime post.published_at %>" pubdate><%= long_date post.published_at %></time>
+    <hr />
+  </footer>
+</article>
+
+<% if post.comments.any? %>
+
+  <ol>
+    <% post.comments.each do |comment| %>
+      <li>
+        <header>
+          <cite>
+            <% if comment.author_url.present? %>
+              <a rel="nofollow" href="<%= h comment.author_url %>">
+                <%= h comment.author %>
+              </a>
+            <% else %>
+              <%= h comment.author %>
+            <% end %>
+          </cite>
+          <time datetime="<%= long_datetime comment.created_at %>" pubdate>
+            <%= comment_time comment.created_at %>
+          </time>
+        </header>
+        
+        <%= comment_body comment.body %>
+        
+      </li>
+    <% end %>
+    
+  </ol>
+<% end %>
+
+<section>
+  <form>
+    <input type="text" placeholder="name" required />
+    <input type="url" placeholder="website" />
+    <textarea name="comment" required></textarea>
+    <input type="submit" value="Post" />
+  </form>
+</section>

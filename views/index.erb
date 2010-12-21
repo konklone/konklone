@@ -3,20 +3,20 @@
   <article>
     <header>
       <h1>
-        <a href="<%= post_url post %>">
-          <%= post.title %>
+        <a href="<%= post_path post %>">
+          <%= h post.title %>
         </a>
       </h1>
     </header>
 
     <section>
       <h1>
-        <a href="<%= post_url post %>">
-          <time datetime="<%= post.published_at.strftime "%Y-%m-%d" %>" pubdate><%= post_display_time post %></time>
+        <a href="<%= post_path post %>">
+          <time datetime="<%= short_datetime post.published_at %>" pubdate><%= short_date post.published_at %></time>
         </a>
       </h1>
       <h2>
-        <a href="<%= post_url post %>">
+        <a href="<%= post_path post %>">
           <% if post.comments.count > 0 %>
             <%= post.comments.count %> comments
           <% else %>

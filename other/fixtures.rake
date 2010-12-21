@@ -25,7 +25,7 @@ def restore_fixture(name)
   YAML::load_file("other/fixtures/#{name}.yml").each do |row|
     record = model.new
     row.keys.each do |field|
-      if row[field]
+      if row[field] != "" and !row[field].nil?
         if field =~ /_id$/
           record[field] = BSON::ObjectId(row[field])
         else
