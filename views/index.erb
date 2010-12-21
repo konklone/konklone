@@ -1,0 +1,37 @@
+<% posts.each do |post| %>
+
+  <article>
+    <header>
+      <h1>
+        <a href="<%= post_url post %>">
+          <%= post.title %>
+        </a>
+      </h1>
+    </header>
+
+    <section>
+      <h1>
+        <a href="<%= post_url post %>">
+          <time datetime="<%= post.published_at.strftime "%Y-%m-%d" %>" pubdate><%= post_display_time post %></time>
+        </a>
+      </h1>
+      <h2>
+        <a href="<%= post_url post %>">
+          <% if post.comments.count > 0 %>
+            <%= post.comments.count %> comments
+          <% else %>
+            no comments
+          <% end %>
+        </a>
+      </h2>
+    </section>
+
+    <%= post_body post.body %>
+    
+  </article>
+  
+  <% if post != posts.last %>
+    <hr />
+  <% end %>
+  
+<% end %>

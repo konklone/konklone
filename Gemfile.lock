@@ -28,6 +28,7 @@ GEM
     monkey-lib (0.5.4)
       backports
     rack (1.2.1)
+    rdiscount (1.6.5)
     sinatra (1.0)
       rack (>= 1.0)
     sinatra-advanced-routes (0.5.1)
@@ -53,6 +54,7 @@ DEPENDENCIES
   mongoid (= 2.0.0.beta.20)
   mongoid_slug (= 0.4.7)
   mongrel (= 1.2.0.pre2)
+  rdiscount (= 1.6.5)
   sinatra (= 1.0)
   sinatra-reloader (= 0.5.0)
   wirble

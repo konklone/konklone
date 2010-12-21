@@ -7,15 +7,15 @@ class Post
   
   field :title
   field :body
-  field :published_at, :type => DateTime
+  field :published_at, :type => Time
   
   # organization - types and tags
   field :post_type, :type => Array
   field :tags, :type => Array
   
   # flags
-  field :private, :type => Boolean
-  field :draft, :type => Boolean
+  field :private, :type => Boolean, :default => false
+  field :draft, :type => Boolean, :default => true
   
   index :published_at
   index :post_type
