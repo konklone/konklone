@@ -3,7 +3,7 @@ namespace :blog1 do
   desc "Import posts and comments from blog1"
   task :import => :environment do
     current_dir = Dir.pwd
-    Dir.chdir "importers/blog1"
+    Dir.chdir "other/importers/blog1"
     
     Post.delete_all :conditions => {:source => "blog1"}
     Comment.delete_all :conditions => {:source => "blog1"}
