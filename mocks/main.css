@@ -23,6 +23,7 @@ footer p a {color: #118844; text-decoration: underline;}
 
 body>header h1     {font-size: 24pt;}
 article header h1  {font-size: 20pt;}
+article header h2  {font-size: 14pt;}
 article section h1 {font-size: 18pt;}
 article section h2 {font-size: 12pt;}
 article p          {font-size: 14pt;}
@@ -108,3 +109,13 @@ audio+a+h1+h2 {
 audio+a+h1+h2+p {
   clear: both;
 }
+
+/* Comment display */
+
+
+
+/* Comment form */
+
+input.placeholder, textarea.placeholder { /* CSS class only used for HTML5 fallback */
+  color: #999;
+} 
