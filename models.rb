@@ -60,7 +60,6 @@ class Comment
   index :import_source
   index :import_source_filename
   
-  
   validates_presence_of :body
   validates_presence_of :author
   

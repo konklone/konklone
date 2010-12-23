@@ -21,6 +21,8 @@ post '/post/:slug/comments' do
   raise Sinatra::NotFound unless post = Post.visible.where(:slug => params[:slug]).first
   
   comment = post.comments.build params[:comment]
+  comment.ip = request.env['REMOTE_ADDR']
+  
   if comment.save
     redirect post_path(post)
   else
