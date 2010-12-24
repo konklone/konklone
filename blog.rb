@@ -11,7 +11,11 @@ get '/' do
 end
 
 get '/post/:slug/?' do
-  raise Sinatra::NotFound unless post = Post.visible.where(:slug => params[:slug]).first
+  unless post = Post.visible.where(:slug => params[:slug]).first
+    # fallback for legacy URLs
+    post = Post.visible.where(:import_source => "blog3", :import_id => params[:slug].to_i).first
+  end
+  raise Sinatra::NotFound unless post
   
   erb :post, :locals => {:post => post, :new_comment => nil}
 end
