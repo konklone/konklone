@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mill Industries</title>
+    <link><%= site[:root] %></link>
+    <description>Where I discuss my industries</description>
+    <language>en-us</language>
+    <image>
+      <title>Mill Industries</title>
+      <link><%= site[:root] %></link>
+      <url><%= site[:root] %>/icon.png</url>
+      <description>Where I discuss my industries</description>
+      <width>144</width>
+      <height>144</height>
+    </image>
+    <atom:link href="<%= site[:root] %>/rss.xml" rel="self" type="application/rss+xml" />
+    
+      <% posts.each do |post| %>
+        <item>
+          <title><%= post.title %></title>
+          <description><![CDATA[
+            <%= post_body post.body %>
+          ]]></description>
+          
+          <% (post.tags || []).each do |tag| %>
+            <category><%= tag %></category>
+          <% end %>
+            
+          <link><%= site[:root] %><%= post_path post %></link>
+          <guid><%= site[:root] %><%= post_path post %></guid>
+          <pubDate><%= rss_date post.published_at %></pubDate>
+        </item>
+        <% end %>
+  </channel>
+</rss>

@@ -18,7 +18,7 @@
 <ol>
   <% if post.comments.visible.count > 0 %>
     <% post.comments.visible.asc(:created_at).each do |comment| %>
-      <li>
+      <li id="comment-<%= comment.id %>"> <!-- id used for anchor -->
         <header>
           <cite>
             <% if comment.author_url.present? %>
@@ -41,8 +41,7 @@
   <% end %>
 </ol>
 
-<section>
-  <a name="comment-form"></a>
+<section id="comment-form"> <!-- id used for anchor -->
   <% if new_comment and new_comment.errors.any? %>
     <p>Comments must have a name and a body.</p>
   <% end %>

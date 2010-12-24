@@ -30,6 +30,10 @@ helpers do
     time.strftime "%B #{time.day}, %Y" # remove 0-prefix
   end
   
+  def rss_date(time)
+    time.strftime "%a, %d %b %Y %H:%M:%S %T"
+  end
+  
   def comment_time(time)
     # Aug 21, 12:03pm
     meridian = time.strftime "%p"
