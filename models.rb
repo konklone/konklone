@@ -15,6 +15,7 @@ class Post
   field :tags, :type => Array
   field :private, :type => Boolean, :default => false
   field :draft, :type => Boolean, :default => true
+  field :display_title, :type => Boolean, :default => true
   
   index :slug
   index :published_at

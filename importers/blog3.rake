@@ -1,3 +1,5 @@
+require 'redcloth'
+
 namespace :import do
   desc "Import posts and comments from blog3"
   task :blog3 => :environment do
@@ -14,8 +16,20 @@ end
 
 def get_posts
   OldPost.all.each do |old_post|
-    post = Post.new(
-      :title => dechar(old_post.title),
+    post = Post.new
+    if old_post.title.present?
+      post.attributes = {
+        :title => dechar(old_post.title),
+        :display_title => old_post.show_title
+      }
+    else
+      post.attributes = {
+        :title => "untitled",
+        :display_title => false
+      }
+    end
+      
+    post.attributes = {
       :body => process_body(old_post.body),
       :created_at => old_post.created_at,
       :updated_at => old_post.updated_at,
@@ -30,7 +44,7 @@ def get_posts
       :import_source => "blog3", 
       :import_song_filename => old_post.filename,
       :import_id => old_post.id
-    )
+    }
     
     begin
       post.save!
@@ -87,5 +101,10 @@ def dechar(string)
 end
 
 def process_body(body)
-  dechar body
+  body = dechar body
+  body = decenter body
+end
+
+def decenter(body)
+  body.gsub(/^p=\. ([^\n]+?)$/, "<p style=\"text-align: center\">\\1</p>")
 end
