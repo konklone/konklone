@@ -102,9 +102,6 @@ end
 
 def process_body(body)
   body = dechar body
-  body = decenter body
-end
-
-def decenter(body)
-  body.gsub(/^p=\. ([^\n]+?)$/, "<p style=\"text-align: center\">\\1</p>")
+  body = body.gsub /^p=\. ([^\n]+?)$/, "<p style=\"text-align: center\">\\1</p>"
+  body = body.gsub /^bq\. ([^\n]+?)$/, "<blockquote>\\1</blockquote>"
 end
