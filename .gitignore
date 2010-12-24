@@ -1,5 +1,5 @@
 /importers/blog1/
-/importers/blog3/
+/importers/blog3/*.sql
 /other/mocks/*.mp3
 /other/mocks/*.ogg
 

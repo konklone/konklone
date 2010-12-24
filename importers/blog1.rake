@@ -1,12 +1,12 @@
 # Imports all blog posts and comments from my first blog
-namespace :blog1 do
+namespace :import do
   desc "Import posts and comments from blog1"
-  task :import => :environment do
+  task :blog1 => :environment do
     current_dir = Dir.pwd
-    Dir.chdir "other/importers/blog1"
+    Dir.chdir "importers/blog1"
     
-    Post.delete_all :conditions => {:source => "blog1"}
-    Comment.delete_all :conditions => {:source => "blog1"}
+    Post.delete_all :conditions => {:import_source => "blog1"}
+    Comment.delete_all :conditions => {:import_source => "blog1"}
 
     get_posts
     get_comments

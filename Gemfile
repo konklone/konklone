@@ -14,3 +14,8 @@ group :development do
   gem 'mongrel', '1.2.0.pre2'
   gem 'wirble'
 end
+
+group :import do
+  gem 'activerecord', '3.0.3'
+  gem 'mysql2', '0.2.6'
+end
