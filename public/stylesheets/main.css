@@ -99,6 +99,8 @@ article p {
   margin: 20px 0;
 }
 
+article p a {text-decoration: underline;}
+
 
 /* Songs */
 
