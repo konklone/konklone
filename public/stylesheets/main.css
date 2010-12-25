@@ -100,7 +100,11 @@ article p {
 }
 
 article p a {text-decoration: underline;}
-
+article blockquote {
+  padding: 0 30px;
+  line-height: 22px;
+  color: #444;
+}
 
 /* Songs */
 
