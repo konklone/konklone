@@ -9,6 +9,8 @@ gem 'bson_ext', '1.1.2'
 
 gem 'rdiscount', '1.6.5'
 
+gem 'sinatra-content-for', '0.2'
+
 group :development do
   gem 'sinatra-reloader', '0.5.0'
   gem 'mongrel', '1.2.0.pre2'

@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'config/environment'
+require 'sinatra/content_for'
 require 'helpers'
 
 set :views, 'views'

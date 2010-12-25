@@ -45,8 +45,11 @@ article+ol+section form textarea {font-size: 12pt;}
 
 hr {clear: both;}
 
+body>header, article, footer, ol, body>section, body>footer hr {
+  width: 700px;
+}
+
 body>header, article, footer, ol, body>section {
-  width: 750px;
   margin: 0 auto;
 }
 
@@ -67,7 +70,6 @@ body>footer p {
 body>footer {clear: both;}
 
 body>footer hr {
-  width: 750px;
   margin: 70px auto 0 auto;
   border-top-width: 1px;
 }

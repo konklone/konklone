@@ -1,3 +1,5 @@
+<% content_for :title do %>Mill Industries<% end %>
+
 <% posts.each do |post| %>
 
   <article>
@@ -16,7 +18,7 @@
         </a>
       </h1>
       <h2>
-        <a href="<%= post_path post %>">
+        <a href="<%= post_path post %>#comments">
           <% if post.comments.count > 0 %>
             <%= post.comments.count %> comments
           <% else %>
