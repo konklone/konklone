@@ -6,4 +6,7 @@
 /config/config.yml
 /vendor/gems
 /vendor/cache
+/vendor/bundle
 /config.ru
+/tmp
+/.bundle
