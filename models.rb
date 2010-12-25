@@ -8,7 +8,7 @@ class Post
   references_many :comments
   
   field :title
-  slug :title
+  slug :title, :permanent => true
   field :body
   field :published_at, :type => Time
   field :post_type, :type => Array
