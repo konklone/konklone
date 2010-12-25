@@ -7,7 +7,7 @@ set :views, 'views'
 set :public, 'public'
 
 get '/' do
-  erb :index, :locals => {:posts => Post.visible.desc(:published_at).limit(10)}
+  erb :index, :locals => {:posts => Post.visible.desc(:published_at).limit(10).to_a}
 end
 
 get '/post/:slug/?' do
@@ -36,10 +36,10 @@ end
 
 get /\/(?:unburned-)?rss.xml$/ do
   headers['Content-Type'] = 'application/rss+xml'
-  erb :rss, :locals => {:site => config[:site], :posts => Post.visible.desc(:published_at).limit(20)}, :layout => false
+  erb :rss, :locals => {:site => config[:site], :posts => Post.visible.desc(:published_at).limit(20).to_a}, :layout => false
 end
 
 get '/comments.xml' do
   headers['Content-Type'] = 'application/rss+xml'
-  erb :comments, :locals => {:site => config[:site], :comments => Comment.visible.desc(:created_at).limit(20)}, :layout => false
+  erb :comments, :locals => {:site => config[:site], :comments => Comment.visible.desc(:created_at).limit(20).to_a}, :layout => false
 end
