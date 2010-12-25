@@ -100,6 +100,7 @@ def dechar(string)
   string.gsub("\222", "'").gsub("\223", "\"").gsub("\224", "\"").gsub("\227", "--").gsub("\366", "ö")
 end
 
+# take care of some minimal un-textiling
 def process_body(body)
   body = dechar body
   body = body.gsub /^p=\. ([^\n]+?)$/, "<p style=\"text-align: center\">\\1</p>"
@@ -109,5 +110,6 @@ def process_body(body)
     img = "<a href=\"#{$2}\">#{img}</a>" if $2.present?
     img
   end
+  body = body.gsub(/\"([^\"]+)\":([^\s]+)/) {"<a href=\"#{$2}\">#{$1}</a>"}
   body
 end
