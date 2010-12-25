@@ -5,6 +5,11 @@
 
   <title><% yield_content :title %></title>
   <meta name="description" content="<% yield_content :description %>" />
+  <meta name="author" content="Eric Mill" />
+  <meta name="copyright" content="2005-<%= Time.now.year %>" />
+  
+  <link rel="openid.server" href="http://www.myopenid.com/server" />
+  <link rel="openid.delegate" href="http://klondike.myopenid.com/" />
   
   <link rel="stylesheet" href="/stylesheets/html5-reset.css" />
   <link rel="stylesheet" href="/stylesheets/main.css" />
