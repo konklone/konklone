@@ -104,4 +104,10 @@ def process_body(body)
   body = dechar body
   body = body.gsub /^p=\. ([^\n]+?)$/, "<p style=\"text-align: center\">\\1</p>"
   body = body.gsub /^bq\. ([^\n]+?)$/, "<blockquote>\\1</blockquote>"
+  body = body.gsub(/!([^\s]+)!:?([^\s]*)/) do
+    img = "<img src=\"#{$1}\"/>"
+    img = "<a href=\"#{$2}\">#{img}</a>" if $2.present?
+    img
+  end
+  body
 end
