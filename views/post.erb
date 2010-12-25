@@ -1,6 +1,10 @@
 <% content_for :title do %><%= post.title %><% end %>
 <% content_for :description do %><%= meta_description post.body %><% end %>
 
+<% content_for :sidebar do %>
+  <a href="/">&laquo; everything else</a>
+<% end %>
+
 <article>
   <header>
     <h1>

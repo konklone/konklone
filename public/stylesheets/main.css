@@ -18,7 +18,7 @@ input.placeholder, textarea.placeholder {color: #999;} /* CSS class only used fo
 /** Colors **/
 
 hr {border-top-color: #4488aa;}
-body>header h1, body>header h2 {color: #116633;}
+body>header a, body>header h1, body>header h2 {color: #116633;}
 audio+a+h1, audio+a+h1+h2 {color: #555;}
 body>footer hr {border-top-color: #118844;}
 footer p a {color: #118844; text-decoration: underline;}
@@ -45,9 +45,10 @@ article+ol+section form textarea {font-size: 12pt;}
 
 hr {clear: both;}
 
-body>header, article, footer, ol, body>section, body>footer hr {
+body>header, article, footer, ol, body>ol+section, body>footer hr {
   width: 700px;
 }
+body>header+section {float: left;} /* sidebar */
 
 body>header, article, footer, ol, body>section {
   margin: 0 auto;
@@ -58,6 +59,7 @@ hr {
 }
 
 body>header {display: none;}
+body>header h1 a {text-decoration: underline;}
 
 article {
   margin: 20px auto;
@@ -68,6 +70,7 @@ body>footer p {
 }
 
 body>footer {clear: both;}
+body>footer cite {font-style: normal;}
 
 body>footer hr {
   margin: 70px auto 0 auto;
