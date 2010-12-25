@@ -4,9 +4,15 @@
 <article>
   <header>
     <h1>
-      <a href="<%= post_path post %>">
-        <%= h post.title %>
-      </a>
+      <% if post.display_title %>
+        <a href="<%= post_path post %>">
+          <%= h post.title %>
+        </a>
+      <% else %>
+        <a>
+          <%= h post.title %>
+        </a>
+      <% end %>
     </h1>
   </header>
   
