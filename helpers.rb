@@ -50,4 +50,8 @@ helpers do
     RDiscount.new(body, :filter_html).to_html
   end
   
+  def meta_description(description)
+    post_body(description).gsub "\"", "&quot;"
+  end
+  
 end
