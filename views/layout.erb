@@ -31,8 +31,13 @@
     </h1>
   </header>
   
-  <section>
-    <% yield_content :sidebar %>
+  <section class="sidebar left">
+    <% yield_content :sidebar_left %>
+  </section>
+
+  <section class="sidebar right">
+    <% yield_content :sidebar_right %>
+    <a href="/">&raquo; everything else </a>
   </section>
 
   <%= yield %>

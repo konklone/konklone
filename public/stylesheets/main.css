@@ -49,6 +49,7 @@ body>header, article, footer, ol, body>ol+section, body>footer hr {
   width: 700px;
 }
 body>header+section {float: left;} /* sidebar */
+body>header+section+section {float: right;} /* sidebar */
 
 body>header, article, footer, ol, body>section {
   margin: 0 auto;
