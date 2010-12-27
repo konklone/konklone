@@ -48,8 +48,11 @@ hr {clear: both;}
 body>header, article, footer, ol, body>ol+section, body>footer hr {
   width: 700px;
 }
+
 body>header+section {float: left;} /* sidebar */
 body>header+section+section {float: right;} /* sidebar */
+section.footer.left {float: left;}
+section.footer.right {float: right;}
 
 body>header, article, footer, ol, body>section {
   margin: 0 auto;
@@ -178,7 +181,7 @@ article+ol+section p {
 }
 
 article+ol+section form>input {
-  float: left; margin-bottom: 15px; margin-right: 10px;
+  margin-bottom: 15px; margin-right: 10px;
   padding: 5px;
 }
 
@@ -189,6 +192,7 @@ article+ol+section form textarea {
 }
 
 article+ol+section form textarea+input {
+  display: block;
   padding: 4px 20px 1px 20px;
   margin-top: 10px;
   font-size: 12pt;

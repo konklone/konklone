@@ -40,7 +40,15 @@
   </section>
 
   <%= yield %>
-
+  
+  <section class="footer left">
+    <% yield_content :footer_left %>
+  </section>
+  
+  <section class="footer right">
+    <% yield_content :footer_right %>
+  </section>
+  
   <footer>
     <hr/>
     <p>
