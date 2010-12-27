@@ -111,5 +111,7 @@ def process_body(body)
     img
   end
   body = body.gsub(/\"([^\"]+)\":([^\s]+)/) {"<a href=\"#{$2}\">#{$1}</a>"}
+  body = body.gsub /\[cut\](\s*)/, "\n\n"
+  
   body
 end
