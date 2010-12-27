@@ -58,7 +58,7 @@ class Comment
   before_create :adjust_url
   
   def adjust_url
-    if self.author_url !~ /^http:\/\//
+    if self.author_url.present? and (self.author_url !~ /^http:\/\//)
       self.author_url = "http://#{author_url}"
     end
   end
