@@ -1,6 +1,15 @@
 <% content_for :title do %>Mill Industries<% end %>
 <% content_for :description do %>where I discuss my industries<% end %>
 
+<% content_for :sidebar_left do %>
+  <h1>
+    blog by <cite><a href="mailto:kprojection@gmail.com">Eric Mill</a></cite>
+  </h1>
+  <h2>
+    also <a rel="me" href="http://twitter.com/klondike">twitter</a>
+  </h2>
+<% end %>
+
 <% content_for :footer_left do %>
   <% if posts.previous_page %>
     <a href="/?page=<%= posts.previous_page %>">&laquo; newer posts</a>

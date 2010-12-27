@@ -50,10 +50,15 @@ body>header, article, footer, ol, body>ol+section, body>footer hr {
   width: 700px;
 }
 
-body>header+section {float: left;} /* sidebar */
-body>header+section+section {float: right;} /* sidebar */
+section.sidebar {margin-top: 25px;}
+section.sidebar.left {float: left;}
+section.sidebar.right {float: right;}
 section.footer.left {float: left;}
 section.footer.right {float: right;}
+
+section.sidebar h1 {
+  margin: 0px 0 10px 0;
+}
 
 body>header, article, footer, ol, body>section {
   margin: 0 auto;
@@ -98,7 +103,7 @@ article section h2 {margin: 8px 0 6px 0;}
 
 /* Regular posts */
 
-article:first-of-type {margin-top: 50px;}
+
 
 article header {margin-bottom: 20px;}
 article header h1 a {display: none;}
@@ -170,7 +175,7 @@ ol li header time {
 
 ol li p {
   clear: both;
-  line-height: 27px;
+  line-height: 25px;
   margin: 20px 0;
 }
 
