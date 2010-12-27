@@ -42,6 +42,7 @@ class Comment
   field :author_url
   field :body
   field :hidden, :type => Boolean, :default => false
+  field :spam, :type => Boolean, :default => false
   field :mine, :type => Boolean, :default => false
   field :ip
   
@@ -53,7 +54,7 @@ class Comment
   validates_presence_of :body
   validates_presence_of :author
   
-  scope :visible, :where => {:hidden => false}
+  scope :visible, :where => {:hidden => false, :spam => false}
   
   before_create :adjust_url
   

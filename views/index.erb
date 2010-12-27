@@ -47,8 +47,8 @@
       </h1>
       <h2>
         <a href="<%= post_path post %>#comments">
-          <% if post.comments.count > 0 %>
-            <%= post.comments.count %> comments
+          <% if post.comments.visible.count > 0 %>
+            <%= post.comments.visible.count %> comments
           <% else %>
             no comments
           <% end %>
