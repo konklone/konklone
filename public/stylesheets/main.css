@@ -9,6 +9,7 @@ input {font-family: "times new roman", serif;}
 textarea {font-family: "times new roman", serif;}
 
 h1,h2,h3,h4,h5,h6 {font-weight: normal;}
+cite {font-style: normal;}
 
 a {text-decoration: none; color: #224466;}
 a:hover {text-decoration: underline;}

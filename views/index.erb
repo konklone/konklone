@@ -1,8 +1,17 @@
 <% content_for :title do %>Mill Industries<% end %>
 <% content_for :description do %>where I discuss my industries<% end %>
 
-<% content_for :sidebar_left do %><% end %>
-<% content_for :sidebar_right do %><% end %>
+<% content_for :footer_left do %>
+  <% if posts.previous_page %>
+    <a href="/?page=<%= posts.previous_page %>">&laquo; newer posts</a>
+  <% end %>
+<% end %>
+
+<% content_for :footer_right do %>
+  <% if posts.next_page %>
+    <a href="/?page=<%= posts.next_page %>">older posts &raquo;</a>
+  <% end %>
+<% end %>
 
 <% posts.each do |post| %>
 

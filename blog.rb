@@ -8,7 +8,7 @@ set :views, 'views'
 set :public, 'public'
 
 get '/' do
-  erb :index, :locals => {:posts => Post.visible.desc(:published_at).limit(10).to_a}
+  erb :index, :locals => {:posts => Post.visible.desc(:published_at).paginate(pagination)}
 end
 
 get '/post/:slug/?' do

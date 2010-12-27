@@ -2,6 +2,12 @@ require 'rdiscount'
 
 helpers do
   
+  def pagination
+    page = params[:page].to_i || 1
+    page = 1 if page < 1
+    {:page => page, :per_page => 10}
+  end
+  
   def post_path(post)
     "/post/#{post.slug}"
   end
