@@ -10,3 +10,4 @@
 /config.ru
 /tmp
 /.bundle
+/logs
