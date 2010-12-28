@@ -48,12 +48,12 @@ put '/admin/post/:slug' do
 end
 
 get '/admin/comments/?' do
-  comments = Comment.where(:flagged => false).all.paginate(pagination(20))
+  comments = Comment.desc(:created_at).where(:flagged => false).all.paginate(pagination(20))
   erb :"admin/comments", :layout => :"admin/layout", :locals => {:comments => comments, :flagged => false}
 end
 
 get '/admin/comments/flagged/?' do
-  comments = Comment.where(:flagged => true).all.paginate(pagination(100))
+  comments = Comment.desc(:created_at).where(:flagged => true).all.paginate(pagination(100))
   erb :"admin/comments", :layout => :"admin/layout", :locals => {:comments => comments, :flagged => true}
 end
 
