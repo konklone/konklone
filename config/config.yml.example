@@ -7,6 +7,7 @@
 # root of the site, used in RSS feeds, primarily
 :site:
   :root: http://localhost:8080
+  :check_spam: # whether to enable spam checking for comments
 
 :admin:
   :username: # admin username

@@ -32,7 +32,7 @@ post '/post/:slug/comments' do
   comment = post.comments.build params[:comment]
   comment.ip = request.env['REMOTE_ADDR']
 
-  if production?
+  if config[:site][:check_spam]
     # not saved, used only for spam checking
     comment.user_agent = request.env['HTTP_USER_AGENT']
     comment.referrer = request.referer unless request.referer == "/"
@@ -41,7 +41,11 @@ post '/post/:slug/comments' do
   end
   
   if comment.save
-    redirect "#{post_path(post)}#comment-#{comment.id}"
+    if comment.flagged
+      throw :halt, [500, "500 Server Error"]
+    else
+      redirect "#{post_path(post)}#comment-#{comment.id}"
+    end
   else
     erb :post, :locals => {:post => post, :new_comment => comment}
   end
