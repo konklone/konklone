@@ -61,7 +61,7 @@ helpers do
   end
   
   def form_escape(string)
-    string.gsub "\"", "\\\""
+    string.gsub "\"", "&quot;"
   end
   
 end

@@ -14,7 +14,7 @@
     <input type="hidden" name="post[post_type]" value="blog" />
     
     <input type="text" class="title" name="post[title]" placeholder="title" 
-      value="<%= post.title %>"
+      value="<%= form_escape post.title %>"
       />
       
     <textarea class="body" name="post[body]"><%= post.body %></textarea>
@@ -39,7 +39,7 @@
     
     <fieldset>
       <input type="text" name="post[tags]" class="tags" placeholder="tags"
-        value="<%= post.tags.join(", ") %>"
+        value="<%= form_escape post.tags.join(", ") %>"
         />
         
       <input type="checkbox" name="post[display_title]" id="post_display_title"
