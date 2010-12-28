@@ -1,0 +1,15 @@
+<article>
+  <form action="/admin/login" method="post">
+  
+    <h1>Mill Industries</h1>
+    
+    <% if message %>
+      <p class="error"><%= message %></p>
+    <% end %>
+    
+    <input type="text" class="big" placeholder="username" name="username" /><br/>
+    <input type="password" class="big" placeholder="password" name="password" /><br/>
+    <input type="submit" name="submit" value="Login" />
+  
+  </form>
+</article>

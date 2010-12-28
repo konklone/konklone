@@ -1,5 +1,8 @@
 section.sidebar {margin-top: 10px; line-height: 25px;}
 
+body.admin h1 {font-size: 18pt; margin: 5px 0;}
+body.admin p.error {color: #a00;}
+
 body.admin ol.errors {font-size: 12pt;}
 body.admin ol.errors li {margin: 5px 0; padding: 0; color: #a00;}
 
@@ -34,7 +37,7 @@ body.admin ol.listing li span.flags.hidden {color: #880000;}
 body.admin ol.listing li span.flags.draft {color: #880000;}
 body.admin ol.listing li span.flags.private {color: #000088;}
 
-body.admin input[type="text"].big {
+body.admin input[type="text"].big, body.admin input[type="password"].big {
   font-size: 14pt;
   padding: 10px 10px 10px 8px;
   margin: 10px 0;

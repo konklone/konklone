@@ -8,6 +8,10 @@
 :site:
   :root: http://localhost:8080
 
+:admin:
+  :username: # admin username
+  :password: # admin password
+
 :rakismet:
   :host: rest.akismet.com
   :url: # http://yourdomain.com

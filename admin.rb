@@ -1,19 +1,46 @@
+get '/admin/?' do
+  p session
+  erb :"admin/login", :layout => :"admin/layout", :locals => {:message => nil}
+end
+
+post '/admin/login' do
+  if admin?
+    session[:admin] = true
+    redirect '/admin/posts/'
+  else
+    erb :"admin/login", :layout => :"admin/layout", :locals => {:message => "Invalid credentials."}
+  end
+end
+
+get '/admin/logout/?' do
+  session[:admin] = false
+  redirect '/admin/'
+end
+
 get '/admin/posts/?' do
+  admin!
+  
   posts = Post.desc(:created_at).paginate(pagination(20))
   erb :"admin/posts", :layout => :"admin/layout", :locals => {:posts => posts}
 end
 
 get '/admin/posts/new/?' do
+  admin!
+  
   erb :"admin/new", :layout => :"admin/layout"
 end
 
 post '/admin/posts/?' do
+  admin!
+  
   post = Post.new params[:post]
   post.save! # should be no reason for failure
   redirect "/admin/post/#{post.slug}"
 end
 
 get '/admin/post/:slug' do
+  admin!
+  
   post = Post.where(:slug => params[:slug]).first
   raise Sinatra::NotFound unless post
   
@@ -21,6 +48,8 @@ get '/admin/post/:slug' do
 end
 
 put '/admin/post/:slug' do
+  admin!
+  
   post = Post.where(:slug => params[:slug]).first
   raise Sinatra::NotFound unless post
   
@@ -48,16 +77,22 @@ put '/admin/post/:slug' do
 end
 
 get '/admin/comments/?' do
+  admin!
+  
   comments = Comment.desc(:created_at).where(:flagged => false).all.paginate(pagination(20))
   erb :"admin/comments", :layout => :"admin/layout", :locals => {:comments => comments, :flagged => false}
 end
 
 get '/admin/comments/flagged/?' do
+  admin!
+  
   comments = Comment.desc(:created_at).where(:flagged => true).all.paginate(pagination(100))
   erb :"admin/comments", :layout => :"admin/layout", :locals => {:comments => comments, :flagged => true}
 end
 
 get '/admin/comment/:id' do
+  admin!
+  
   comment = Comment.where(:_id => BSON::ObjectId(params[:id])).first
   raise Sinatra::NotFound unless comment
   
@@ -65,6 +100,8 @@ get '/admin/comment/:id' do
 end
 
 put '/admin/comment/:id' do
+  admin!
+  
   comment = Comment.where(:_id => BSON::ObjectId(params[:id])).first
   raise Sinatra::NotFound unless comment
   
@@ -85,4 +122,13 @@ put '/admin/comment/:id' do
   else
     erb :"admin/comment", :layout => :"admin/layout", :locals => {:comment => comment}
   end
+end
+
+
+def admin!
+  throw(:halt, [401, "Not authorized\n"]) unless session[:admin] == true
+end
+
+def admin?
+  (params[:username] == config[:admin][:username]) and (params[:password] == config[:admin][:password])
 end

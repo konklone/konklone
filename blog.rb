@@ -6,7 +6,7 @@ require 'helpers'
 
 set :views, 'views'
 set :public, 'public'
-
+set :sessions, true
 
 require 'admin'
 
