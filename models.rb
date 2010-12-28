@@ -11,8 +11,8 @@ class Post
   slug :title, :permanent => true
   field :body
   field :published_at, :type => Time
-  field :post_type, :type => Array
-  field :tags, :type => Array
+  field :post_type, :type => Array, :default => ["blog"]
+  field :tags, :type => Array, :default => []
   field :private, :type => Boolean, :default => false
   field :draft, :type => Boolean, :default => true
   field :display_title, :type => Boolean, :default => true
