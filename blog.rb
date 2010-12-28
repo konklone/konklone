@@ -27,6 +27,14 @@ post '/post/:slug/comments' do
   
   comment = post.comments.build params[:comment]
   comment.ip = request.env['REMOTE_ADDR']
+
+  if production?
+    # not saved, used only for spam checking
+    comment.user_agent = request.env['HTTP_USER_AGENT']
+    comment.referrer = request.referer unless request.referer == "/"
+    
+    comment.flagged = comment.spam?
+  end
   
   if comment.save
     redirect "#{post_path(post)}#comment-#{comment.id}"

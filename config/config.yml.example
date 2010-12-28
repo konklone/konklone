@@ -3,3 +3,12 @@
   database: blog
   raise_not_found_error: false
   logger: # leaving blank suppresses logging, to enable delete this line
+
+# root of the site, used in RSS feeds, primarily
+:site:
+  :root: http://localhost:8080
+
+:rakismet:
+  :host: rest.akismet.com
+  :url: # http://yourdomain.com
+  :key: # api key
