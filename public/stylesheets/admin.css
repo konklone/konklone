@@ -1,15 +1,24 @@
+body.admin input.title {
+  width: 100%;
+  font-size: 14pt;
+  margin: 10px 0;
+  padding: 10px 10px 10px 8px;
+}
+
+body.admin input.tags {
+  font-size: 10pt;
+  padding: 5px;
+}
+
+body.admin input[type="checkbox"] {
+  margin-left: 10px;
+}
+
 body.admin textarea.body {
   height: 400px;
   width: 100%;
   font-size: 12pt;
   line-height: 22px;
-  padding: 10px;
-}
-
-body.admin input[type="text"] {
-  font-size: 14pt;
-  margin: 10px 0;
-  width: 100%;
   padding: 10px;
 }
 
@@ -26,4 +35,10 @@ body.admin a.visit {
   padding: 5px 10px;
   background-color: #224466;
   color: #fff;
+  border: 1px solid #336699;
+}
+
+fieldset {
+  display: block;
+  margin-top: 20px;
 }

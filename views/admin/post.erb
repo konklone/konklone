@@ -11,14 +11,13 @@
 <article>
   <form action="/admin/post/<%= post.slug %>" method="post">
     <input type="hidden" name="_method" value="put" />
+    <input type="hidden" name="post[post_type]" value="blog" />
     
-    
-    <input type="text" name="post[title]" placeholder="title" 
+    <input type="text" class="title" name="post[title]" placeholder="title" 
       value="<%= post.title %>"
       />
       
     <textarea class="body" name="post[body]"><%= post.body %></textarea>
-    
     
     <input type="submit" name="submit" value="Update" />
     
@@ -37,5 +36,16 @@
     <% if post.visible? %>
       <a class="visit" target="_blank" href="/post/<%= post.slug %>">See on site &raquo;</a>
     <% end %>
+    
+    <fieldset>
+      <input type="text" name="post[tags]" class="tags" placeholder="tags"
+        value="<%= post.tags.join(", ") %>"
+        />
+        
+      <input type="checkbox" name="post[display_title]" id="post_display_title"
+        <%= "checked" if post.display_title %>
+        />
+      <label for="post_display_title">Display title?</label>
+    </fieldset>
   </form>
 </article>
