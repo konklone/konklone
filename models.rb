@@ -27,6 +27,10 @@ class Post
   validates_uniqueness_of :slug, :allow_nil => true
   
   scope :visible, :where => {:private => false, :draft => false}
+  
+  def visible?
+    !private and !draft
+  end
 end
 
 

@@ -8,6 +8,9 @@ set :views, 'views'
 set :public, 'public'
 
 
+require 'admin'
+
+
 get '/' do
   erb :index, :locals => {:posts => Post.visible.desc(:published_at).paginate(pagination)}
 end

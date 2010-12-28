@@ -60,4 +60,8 @@ helpers do
     post_body(description).gsub "\"", "&quot;"
   end
   
+  def form_escape(string)
+    string.gsub "\"", "\\\""
+  end
+  
 end

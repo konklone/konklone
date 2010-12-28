@@ -1,0 +1,41 @@
+<% content_for(:body_class) {:admin} %>
+
+<% if post.errors.any? %>
+  <ol>
+    <% post.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ol>
+<% end %>
+
+<article>
+  <form action="/admin/post/<%= post.slug %>" method="post">
+    <input type="hidden" name="_method" value="put" />
+    
+    
+    <input type="text" name="post[title]" placeholder="title" 
+      value="<%= post.title %>"
+      />
+      
+    <textarea class="body" name="post[body]"><%= post.body %></textarea>
+    
+    
+    <input type="submit" name="submit" value="Update" />
+    
+    <% if post.draft %>
+      <input type="submit" name="submit" value="Publish" />
+    <% else %>
+      <input type="submit" name="submit" value="Unpublish" />
+    <% end %>
+    
+    <% if post.private %>
+      <input type="submit" name="submit" value="Make public" />
+    <% else %>
+      <input type="submit" name="submit" value="Make private" />
+    <% end %>
+    
+    <% if post.visible? %>
+      <a class="visit" target="_blank" href="/post/<%= post.slug %>">See on site &raquo;</a>
+    <% end %>
+  </form>
+</article>
