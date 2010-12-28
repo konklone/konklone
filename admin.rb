@@ -46,3 +46,43 @@ put '/admin/post/:slug' do
     erb :"admin/post", :locals => {:post => post}
   end
 end
+
+get '/admin/comments/?' do
+  comments = Comment.where(:flagged => false).all.paginate(pagination(20))
+  erb :"admin/comments", :layout => :"admin/layout", :locals => {:comments => comments}
+end
+
+get '/admin/comments/flagged/?' do
+  comments = Comment.where(:flagged => true).all.paginate(pagination(100))
+  erb :"admin/comments", :layout => :"admin/layout", :locals => {:comments => comments}
+end
+
+get '/admin/comment/:id' do
+  comment = Comment.where(:_id => BSON::ObjectId(params[:id])).first
+  raise Sinatra::NotFound unless comment
+  
+  erb :"admin/comment", :layout => :"admin/layout", :locals => {:comment => comment}
+end
+
+put '/admin/comment/:id' do
+  comment = Comment.where(:_id => BSON::ObjectId(params[:id])).first
+  raise Sinatra::NotFound unless comment
+  
+  params[:comment]['mine'] = (params[:comment]['mine'] == "on")
+  
+  comment.attributes = params[:comment]
+  comment.ip = params[:comment]['ip']
+  comment.mine = params[:comment]['mine']
+  
+  if params[:submit] == "Hide"
+    comment.hidden = true
+  elsif params[:submit] == "Show"
+    comment.hidden = false
+  end
+  
+  if comment.save
+    redirect "/admin/comment/#{comment._id}"
+  else
+    erb :"admin/comment", :layout => :"admin/layout", :locals => {:comment => comment}
+  end
+end

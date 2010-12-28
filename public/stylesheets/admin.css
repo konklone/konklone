@@ -1,40 +1,46 @@
 section.sidebar {margin-top: 10px;}
 
-body.admin ol {
+body.admin ol.errors {font-size: 12pt;}
+body.admin ol.errors li {margin: 5px 0; padding: 0; color: #a00;}
+
+body.admin ol.posts {
   font-size: 12pt;
 }
 
-body.admin ol li {
+body.admin ol.posts li {
   padding: 10px 10px;
   border-bottom: 1px solid #888;
   margin: 0;
 }
 
-body.admin ol li:hover {
+body.admin ol.posts li:hover {
   background-color: #e5e5dd;
   cursor: pointer;
 }
-body.admin ol li:hover a {text-decoration: underline;}
+body.admin ol.posts li:hover a {text-decoration: underline;}
 
-body.admin ol li span.flags {
+body.admin ol.posts li span.flags {
   margin-left: 10px;
   float: right;
   vertical-align: center;
 }
 
-body.admin ol li span.flags.draft {color: #880000;}
-body.admin ol li span.flags.private {color: #000088;}
+body.admin ol.posts li span.flags.draft {color: #880000;}
+body.admin ol.posts li span.flags.private {color: #000088;}
+
+body.admin input[type="text"].big {
+  font-size: 14pt;
+  padding: 10px 10px 10px 8px;
+  margin: 10px 0;
+}
+
+body.admin input[type="text"].small {
+  font-size: 10pt;
+  padding: 5px;
+}
 
 body.admin input.title {
   width: 100%;
-  font-size: 14pt;
-  margin: 10px 0;
-  padding: 10px 10px 10px 8px;
-}
-
-body.admin input.tags {
-  font-size: 10pt;
-  padding: 5px;
 }
 
 body.admin input[type="checkbox"] {
@@ -47,6 +53,10 @@ body.admin textarea.body {
   font-size: 12pt;
   line-height: 22px;
   padding: 10px;
+}
+
+body.admin textarea.comment.body {
+  height: 200px;
 }
 
 body.admin input[type="submit"] {

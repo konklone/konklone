@@ -69,6 +69,7 @@ def get_comments
         :created_at => old_comment.created_at,
         :updated_at => old_comment.updated_at,
         :hidden => !old_comment.visible,
+        :flagged => false,
         :mine => old_comment.mine,
         
         :imported_at => Time.now,

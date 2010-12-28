@@ -5,7 +5,7 @@
 <% end %>
 
 <% if post.errors.any? %>
-  <ol>
+  <ol class="errors">
     <% post.errors.full_messages.each do |message| %>
       <li><%= message %></li>
     <% end %>
@@ -16,7 +16,7 @@
   <form action="/admin/post/<%= post.slug %>" method="post">
     <input type="hidden" name="_method" value="put" />
     
-    <input type="text" class="title" name="post[title]" placeholder="title" 
+    <input type="text" class="big title" name="post[title]" placeholder="title" 
       value="<%= form_escape post.title %>"
       />
       
@@ -41,7 +41,7 @@
     <% end %>
     
     <fieldset>
-      <input type="text" name="post[tags]" class="tags" placeholder="tags"
+      <input type="text" name="post[tags]" class="small tags" placeholder="tags"
         value="<%= form_escape post.tags.join(", ") %>"
         />
         

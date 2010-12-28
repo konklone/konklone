@@ -1,0 +1,56 @@
+<% content_for(:title) { "Comment: #{comment.author}" } %>
+
+<% content_for :sidebar_left do %>
+  <% if comment.flagged? %>
+    <a href="/admin/comments/">&laquo; flagged comments</a>
+  <% else %>
+    <a href="/admin/comments/">&laquo; all comments</a>
+  <% end %>
+<% end %>
+
+<% if comment.errors.any? %>
+  <ol class="errors">
+    <% comment.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ol>
+<% end %>
+
+<article>
+  <form action="/admin/comment/<%= comment.id %>" method="post">
+    <input type="hidden" name="_method" value="put" />
+    
+    <input type="text" class="big" name="comment[author]" placeholder="author"
+      value="<%= form_escape comment.author %>"
+      />
+      
+    <input type="text" class="big" name="comment[author_url]" placeholder="website"
+      value="<%= form_escape comment.author_url %>"
+      />
+    
+    <textarea class="comment body" name="comment[body]"><%= comment.body %></textarea>
+    
+    <input type="submit" name="submit" value="Update" />
+    
+    <% if comment.hidden %>
+      <input type="submit" name="submit" value="Show" />
+    <% else %>
+      <input type="submit" name="submit" value="Hide" />
+    <% end %>
+    
+    <% if comment.post.visible? %>
+      <a class="visit" href="/post/<%= comment.post.slug %>#comment-<%= comment.id %>">See on site &raquo;</a>
+    <% end %>
+    
+    
+    <fieldset>
+      <input type="text" class="small" name="comment[ip]" placeholder="ip address"
+        value="<%= form_escape comment.ip %>"
+        />
+        
+      <input type="checkbox" name="comment[mine]" id="comment_mine"
+        <%= "checked" if comment.mine %>
+        /> <label for="comment_mine">Mark as mine?</label>
+    </fieldset>
+  </form>
+</article>

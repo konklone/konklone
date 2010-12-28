@@ -14,7 +14,7 @@
   <a href="/admin/posts/new">+ new post</a>
 <% end %>
 
-<ol>
+<ol class="posts">
   <% posts.each do |post| %>
     <li>
       <a href="/admin/post/<%= post.slug %>"><%= h post.title %></a>

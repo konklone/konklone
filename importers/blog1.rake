@@ -166,7 +166,8 @@ def get_comments
         :import_source => "blog1",
         :import_source_filename => filename,
       
-        :hidden => false
+        :hidden => false,
+        :flagged => false
       }
       comment = post.comments.build attributes
       

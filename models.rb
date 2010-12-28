@@ -40,15 +40,15 @@ class Comment
   
   referenced_in :post
   
-  attr_protected :hidden, :ip
+  attr_protected :hidden, :ip, :flagged, :mine
   
   field :author
   field :author_url
   field :body
+  field :ip
   field :hidden, :type => Boolean, :default => false
   field :flagged, :type => Boolean, :default => false
   field :mine, :type => Boolean, :default => false
-  field :ip
   
   index :author
   index :author_url
