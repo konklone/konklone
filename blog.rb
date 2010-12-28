@@ -7,6 +7,7 @@ require 'helpers'
 set :views, 'views'
 set :public, 'public'
 
+
 get '/' do
   erb :index, :locals => {:posts => Post.visible.desc(:published_at).paginate(pagination)}
 end
@@ -42,6 +43,9 @@ post '/post/:slug/comments' do
     erb :post, :locals => {:post => post, :new_comment => comment}
   end
 end
+
+
+# RSS feeds
 
 get /\/(?:unburned-)?rss.xml$/ do
   headers['Content-Type'] = 'application/rss+xml'
