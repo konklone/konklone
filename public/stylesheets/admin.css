@@ -1,32 +1,38 @@
-section.sidebar {margin-top: 10px;}
+section.sidebar {margin-top: 10px; line-height: 25px;}
 
 body.admin ol.errors {font-size: 12pt;}
 body.admin ol.errors li {margin: 5px 0; padding: 0; color: #a00;}
 
-body.admin ol.posts {
+body.admin p.none {
+  width: 700px; margin: 0 auto; 
+  padding-bottom: 50px; padding-top: 10px;
+}
+
+body.admin ol.listing {
   font-size: 12pt;
 }
 
-body.admin ol.posts li {
+body.admin ol.listing li {
   padding: 10px 10px;
   border-bottom: 1px solid #888;
   margin: 0;
 }
 
-body.admin ol.posts li:hover {
+body.admin ol.listing li:hover {
   background-color: #e5e5dd;
   cursor: pointer;
 }
-body.admin ol.posts li:hover a {text-decoration: underline;}
+body.admin ol.listing li:hover a {text-decoration: underline;}
 
-body.admin ol.posts li span.flags {
+body.admin ol.listing li span.flags {
   margin-left: 10px;
   float: right;
   vertical-align: center;
 }
 
-body.admin ol.posts li span.flags.draft {color: #880000;}
-body.admin ol.posts li span.flags.private {color: #000088;}
+body.admin ol.listing li span.flags.hidden {color: #880000;}
+body.admin ol.listing li span.flags.draft {color: #880000;}
+body.admin ol.listing li span.flags.private {color: #000088;}
 
 body.admin input[type="text"].big {
   font-size: 14pt;

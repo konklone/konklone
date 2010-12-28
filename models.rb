@@ -61,6 +61,7 @@ class Comment
   validates_presence_of :author
   
   scope :visible, :where => {:hidden => false, :flagged => false}
+  scope :flagged, :where => {:flagged => true}
   
   
   # prefix URLs with http:// if they exist and don't have it

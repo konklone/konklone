@@ -3,7 +3,7 @@
 <% content_for :head do %>
   <script type="text/javascript">
     $(function() {
-      $("ol li").click(function() {
+      $("ol.listing li").click(function() {
         location.href = $(this).children("a")[0].href;
       });
     })
@@ -11,10 +11,12 @@
 <% end %>
 
 <% content_for :sidebar_left do %>
-  <a href="/admin/posts/new">+ new post</a>
+  <a href="/admin/posts/new">+ new post</a><br/>
+  <a href="/admin/comments/">all comments</a><br/>
+  <a href="/admin/comments/flagged/">flagged comments</a>
 <% end %>
 
-<ol class="posts">
+<ol class="listing">
   <% posts.each do |post| %>
     <li>
       <a href="/admin/post/<%= post.slug %>"><%= h post.title %></a>
@@ -28,4 +30,3 @@
     </li>
   <% end %>
 </ol>
-

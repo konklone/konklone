@@ -1,0 +1,38 @@
+<% content_for(:title) { "Posts" } %>
+
+<% content_for :head do %>
+  <script type="text/javascript">
+    $(function() {
+      $("ol.listing li").click(function() {
+        location.href = $(this).children("a")[0].href;
+      });
+    })
+  </script>
+<% end %>
+
+<% content_for :sidebar_left do %>
+  <a href="/admin/posts/">&laquo; all posts</a><br/>
+  <% if flagged %>
+    <a href="/admin/comments/">all comments</a>
+  <% else %>
+    <a href="/admin/comments/flagged/">flagged comments</a>
+  <% end %>
+<% end %>
+
+<% if comments.any? %>
+  <ol class="listing">
+    <% comments.each do |comment| %>
+      <li>
+        <a href="/admin/comment/<%= comment.id %>"><%= h comment.author %></a>
+        on
+        <%= h comment.post.title %>
+      
+        <% if comment.hidden %>
+          <span class="flags hidden">hidden</span>
+        <% end %>
+      </li>
+    <% end %>
+  </ol>
+<% else %>
+  <p class="none">No comments.</p>
+<% end %>
