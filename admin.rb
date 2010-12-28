@@ -1,5 +1,9 @@
+get '/admin/posts/?' do
+  posts = Post.desc(:created_at).paginate(pagination(20))
+  erb :"admin/posts", :layout => :"admin/layout", :locals => {:posts => posts}
+end
 
-get '/admin/posts/new' do
+get '/admin/posts/new/?' do
   erb :"admin/new", :layout => :"admin/layout"
 end
 

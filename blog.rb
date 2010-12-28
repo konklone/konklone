@@ -12,7 +12,7 @@ require 'admin'
 
 
 get '/' do
-  erb :index, :locals => {:posts => Post.visible.desc(:published_at).paginate(pagination)}
+  erb :index, :locals => {:posts => Post.visible.desc(:published_at).paginate(pagination(10))}
 end
 
 get '/post/:slug/?' do

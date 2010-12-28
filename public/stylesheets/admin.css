@@ -1,3 +1,30 @@
+section.sidebar {margin-top: 10px;}
+
+body.admin ol {
+  font-size: 12pt;
+}
+
+body.admin ol li {
+  padding: 10px 10px;
+  border-bottom: 1px solid #888;
+  margin: 0;
+}
+
+body.admin ol li:hover {
+  background-color: #e5e5dd;
+  cursor: pointer;
+}
+body.admin ol li:hover a {text-decoration: underline;}
+
+body.admin ol li span.flags {
+  margin-left: 10px;
+  float: right;
+  vertical-align: center;
+}
+
+body.admin ol li span.flags.draft {color: #880000;}
+body.admin ol li span.flags.private {color: #000088;}
+
 body.admin input.title {
   width: 100%;
   font-size: 14pt;

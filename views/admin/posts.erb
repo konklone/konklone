@@ -1,0 +1,31 @@
+<% content_for(:title) { "Posts" } %>
+
+<% content_for :head do %>
+  <script type="text/javascript">
+    $(function() {
+      $("ol li").click(function() {
+        location.href = $(this).children("a")[0].href;
+      });
+    })
+  </script>
+<% end %>
+
+<% content_for :sidebar_left do %>
+  <a href="/admin/posts/new">+ new post</a>
+<% end %>
+
+<ol>
+  <% posts.each do |post| %>
+    <li>
+      <a href="/admin/post/<%= post.slug %>"><%= h post.title %></a>
+    
+      <% if post.draft %>
+        <span class="flags draft">draft</span>
+      <% end %>
+      <% if post.private %>
+        <span class="flags private">private</span>
+      <% end %>
+    </li>
+  <% end %>
+</ol>
+

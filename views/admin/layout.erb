@@ -1,12 +1,24 @@
 <!doctype html>
 <html>
 <head>
+  <title><%= yield_content :title %></title>
+  
   <link rel="stylesheet" href="/stylesheets/html5-reset.css" />
   <link rel="stylesheet" href="/stylesheets/main.css" />
   <link rel="stylesheet" href="/stylesheets/admin.css" />
+  
+  <script src="/javascripts/jquery-1.4.4.min.js"></script>
+  <script src="/javascripts/jquery.placehold-0.3.min.js"></script>
+  <script src="/javascripts/main.js"></script>
+  
+  <% yield_content :head %>
 </head>
 <body class="admin">
-
+  
+  <section class="sidebar left">
+    <% yield_content :sidebar_left %>
+  </section>
+  
   <%= yield %>
   
 </body>

@@ -2,10 +2,10 @@ require 'rdiscount'
 
 helpers do
   
-  def pagination
+  def pagination(per_page)
     page = params[:page].to_i || 1
     page = 1 if page < 1
-    {:page => page, :per_page => 10}
+    {:page => page, :per_page => per_page}
   end
   
   def post_path(post)

@@ -1,4 +1,8 @@
-<% content_for(:body_class) {:admin} %>
+<% content_for(:title) { h post.title } %>
+
+<% content_for :sidebar_left do %>
+  <a href="/admin/posts/">&laquo; all posts</a>
+<% end %>
 
 <% if post.errors.any? %>
   <ol>
