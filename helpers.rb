@@ -2,6 +2,10 @@ require 'rdiscount'
 
 helpers do
   
+  def admin?
+    session[:admin] == true
+  end
+  
   def pagination(per_page)
     page = params[:page].to_i || 1
     page = 1 if page < 1

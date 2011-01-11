@@ -129,9 +129,5 @@ end
 
 
 def admin!
-  throw(:halt, [401, "Not authorized\n"]) unless session[:admin] == true
-end
-
-def admin?
-  session[:admin] == true
+  throw(:halt, [401, "Not authorized\n"]) unless admin?
 end

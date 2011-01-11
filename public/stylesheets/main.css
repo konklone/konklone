@@ -51,7 +51,7 @@ body>header, article, footer, ol, body>ol+section, body>footer hr {
   width: 700px;
 }
 
-section.sidebar {margin-top: 25px;}
+section.sidebar {margin-top: 25px; line-height: 25px;}
 section.sidebar.left {float: left;}
 section.sidebar.right {float: right;}
 section.footer.left {float: left;}

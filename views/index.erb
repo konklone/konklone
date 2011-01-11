@@ -10,6 +10,13 @@
   </h2>
 <% end %>
 
+<% content_for :sidebar_right do %>
+  <% if admin? %>
+    <a href="/admin">&raquo; admin</a><br/>
+    <a href="/admin/logout">logout</a>
+  <% end %>
+<% end %>
+
 <% content_for :footer_left do %>
   <% if posts.previous_page %>
     <a href="/?page=<%= posts.previous_page %>">&laquo; newer posts</a>
