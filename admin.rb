@@ -1,10 +1,13 @@
 get '/admin/?' do
-  p session
-  erb :"admin/login", :layout => :"admin/layout", :locals => {:message => nil}
+  if admin?
+    redirect '/admin/posts/'
+  else
+    erb :"admin/login", :layout => :"admin/layout", :locals => {:message => nil}
+  end
 end
 
 post '/admin/login' do
-  if admin?
+  if (params[:username] == config[:admin][:username]) and (params[:password] == config[:admin][:password])
     session[:admin] = true
     redirect '/admin/posts/'
   else
@@ -130,5 +133,5 @@ def admin!
 end
 
 def admin?
-  (params[:username] == config[:admin][:username]) and (params[:password] == config[:admin][:password])
+  session[:admin] == true
 end
