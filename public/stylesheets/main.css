@@ -142,7 +142,8 @@ h4 {
   line-height: 22px;
 }
 
-h4+p {
+/* first paragraph after an audio block of stuff */
+h4+script+p {
   clear: both;
 }
 
