@@ -1,0 +1,35 @@
+<audio class="<%= slug %>">
+  <source src="<%= filename %>" />
+</audio>
+
+<a href="#">Play</a>
+<div class="audio <%= slug %>" style="width: 0; height: 0;"></div>
+
+<h3><%= name %></h3>
+<h4><%= by %></h4>
+
+<script type="text/javascript">
+  var player = $("div.audio.<%= slug %>");
+  
+  player.jPlayer({
+    swfPath: "/swf",
+    ready: function() {
+      
+      // alert("ready");
+      
+      $(this).jPlayer("setMedia", {
+        mp3: "<%= filename %>"
+      });
+      
+      $(this).prev().click(function() {
+        if (this.__playing__) {
+          player.jPlayer("pause");
+          this.__playing__ = false;
+        } else {
+          player.jPlayer("play");
+          this.__playing__ = true;
+        }
+      });
+    }
+  });
+</script>

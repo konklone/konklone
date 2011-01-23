@@ -1,5 +1,5 @@
 <% content_for :title do %><%= post.title %><% end %>
-<% content_for :description do %><%= meta_description post.body %><% end %>
+<% content_for :description do %><%= meta_description post %><% end %>
 
 <% content_for :sidebar_left do %>
   <a href="/">&laquo; everything else</a>
@@ -20,7 +20,7 @@
     </h1>
   </header>
   
-  <%= post_body post.body %>
+  <%= post_body post %>
   
   <footer>
     <time datetime="<%= short_datetime post.published_at %>" pubdate><%= long_date post.published_at %></time>
