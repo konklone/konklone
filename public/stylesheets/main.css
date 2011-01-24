@@ -125,7 +125,7 @@ article blockquote {
 div.controls a.play, div.controls a.pause {
   display: block; text-indent: -9999em;
   width: 80px; height: 80px;
-  margin-right: 20px; 
+  margin-right: 0px; 
   margin-bottom: 20px;
   float: left;
 }
