@@ -6,16 +6,17 @@
 <div class="audio <%= slug %>" style="width: 0; height: 0;"></div>
 
 <h3><%= name %></h3>
-<h4><%= by %></h4>
+<h4>
+  <a href="<%= filename %>"><%= by %></a>
+</h4>
 
 <script type="text/javascript">
-  var player = $("div.audio.<%= slug %>");
-  
-  player.jPlayer({
+  $("div.audio.<%= slug %>").jPlayer({
     swfPath: "/swf",
+    solution: "flash",
+    errorAlerts: false,
+    warningAlerts: false,
     ready: function() {
-      
-      // alert("ready");
       
       $(this).jPlayer("setMedia", {
         mp3: "<%= filename %>"
@@ -23,12 +24,13 @@
       
       $(this).prev().click(function() {
         if (this.__playing__) {
-          player.jPlayer("pause");
+          $("div.audio.<%= slug %>").jPlayer("pause");
           this.__playing__ = false;
         } else {
-          player.jPlayer("play");
+          $("div.audio.<%= slug %>").jPlayer("play");
           this.__playing__ = true;
         }
+        return false;
       });
     }
   });
