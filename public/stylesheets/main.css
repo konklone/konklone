@@ -122,14 +122,16 @@ article blockquote {
 
 /* Audio */
 
-audio+a {
-  background-image: url(/images/play.png);
+div.controls a.play, div.controls a.pause {
   display: block; text-indent: -9999em;
   width: 80px; height: 80px;
   margin-right: 20px; 
   margin-bottom: 20px;
   float: left;
 }
+
+div.controls a.play {background-image: url(/images/play.png);}
+div.controls a.pause {background-image: url(/images/pause.png); display: none;}
 
 h3 {
   font-size: 18pt;

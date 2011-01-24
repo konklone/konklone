@@ -2,7 +2,10 @@
   <source src="<%= filename %>" />
 </audio>
 
-<a href="#">Play</a>
+<div class="controls <%= slug %>">
+  <a href="#" tabindex="1" class="play">Play</a>
+  <a href="#" tabindex="1" class="pause">Pause</a>
+</div>
 <div class="audio <%= slug %>" style="width: 0; height: 0;"></div>
 
 <h3><%= name %></h3>
@@ -10,30 +13,36 @@
   <a href="<%= filename %>"><%= by %></a>
 </h4>
 
-<div class="controls <%= slug %>" style="display: none">
-  
-</div>
-
 <script type="text/javascript">
   $("div.audio.<%= slug %>").jPlayer({
     swfPath: "/swf",
     solution: "html, flash",
+    preload: "auto",
+    volume: 0.5,
+    
+    cssSelectorAncestor: "div.controls.<%= slug %>",
+    cssSelector: {
+      play: ".play",
+      pause: ".pause"
+    },
+    
     ready: function() {
       
       $(this).jPlayer("setMedia", {
         mp3: "<%= filename %>"
       });
       
-      $(this).prev().click(function() {
-        if (this.__playing__) {
-          $("div.audio.<%= slug %>").jPlayer("pause");
-          this.__playing__ = false;
-        } else {
-          $("div.audio.<%= slug %>").jPlayer("play");
-          this.__playing__ = true;
-        }
-        return false;
-      });
+      
+//       $(this).prev().click(function() {
+//         if (this.__playing__) {
+//           $("div.audio.<%= slug %>").jPlayer("pause");
+//           this.__playing__ = false;
+//         } else {
+//           $("div.audio.<%= slug %>").jPlayer("play");
+//           this.__playing__ = true;
+//         }
+//         return false;
+//       });
     }
   });
 </script>
