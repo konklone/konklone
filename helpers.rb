@@ -3,7 +3,7 @@ require 'rdiscount'
 helpers do
   
   def get_ip
-    forwarded = request.env['X_FORWARDED_FOR']
+    forwarded = request.env['HTTP_X_FORWARDED_FOR']
     forwarded.present? ? forwarded.split(',').first : nil
   end
   
