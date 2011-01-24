@@ -2,6 +2,11 @@ require 'rdiscount'
 
 helpers do
   
+  def get_ip
+    forwarded = request.env['X_FORWARDED_FOR']
+    forwarded.present? ? forwarded.split(',').first : nil
+  end
+  
   def admin?
     session[:admin] == true
   end
@@ -57,7 +62,7 @@ helpers do
   end
   
   def comment_body(body)
-    RDiscount.new(body, :filter_html, :autolinks).to_html
+    RDiscount.new(body, :filter_html, :autolink).to_html
   end
   
   def meta_description(post)

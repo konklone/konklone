@@ -30,7 +30,7 @@ post '/post/:slug/comments' do
   raise Sinatra::NotFound unless post = Post.visible.where(:slug => params[:slug]).first
   
   comment = post.comments.build params[:comment]
-  comment.ip = request.env['REMOTE_ADDR']
+  comment.ip = get_ip
 
   if config[:site][:check_spam]
     # not saved, used only for spam checking
