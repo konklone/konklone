@@ -73,6 +73,10 @@ helpers do
     string.gsub "\"", "&quot;"
   end
   
+  def url_escape(url)
+    URI.escape url
+  end
+  
   def render_songs(body, slug)
     body.gsub /(?:<p>\s*)?\[song "([^"]+)"\].*?\[name\](.*?)\[\/name\].*?\[by(?: "([^"]+)")?\](.*?)\[\/by\].*?\[\/song\](?:\s*<\/p>)?/im do
       partial :song, :locals => {

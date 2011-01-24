@@ -1,5 +1,5 @@
 <audio class="<%= slug %>">
-  <source src="<%= filename %>" />
+  <source src="<%= url_escape filename %>" />
 </audio>
 
 <div class="controls <%= slug %>">
@@ -9,7 +9,7 @@
 <div class="audio <%= slug %>" style="width: 0; height: 0;"></div>
 
 <h3>
-  <a href="<%= filename %>"><%= name %></a>
+  <a href="<%= url_escape filename %>"><%= name %></a>
 </h3>
 <h4>
   <% if link.present? %>
