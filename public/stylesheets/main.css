@@ -144,7 +144,7 @@ h4 {
   line-height: 22px;
 }
 
-h4 a {text-decoration: underline}
+h3 a, h4 a {text-decoration: underline}
 
 /* first paragraph after an audio block of stuff */
 h4+script+p {

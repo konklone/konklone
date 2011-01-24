@@ -8,9 +8,15 @@
 </div>
 <div class="audio <%= slug %>" style="width: 0; height: 0;"></div>
 
-<h3><%= name %></h3>
+<h3>
+  <a href="<%= filename %>"><%= name %></a>
+</h3>
 <h4>
-  <a href="<%= filename %>"><%= by %></a>
+  <% if link.present? %>
+    <a href="<%= link %>"><%= by %></a>
+  <% else %>
+    <%= by %>
+  <% end %>
 </h4>
 
 <script type="text/javascript">
@@ -18,7 +24,7 @@
     swfPath: "/swf",
     solution: "html, flash",
     preload: "auto",
-    volume: 0.5,
+    volume: 0.7,
     
     cssSelectorAncestor: "div.controls.<%= slug %>",
     cssSelector: {
@@ -27,22 +33,9 @@
     },
     
     ready: function() {
-      
       $(this).jPlayer("setMedia", {
         mp3: "<%= filename %>"
       });
-      
-      
-//       $(this).prev().click(function() {
-//         if (this.__playing__) {
-//           $("div.audio.<%= slug %>").jPlayer("pause");
-//           this.__playing__ = false;
-//         } else {
-//           $("div.audio.<%= slug %>").jPlayer("play");
-//           this.__playing__ = true;
-//         }
-//         return false;
-//       });
     }
   });
 </script>

@@ -69,11 +69,12 @@ helpers do
   end
   
   def render_songs(body, slug)
-    body.gsub /(?:<p>\s*)?\[song "([^"]+)"\].*?\[name\](.*?)\[\/name\].*?\[by\](.*?)\[\/by\].*?\[\/song\](?:\s*<\/p>)?/im do
+    body.gsub /(?:<p>\s*)?\[song "([^"]+)"\].*?\[name\](.*?)\[\/name\].*?\[by(?: "([^"]+)")?\](.*?)\[\/by\].*?\[\/song\](?:\s*<\/p>)?/im do
       partial :song, :locals => {
         :filename => $1,
         :name => $2,
-        :by => $3,
+        :link => $3,
+        :by => $4,
         :slug => slug
       }
     end
