@@ -6,9 +6,11 @@
 
 /config/config.yml
 /vendor/gems
-#/vendor/cache
 /vendor/bundle
 /config.ru
 /tmp
 /.bundle
 /logs
+
+# google webmaster tools verification file
+/public/google*.html
