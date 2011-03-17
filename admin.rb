@@ -23,7 +23,10 @@ end
 get '/admin/posts/?' do
   admin!
   
-  posts = Post.desc(:created_at).paginate(pagination(20))
+  # allow filtering
+  posts = params[:q].present? ? Post.search(params[:q]) : Post
+  
+  posts = posts.desc(:created_at).paginate(pagination(20))
   erb :"admin/posts", :layout => :"admin/layout", :locals => {:posts => posts}
 end
 

@@ -31,6 +31,16 @@ class Post
   def visible?
     !private and !draft
   end
+  
+  def self.search(query)
+    where "$or" => [:body, :title].map {|key| {key => regex_for(query)}}
+  end
+  
+  def self.regex_for(value)
+    regex_value = value.dup
+    %w{+ ? . * ^ $ ( ) [ ] { } | \ }.each {|char| regex_value.gsub! char, "\\#{char}"}
+    /#{regex_value}/i
+  end
 end
 
 
@@ -74,7 +84,6 @@ class Comment
   
   
   # spam protection
-  
   include Rakismet::Model
   
   # not saved to db
