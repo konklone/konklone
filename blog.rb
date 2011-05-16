@@ -56,10 +56,14 @@ end
 
 get /\/(?:unburned-)?rss.xml$/ do
   headers['Content-Type'] = 'application/rss+xml'
-  erb :rss, :locals => {:site => config[:site], :posts => Post.visible.desc(:published_at).limit(20).to_a}, :layout => false
+  
+  posts = Post.visible.desc(:published_at).limit(20).to_a
+  erb :rss, :locals => {:site => config[:site], :posts => posts}, :layout => false
 end
 
 get '/comments.xml' do
   headers['Content-Type'] = 'application/rss+xml'
-  erb :comments, :locals => {:site => config[:site], :comments => Comment.visible.desc(:created_at).limit(20).to_a}, :layout => false
+  
+  comments = Comment.visible.desc(:created_at).limit(20).to_a
+  erb :comments, :locals => {:site => config[:site], :comments => comments}, :layout => false
 end
