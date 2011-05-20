@@ -13,6 +13,7 @@ body.admin p.none {
 
 body.admin ol.listing {
   font-size: 12pt;
+  list-style-type: none;
 }
 
 body.admin ol.listing li {
