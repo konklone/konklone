@@ -120,6 +120,12 @@ article blockquote {
   color: #444;
 }
 
+article ol, article ul {list-style-position: outside; margin-left: 20px;}
+article ol li, article ul li {
+  margin: 10px 0;
+  line-height: 27px;
+}
+
 /* Audio */
 
 div.controls a.play, div.controls a.pause {
@@ -161,23 +167,23 @@ article footer hr {
 
 /* Comment display */
 
-ol {list-style-type: none;}
-ol li {margin: 50px 0;}
+ol#comments {list-style-type: none;}
+ol#comments li {margin: 50px 0;}
 
-ol li header cite {
+ol#comments li header cite {
   float: left; 
   margin-bottom: 20px;
   font-style: normal;
 }
 
-ol li header cite a {text-decoration: underline;}
+ol#comments li header cite a {text-decoration: underline;}
 
-ol li header time {
+ol#comments li header time {
   float: right;
   margin-top: 2px;
 }
 
-ol li p {
+ol#comments li p {
   clear: both;
   line-height: 25px;
   margin: 20px 0;
