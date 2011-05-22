@@ -1,3 +1,7 @@
+before '/admin/[^(login|logout)]*' do
+  throw(:halt, [401, "Not authorized\n"]) unless admin?
+end
+
 # login form
 get '/admin/?' do
   if admin?
@@ -25,8 +29,6 @@ end
 
 # list all posts 
 get '/admin/posts/?' do
-  admin!
-  
   # allow filtering
   posts = params[:q].present? ? Post.search(params[:q]) : Post
   
@@ -36,15 +38,11 @@ end
 
 # form for creating a new post
 get '/admin/posts/new/?' do
-  admin!
-  
   erb :"admin/new", :layout => :"admin/layout"
 end
 
 # create a new post
 post '/admin/posts/?' do
-  admin!
-  
   post = Post.new params[:post]
   post.save! # should be no reason for failure
   redirect "/admin/post/#{post.slug}"
@@ -52,8 +50,6 @@ end
 
 # main edit form for a post
 get '/admin/post/:slug' do
-  admin!
-  
   post = Post.where(:slug => params[:slug]).first
   raise Sinatra::NotFound unless post
   
@@ -62,8 +58,6 @@ end
 
 # update a post
 put '/admin/post/:slug' do
-  admin!
-  
   post = Post.where(:slug => params[:slug]).first
   raise Sinatra::NotFound unless post
   
@@ -100,8 +94,6 @@ end
 
 # list of non-spam comments
 get '/admin/comments/?' do
-  admin!
-  
   comments, page = paginate 20, Comment.desc(:created_at).where(:flagged => false)
   
   erb :"admin/comments", :layout => :"admin/layout", :locals => {:comments => comments, :flagged => false, :page => page, :per_page => 20}
@@ -109,16 +101,12 @@ end
 
 # list of comments marked as spam
 get '/admin/comments/flagged/?' do
-  admin!
-  
   comments, page = paginate 100, Comment.desc(:created_at).where(:flagged => true)
   erb :"admin/comments", :layout => :"admin/layout", :locals => {:comments => comments, :flagged => true, :page => page, :per_page => 100}
 end
 
 # edit form for a comment
 get '/admin/comment/:id' do
-  admin!
-  
   comment = Comment.where(:_id => BSON::ObjectId(params[:id])).first
   raise Sinatra::NotFound unless comment
   
@@ -127,8 +115,6 @@ end
 
 # update a comment
 put '/admin/comment/:id' do
-  admin!
-  
   comment = Comment.where(:_id => BSON::ObjectId(params[:id])).first
   raise Sinatra::NotFound unless comment
   

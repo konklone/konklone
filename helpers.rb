@@ -11,10 +11,6 @@ helpers do
     session[:admin] == true
   end
   
-  def admin!
-    throw(:halt, [401, "Not authorized\n"]) unless admin?
-  end
-  
   def paginate(per_page, criteria)
     page = (params[:page]).to_i || 1
     page = 1 if page < 1
