@@ -77,6 +77,11 @@ body.admin input[type="submit"] {
   margin: 10px 10px 10px 0px;
 }
 
+body.admin span.divider {
+  margin-right: 10px;
+  font-size: 14pt;
+}
+
 body.admin a.visit {
   float: right;
   font-size: 14pt;
