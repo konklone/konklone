@@ -1,4 +1,6 @@
-section.sidebar {margin-top: 10px}
+body.admin {padding-bottom: 30px;}
+
+body.admin section.sidebar {margin-top: 10px}
 
 body.admin h1 {font-size: 18pt; margin: 5px 0;}
 body.admin p.error {color: #a00;}
@@ -85,7 +87,7 @@ body.admin a.visit {
   border: 1px solid #336699;
 }
 
-fieldset {
+body.admin fieldset {
   display: block;
   margin-top: 20px;
 }

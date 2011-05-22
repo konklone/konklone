@@ -17,6 +17,18 @@
   <a href="/admin/logout">&raquo; logout &laquo;</a>
 <% end %>
 
+<% content_for :footer_left do %>
+  <% if previous_page?(posts, page, per_page) %>
+    <a href="/admin/posts/?page=<%= page - 1 %>">&laquo; newer posts</a>
+  <% end %>
+<% end %>
+
+<% content_for :footer_right do %>
+  <% if next_page?(posts, page, per_page) %>
+    <a href="/admin/posts/?page=<%= page + 1 %>">older posts &raquo;</a>
+  <% end %>
+<% end %>
+
 <ol class="listing">
   <% posts.each do |post| %>
     <li>

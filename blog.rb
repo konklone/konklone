@@ -2,17 +2,18 @@
 
 require 'config/environment'
 require 'sinatra/content_for'
-require 'helpers'
 
 set :views, 'views'
 set :public, 'public'
 set :sessions, true
 
+require 'helpers'
 require 'admin'
 
 
 get '/' do
-  erb :index, :locals => {:posts => Post.visible.desc(:published_at).paginate(pagination(10))}
+  posts, page = paginate 10, Post.visible.desc(:published_at)
+  erb :index, :locals => {:posts => posts, :per_page => 10, :page => page}
 end
 
 get '/post/:slug/?' do

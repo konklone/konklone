@@ -19,6 +19,18 @@
   <% end %>
 <% end %>
 
+<% content_for :footer_left do %>
+  <% if previous_page?(comments, page, per_page) %>
+    <a href="/admin/comments/?page=<%= page - 1 %>">&laquo; newer comments</a>
+  <% end %>
+<% end %>
+
+<% content_for :footer_right do %>
+  <% if next_page?(comments, page, per_page) %>
+    <a href="/admin/comments/?page=<%= page + 1 %>">older comments &raquo;</a>
+  <% end %>
+<% end %>
+
 <% if comments.any? %>
   <ol class="listing">
     <% comments.each do |comment| %>

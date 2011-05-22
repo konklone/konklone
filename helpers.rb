@@ -11,10 +11,22 @@ helpers do
     session[:admin] == true
   end
   
-  def pagination(per_page)
-    page = params[:page].to_i || 1
+  def paginate(per_page, criteria)
+    page = (params[:page]).to_i || 1
     page = 1 if page < 1
-    {:page => page, :per_page => per_page}
+    
+    [
+      criteria.skip((page-1) * per_page).limit(per_page),
+      page
+    ]
+  end
+  
+  def previous_page?(documents, page, per_page)
+    page > 1
+  end
+  
+  def next_page?(documents, page, per_page)
+    documents.size == per_page
   end
   
   def post_path(post)

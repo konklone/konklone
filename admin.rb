@@ -26,8 +26,8 @@ get '/admin/posts/?' do
   # allow filtering
   posts = params[:q].present? ? Post.search(params[:q]) : Post
   
-  posts = posts.desc(:created_at).paginate(pagination(20))
-  erb :"admin/posts", :layout => :"admin/layout", :locals => {:posts => posts}
+  posts, page = paginate 20, posts.desc(:created_at)
+  erb :"admin/posts", :layout => :"admin/layout", :locals => {:posts => posts, :page => page, :per_page => 20}
 end
 
 get '/admin/posts/new/?' do
@@ -85,15 +85,16 @@ end
 get '/admin/comments/?' do
   admin!
   
-  comments = Comment.desc(:created_at).where(:flagged => false).all.paginate(pagination(20))
-  erb :"admin/comments", :layout => :"admin/layout", :locals => {:comments => comments, :flagged => false}
+  comments, page = paginate 20, Comment.desc(:created_at).where(:flagged => false)
+  
+  erb :"admin/comments", :layout => :"admin/layout", :locals => {:comments => comments, :flagged => false, :page => page, :per_page => 20}
 end
 
 get '/admin/comments/flagged/?' do
   admin!
   
-  comments = Comment.desc(:created_at).where(:flagged => true).all.paginate(pagination(100))
-  erb :"admin/comments", :layout => :"admin/layout", :locals => {:comments => comments, :flagged => true}
+  comments, page = paginate 100, Comment.desc(:created_at).where(:flagged => true)
+  erb :"admin/comments", :layout => :"admin/layout", :locals => {:comments => comments, :flagged => true, :page => page, :per_page => 100}
 end
 
 get '/admin/comment/:id' do
