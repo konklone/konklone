@@ -27,7 +27,11 @@
     <span class="divider">or</span>
     
     <% if post.draft? %>
-      <input type="submit" name="submit" value="Publish" />
+      <% if post.published_at %>
+        <input type="submit" name="submit" value="Republish" />
+      <% else %>
+        <input type="submit" name="submit" value="Publish" />
+      <% end %>
     <% else %>
       <input type="submit" name="submit" value="Unpublish" />
     <% end %>
