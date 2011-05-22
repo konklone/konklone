@@ -37,7 +37,9 @@
     <% end %>
     
     <% if post.visible? %>
-      <a class="visit" href="/post/<%= post.slug %>">See on site &raquo;</a>
+      <a class="visit published" href="/post/<%= post.slug %>">See on site &raquo;</a>
+    <% else %>
+      <a class="visit preview" href="/admin/post/<%= post.id %>/preview">Preview &raquo;</a>
     <% end %>
     
     <fieldset>

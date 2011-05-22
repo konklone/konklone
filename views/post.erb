@@ -23,12 +23,16 @@
   <%= post_body post %>
   
   <footer>
-    <time datetime="<%= short_datetime post.published_at %>" pubdate><%= long_date post.published_at %></time>
+    <% if post.visible? %>
+      <time datetime="<%= short_datetime post.published_at %>" pubdate><%= long_date post.published_at %></time>
+    <% else %>
+      <time datetime="<%= short_datetime post.updated_at%>">Unpublished, last updated <%= long_date post.updated_at %></time>
+    <% end %>
     <hr />
   </footer>
 </article>
 
-<ol id="comments"> <!-- id used for anchor -->
+<ol id="comments">
   <% if post.comments.visible.count > 0 %>
     <% post.comments.visible.asc(:created_at).each do |comment| %>
       <li id="comment-<%= comment.id %>"> <!-- id used for anchor -->
@@ -54,7 +58,8 @@
   <% end %>
 </ol>
 
-<section id="comment-form"> <!-- id used for anchor -->
+<% new_comment = nil unless defined?(new_comment) %>
+<section id="comment-form">
   <% if new_comment and new_comment.errors.any? %>
     <p>Comments must have a name and a body.</p>
   <% end %>

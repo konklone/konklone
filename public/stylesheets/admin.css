@@ -82,11 +82,21 @@ body.admin a.visit {
   font-size: 14pt;
   margin-top: 13px;
   padding: 5px 10px;
-  background-color: #224466;
-  color: #fff;
-  border: 1px solid #336699;
+  border-width: 1px;
+  border-style: solid;
 }
 
+body.admin a.visit.published {
+  border-color: #336699;
+  background-color: #224466;
+  color: #fff;
+}
+
+body.admin a.visit.preview {
+  border-color: #666666;
+  background-color: #444444;
+  color: #fff;
+}
 body.admin fieldset {
   display: block;
   margin-top: 20px;

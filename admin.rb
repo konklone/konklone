@@ -1,3 +1,4 @@
+# login form
 get '/admin/?' do
   if admin?
     redirect '/admin/posts/'
@@ -6,6 +7,7 @@ get '/admin/?' do
   end
 end
 
+# log in
 post '/admin/login' do
   if (params[:username] == config[:admin][:username]) and (params[:password] == config[:admin][:password])
     session[:admin] = true
@@ -15,11 +17,13 @@ post '/admin/login' do
   end
 end
 
+# log out
 get '/admin/logout/?' do
   session[:admin] = false
   redirect '/admin/'
 end
 
+# list all posts 
 get '/admin/posts/?' do
   admin!
   
@@ -30,12 +34,14 @@ get '/admin/posts/?' do
   erb :"admin/posts", :layout => :"admin/layout", :locals => {:posts => posts, :page => page, :per_page => 20}
 end
 
+# form for creating a new post
 get '/admin/posts/new/?' do
   admin!
   
   erb :"admin/new", :layout => :"admin/layout"
 end
 
+# create a new post
 post '/admin/posts/?' do
   admin!
   
@@ -44,6 +50,7 @@ post '/admin/posts/?' do
   redirect "/admin/post/#{post.slug}"
 end
 
+# main edit form for a post
 get '/admin/post/:slug' do
   admin!
   
@@ -53,6 +60,7 @@ get '/admin/post/:slug' do
   erb :"admin/post", :layout => :"admin/layout", :locals => {:post => post}
 end
 
+# update a post
 put '/admin/post/:slug' do
   admin!
   
@@ -82,6 +90,15 @@ put '/admin/post/:slug' do
   end
 end
 
+# post preview page (URL requires guessing db ID)
+get '/admin/post/:id/preview/?' do
+  post = Post.where(:_id => BSON::ObjectId(params[:id])).first
+  raise Sinatra::NotFound unless post
+  
+  erb :post, :locals => {:post => post}
+end
+
+# list of non-spam comments
 get '/admin/comments/?' do
   admin!
   
@@ -90,6 +107,7 @@ get '/admin/comments/?' do
   erb :"admin/comments", :layout => :"admin/layout", :locals => {:comments => comments, :flagged => false, :page => page, :per_page => 20}
 end
 
+# list of comments marked as spam
 get '/admin/comments/flagged/?' do
   admin!
   
@@ -97,6 +115,7 @@ get '/admin/comments/flagged/?' do
   erb :"admin/comments", :layout => :"admin/layout", :locals => {:comments => comments, :flagged => true, :page => page, :per_page => 100}
 end
 
+# edit form for a comment
 get '/admin/comment/:id' do
   admin!
   
@@ -106,6 +125,7 @@ get '/admin/comment/:id' do
   erb :"admin/comment", :layout => :"admin/layout", :locals => {:comment => comment}
 end
 
+# update a comment
 put '/admin/comment/:id' do
   admin!
   
@@ -129,9 +149,4 @@ put '/admin/comment/:id' do
   else
     erb :"admin/comment", :layout => :"admin/layout", :locals => {:comment => comment}
   end
-end
-
-
-def admin!
-  throw(:halt, [401, "Not authorized\n"]) unless admin?
 end
