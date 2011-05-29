@@ -106,3 +106,11 @@ body.admin fieldset {
   display: block;
   margin-top: 20px;
 }
+
+body.admin #flash {
+  width: 700px; margin: 10px auto; 
+  border: 1px solid #999; background-color: #e5e5e5; padding: 15px;
+}
+body.admin #flash .success {color: #060;}
+body.admin #flash .failure {color: #600;}
+body.admin #flash .info {}

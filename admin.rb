@@ -86,6 +86,16 @@ put '/admin/post/:slug' do
   end
 end
 
+delete '/admin/post/:slug' do
+  post = Post.where(:slug => params[:slug]).first
+  raise Sinatra::NotFound unless post
+  
+  post.destroy
+  flash[:success] = "Deleted post with slug #{post.slug}."
+  
+  redirect "/admin/posts/"
+end
+
 # post preview page (URL requires guessing db ID)
 get '/admin/post/:id/preview/?' do
   post = Post.where(:_id => BSON::ObjectId(params[:id])).first

@@ -59,4 +59,21 @@
       <label for="post_display_title">Display title?</label>
     </fieldset>
   </form>
+  <br/>
+  <form method="post" action="/admin/post/<%= post.slug %>">
+    <input type="hidden" name="_method" value="delete" />
+    <input type="submit" style="display: none" />
+    <a class="delete post" href="#">Delete post</a>
+  </form>
 </article>
+
+<script type="text/javascript">
+  $(function() {
+    $("a.post.delete").click(function() {
+      if (confirm("Really delete this post?"))
+        this.parentNode.submit();
+      
+      return false;
+    });
+  });
+</script>

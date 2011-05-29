@@ -2,6 +2,7 @@
 
 require 'config/environment'
 require 'sinatra/content_for'
+require 'sinatra/flash'
 
 set :views, 'views'
 set :public, 'public'
