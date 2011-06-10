@@ -113,8 +113,8 @@ end
 
 # list of comments marked as spam
 get '/admin/comments/flagged/?' do
-  comments, page = paginate 100, Comment.desc(:created_at).where(:flagged => true)
-  erb :"admin/comments", :layout => :"admin/layout", :locals => {:comments => comments, :flagged => true, :page => page, :per_page => 100}
+  comments, page = paginate 20, Comment.desc(:created_at).where(:flagged => true)
+  erb :"admin/comments", :layout => :"admin/layout", :locals => {:comments => comments, :flagged => true, :page => page, :per_page => 20}
 end
 
 # edit form for a comment
