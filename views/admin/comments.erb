@@ -14,6 +14,11 @@
   <a href="/admin/posts/">&laquo; all posts</a><br/>
   <% if flagged %>
     <a href="/admin/comments/">all comments</a>
+    <form method="post" action="/admin/comments/flagged/clear">
+      <input type="hidden" name="_method" value="delete" />
+      <input type="submit" style="display: none" />
+      <a class="clear flagged" href="#">&raquo; clear flagged comments &laquo;</a>
+    </form>
   <% else %>
     <a href="/admin/comments/flagged/">flagged comments</a>
   <% end %>
@@ -48,3 +53,14 @@
 <% else %>
   <p class="none">No comments.</p>
 <% end %>
+
+<script type="text/javascript">
+  $(function() {
+    $("a.flagged.clear").click(function() {
+      if (confirm("Really clear all flagged comments?"))
+        this.parentNode.submit();
+      
+      return false;
+    });
+  });
+</script>

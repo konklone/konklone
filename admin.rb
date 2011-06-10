@@ -117,6 +117,11 @@ get '/admin/comments/flagged/?' do
   erb :"admin/comments", :layout => :"admin/layout", :locals => {:comments => comments, :flagged => true, :page => page, :per_page => 20}
 end
 
+delete '/admin/comments/flagged/clear/?' do
+  Comment.flagged.delete_all
+  redirect "/admin/comments/flagged/"
+end
+
 # edit form for a comment
 get '/admin/comment/:id' do
   comment = Comment.where(:_id => BSON::ObjectId(params[:id])).first
