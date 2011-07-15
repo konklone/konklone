@@ -14,6 +14,8 @@ gem 'rdiscount', '1.6.8'
 
 gem 'rakismet', '1.0.1'
 
+gem 'simple-rss', '1.2.3'
+
 group :development do
   gem 'sinatra-reloader', '0.5.0'
   gem 'wirble'
