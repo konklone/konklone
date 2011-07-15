@@ -15,3 +15,5 @@
 
 # google webmaster tools verification file
 /public/google*.html
+
+*.kate-swp
