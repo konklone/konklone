@@ -24,4 +24,5 @@ end
 group :import do
   gem 'activerecord', '3.0.3'
   gem 'mysql2', '0.2.6'
+  gem 'RedCloth', '4.2.7'
 end
