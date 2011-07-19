@@ -5,11 +5,12 @@ task :environment do
 end
 
 load 'other/fixtures.rake'
+
 load 'importers/blog1/blog1.rake'
 # load 'importers/blog2/blog2.rake'
 load 'importers/blog3/blog3.rake'
 
-Dir.glob("syncers/*.rake").each {|f| load f}
+# Dir.glob("syncers/*.rake").each {|f| load f}
 
 desc "Create indexes on posts and comments"
 task :create_indexes => :define_import_indexes do
