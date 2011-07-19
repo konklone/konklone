@@ -10,6 +10,8 @@ ActiveRecord::Base.establish_connection(
 )
 
 class OldPost < ActiveRecord::Base
+  self.inheritance_column = :_type_disabled # get it to not try to use 'type' for STI
+  
   set_table_name "posts"
   
   has_and_belongs_to_many :categories, :class_name => "OldCategory", :foreign_key => "post_id", :association_foreign_key => "category_id", :join_table => "posts_categories"
@@ -22,6 +24,7 @@ class OldComment < ActiveRecord::Base
   
   belongs_to :post, :class_name => "OldPost", :foreign_key => "post_id"
 end
+
 
 class OldCategory < ActiveRecord::Base
   set_table_name "categories"
