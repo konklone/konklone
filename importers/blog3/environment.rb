@@ -1,5 +1,7 @@
 require 'RedCloth'
 require 'active_record'
+
+# hardcoding useless (to other people) local credentials
 ActiveRecord::Base.establish_connection(
   :adapter => "mysql",
   :host => "localhost",
