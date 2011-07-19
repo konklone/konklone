@@ -50,7 +50,7 @@ class Comment
   
   referenced_in :post
   
-  attr_protected :hidden, :ip, :flagged, :mine
+  attr_protected :_id, :hidden, :ip, :flagged, :mine
   
   field :author
   field :author_url
