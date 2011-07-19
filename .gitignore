@@ -1,4 +1,5 @@
-/importers/blog1/
+/importers/blog1/comments/
+/importers/blog1/archives/
 /importers/blog2/*.sql
 /importers/blog3/*.sql
 /other/mocks/*.mp3
