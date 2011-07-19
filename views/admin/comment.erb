@@ -45,7 +45,7 @@
     
     <fieldset>
       <input type="text" class="small" name="comment[ip]" placeholder="ip address"
-        value="<%= form_escape comment.ip %>"
+        value="<%= comment.ip ? form_escape(comment.ip) : nil %>"
         />
         
       <input type="checkbox" name="comment[mine]" id="comment_mine"
