@@ -6,7 +6,7 @@ ActiveRecord::Base.establish_connection(
   :adapter => "mysql",
   :host => "localhost",
   :username => "root",
-  :database => "ericmill"
+  :database => "old_blog3"
 )
 
 class OldPost < ActiveRecord::Base

@@ -67,17 +67,18 @@ module Blog3
           :author_url => dechar(old_comment.website),
           :body => dechar(old_comment.body),
           :created_at => old_comment.created_at,
-          :updated_at => old_comment.updated_at,
-          :hidden => !old_comment.visible,
-          :flagged => false,
-          :mine => old_comment.mine,
           
           :imported_at => Time.now,
           :import_source => "blog3",
           :import_id => old_comment.id,
           :import_post_id => old_comment.post_id
         )
+        
+        # attr_protected fields, can't be mass-assigned
         comment.ip = old_comment.ip
+        comment.hidden = !old_comment.visible
+        comment.flagged = false
+        comment.mine = old_comment.mine
         
         begin
           comment.save!
