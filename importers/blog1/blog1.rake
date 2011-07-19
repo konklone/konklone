@@ -171,12 +171,13 @@ module Blog1
           
           :imported_at => Time.now,
           :import_source => "blog1",
-          :import_source_filename => filename,
-        
-          :hidden => false,
-          :flagged => false
+          :import_source_filename => filename
         }
         comment = post.comments.build attributes
+        
+        # attr_protected fields, can't be mass-assigned
+        comment.hidden = false
+        comment.flagged = false
         
         begin
           comment.save!
