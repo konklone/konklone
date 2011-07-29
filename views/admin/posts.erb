@@ -17,15 +17,17 @@
   <a href="/admin/logout">&raquo; logout &laquo;</a>
 <% end %>
 
-<% content_for :footer_left do %>
+<% content_for :sidebar_right do %>
+  <form action="/admin/posts/" method="get">
+    <input type="search" name="q" placeholder="search posts" />
+  </form>
+  
   <% if previous_page?(posts, page, per_page) %>
-    <a href="/admin/posts/?page=<%= page - 1 %>">&laquo; newer posts</a>
+    <a href="/admin/posts/?page=<%= page - 1 %>&q=<%= params[:q] %>">&laquo; newer</a><br/>
   <% end %>
-<% end %>
 
-<% content_for :footer_right do %>
   <% if next_page?(posts, page, per_page) %>
-    <a href="/admin/posts/?page=<%= page + 1 %>">older posts &raquo;</a>
+    <a href="/admin/posts/?page=<%= page + 1 %>&q=<%= params[:q] %>">older &raquo;</a><br/>
   <% end %>
 <% end %>
 
