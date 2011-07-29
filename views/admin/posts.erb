@@ -30,9 +30,11 @@
 <% end %>
 
 <ol class="listing">
-  <% posts.each do |post| %>
+  <% base = (page - 1) * per_page %>
+  <% posts.each_with_index do |post, i| %>
+    <% offset = base + i %>
     <li>
-      <a href="/admin/post/<%= post.slug %>"><%= h post.title %></a>
+      <a href="/admin/post/<%= post.slug %>?offset=<%= offset %>&q=<%= params[:q] %>"><%= h post.title %></a>
     
       <% if post.draft %>
         <span class="flags draft">draft</span>

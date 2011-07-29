@@ -4,6 +4,16 @@
   <a href="/admin/posts/">&laquo; all posts</a>
 <% end %>
 
+<% content_for :sidebar_right do %>
+  <% if newer_post %>
+    <a href="/admin/post/<%= newer_post.slug %>?offset=<%= offset - 1 %>&q=<%= params[:q] %>">&laquo; newer</a><br/>
+  <% end %>
+  <% if older_post %>
+    <a href="/admin/post/<%= older_post.slug %>?offset=<%= offset + 1 %>&q=<%= params[:q] %>">older &raquo;</a><br/>
+  <% end %>
+  
+<% end %>
+
 <% if post.errors.any? %>
   <ol class="errors">
     <% post.errors.full_messages.each do |message| %>

@@ -29,10 +29,14 @@ end
 
 # list all posts 
 get '/admin/posts/?' do
-  # allow filtering
-  posts = params[:q].present? ? Post.search(params[:q]) : Post
+  posts = Post.admin
   
-  posts, page = paginate 20, posts.desc(:created_at)
+  # filtering
+  if params[:q].present?
+    posts = posts.admin_search params[:q]
+  end
+  
+  posts, page = paginate 20, posts
   erb :"admin/posts", :layout => :"admin/layout", :locals => {:posts => posts, :page => page, :per_page => 20}
 end
 
@@ -53,7 +57,23 @@ get '/admin/post/:slug' do
   post = Post.where(:slug => params[:slug]).first
   raise Sinatra::NotFound unless post
   
-  erb :"admin/post", :layout => :"admin/layout", :locals => {:post => post}
+  # if coming from a list, figure out the next and previous post from that list
+  older_post = nil
+  newer_post = nil
+  if params[:offset].present?
+    
+    posts = Post.admin
+    if params[:q].present?
+      posts = posts.admin_search(params[:q])
+    end
+    
+    offset = params[:offset].to_i
+    
+    newer_post = posts.skip(offset - 1).first if offset > 0
+    older_post = posts.skip(offset + 1).first
+  end
+  
+  erb :"admin/post", :layout => :"admin/layout", :locals => {:post => post, :newer_post => newer_post, :older_post => older_post, :offset => offset}
 end
 
 # update a post
