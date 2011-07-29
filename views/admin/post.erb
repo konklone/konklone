@@ -11,7 +11,6 @@
   <% if older_post %>
     <a href="/admin/post/<%= older_post.slug %>?offset=<%= offset + 1 %>&q=<%= params[:q] %>">older &raquo;</a><br/>
   <% end %>
-  
 <% end %>
 
 <% if post.errors.any? %>
@@ -67,6 +66,15 @@
         <%= "checked" if post.display_title %>
         />
       <label for="post_display_title">Display title?</label>
+      <% if post.published_at %>
+        <span class="state published">
+          Published on <%= long_date post.published_at %>
+        </span>
+      <% else %>
+        <span class="state draft">
+          Never published
+        </span>
+      <% end %>
     </fieldset>
   </form>
   <br/>

@@ -114,3 +114,7 @@ body.admin #flash {
 body.admin #flash .success {color: #060;}
 body.admin #flash .failure {color: #600;}
 body.admin #flash .info {}
+
+body.admin span.state {float: right; margin-top: 10px;}
+body.admin span.state.published {color: #900;}
+body.admin span.state.draft {color: #777;}
