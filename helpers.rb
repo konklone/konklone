@@ -82,7 +82,7 @@ helpers do
   end
   
   def form_escape(string)
-    string.gsub "\"", "&quot;"
+    string ? string.gsub("\"", "&quot;") : nil
   end
   
   def url_escape(url)
