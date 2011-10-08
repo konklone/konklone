@@ -19,6 +19,8 @@ gem 'simple-rss', '1.2.3'
 group :development do
   gem 'sinatra-reloader', '0.5.0'
   gem 'wirble'
+  gem 'unicorn'
+  gem 'rack', '1.3.0'
 end
 
 group :import do
