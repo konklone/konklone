@@ -28,7 +28,7 @@
     <input type="text" class="big title" name="post[title]" placeholder="title" 
       value="<%= form_escape post.title %>"
       />
-      
+
     <textarea class="body" name="post[body]"><%= post.body %></textarea>
     
     <input type="submit" name="submit" value="Update" />
@@ -66,15 +66,8 @@
         <%= "checked" if post.display_title %>
         />
       <label for="post_display_title">Display title?</label>
-      <% if post.published_at %>
-        <span class="state published">
-          Published on <%= long_date post.published_at %>
-        </span>
-      <% else %>
-        <span class="state draft">
-          Never published
-        </span>
-      <% end %>
+      
+      <input type="text" id="post_slug" name="post[slug]" class="small slug" value="<%= post.slug %>" />
     </fieldset>
   </form>
   <br/>
@@ -83,6 +76,15 @@
     <input type="submit" style="display: none" />
     <a class="delete post" href="#">Delete post</a>
   </form>
+  <% if post.published_at %>
+        <span class="state published">
+          Published on <%= long_date post.published_at %>
+        </span>
+      <% else %>
+        <span class="state draft">
+          Never published
+        </span>
+      <% end %>
 </article>
 
 <script type="text/javascript">

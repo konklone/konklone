@@ -86,6 +86,10 @@ put '/admin/post/:slug' do
     params[:post]['display_title'] = (params[:post]['display_title'] == "on")
     
     post.attributes = params[:post]
+
+    if params[:post]['slug']
+      post.slug = params[:post]['slug']
+    end
   
   # all the toggle buttons ignore any changes made to the form
   elsif ["Publish", "Republish"].include?(params[:submit])

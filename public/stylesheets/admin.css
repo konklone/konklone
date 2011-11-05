@@ -51,6 +51,13 @@ body.admin input[type="text"].small {
   padding: 5px;
 }
 
+body.admin fieldset {position: relative;}
+
+body.admin input[type="text"].small.slug {
+  margin-left: 20px;
+  position: absolute; right: 0;
+}
+
 body.admin input.title {
   width: 100%;
 }
