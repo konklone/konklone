@@ -58,7 +58,7 @@ section.footer.left {float: left;}
 section.footer.right {float: right;}
 
 section.sidebar h1 {
-  margin: 0px 0 10px 0;
+  margin: 10px 0 10px 0;
 }
 
 body>header, article, footer, ol, body>section {
