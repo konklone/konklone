@@ -23,6 +23,7 @@ class Post
   index :tags
   index :private
   index :draft
+  index :created_at
   
   validates_uniqueness_of :slug, :allow_nil => true
   
@@ -69,6 +70,7 @@ class Comment
   index :ip
   index :flagged
   index :mine
+  index :created_at
   
   validates_presence_of :body
   validates_presence_of :author
