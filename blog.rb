@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require 'config/environment'
+require './config/environment'
 require 'sinatra/content_for'
 require 'sinatra/flash'
 
@@ -8,8 +8,8 @@ set :views, 'views'
 set :public, 'public'
 set :sessions, true
 
-require 'helpers'
-require 'admin'
+require './helpers'
+require './admin'
 
 
 get '/' do

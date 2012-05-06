@@ -14,7 +14,7 @@ configure do
   Rakismet.host = config[:rakismet][:host]
 end
 
-require 'models'
+require './models'
 
 # reload in development without starting server
 configure(:development) do |config|

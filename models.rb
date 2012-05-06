@@ -9,6 +9,7 @@ class Post
   
   field :title
   slug :title, :permanent => true
+  
   field :body
   field :published_at, :type => Time
   field :post_type, :type => Array, :default => ["blog"]
