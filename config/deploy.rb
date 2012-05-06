@@ -1,14 +1,16 @@
 set :environment, 'production'
 
 set :user, 'klondike'
-set :application, 'industries'
+set :application, 'konklone'
+
+set :gems_dir, "/home/#{user}/webapps/#{application}/gems"
 set :deploy_to, "/home/#{user}/webapps/#{application}/#{application}/"
 
 set :domain, 'mill-industries.com'
 
 set :scm, :git
-set :repository, "git@github.com:klondike/industries.git"
-set :branch, 'master'
+set :repository, "git@github.com:konklone/industries.git"
+set :branch, 'redesign'
 
 set :deploy_via, :remote_cache
 set :runner, user
@@ -40,7 +42,7 @@ namespace :deploy do
   
   desc "Install Ruby gems"
   task :bundle_install, :roles => :app, :except => {:no_release => true} do
-    run "cd #{release_path} && bundle install --local"
+    run "cd #{release_path} && bundle install --local --path=#{gems_dir}"
   end
   
   desc "Get shared files into position"
