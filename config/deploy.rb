@@ -6,11 +6,11 @@ set :application, 'konklone'
 set :gems_dir, "/home/#{user}/webapps/#{application}/gems"
 set :deploy_to, "/home/#{user}/webapps/#{application}/#{application}/"
 
-set :domain, 'mill-industries.com'
+set :domain, 'konklone.com'
 
 set :scm, :git
 set :repository, "git@github.com:konklone/industries.git"
-set :branch, 'redesign'
+set :branch, 'master'
 
 set :deploy_via, :remote_cache
 set :runner, user
