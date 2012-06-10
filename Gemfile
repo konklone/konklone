@@ -11,7 +11,7 @@ gem 'bson_ext', '1.3.1'
 
 gem 'rdiscount', '1.6.8'
 
-gem 'rakismet', '1.0.1'
+gem 'rakismet', '1.2.1'
 
 gem 'simple-rss', '1.2.3'
 
