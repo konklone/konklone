@@ -159,16 +159,23 @@ put '/admin/comment/:id' do
   comment = Comment.where(:_id => BSON::ObjectId(params[:id])).first
   raise Sinatra::NotFound unless comment
   
-  params[:comment]['mine'] = (params[:comment]['mine'] == "on")
+  mine = (params[:comment]['mine'] == "on")
+  tell_akismet = (params['tell_akismet'] == "on")
   
   comment.attributes = params[:comment]
   comment.ip = params[:comment]['ip']
-  comment.mine = params[:comment]['mine']
+  comment.mine = mine
   
   if params[:submit] == "Hide"
     comment.hidden = true
   elsif params[:submit] == "Show"
     comment.hidden = false
+  elsif params[:submit] == "Ham!"
+    comment.flagged = false
+    comment.ham! if tell_akismet
+  elsif params[:submit] == "Spam!"
+    comment.flagged = true
+    comment.spam! if tell_akismet
   end
   
   if comment.save

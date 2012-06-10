@@ -32,11 +32,20 @@
     
     <input type="submit" name="submit" value="Update" />
     
-    <% if comment.hidden %>
+    <% if comment.hidden? %>
       <input type="submit" name="submit" value="Show" />
     <% else %>
       <input type="submit" name="submit" value="Hide" />
     <% end %>
+
+    <% if comment.flagged? %>
+      <input type="submit" name="submit" value="Ham!" />
+    <% else %>
+      <input type="submit" name="submit" value="Spam!" />
+    <% end %>
+
+    <input type="checkbox" name="tell_akismet" id="comment_tell_akismet"
+        /> <label for="comment_tell_akismet">Tell Akismet?</label>
     
     <% if comment.post and comment.post.visible? %>
       <a class="visit" href="/post/<%= comment.post.slug %>#comment-<%= comment.id %>">See on site &raquo;</a>
