@@ -38,7 +38,7 @@
       <input type="submit" name="submit" value="Hide" />
     <% end %>
     
-    <% if comment.post.visible? %>
+    <% if comment.post and comment.post.visible? %>
       <a class="visit" href="/post/<%= comment.post.slug %>#comment-<%= comment.id %>">See on site &raquo;</a>
     <% end %>
     

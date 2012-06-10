@@ -42,7 +42,11 @@
       <li>
         <a href="/admin/comment/<%= comment.id %>"><%= h comment.author %></a>
         on
-        <%= h comment.post.title %>
+        <% if comment.post %>
+          <%= h comment.post.title %>
+        <% else %>
+          (Orphaned Comment)
+        <% end %>
       
         <% if comment.hidden %>
           <span class="flags hidden">hidden</span>
