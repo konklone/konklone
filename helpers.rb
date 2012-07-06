@@ -16,7 +16,7 @@ helpers do
     page = 1 if page < 1
     
     [
-      criteria.skip((page-1) * per_page).limit(per_page),
+      criteria.skip((page-1) * per_page).limit(per_page).to_a,
       page
     ]
   end
@@ -69,6 +69,10 @@ helpers do
     time.strftime "%b #{day.to_i}, #{hour.to_i}:%M#{meridian.downcase}"
   end
   
+  def post_header(post)
+    partial "header", :engine => :erb, :locals => {post: post}
+  end
+
   def post_body(post)
     render_songs RDiscount.new(post.body).to_html, post.slug
   end
@@ -91,7 +95,7 @@ helpers do
   
   def render_songs(body, slug)
     body.gsub /(?:<p>\s*)?\[song "([^"]+)"\].*?\[name\](.*?)\[\/name\].*?\[by(?: "([^"]+)")?\](.*?)\[\/by\].*?\[\/song\](?:\s*<\/p>)?/im do
-      partial :song, :locals => {
+      partial "song", :engine => :erb, :locals => {
         :filename => $1,
         :name => $2,
         :link => $3,
@@ -101,26 +105,3 @@ helpers do
     end
   end
 end
-
-# stolen from http://github.com/cschneid/irclogger/blob/master/lib/partials.rb
-#   and made a lot more robust by me
-# this implementation uses erb by default. if you want to use any other template mechanism
-#   then replace `erb` on line 13 and line 17 with `haml` or whatever 
-module Sinatra::Partials
-  def partial(template, *args)
-    template_array = template.to_s.split('/')
-    template = template_array[0..-2].join('/') + "/_#{template_array[-1]}"
-    options = args.last.is_a?(Hash) ? args.pop : {}
-    options.merge!(:layout => false)
-    if collection = options.delete(:collection) then
-      collection.inject([]) do |buffer, member|
-        buffer << erb(:"#{template}", options.merge(:layout =>
-        false, :locals => {template_array[-1].to_sym => member}))
-      end.join("\n")
-    else
-      erb(:"#{template}", options)
-    end
-  end
-end
-
-helpers Sinatra::Partials

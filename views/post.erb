@@ -2,42 +2,11 @@
   # reincorporate a way to append title of post to <title> tag 
 %>
 
-<% content_for :sidebar_left do %>
-  <a href="/">&laquo; everything else</a>
-  
-  <h1>
-    blog by <cite><a href="mailto:konklone@gmail.com">Eric Mill</a></cite>
-  </h1>
-  <h2>
-    also <a rel="me" href="http://twitter.com/konklone">twitter</a>
-  </h2>
-<% end %>
-
 <article>
-  <header>
-    <h1>
-      <% if post.display_title %>
-        <a href="<%= post_path post %>">
-          <%= h post.title %>
-        </a>
-      <% else %>
-        <a>
-          <%= h post.title %>
-        </a>
-      <% end %>
-    </h1>
-  </header>
+  <%= post_header post %>
   
   <%= post_body post %>
-  
-  <footer>
-    <% if post.visible? %>
-      <time datetime="<%= short_datetime post.published_at %>" pubdate><%= long_date post.published_at %></time>
-    <% else %>
-      <time datetime="<%= short_datetime post.updated_at%>">Unpublished, last updated <%= long_date post.updated_at %></time>
-    <% end %>
-    <hr />
-  </footer>
+
 </article>
 
 <ol id="comments">

@@ -5,7 +5,7 @@ require 'sinatra/content_for'
 require 'sinatra/flash'
 
 set :views, 'views'
-set :public, 'public'
+set :public_folder, 'public'
 set :sessions, true
 
 require './helpers'

@@ -26,38 +26,50 @@
 
 <body>
 
-  <canvas class="layout"></canvas>
-
   <header>
     <h1>
       Konklone
     </h1>
   </header>
   
-  <section class="sidebar left">
-    <% yield_content :sidebar_left %>
+  <section class="main">
+    <%= yield %>
+
+    <footer>
+      <hr/>
+      <p>
+        <cite><a href="mailto:konklone@gmail.com">Eric Mill</a></cite>, Washington DC, 617-314-0966. Everything written under <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons</a>.
+      </p>
+    </footer>
   </section>
 
-  <section class="sidebar right">
-    <% yield_content :sidebar_right %>
-  </section>
+  <section class="sidebar">
+    <h1>
+      blog by <cite><a href="mailto:konklone@gmail.com">Eric Mill</a></cite>
+    </h1>
+    <h2>
+      also <a rel="me" href="http://twitter.com/konklone">twitter</a>
+    </h2>
 
-  <%= yield %>
-  
-  <section class="footer left">
-    <% yield_content :footer_left %>
+    <% if defined?(posts) %>
+      <div class="pagination">
+        <% if previous_page?(posts, page, per_page) %>
+          <a href="/?page=<%= page - 1 %>">&laquo; newer posts</a>
+        <% end %>
+
+        <% if next_page?(posts, page, per_page) %>
+          <a href="/?page=<%= page + 1 %>">older posts &raquo;</a>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% if admin? %>
+      <div class="admin">
+        <a href="/admin">&raquo; admin</a><br/>
+        <a href="/admin/logout">logout</a>
+      </div>
+    <% end %>
   </section>
-  
-  <section class="footer right">
-    <% yield_content :footer_right %>
-  </section>
-  
-  <footer>
-    <hr/>
-    <p>
-      <cite><a href="mailto:konklone@gmail.com">Eric Mill</a></cite>, Washington DC, 617-314-0966. Everything written under <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons</a>.
-    </p>
-  </footer>
   
   <script type="text/javascript">
     var _gaq = _gaq || [];

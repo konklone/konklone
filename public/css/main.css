@@ -6,11 +6,13 @@ canvas.layout {
 }
 
 body {
-  padding: 20px 20px 17px 20px;
+  padding: 10px 0;
   border-top: 5px solid #228844;
   border-bottom: 5px solid #228844;
   font-family: "times new roman", serif;
 }
+
+ul, ol, li {list-style-type: none;}
 
 input {font-family: "times new roman", serif;}
 textarea {font-family: "times new roman", serif;}
@@ -37,10 +39,8 @@ article footer {color: #555;}
 
 body>header h1     {font-size: 24pt;} /* blog title */
 article header h1  {font-size: 20pt;} /* article title */
-article section h1 {font-size: 18pt;} /* article date */
-article section h2 {font-size: 12pt;} /* article comment # */
+article header h2  {font-size: 12pt;} /* article date/comments */
 article p          {font-size: 12pt;} /* article text */
-article footer     {font-size: 12pt;} /* article date footer */
 ol li header cite  {font-size: 14pt;} /* comment name */
 ol li header time  {font-size: 10pt;} /* comment date */
 ol li p            {font-size: 12pt;} /* comment text */
@@ -54,22 +54,28 @@ article+ol+section form textarea {font-size: 12pt;}
 
 hr {clear: both;}
 
-body>header, article, footer, ol, body>ol+section, body>footer hr {
-  width: 700px;
+body {
+  min-width: 1024px;
 }
 
-section.sidebar {margin-top: 25px; line-height: 25px;}
-section.sidebar.left {float: left;}
-section.sidebar.right {float: right;}
-section.footer.left {float: left;}
-section.footer.right {float: right;}
+section.main {
+  width: 700px; padding: 0 40px;
+  display: inline-block;
+  left: 0;
+}
+
+section.sidebar {
+  margin-top: 25px; line-height: 20px;
+  width: 200px; vertical-align: top;
+  display: inline-block;
+}
 
 section.sidebar h1 {
   margin: 10px 0 10px 0;
 }
 
-body>header, article, footer, ol, body>section {
-  margin: 0 auto;
+section.sidebar div {
+  margin: 20px 0;
 }
 
 hr {
@@ -80,33 +86,24 @@ body>header {display: none;}
 body>header h1 a {text-decoration: underline;}
 
 article {
-  margin: 20px auto;
+  margin: 20px 0;
 }
 
-body>footer p {
+section.main>footer {
+  width: 100%;
+}
+
+section.main>footer p {
   margin-top: 17px; text-align: center;
 }
 
-body>footer {clear: both;}
-body>footer cite {font-style: normal;}
+section.main>footer {clear: both;}
+section.main>footer cite {font-style: normal;}
 
-body>footer hr {
+section.main>footer hr {
   margin: 70px auto 0 auto;
   border-top-width: 1px;
 }
-
-/* floating date stamp */
-
-article section {
-  float: right;
-  margin-top: 10px;
-  margin-right: 30px;
-  padding-left: 25px;
-  padding-bottom: 20px;
-  text-align: center;
-}
-
-article section h2 {margin: 8px 0 6px 0;}
 
 
 /* Regular posts */
@@ -114,6 +111,10 @@ article section h2 {margin: 8px 0 6px 0;}
 article header {margin-bottom: 20px;}
 article header h1 a {display: none;}
 article header h1 a[href] {display: inline;}
+article header h2 {
+  margin-top: 6px;
+  color: #444;
+}
 
 article p {
   line-height: 27px;
@@ -123,7 +124,7 @@ article p {
 article p a {text-decoration: underline;}
 article blockquote {
   padding: 0 30px;
-  line-height: 22px;
+  line-height: 24px;
   color: #444;
 }
 
