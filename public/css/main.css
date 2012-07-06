@@ -1,3 +1,10 @@
+canvas.layout {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -9999;
+}
+
 body {
   padding: 20px 20px 17px 20px;
   border-top: 5px solid #228844;

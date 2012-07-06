@@ -20,3 +20,6 @@
 /public/google*.html
 
 *.kate-swp
+
+/unicorn.pid
+/unicorn.rb
