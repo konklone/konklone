@@ -13,12 +13,10 @@
   
   <h2>
     <% if post.visible? %>
-      <time datetime="<%= short_datetime post.published_at %>" pubdate><%= long_date post.published_at %></time>
+      <time datetime="<%= short_datetime post.published_at %>" pubdate><%= long_date post.published_at %></time>,
     <% else %>
-      <time datetime="<%= short_datetime post.updated_at%>">Unpublished, last updated <%= long_date post.updated_at %></time>
+      <time datetime="<%= short_datetime post.updated_at%>">Unpublished, last updated <%= long_date post.updated_at %></time>,
     <% end %>
-    
-    &mdash;
 
     <a href="<%= post_path post %>#comments">
       <% if post.comments.visible.count > 0 %>
