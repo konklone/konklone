@@ -1,10 +1,6 @@
-<% content_for(:title) { h post.title } %>
+<% content_for :sidebar do %>
+  <a href="/admin/posts/">&laquo; all posts</a><br/>
 
-<% content_for :sidebar_left do %>
-  <a href="/admin/posts/">&laquo; all posts</a>
-<% end %>
-
-<% content_for :sidebar_right do %>
   <% if newer_post %>
     <a href="/admin/post/<%= newer_post.slug %>?offset=<%= offset - 1 %>&q=<%= params[:q] %>">&laquo; newer</a><br/>
   <% end %>

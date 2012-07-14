@@ -15,24 +15,14 @@
 </head>
 <body class="admin">
   
-  <section class="sidebar left">
-    <%= yield_content :sidebar_left %>
-  </section>
-  
-  <section class="sidebar right">
-    <%= yield_content :sidebar_right %>
-  </section>
-  
   <%= styled_flash %>
   
-  <%= yield %>
-  
-  <section class="footer left">
-    <%= yield_content :footer_left %>
+  <section class="main">
+    <%= yield %>
   </section>
   
-  <section class="footer right">
-    <%= yield_content :footer_right %>
+  <section class="sidebar">
+    <%= yield_content :sidebar %>
   </section>
   
 </body>

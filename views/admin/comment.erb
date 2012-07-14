@@ -1,10 +1,8 @@
-<% content_for(:title) { "Comment: #{comment.author}" } %>
-
-<% content_for :sidebar_left do %>
+<% content_for :sidebar do %>
   <% if comment.flagged? %>
-    <a href="/admin/comments/flagged/">&laquo; flagged comments</a>
+    <a href="/admin/comments/flagged/">&laquo; flagged comments</a><br/>
   <% else %>
-    <a href="/admin/comments/">&laquo; all comments</a>
+    <a href="/admin/comments/">&laquo; all comments</a><br/>
   <% end %>
 <% end %>
 

@@ -1,5 +1,3 @@
-<% content_for(:title) { "Posts" } %>
-
 <% content_for :head do %>
   <script type="text/javascript">
     $(function() {
@@ -10,7 +8,7 @@
   </script>
 <% end %>
 
-<% content_for :sidebar_left do %>
+<% content_for :sidebar do %>
   <a href="/admin/posts/">&laquo; all posts</a><br/>
   <% if flagged %>
     <a href="/admin/comments/">all comments</a>
@@ -20,17 +18,13 @@
       <a class="clear flagged" href="#">&raquo; clear flagged comments &laquo;</a>
     </form>
   <% else %>
-    <a href="/admin/comments/flagged/">flagged comments</a>
+    <a href="/admin/comments/flagged/">flagged comments</a><br/>
   <% end %>
-<% end %>
 
-<% content_for :footer_left do %>
   <% if previous_page?(comments, page, per_page) %>
-    <a href="/admin/comments/<%= flagged ? "flagged/" : "" %>?page=<%= page - 1 %>">&laquo; newer comments</a>
+    <a href="/admin/comments/<%= flagged ? "flagged/" : "" %>?page=<%= page - 1 %>">&laquo; newer comments</a><br/>
   <% end %>
-<% end %>
 
-<% content_for :footer_right do %>
   <% if next_page?(comments, page, per_page) %>
     <a href="/admin/comments/<%= flagged ? "flagged/" : "" %>?page=<%= page + 1 %>">older comments &raquo;</a>
   <% end %>
