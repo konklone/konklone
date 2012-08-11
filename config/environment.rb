@@ -3,8 +3,6 @@ require 'mongoid'
 require 'mongoid/slug'
 require 'rakismet'
 
-require 'padrino-helpers'
-helpers Padrino::Helpers
 
 def config
   @config ||= YAML.load_file File.join(File.dirname(__FILE__), "config.yml")
@@ -17,16 +15,6 @@ configure do
   Rakismet.host = config[:rakismet][:host]
 end
 
-require './models'
-
-# reload in development without starting server
-configure(:development) do |config|
-  require 'sinatra/reloader'
-  config.also_reload "config/environment.rb"
-  config.also_reload "blog.rb"
-  config.also_reload "models.rb"
-  config.also_reload "admin.rb"
-  config.also_reload "helpers.rb"
-end
+Dir.glob('app/models/*.rb').each {|filename| load filename}
 
 set :logging, false
