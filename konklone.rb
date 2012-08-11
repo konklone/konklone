@@ -65,7 +65,7 @@ post '/post/:slug/comments' do
   
   if comment.save
     if comment.flagged
-      throw :halt, [500, "500 Server Error"]
+      halt 500, "500 Server Error"
     else
       redirect "#{post_path(post)}#comment-#{comment.id}"
     end
