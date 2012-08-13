@@ -130,15 +130,17 @@ end
 
 # list of non-spam comments
 get '/admin/comments/?' do
-  comments, page = paginate 20, Comment.desc(:created_at).where(:flagged => false)
+  per_page = (params[:per_page] || 20).to_i
+  comments, page = paginate per_page, Comment.desc(:created_at).where(:flagged => false)
   
-  erb :"admin/comments", :layout => :"admin/layout", :locals => {:comments => comments, :flagged => false, :page => page, :per_page => 20}
+  erb :"admin/comments", :layout => :"admin/layout", :locals => {:comments => comments, :flagged => false, :page => page, :per_page => per_page}
 end
 
 # list of comments marked as spam
 get '/admin/comments/flagged/?' do
-  comments, page = paginate 20, Comment.desc(:created_at).where(:flagged => true)
-  erb :"admin/comments", :layout => :"admin/layout", :locals => {:comments => comments, :flagged => true, :page => page, :per_page => 20}
+  per_page = (params[:per_page] || 20).to_i
+  comments, page = paginate per_page, Comment.desc(:created_at).where(:flagged => true)
+  erb :"admin/comments", :layout => :"admin/layout", :locals => {:comments => comments, :flagged => true, :page => page, :per_page => per_page}
 end
 
 delete '/admin/comments/flagged/clear/?' do
