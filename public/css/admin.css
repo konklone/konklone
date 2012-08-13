@@ -1,5 +1,7 @@
 body.admin {padding-bottom: 30px;}
 
+body.admin section.main {width: 900px;}
+
 body.admin section.sidebar {margin-top: 10px}
 
 body.admin h1 {font-size: 18pt; margin: 5px 0;}
@@ -35,6 +37,10 @@ body.admin ol.listing li.comment:hover {
   cursor: pointer;
 }
 body.admin ol.listing li.comment:hover a {text-decoration: underline;}
+
+body.admin ol.listing li.comment span.excerpt {
+  color: #888;
+}
 
 body.admin ol.listing li.comment span.flags {
   margin-left: 10px;

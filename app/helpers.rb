@@ -10,6 +10,14 @@ helpers do
   def admin?
     session[:admin] == true
   end
+
+  def excerpt(text, max)
+    if text.size > max
+      text[0..max-3] + "..."
+    else
+      text
+    end
+  end
   
   def paginate(per_page, criteria)
     page = (params[:page]).to_i || 1

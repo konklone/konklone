@@ -36,13 +36,17 @@
           <a href="/admin/comment/<%= comment.id %>"><%= h comment.author %></a>
           on
           <% if comment.post %>
-            <%= h comment.post.title %>
+            <%= excerpt h(comment.post.title), 20 %>
           <% else %>
             (Orphaned Comment)
           <% end %>
+
+          <span class="excerpt">
+            <%= excerpt h(comment.body), 70 %>
+          </span>
         
           <time><%= short_date comment.created_at %></time>
-        
+
           <% if comment.hidden %>
             <span class="flags hidden">hidden</span>
           <% end %>
