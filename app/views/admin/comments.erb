@@ -1,12 +1,80 @@
-<% content_for :head do %>
-  <script type="text/javascript">
-    $(function() {
-      $("ol.listing li").click(function() {
-        location.href = $(this).children("a")[0].href;
-      });
-    })
-  </script>
+<% if comments.any? %>
+  <form action="/admin/comments" method="post">
+    <input type="hidden" name="_method" value="put" />
+    <input type="hidden" name="redirect_to" value="<%= h request.url %>" />
+
+    <div class="controls">
+      <input type="submit" name="submit" value="Hide" />
+      <input type="submit" name="submit" value="Show" />
+      
+      <% if flagged %>
+        <input type="submit" name="submit" value="Ham!" />
+      <% else %>
+        <input type="submit" name="submit" value="Spam!" />
+      <% end %>
+
+      <input type="checkbox" name="tell_akismet" id="comments_tell_akismet"
+        /> <label for="comments_tell_akismet">Tell Akismet?</label>
+    </div>
+
+    <ol class="listing">
+      <li class="header">
+        <%= check_box_tag :select_all, id: "select_all" %>
+        <label for="select_all">select all</label>
+      </li>
+
+      <% comments.each do |comment| %>
+        <li
+          class="comment"
+          data-comment_id="<%= comment.id %>"
+          >
+
+          <span class="checkbox">
+            <%= check_box_tag "comment_ids[]", value: comment.id %>
+          </span>
+
+          <a href="/admin/comment/<%= comment.id %>"><%= h comment.author %></a>
+          on
+          <% if comment.post %>
+            <%= h comment.post.title %>
+          <% else %>
+            (Orphaned Comment)
+          <% end %>
+        
+          <% if comment.hidden %>
+            <span class="flags hidden">hidden</span>
+          <% end %>
+        </li>
+      <% end %>
+    </ol>
+  </form>
+<% else %>
+  <p class="none">No comments.</p>
 <% end %>
+
+<script type="text/javascript">
+  $(function() {
+    $("a.flagged.clear").click(function() {
+      if (confirm("Really clear all spam comments?"))
+        this.parentNode.submit();
+      
+      return false;
+    });
+
+    $("ol.listing li.header input#select_all").click(function() {
+      var checked = !!($(this).attr("checked"));
+      $("ol.listing li.comment input[type=checkbox]").attr("checked", checked);
+    });
+
+    // $("ol.listing li.comment").click(function() {
+    //   var checked = !!($(this).children("input[type=checkbox]").attr("checked"));
+    //   $(this).children("input[type=checkbox]").attr("checked", !checked);
+    //   return false;
+    // });
+  });
+</script>
+
+
 
 <% content_for :sidebar do %>
   <a href="/admin/posts/">&laquo; all posts</a><br/>
@@ -15,10 +83,10 @@
     <form method="post" action="/admin/comments/flagged/clear">
       <input type="hidden" name="_method" value="delete" />
       <input type="submit" style="display: none" />
-      <a class="clear flagged" href="#">&raquo; clear flagged comments &laquo;</a>
+      <a class="clear flagged" href="#">&raquo; clear spam comments &laquo;</a>
     </form>
   <% else %>
-    <a href="/admin/comments/flagged/">flagged comments</a><br/>
+    <a href="/admin/comments/flagged/">spam comments</a><br/>
   <% end %>
 
   <% if previous_page?(comments, page, per_page) %>
@@ -29,36 +97,3 @@
     <a href="/admin/comments/<%= flagged ? "flagged/" : "" %>?page=<%= page + 1 %>">older comments &raquo;</a>
   <% end %>
 <% end %>
-
-<% if comments.any? %>
-  <ol class="listing">
-    <% comments.each do |comment| %>
-      <li>
-        <a href="/admin/comment/<%= comment.id %>"><%= h comment.author %></a>
-        on
-        <% if comment.post %>
-          <%= h comment.post.title %>
-        <% else %>
-          (Orphaned Comment)
-        <% end %>
-      
-        <% if comment.hidden %>
-          <span class="flags hidden">hidden</span>
-        <% end %>
-      </li>
-    <% end %>
-  </ol>
-<% else %>
-  <p class="none">No comments.</p>
-<% end %>
-
-<script type="text/javascript">
-  $(function() {
-    $("a.flagged.clear").click(function() {
-      if (confirm("Really clear all flagged comments?"))
-        this.parentNode.submit();
-      
-      return false;
-    });
-  });
-</script>

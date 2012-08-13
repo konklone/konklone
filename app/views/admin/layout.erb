@@ -15,14 +15,14 @@
 </head>
 <body class="admin">
   
-  <%= styled_flash %>
-  
   <section class="main">
     <%= yield %>
   </section>
   
   <section class="sidebar">
     <%= yield_content :sidebar %>
+
+    <%= styled_flash %>
   </section>
   
 </body>

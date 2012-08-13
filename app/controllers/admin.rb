@@ -1,5 +1,5 @@
 before '/admin/[^(login|logout)]*' do
-  throw(:halt, [401, "Not authorized\n"]) unless admin?
+  halt(401, "Not authorized") unless admin?
 end
 
 # login form
@@ -183,4 +183,31 @@ put '/admin/comment/:id' do
   else
     erb :"admin/comment", :layout => :"admin/layout", :locals => {:comment => comment}
   end
+end
+
+put '/admin/comments' do
+  comment_ids = params[:comment_ids] || []
+  tell_akismet = (params['tell_akismet'] == "on")
+
+  comment_ids.each do |id|
+    comment = Comment.find id
+    next unless comment
+
+    if params[:submit] == "Hide"
+      comment.hidden = true
+    elsif params[:submit] == "Show"
+      comment.hidden = false
+    elsif params[:submit] == "Ham!"
+      comment.flagged = false
+      comment.ham! if tell_akismet
+    elsif params[:submit] == "Spam!"
+      comment.flagged = true
+      comment.spam! if tell_akismet
+    end
+
+    comment.save!
+  end
+
+  flash[:success] = "Updated #{comment_ids.size} comments."
+  redirect params[:redirect_to]
 end

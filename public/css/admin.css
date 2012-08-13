@@ -18,19 +18,25 @@ body.admin ol.listing {
   list-style-type: none;
 }
 
-body.admin ol.listing li {
+body.admin ol.listing li.header {
+  border-bottom: 3px double #888;
   padding: 10px 10px;
-  border-bottom: 1px solid #888;
   margin: 0;
 }
 
-body.admin ol.listing li:hover {
+body.admin ol.listing li.comment {
+  border-bottom: 1px solid #888;
+  padding: 10px 10px;
+  margin: 0;
+}
+
+body.admin ol.listing li.comment:hover {
   background-color: #e5e5dd;
   cursor: pointer;
 }
-body.admin ol.listing li:hover a {text-decoration: underline;}
+body.admin ol.listing li.comment:hover a {text-decoration: underline;}
 
-body.admin ol.listing li span.flags {
+body.admin ol.listing li.comment span.flags {
   margin-left: 10px;
   float: right;
   vertical-align: center;
@@ -115,8 +121,8 @@ body.admin fieldset {
 }
 
 body.admin #flash {
-  width: 700px; margin: 10px auto; 
-  border: 1px solid #999; background-color: #e5e5e5; padding: 15px;
+  background-color: #e5e5e5; 
+  padding: 1px 15px;
 }
 body.admin #flash .success {color: #060;}
 body.admin #flash .failure {color: #600;}
