@@ -42,6 +42,11 @@ body.admin ol.listing li.comment span.flags {
   vertical-align: center;
 }
 
+body.admin ol.listing li.comment time {
+  float: right;
+  margin-left: 10px;
+}
+
 body.admin ol.listing li span.flags.hidden {color: #880000;}
 body.admin ol.listing li span.flags.draft {color: #880000;}
 body.admin ol.listing li span.flags.private {color: #000088;}

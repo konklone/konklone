@@ -41,6 +41,8 @@
             (Orphaned Comment)
           <% end %>
         
+          <time><%= short_date comment.created_at %></time>
+        
           <% if comment.hidden %>
             <span class="flags hidden">hidden</span>
           <% end %>
