@@ -8,7 +8,7 @@ require './config/environment'
 require 'sinatra/content_for'
 require 'sinatra/flash'
 
-set :views, 'views'
+set :views, 'app/views'
 set :public_folder, 'public'
 set :sessions, true
 
