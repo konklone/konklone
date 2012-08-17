@@ -48,7 +48,7 @@ get '/post/:slug/?' do
   erb :post, :locals => {:post => post, :new_comment => nil}
 end
 
-post '/post/:slug/comments' do
+post '/post/:slug/comments/second' do
   redirect '/' unless params[:comment].present?
   raise Sinatra::NotFound unless post = Post.visible.where(:slug => params[:slug]).first
   
