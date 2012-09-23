@@ -1,1 +1,3 @@
-Code for http://mill-industries.com, a Sinatra app written in Ruby.
+Code for http://konklone.com, a small Sinatra app.
+
+Blog, archive, idea log.
