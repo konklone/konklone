@@ -5,36 +5,32 @@ body, input, textarea {font-family: "Open Sans", Arial, serif;}
 
 ul, ol, li {list-style-type: none;}
 h1,h2,h3,h4,h5,h6 {font-weight: normal;}
-cite {font-style: normal;}
 
 input.placeholder, textarea.placeholder {color: #999;} /* CSS class only used for HTML5 fallback */
 
 
 /** Colors **/
 
-body {
-  border-top-width: 15px;
-  border-bottom-width: 15px;
-  border-style: solid;
-  border-color: #369FA1;
-}
-
 body {background-color: #0B1E27;}
 body {color: #c5c5c5;}
 a {color: #1882BB;}
+section.sidebar a.me {color: #c5c5c5;}
 article header h1 time {color: #444444;}
+
+body {border-color: #369FA1;}
 article header h1 a {color: #369FA1;}
+ol#comments li header span {color: #369FA1}
+ol#comments li header span a {color: #369FA1}
 
+/* Old colors */
 /*body {background-color: #dbdbf5;}*/
-/*body {background-color: #ffffff;}
-a {color: #224466;}*/
+/*body {background-color: #ffffff;}*/
+/*a {color: #224466;}*/
 
-hr {border-top-color: #4488aa;}
-/*h3, h4 {color: #224466;}*/
+hr {border-top-color: #369FA1;}
+section.sidebar a.me {text-decoration: none;}
+section.sidebar a.me:hover {text-decoration: underline;}
 footer.main hr {border-top-color: #369FA1;}
-/*footer p a {color: #369FA1;}*/
-/*article footer {color: #555;}*/
-
 article h1 a, article h2 a {text-decoration: none;}
 article h1 a:hover, article h2 a:hover {text-decoration: underline;}
 
@@ -43,10 +39,11 @@ article h1 a:hover, article h2 a:hover {text-decoration: underline;}
 body>header h1     {font-size: 24pt;} /* blog title */
 article header h1  {font-size: 20pt;} /* article title */
 article p          {font-size: 11pt;} /* article text */
-ol li header cite  {font-size: 14pt;} /* comment name */
-ol li header time  {font-size: 10pt;} /* comment date */
-ol li p            {font-size: 12pt;} /* comment text */
-footer.main        {font-size: 12pt;} /* footer text */
+ol li header span  {font-size: 14pt;} /* comment name */
+ol li header time  {font-size: 11pt;} /* comment date */
+ol li p            {font-size: 11pt;} /* comment text */
+footer.main        {font-size: 11pt;} /* footer text */
+section.sidebar {font-size: 14pt;}
 
 article+ol+section form>input {font-size: 14pt;}
 article+ol+section form textarea {font-size: 12pt;}
@@ -59,6 +56,12 @@ hr {clear: both;}
 body {
   min-width: 1024px; position: relative;
   padding: 0; margin: 0; 
+}
+
+body {
+  border-top-width: 15px;
+  border-bottom-width: 15px;
+  border-style: solid;
 }
 
 section.main, footer.main {
@@ -83,9 +86,38 @@ article {margin-bottom: 40px;}
 hr {width: 375px; margin: 70px auto;}
 
 
+
+/** Sidebar */
+
+section.sidebar h1 {margin: 10px 0 15px 0;}
+section.sidebar ul {margin: 20px 0 15px 0;}
+section.sidebar ul li {
+  margin: 15px 0;
+  font-size: 11pt;
+}
+section.sidebar p {
+  color: #666; font-size: 11pt;
+  line-height: 20px;
+}
+
+
+/** Footer */
+
+footer.main p {
+  text-align: center;
+  padding: 30px 0;
+}
+
+footer.main hr {
+  margin: 70px auto 0 auto;
+  border-top-width: 1px;
+}
+
+
 /* Regular posts */
 
 article header {margin-bottom: 20px;}
+article header time {margin-right: 5px;}
 
 article header h2 {
   margin-top: 6px;
@@ -110,36 +142,7 @@ article ol li, article ul li {
   line-height: 27px;
 }
 
-/* Audio */
 
-div.controls a.play, div.controls a.pause {
-  display: block; text-indent: -9999em;
-  width: 80px; height: 80px;
-  margin-right: 0px; 
-  margin-bottom: 20px;
-  float: left;
-}
-
-div.controls a.play {background-image: url(/images/play.png);}
-div.controls a.pause {background-image: url(/images/pause.png); display: none;}
-
-h3 {
-  font-size: 18pt;
-  padding-top: 14px;
-}
-
-h4 {
-  font-size: 12pt;
-  margin-top: 10px;
-  line-height: 22px;
-}
-
-h3 a:hover, h4 a {text-decoration: underline}
-
-/* first paragraph after an audio block of stuff */
-h4+script+p {
-  clear: both;
-}
 
 /* Article permalink page */
 
@@ -154,13 +157,13 @@ article footer hr {
 ol#comments {list-style-type: none;}
 ol#comments li {margin: 50px 0;}
 
-ol#comments li header cite {
+ol#comments li header span {
   float: left; 
   margin-bottom: 20px;
   font-style: normal;
 }
 
-ol#comments li header cite a {text-decoration: underline;}
+ol#comments li header a {text-decoration: underline;}
 
 ol#comments li header time {
   float: right;
@@ -199,19 +202,37 @@ article+ol+section form textarea+input {
 }
 
 
-/** Sidebar */
 
-section.sidebar h1 {margin: 10px 0 10px 0;}
-section.sidebar div {margin: 20px 0;}
 
-/** Footer */
 
-footer.main p {
-  text-align: center;
-  padding: 30px 0;
+
+/* Audio */
+
+div.controls a.play, div.controls a.pause {
+  display: block; text-indent: -9999em;
+  width: 80px; height: 80px;
+  margin-right: 0px; 
+  margin-bottom: 20px;
+  float: left;
 }
 
-footer.main hr {
-  margin: 70px auto 0 auto;
-  border-top-width: 1px;
+div.controls a.play {background-image: url(/images/play.png);}
+div.controls a.pause {background-image: url(/images/pause.png); display: none;}
+
+h3 {
+  font-size: 18pt;
+  padding-top: 14px;
+}
+
+h4 {
+  font-size: 12pt;
+  margin-top: 10px;
+  line-height: 22px;
+}
+
+h3 a:hover, h4 a {text-decoration: underline}
+
+/* first paragraph after an audio block of stuff */
+h4+script+p {
+  clear: both;
 }

@@ -12,7 +12,7 @@
     <% post.comments.visible.asc(:created_at).each do |comment| %>
       <li id="comment-<%= comment.id %>"> <!-- id used for anchor -->
         <header>
-          <cite>
+          <span class="author">
             <% if comment.author_url.present? %>
               <a rel="nofollow" href="<%= h comment.author_url %>">
                 <%= h comment.author %>
@@ -20,7 +20,7 @@
             <% else %>
               <%= h comment.author %>
             <% end %>
-          </cite>
+          </span>
           <time datetime="<%= long_datetime comment.created_at %>" pubdate>
             <%= comment_time comment.created_at %>
           </time>

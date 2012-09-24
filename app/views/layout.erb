@@ -34,21 +34,26 @@
     <%= yield %>
   </section>
 
-  <footer class="main">
-    <hr/>
-    <p>
-      <a href="mailto:konklone@gmail.com">Eric Mill</a>, Washington DC. Everything written under <a href="http://creativecommons.org/licenses/by-nd/3.0/">Creative Commons BY-ND</a>.
-    </p>
-  </footer>
-
   <section class="sidebar">
     <h1>
-      by <cite><a href="mailto:konklone@gmail.com">Eric Mill</a></cite>
+      <a class="me" href="/">Eric Mill</a>
     </h1>
 
-    <h2>
-      <a class="twitter" rel="me" href="http://twitter.com/konklone">@konklone</a>
-    </h2>
+    <p>
+      developer at <a href="http://sunlightfoundation.com">Sunlight Foundation</a>, trustee at <a href="http://www.awesomefoundation.org/en/chapters/dc">Awesome Foundation</a>
+    </p>
+
+    <ul class="links">
+      <li>
+        <a class="twitter" rel="me" href="http://twitter.com/konklone">@konklone</a>
+      </li>
+
+      <li>
+        <a href="mailto:konklone@gmail.com">konklone@gmail.com</a>
+      </li>
+    </ul>
+
+    <%= content_from :sidebar %>
 
     <% if false and defined?(posts) %>
       <div class="pagination">
@@ -62,6 +67,12 @@
       </div>
     <% end %>
   </section>
+
+  <footer class="main">
+    <p>
+      Everything written under <a href="http://creativecommons.org/licenses/by-nd/3.0/">Creative Commons BY-ND</a>.
+    </p>
+  </footer>
   
   <script type="text/javascript">
     var _gaq = _gaq || [];
