@@ -9,7 +9,7 @@ set :deploy_to, "/home/#{user}/webapps/#{application}/#{application}/"
 set :domain, 'konklone.com'
 
 set :scm, :git
-set :repository, "git@github.com:konklone/industries.git"
+set :repository, "git@github.com:konklone/konklone.git"
 set :branch, 'master'
 
 set :deploy_via, :remote_cache
