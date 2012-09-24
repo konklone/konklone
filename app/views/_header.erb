@@ -11,19 +11,7 @@
     <% end %>
   </h1>
   
-  <h2>
-    
-
-    
-  </h2>
   <% if !post.visible? %>
-  <a href="<%= post_path post %>#comments">
-      <% if post.comments.visible.count > 0 %>
-        <%= post.comments.visible.count %> comments
-      <% else %>
-        no comments
-      <% end %>
-    </a>
     <h3>
       Unpublished, last updated <%= long_date post.updated_at %>
     </h3>

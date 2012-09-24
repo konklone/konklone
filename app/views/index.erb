@@ -4,6 +4,18 @@
       <article>
         <%= post_header post %>
         <%= post_body post %>
+
+        <p class="comments">
+          <a href="<%= post_path post %>#comments">
+            <% if post.comments.visible.count == 1 %>
+              <%= post.comments.visible.count %> comment
+            <% elsif post.comments.visible.count > 0 %>
+              <%= post.comments.visible.count %> comments
+            <% else %>
+              leave a comment
+            <% end %>
+          </a>
+        </p>
       </article>
     </li>
     <% if post != posts.last %>
