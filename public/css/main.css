@@ -12,22 +12,37 @@ input.placeholder, textarea.placeholder {color: #999;} /* CSS class only used fo
 
 /** Colors **/
 
-a {color: #224466;}
+body {
+  border-top-width: 15px;
+  border-bottom-width: 15px;
+  border-style: solid;
+  border-color: #369FA1;
+}
+
+body {background-color: #0B1E27;}
+body {color: #c5c5c5;}
+a {color: #1882BB;}
+article header h1 time {color: #444444;}
+article header h1 a {color: #369FA1;}
+
+/*body {background-color: #dbdbf5;}*/
+/*body {background-color: #ffffff;}
+a {color: #224466;}*/
+
 hr {border-top-color: #4488aa;}
-h3, h4 {color: #224466;}
-footer.main hr {border-top-color: #118844;}
-footer p a {color: #118844;}
-article footer {color: #555;}
+/*h3, h4 {color: #224466;}*/
+footer.main hr {border-top-color: #369FA1;}
+/*footer p a {color: #369FA1;}*/
+/*article footer {color: #555;}*/
+
 article h1 a, article h2 a {text-decoration: none;}
 article h1 a:hover, article h2 a:hover {text-decoration: underline;}
-
 
 /* Font sizes */
 
 body>header h1     {font-size: 24pt;} /* blog title */
 article header h1  {font-size: 20pt;} /* article title */
-article header h2  {font-size: 12pt;} /* article date/comments */
-article p          {font-size: 12pt;} /* article text */
+article p          {font-size: 11pt;} /* article text */
 ol li header cite  {font-size: 14pt;} /* comment name */
 ol li header time  {font-size: 10pt;} /* comment date */
 ol li p            {font-size: 12pt;} /* comment text */
@@ -61,7 +76,7 @@ section.sidebar {
   width: 200px;
   position: absolute;
   top: 0; left: 840px;
-  padding-top: 20px;
+  padding-top: 40px;
 }
 
 article {margin-bottom: 40px;}
@@ -71,12 +86,7 @@ hr {width: 375px; margin: 70px auto;}
 /* Regular posts */
 
 article header {margin-bottom: 20px;}
-article header h1 {
-  font-size: 20pt;
-}
-article header h1 time {
-  color: #666;
-}
+
 article header h2 {
   margin-top: 6px;
   color: #444;
