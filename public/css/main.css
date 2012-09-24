@@ -1,39 +1,24 @@
-canvas.layout {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: -9999;
-}
+/* Fonts */
 
-body {
-  padding: 10px 0;
-  border-top: 5px solid #228844;
-  border-bottom: 5px solid #228844;
-  font-family: "times new roman", serif;
-}
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+body, input, textarea {font-family: "Open Sans", Arial, serif;}
 
 ul, ol, li {list-style-type: none;}
-
-input {font-family: "times new roman", serif;}
-textarea {font-family: "times new roman", serif;}
-
 h1,h2,h3,h4,h5,h6 {font-weight: normal;}
 cite {font-style: normal;}
 
-a {text-decoration: none;}
-a:hover {text-decoration: underline;}
-
 input.placeholder, textarea.placeholder {color: #999;} /* CSS class only used for HTML5 fallback */
+
 
 /** Colors **/
 
 a {color: #224466;}
 hr {border-top-color: #4488aa;}
-body>header a, body>header h1, body>header h2 {color: #116633;}
 h3, h4 {color: #224466;}
-body>footer hr {border-top-color: #118844;}
-footer p a {color: #118844; text-decoration: underline;}
+section.main footer hr {border-top-color: #118844;}
+footer p a {color: #118844;}
 article footer {color: #555;}
+
 
 /* Font sizes */
 
@@ -44,7 +29,7 @@ article p          {font-size: 12pt;} /* article text */
 ol li header cite  {font-size: 14pt;} /* comment name */
 ol li header time  {font-size: 10pt;} /* comment date */
 ol li p            {font-size: 12pt;} /* comment text */
-footer p           {font-size: 10pt;} /* footer text */
+footer.main           {font-size: 10pt;} /* footer text */
 
 article+ol+section form>input {font-size: 14pt;}
 article+ol+section form textarea {font-size: 12pt;}
@@ -55,55 +40,34 @@ article+ol+section form textarea {font-size: 12pt;}
 hr {clear: both;}
 
 body {
-  min-width: 1024px;
+  min-width: 1024px; position: relative;
+  padding: 0; margin: 0; 
 }
 
+header {}
+
 section.main {
-  width: 700px; padding: 0 40px;
-  display: inline-block;
-  left: 0;
+  width: 700px; 
+  padding-top: 40px;
+  padding-bottom: 40px;
+  padding-left: 80px;
+  padding-right: 60px;
 }
 
 section.sidebar {
-  margin-top: 25px; line-height: 20px;
-  width: 200px; vertical-align: top;
-  display: inline-block;
+  width: 200px;
+  position: absolute;
+  top: 0; left: 840px;
+  padding-top: 20px;
 }
 
-section.sidebar h1 {
-  margin: 10px 0 10px 0;
+footer.main {
+  width: 700px; 
+  padding-bottom: 20px;
 }
 
-section.sidebar div {
-  margin: 20px 0;
-}
-
-hr {
-  width: 375px; margin: 70px auto;
-}
-
-body>header {display: none;}
-body>header h1 a {text-decoration: underline;}
-
-article {
-  margin: 20px 0;
-}
-
-section.main>footer {
-  width: 100%;
-}
-
-section.main>footer p {
-  margin-top: 17px; text-align: center;
-}
-
-section.main>footer {clear: both;}
-section.main>footer cite {font-style: normal;}
-
-section.main>footer hr {
-  margin: 70px auto 0 auto;
-  border-top-width: 1px;
-}
+article {margin-bottom: 40px;}
+hr {width: 375px; margin: 70px auto;}
 
 
 /* Regular posts */
@@ -220,4 +184,21 @@ article+ol+section form textarea+input {
   padding: 4px 20px 1px 20px;
   margin-top: 10px;
   font-size: 12pt;
+}
+
+
+/** Sidebar */
+
+section.sidebar h1 {margin: 10px 0 10px 0;}
+section.sidebar div {margin: 20px 0;}
+
+/** Footer */
+
+footer.main p {
+  margin-top: 17px; text-align: center;
+}
+
+footer.main hr {
+  margin: 70px auto 0 auto;
+  border-top-width: 1px;
 }

@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8" />
 
-  <title>Konklone</title>
+  <title>Konklone | by Eric Mill</title>
   <meta name="description" content="Stuff by Eric Mill" />
   <meta name="author" content="Eric Mill" />
-  <meta name="copyright" content="2005-<%= Time.now.year %>" />
+  <meta name="copyright" content="2003-<%= Time.now.year %>" />
   
   <link rel="openid.server" href="http://www.myopenid.com/server" />
   <link rel="openid.delegate" href="http://klondike.myopenid.com/" />
@@ -17,31 +17,24 @@
   
   <!--[if lt IE 9]><script src="/js/html5.js"></script><![endif]-->
   
-  <script src="/js/jquery-1.7.1.min.js"></script>
+  <script src="/js/jquery-1.8.2.min.js"></script>
   <script src="/js/jquery.placehold-0.3.min.js"></script>
-  <script src="/js/jquery.jplayer.js"></script>
-
-  <script src="/js/main.js"></script>
 </head>
 
 <body>
 
-  <header>
-    <h1>
-      Konklone
-    </h1>
-  </header>
+  <!-- <header></header> -->
   
   <section class="main">
     <%= yield %>
-
-    <footer>
-      <hr/>
-      <p>
-        <cite><a href="mailto:konklone@gmail.com">Eric Mill</a></cite>, Washington DC, 617-314-0966. Everything written under <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons</a>.
-      </p>
-    </footer>
   </section>
+
+  <footer class="main">
+    <hr/>
+    <p>
+      <a href="mailto:konklone@gmail.com">Eric Mill</a>, Washington DC. Everything written under <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons</a>.
+    </p>
+  </footer>
 
   <section class="sidebar">
     <h1>
@@ -51,7 +44,7 @@
       also <a rel="me" href="http://twitter.com/konklone">twitter</a>
     </h2>
 
-    <% if defined?(posts) %>
+    <% if false and defined?(posts) %>
       <div class="pagination">
         <% if previous_page?(posts, page, per_page) %>
           <a href="/?page=<%= page - 1 %>">&laquo; newer posts</a>
@@ -60,13 +53,6 @@
         <% if next_page?(posts, page, per_page) %>
           <a href="/?page=<%= page + 1 %>">older posts &raquo;</a>
         <% end %>
-      </div>
-    <% end %>
-
-    <% if admin? %>
-      <div class="admin">
-        <a href="/admin">&raquo; admin</a><br/>
-        <a href="/admin/logout">logout</a>
       </div>
     <% end %>
   </section>
