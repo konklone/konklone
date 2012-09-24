@@ -1,43 +1,16 @@
-<audio class="<%= slug %>">
-  <source src="<%= url_escape filename %>" />
-</audio>
-
 <div class="controls <%= slug %>">
-  <a href="#" tabindex="1" class="play">Play</a>
-  <a href="#" tabindex="1" class="pause">Pause</a>
+  <a class="play" href="<%= url_escape filename %>">Play</a>
 </div>
-<div class="audio <%= slug %>" style="width: 0; height: 0;"></div>
 
 <h3>
   <a href="<%= url_escape filename %>"><%= name %></a>
 </h3>
 <h4>
   <% if link.present? %>
-    <a href="<%= link %>"><%= by %></a>
+    by <a href="<%= link %>"><%= by %></a>
   <% else %>
-    <%= by %>
+    by <%= by %>
   <% end %>
 </h4>
-
-<script type="text/javascript">
-  $("div.audio.<%= slug %>").jPlayer({
-    swfPath: "/swf",
-    solution: "html, flash",
-    preload: "auto",
-    volume: 0.7,
-    
-    cssSelectorAncestor: "div.controls.<%= slug %>",
-    cssSelector: {
-      play: ".play",
-      pause: ".pause"
-    },
-    
-    ready: function() {
-      $(this).jPlayer("setMedia", {
-        mp3: "<%= filename %>"
-      });
-    }
-  });
-</script>
 
 <div style="clear: both"></div>
