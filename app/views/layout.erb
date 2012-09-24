@@ -3,8 +3,13 @@
 <head>
   <meta charset="utf-8" />
 
-  <title>Konklone | by Eric Mill</title>
-  <meta name="description" content="Stuff by Eric Mill" />
+  <% if title = content_from(:title) %>
+    <title>Konklone | <%= title %></title>
+  <% else %>
+    <title>Konklone | by Eric Mill</title>
+  <% end %>
+
+  <meta name="description" content="Website of Eric Mill" />
   <meta name="author" content="Eric Mill" />
   <meta name="copyright" content="2003-<%= Time.now.year %>" />
   
@@ -32,16 +37,17 @@
   <footer class="main">
     <hr/>
     <p>
-      <a href="mailto:konklone@gmail.com">Eric Mill</a>, Washington DC. Everything written under <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons</a>.
+      <a href="mailto:konklone@gmail.com">Eric Mill</a>, Washington DC. Everything written under <a href="http://creativecommons.org/licenses/by-nd/3.0/">Creative Commons BY-ND</a>.
     </p>
   </footer>
 
   <section class="sidebar">
     <h1>
-      blog by <cite><a href="mailto:konklone@gmail.com">Eric Mill</a></cite>
+      by <cite><a href="mailto:konklone@gmail.com">Eric Mill</a></cite>
     </h1>
+
     <h2>
-      also <a rel="me" href="http://twitter.com/konklone">twitter</a>
+      <a class="twitter" rel="me" href="http://twitter.com/konklone">@konklone</a>
     </h2>
 
     <% if false and defined?(posts) %>

@@ -1,6 +1,4 @@
-<%
-  # reincorporate a way to append title of post to <title> tag 
-%>
+<% content_for(:title) { post.title } %>
 
 <article>
   <%= post_header post %>

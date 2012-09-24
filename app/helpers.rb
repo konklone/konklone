@@ -1,6 +1,18 @@
 require 'rdiscount'
 
 helpers do
+
+  # don't give me empty strings
+  def content_from(symbol)
+    content = yield_content symbol
+     # not sure why yield_content returns US-ASCII
+    if content.present?
+      content.force_encoding("UTF-8")
+      content
+    else
+      nil
+    end
+  end
   
   def get_ip
     forwarded = request.env['HTTP_X_FORWARDED_FOR']
