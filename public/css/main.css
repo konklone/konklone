@@ -15,9 +15,11 @@ input.placeholder, textarea.placeholder {color: #999;} /* CSS class only used fo
 a {color: #224466;}
 hr {border-top-color: #4488aa;}
 h3, h4 {color: #224466;}
-section.main footer hr {border-top-color: #118844;}
+footer.main hr {border-top-color: #118844;}
 footer p a {color: #118844;}
 article footer {color: #555;}
+article h1 a, article h2 a {text-decoration: none;}
+article h1 a:hover, article h2 a:hover {text-decoration: underline;}
 
 
 /* Font sizes */
@@ -29,7 +31,7 @@ article p          {font-size: 12pt;} /* article text */
 ol li header cite  {font-size: 14pt;} /* comment name */
 ol li header time  {font-size: 10pt;} /* comment date */
 ol li p            {font-size: 12pt;} /* comment text */
-footer.main           {font-size: 10pt;} /* footer text */
+footer.main        {font-size: 12pt;} /* footer text */
 
 article+ol+section form>input {font-size: 14pt;}
 article+ol+section form textarea {font-size: 12pt;}
@@ -44,14 +46,15 @@ body {
   padding: 0; margin: 0; 
 }
 
-header {}
-
-section.main {
-  width: 700px; 
-  padding-top: 40px;
-  padding-bottom: 40px;
+section.main, footer.main {
+  width: 700px;
   padding-left: 80px;
   padding-right: 60px;
+}
+
+section.main {
+  padding-top: 40px;
+  padding-bottom: 40px;
 }
 
 section.sidebar {
@@ -61,11 +64,6 @@ section.sidebar {
   padding-top: 20px;
 }
 
-footer.main {
-  width: 700px; 
-  padding-bottom: 20px;
-}
-
 article {margin-bottom: 40px;}
 hr {width: 375px; margin: 70px auto;}
 
@@ -73,15 +71,19 @@ hr {width: 375px; margin: 70px auto;}
 /* Regular posts */
 
 article header {margin-bottom: 20px;}
-article header h1 a {display: none;}
-article header h1 a[href] {display: inline;}
+article header h1 {
+  font-size: 20pt;
+}
+article header h1 time {
+  color: #666;
+}
 article header h2 {
   margin-top: 6px;
   color: #444;
 }
 
 article p {
-  line-height: 27px;
+  line-height: 25px;
   margin: 20px 0;
 }
 
@@ -195,7 +197,8 @@ section.sidebar div {margin: 20px 0;}
 /** Footer */
 
 footer.main p {
-  margin-top: 17px; text-align: center;
+  text-align: center;
+  padding: 30px 0;
 }
 
 footer.main hr {

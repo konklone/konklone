@@ -45,12 +45,12 @@ get '/post/:slug/?' do
   end
   raise Sinatra::NotFound unless post
   
-  erb :post, :locals => {:post => post, :new_comment => nil}
+  erb :post, locals: {post: post, new_comment: nil}
 end
 
-post '/post/:slug/comments/second' do
+post '/post/:slug/comments' do
   redirect '/' unless params[:comment].present?
-  raise Sinatra::NotFound unless post = Post.visible.where(:slug => params[:slug]).first
+  raise Sinatra::NotFound unless post = Post.visible.where(slug: params[:slug]).first
   
   comment = post.comments.build params[:comment]
   comment.ip = get_ip

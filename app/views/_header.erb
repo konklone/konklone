@@ -1,29 +1,31 @@
 <header>
   <h1>
+    <time datetime="<%= short_datetime post.published_at %>" pubdate>
+      <%= short_date post.published_at %>
+    </time>
+    
     <% if post.display_title %>
       <a href="<%= post_path post %>">
-        <%= h post.title %>
-      </a>
-    <% else %>
-      <a>
         <%= h post.title %>
       </a>
     <% end %>
   </h1>
   
   <h2>
-    <% if post.visible? %>
-      <time datetime="<%= short_datetime post.published_at %>" pubdate><%= long_date post.published_at %></time>,
-    <% else %>
-      <time datetime="<%= short_datetime post.updated_at%>">Unpublished, last updated <%= long_date post.updated_at %></time>,
-    <% end %>
+    
 
-    <a href="<%= post_path post %>#comments">
+    
+  </h2>
+  <% if !post.visible? %>
+  <a href="<%= post_path post %>#comments">
       <% if post.comments.visible.count > 0 %>
         <%= post.comments.visible.count %> comments
       <% else %>
         no comments
       <% end %>
     </a>
-  </h2>
+    <h3>
+      Unpublished, last updated <%= long_date post.updated_at %>
+    </h3>
+  <% end %>
 </header>

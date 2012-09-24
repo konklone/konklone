@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require 'rdiscount'
 
 helpers do
@@ -25,7 +27,7 @@ helpers do
 
   def excerpt(text, max)
     if text.size > max
-      text[0..max-3] + "..."
+      text[0..max-3] + "…"
     else
       text
     end
@@ -54,11 +56,11 @@ helpers do
   end
   
   def comment_path(post)
-    "#{post_path post}/comments/second"
+    "#{post_path post}/comments"
   end
   
   def h(text)
-    Rack::Utils.escape_html(text)
+    Rack::Utils.escape_html text
   end
   
   def short_datetime(time)
@@ -70,7 +72,11 @@ helpers do
   end
   
   def short_date(time)
-    time.strftime "%b #{time.day}" # remove 0-prefix
+    if Time.now.year == time.year
+      time.strftime "%b #{time.day}"
+    else
+      time.strftime "%b #{time.day}, %Y"
+    end
   end
   
   def long_date(time)
@@ -90,7 +96,7 @@ helpers do
   end
   
   def post_header(post)
-    partial "header", :engine => :erb, :locals => {post: post}
+    partial "header", engine: :erb, locals: {post: post}
   end
 
   def post_body(post)
@@ -115,12 +121,12 @@ helpers do
   
   def render_songs(body, slug)
     body.gsub /(?:<p>\s*)?\[song "([^"]+)"\].*?\[name\](.*?)\[\/name\].*?\[by(?: "([^"]+)")?\](.*?)\[\/by\].*?\[\/song\](?:\s*<\/p>)?/im do
-      partial "song", :engine => :erb, :locals => {
-        :filename => $1,
-        :name => $2,
-        :link => $3,
-        :by => $4,
-        :slug => slug
+      partial "song", engine: :erb, locals: {
+        filename: $1,
+        name: $2,
+        link: $3,
+        by: $4,
+        slug: slug
       }
     end
   end
