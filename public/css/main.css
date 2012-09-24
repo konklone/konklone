@@ -13,9 +13,10 @@ input.placeholder, textarea.placeholder {color: #999;} /* CSS class only used fo
 
 body {background-color: #0B1E27;}
 body {color: #c5c5c5;}
+article blockquote {color: #666;}
 a {color: #1882BB;}
 section.sidebar a.me {color: #c5c5c5;}
-article header h1 time {color: #444444;}
+article header h1 a.time {color: #444444;}
 
 body {border-color: #369FA1;}
 article header h1 a {color: #369FA1;}
@@ -39,6 +40,7 @@ article h1 a:hover, article h2 a:hover {text-decoration: underline;}
 body>header h1     {font-size: 24pt;} /* blog title */
 article header h1  {font-size: 20pt;} /* article title */
 article p          {font-size: 11pt;} /* article text */
+article blockquote {font-size: 11pt;} 
 ol li header span  {font-size: 14pt;} /* comment name */
 ol li header time  {font-size: 11pt;} /* comment date */
 ol li p            {font-size: 11pt;} /* comment text */
@@ -117,7 +119,7 @@ footer.main hr {
 /* Regular posts */
 
 article header {margin-bottom: 20px;}
-article header time {margin-right: 5px;}
+article header a.time {margin-right: 5px;}
 
 article header h2 {
   margin-top: 6px;
@@ -125,15 +127,14 @@ article header h2 {
 }
 
 article p {
-  line-height: 25px;
+  line-height: 23px;
   margin: 20px 0;
 }
 
 article p a {text-decoration: underline;}
 article blockquote {
   padding: 0 30px;
-  line-height: 24px;
-  color: #444;
+  line-height: 21px;
 }
 
 article ol, article ul {list-style-position: outside; margin-left: 20px;}
