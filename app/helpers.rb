@@ -7,9 +7,8 @@ helpers do
   # don't give me empty strings
   def content_from(symbol)
     content = yield_content symbol
-     # not sure why yield_content returns US-ASCII
+    content.force_encoding("UTF-8") # not sure why yield_content returns US-ASCII
     if content.present?
-      content.force_encoding("UTF-8")
       content
     else
       nil
