@@ -1,10 +1,12 @@
 <header>
   <h1>
-    <a class="time" href="<%= post_path post %>">
-      <time datetime="<%= short_datetime post.published_at %>" pubdate>
-        <%= short_date post.published_at %>
-      </time>
-    </a>
+    <% if post.published_at %>
+      <a class="time" href="<%= post_path post %>">
+        <time datetime="<%= short_datetime post.published_at %>" pubdate>
+          <%= short_date post.published_at %>
+        </time>
+      </a>
+    <% end %>
     
     <% if post.display_title %>
       <a href="<%= post_path post %>">
