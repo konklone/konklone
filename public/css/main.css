@@ -19,6 +19,7 @@ section.sidebar a.me {color: #c5c5c5;}
 article header h1 a.time {color: #444444;}
 
 body {border-color: #369FA1;}
+header.main {background-color: #369FA1;}
 article header h1 a {color: #369FA1;}
 ol#comments li header span {color: #369FA1}
 ol#comments li header span a {color: #369FA1}
@@ -58,12 +59,16 @@ hr {clear: both;}
 body {
   min-width: 1024px; position: relative;
   padding: 0; margin: 0; 
-}
+  
+  padding-top: 15px;
 
-body {
-  border-top-width: 15px;
   border-bottom-width: 15px;
   border-style: solid;
+}
+
+header.main {
+  position: absolute; top: 0;
+  height: 15px; width: 100%;
 }
 
 section.main, footer.main {
