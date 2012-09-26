@@ -4,6 +4,8 @@
 /importers/blog1/archives/
 /importers/blog2/*.sql
 /importers/blog3/*.sql
+/importers/twitter/*.json
+
 /other/mocks/*.mp3
 /other/mocks/*.ogg
 /public/*.mp3
