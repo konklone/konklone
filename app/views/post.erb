@@ -7,6 +7,8 @@
 
 </article>
 
+<hr />
+
 <ol id="comments">
   <% if post.comments.visible.count > 0 %>
     <% post.comments.visible.asc(:created_at).each do |comment| %>

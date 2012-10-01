@@ -1,7 +1,7 @@
 <ul>
   <% posts.each do |post| %>
     <li>
-      <article>
+      <article class="<%= post.post_type.first %>">
         <%= post_header post %>
         <%= post_body post %>
 
@@ -12,7 +12,7 @@
             <% elsif post.comments.visible.count > 0 %>
               <%= post.comments.visible.count %> comments
             <% else %>
-              leave a comment
+              no comments
             <% end %>
           </a>
         </p>

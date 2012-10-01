@@ -8,11 +8,9 @@
       </a>
     <% end %>
     
-    <% if post.display_title %>
-      <a href="<%= post_path post %>">
-        <%= h post.title %>
-      </a>
-    <% end %>
+    <a class="title" href="<%= post_path post %>">
+      <%= h post.title %>
+    </a>
   </h1>
   
   <% if !post.visible? %>

@@ -97,7 +97,7 @@ hr {width: 375px; margin: 70px auto;}
 /** Sidebar */
 
 section.sidebar h1 {margin: 10px 0 15px 0;}
-section.sidebar ul {margin: 20px 0 15px 0;}
+section.sidebar ul {margin: 35px 0 15px 0;}
 section.sidebar ul li {
   margin: 15px 0;
   font-size: 11pt;
@@ -106,7 +106,6 @@ section.sidebar p {
   color: #666; font-size: 11pt;
   line-height: 20px;
 }
-
 
 /** Footer */
 
@@ -149,6 +148,13 @@ article ol li, article ul li {
 }
 
 
+article p.comments {
+  font-size: 80%; margin-top: 20px;
+}
+
+article.idea span.status {
+  font-size: 150%;
+}
 
 /* Article permalink page */
 
@@ -184,23 +190,23 @@ ol#comments li p {
 
 /* Comment form */
 
-article+ol+section p {
+ol#comments+section p {
   color: #990000;
   margin-bottom: 10px;
 }
 
-article+ol+section form>input {
+ol#comments+section form>input {
   margin-bottom: 15px; margin-right: 10px;
   padding: 5px;
 }
 
-article+ol+section form textarea {
+ol#comments+section form textarea {
   clear: both; display: block;
   width: 100%; height: 100px;
   padding: 5px;
 }
 
-article+ol+section form textarea+input {
+ol#comments+section form textarea+input {
   display: block;
   padding: 4px 20px 1px 20px;
   margin-top: 10px;

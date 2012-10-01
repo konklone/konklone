@@ -83,9 +83,11 @@ put '/admin/post/:slug' do
   
   if params[:submit] == "Update"
     params[:post]['tags'] = (params[:post]['tags'] || []).split /, ?/
-    params[:post]['display_title'] = (params[:post]['display_title'] == "on")
+    params[:post]['post_type'] = (params[:post]['post_type'] || []).split /, ?/
     
     post.attributes = params[:post]
+
+    p post.post_type
 
     if params[:post]['slug']
       post.slug = params[:post]['slug']
@@ -106,7 +108,7 @@ put '/admin/post/:slug' do
   if post.save
     redirect "/admin/post/#{post.slug}"
   else
-    erb :"admin/post", :locals => {:post => post}
+    erb :"admin/post", :layout => :"admin/layout", :locals => {:post => post}
   end
 end
 

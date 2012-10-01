@@ -34,17 +34,29 @@ helpers Padrino::Helpers
 # base controller
 
 get '/' do
-  posts, page = paginate 10, Post.visible.desc(:published_at)
-  erb :index, :locals => {:posts => posts, :per_page => 10, :page => page}
+  posts, page = paginate 10, Post.visible.channel("blog").desc(:published_at)
+  erb :index, locals: {posts: posts, per_page: 10, page: page, channel: "blog"}
+end
+
+get '/ideas' do
+  posts, page = paginate 20, Post.visible.channel("idea").desc(:published_at)
+  erb :index, locals: {posts: posts, per_page: 10, page: page, channel: "idea"}
 end
 
 get '/post/:slug/?' do
-  unless post = Post.visible.where(:slug => params[:slug]).first
+  unless post = Post.visible.channel("blog").where(slug: params[:slug]).first
     # fallback for legacy URLs
     post = Post.visible.where(:import_source => "blog3", :import_id => params[:slug].to_i).first
   end
+
   raise Sinatra::NotFound unless post
   
+  erb :post, locals: {post: post, new_comment: nil}
+end
+
+get '/idea/:slug/?' do
+  post = Post.visible.channel("idea").where(slug: params[:slug]).first
+  raise Sinatra::NotFound unless post
   erb :post, locals: {post: post, new_comment: nil}
 end
 
@@ -67,7 +79,7 @@ post '/post/:slug/comments' do
     if comment.flagged
       halt 500, "500 Server Error"
     else
-      redirect "#{post_path(post)}#comment-#{comment.id}"
+      redirect "#{post_path post}#comment-#{comment.id}"
     end
   else
     erb :post, :locals => {:post => post, :new_comment => comment}

@@ -54,7 +54,11 @@ helpers do
   end
   
   def post_path(post)
-    "/post/#{post.slug}"
+    if post.idea?
+      "/idea/#{post.slug}"
+    else
+      "/post/#{post.slug}"
+    end
   end
   
   def comment_path(post)

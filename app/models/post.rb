@@ -12,11 +12,14 @@ class Post
   
   field :body
   field :published_at, :type => Time
-  field :post_type, :type => Array, :default => ["blog"]
   field :tags, :type => Array, :default => []
+
   field :private, :type => Boolean, :default => false
   field :draft, :type => Boolean, :default => true
   field :display_title, :type => Boolean, :default => true
+
+  # channel the post appears in
+  field :post_type, :type => Array, :default => ["blog"]
   
   index :slug
   index :published_at
@@ -28,17 +31,23 @@ class Post
   
   validates_uniqueness_of :slug, :allow_nil => true
   
-  scope :visible, :where => {:private => false, :draft => false}
-  scope :admin, :order => [[:created_at, :desc]]
+  scope :visible, where: {:private => false, :draft => false}
+  scope :admin, order: [[:created_at, :desc]]
   
   scope :admin_search, lambda {|query|
-    {:where => {"$or" => 
-                [:body, :title].map {|key| {key => regex_for(query)}}
-               }}
+    {where: {"$or" => 
+      [:body, :title].map {|key| {key => regex_for(query)}}
+     }}
   }
+
+  scope :channel, lambda {|type| {where: {post_type: type}}}
   
   def visible?
     !private and !draft
+  end
+
+  def idea?
+    post_type.include? "idea"
   end
   
   def self.regex_for(value)
