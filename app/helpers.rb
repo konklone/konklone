@@ -62,7 +62,7 @@ helpers do
   end
   
   def comment_path(post)
-    "#{post_path post}/comments"
+    "/post/#{post.slug}/comments"
   end
   
   def h(text)
