@@ -15,7 +15,7 @@ body {background-color: #0B1E27;}
 body {color: #c5c5c5;}
 article blockquote {color: #666;}
 a {color: #1882BB;}
-section.sidebar a.me {color: #c5c5c5;}
+section.sidebar a.me {color: #a5a5a5;}
 article header h1 a.time {color: #444444;}
 
 body {border-color: #369FA1;}
@@ -41,7 +41,7 @@ article h1 a:hover, article h2 a:hover {text-decoration: underline;}
 body>header h1     {font-size: 24pt;} /* blog title */
 article header h1  {font-size: 20pt;} /* article title */
 article p, 
-article blockquote {font-size: 13pt;} /* article text */ 
+article blockquote {font-size: 11pt;} /* article text */ 
 article pre        {font-size: 11pt;} /* article text */
 ol li header span  {font-size: 14pt;} /* comment name */
 ol li header time  {font-size: 11pt;} /* comment date */
@@ -132,7 +132,7 @@ article header h2 {
 }
 
 article p {
-  line-height: 26px;
+  line-height: 23px;
   margin: 20px 0;
 }
 
