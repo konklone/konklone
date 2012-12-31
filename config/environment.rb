@@ -2,7 +2,7 @@ require 'sinatra'
 require 'mongoid'
 require 'mongoid/slug'
 require 'rakismet'
-
+require 'redcarpet'
 
 def config
   @config ||= YAML.load_file File.join(File.dirname(__FILE__), "config.yml")

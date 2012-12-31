@@ -11,7 +11,7 @@ gem "mongoid", '2.4.8'
 gem 'bson_ext', '1.6.2' # mongo gem asks for this
 gem 'mongoid_slug', '0.10.0'
 
-gem 'rdiscount', '1.6.8'
+gem 'redcarpet', '2.2.2'
 gem 'rakismet', '1.2.1'
 gem 'simple-rss', '1.2.3'
 

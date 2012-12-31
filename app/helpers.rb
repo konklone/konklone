@@ -1,7 +1,5 @@
 # encoding: utf-8
 
-require 'rdiscount'
-
 helpers do
 
   # don't give me empty strings
@@ -106,11 +104,34 @@ helpers do
   end
 
   def post_body(post)
-    render_songs RDiscount.new(post.body).to_html, post.slug
+    renderer = Redcarpet::Render::HTML.new(
+      hard_wrap: true
+    )
+
+    markdown = Redcarpet::Markdown.new(
+      renderer,
+      # no_intra_emphasis: true, 
+      autolink: true, 
+      space_after_headers: true
+    )
+
+    markdown.render render_songs(post.body, post.slug)
   end
   
   def comment_body(body)
-    RDiscount.new(body, :filter_html, :autolink).to_html
+    renderer = Redcarpet::Render::HTML.new(
+      filter_html: true,
+      safe_links_only: true
+    )
+
+    markdown = Redcarpet::Markdown.new(
+      renderer,
+      no_intra_emphasis: true,
+      autolink: true, 
+      space_after_headers: true
+    )
+
+    markdown.render body
   end
   
   def meta_description(post)
