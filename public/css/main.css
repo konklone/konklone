@@ -144,9 +144,11 @@ article blockquote {
 }
 
 article ol, article ul {list-style-position: outside; margin-left: 20px;}
+article ul, article li {list-style-type: disc;}
 article ol li, article ul li {
-  margin: 10px 0;
-  line-height: 27px;
+  margin: 7px 0;
+  line-height: 22px;
+  font-size: 11pt;
 }
 
 article h2 {
