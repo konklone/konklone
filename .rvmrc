@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-environment_id="ruby-1.9.3-p194@industries"
+environment_id="ruby-1.9.3-p194@konklone"
 
 
 # First we attempt to load the desired environment directly from the environment
