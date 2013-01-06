@@ -8,18 +8,18 @@ class Post
   references_many :comments
   
   field :title
-  slug :title, :permanent => true
+  slug :title, permanent: true
   
   field :body
-  field :published_at, :type => Time
-  field :tags, :type => Array, :default => []
+  field :published_at, type: Time
+  field :tags, type: Array, :default => []
 
-  field :private, :type => Boolean, :default => false
-  field :draft, :type => Boolean, :default => true
-  field :display_title, :type => Boolean, :default => true
+  field :private, type: Boolean, :default => false
+  field :draft, type: Boolean, :default => true
+  field :display_title, type: Boolean, :default => true
 
   # channel the post appears in
-  field :post_type, :type => Array, :default => ["blog"]
+  field :post_type, type: Array, :default => ["blog"]
   
   index :slug
   index :published_at
@@ -31,7 +31,7 @@ class Post
   
   validates_uniqueness_of :slug, :allow_nil => true
   
-  scope :visible, where: {:private => false, :draft => false}
+  scope :visible, where: {:private => false, draft: false}
   scope :admin, order: [[:created_at, :desc]]
   
   scope :admin_search, lambda {|query|
