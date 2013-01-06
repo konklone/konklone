@@ -1,9 +1,10 @@
 task :environment do
   require 'rubygems'
   require 'bundler/setup'
-  require 'config/environment'
+  require './config/environment'
 end
 
+load 'importers/blog0/blog0.rake'
 load 'importers/blog1/blog1.rake'
 load 'importers/blog2/blog2.rake'
 load 'importers/blog3/blog3.rake'
