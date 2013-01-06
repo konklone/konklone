@@ -14,6 +14,7 @@ gem 'mongoid_slug', '0.10.0'
 gem 'redcarpet', '2.2.2'
 gem 'rakismet', '1.2.1'
 gem 'simple-rss', '1.2.3'
+gem 'tzinfo', '0.3.35'
 
 gem 'rack', '1.4.1'
 gem 'rake', '0.9.2.2'
