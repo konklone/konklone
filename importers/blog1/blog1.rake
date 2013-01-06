@@ -5,8 +5,8 @@ namespace :import do
     current_dir = Dir.pwd
     Dir.chdir "importers/blog1"
     
-    Post.delete_all :conditions => {:import_source => "blog1"}
-    Comment.delete_all :conditions => {:import_source => "blog1"}
+    Post.where(import_source: "blog1").delete_all
+    Comment.where(import_source: "blog1").delete_all
 
     Blog1.get_posts
     Blog1.get_comments
@@ -79,19 +79,19 @@ module Blog1
         end
         
         Post.create!(
-          :title => title,
-          :body => body,
-          :created_at => time,  
-          :updated_at => time,
-          :published_at => time,
+          title: title,
+          body: body,
+          created_at: time,  
+          updated_at: time,
+          published_at: time,
           
-          :tags => [],
-          :post_type => ["blog"],
+          tags: [],
+          post_type: ["blog"],
           :private => true,
           
-          :imported_at => Time.now,
-          :import_source => "blog1", 
-          :import_source_filename => filename
+          imported_at: Time.now,
+          import_source: "blog1", 
+          import_source_filename: filename
         )
         post_count += 1
       end
@@ -108,7 +108,8 @@ module Blog1
       file = File.read filename
       n = filename.match(/main(\d+).htm/)[1].to_i
       
-      entries = file.scan /<div class="comment"(?:[^>]+)?>.+?<\/div>/im 
+      # warning: switched regex piece from (?:[^>]+)? to [^>]* and it's untested
+      entries = file.scan /<div class="comment"[^>]*>.+?<\/div>/im 
       title_div = entries.shift
       comment_form = entries.pop
       
