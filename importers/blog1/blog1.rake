@@ -164,15 +164,15 @@ module Blog1
         end
         
         attributes = {
-          :author => author_name,
-          :author_url => author_url,
-          :created_at => time,
-          :updated_at => time,
-          :body => body,
+          author: author_name,
+          author_url: author_url,
+          created_at: time,
+          updated_at: time,
+          body: body,
           
-          :imported_at => Time.now,
-          :import_source => "blog1",
-          :import_source_filename => filename
+          imported_at: Time.now,
+          import_source: "blog1",
+          import_source_filename: filename
         }
         comment = post.comments.build attributes
         
