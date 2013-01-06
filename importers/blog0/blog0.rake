@@ -5,10 +5,10 @@ namespace :import do
     current_dir = Dir.pwd
     Dir.chdir "importers/blog0"
     
-    # Post.where(import_source: "blog0").delete_all
+    Post.where(import_source: "blog0").delete_all
     Comment.where(import_source: "blog0").delete_all
 
-    # Blog0.get_posts
+    Blog0.get_posts
     Blog0.get_comments
     
     Dir.chdir current_dir
