@@ -26,6 +26,7 @@ task :define_import_indexes => :environment do
     index :import_source_filename
     index :import_song_filename
     index :import_id
+    index :import_sequence # LJ post sequence IDs
   end
   
   class Comment
