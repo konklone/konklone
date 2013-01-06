@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 namespace :import do
   desc "Import posts and comments from blog3"
   task :blog3 => :environment do
