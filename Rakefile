@@ -4,8 +4,6 @@ task :environment do
   require 'config/environment'
 end
 
-load 'other/fixtures.rake'
-
 load 'importers/blog1/blog1.rake'
 load 'importers/blog2/blog2.rake'
 load 'importers/blog3/blog3.rake'
