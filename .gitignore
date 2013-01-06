@@ -18,6 +18,7 @@
 /tmp
 /.bundle
 /logs
+*.pyc
 
 # google webmaster tools verification file
 /public/google*.html
