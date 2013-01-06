@@ -3,34 +3,6 @@
 require './config/environment'
 
 
-# sinatra-specific config
-
-require 'sinatra/content_for'
-require 'sinatra/flash'
-
-set :views, 'app/views'
-set :public_folder, 'public'
-set :sessions, true
-
-# reload in development without starting server
-configure(:development) do |config|
-  require 'sinatra/reloader'
-  config.also_reload "./config/environment.rb"
-  config.also_reload "./konklone.rb"
-  config.also_reload "./app/models/*.rb"
-  config.also_reload "./app/controllers/*.rb"
-  config.also_reload "./app/helpers.rb"
-end
-
-
-# extra controllers and helpers
-
-Dir.glob("./app/controllers/*.rb").each {|filename| load filename}
-require './app/helpers'
-require 'padrino-helpers'
-helpers Padrino::Helpers
-
-
 # base controller
 
 get '/' do
