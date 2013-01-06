@@ -27,5 +27,5 @@ end
 group :import do
   gem 'activerecord', '3.2.6'
   gem 'mysql2', '0.2.6'
-  gem 'livejournal', '0.3.4'
+  gem 'nokogiri'
 end
