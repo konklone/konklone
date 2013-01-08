@@ -115,7 +115,12 @@ helpers do
       space_after_headers: true
     )
 
-    markdown.render render_songs(post.body, post.slug)
+    body = markdown.render render_songs(post.body, post.slug)
+
+    # hack: make standalone img tags stand alone
+    body.gsub!(/<p>(<img [^>]+>)<\/p>/) { "<div class=\"container\">#{$1}</div>" }
+
+    body
   end
   
   def comment_body(body)
