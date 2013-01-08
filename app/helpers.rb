@@ -118,7 +118,14 @@ helpers do
     body = markdown.render render_songs(post.body, post.slug)
 
     # hack: make standalone img tags stand alone
-    body.gsub!(/<p>(<img [^>]+>)<\/p>/) { "<div class=\"container\">#{$1}</div>" }
+    body.gsub!(/<p>(<img [^>]+>)<\/p>/) do
+      "<div class=\"container\">#{$1}</div>" 
+    end
+
+    # even standalone img tags with links around them
+    body.gsub!(/<p>(<a [^>]+>?<img [^>]+><\/a>)<\/p>/) do
+      "<div class=\"container\">#{$1}</div>" 
+    end
 
     body
   end
