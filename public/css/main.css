@@ -59,27 +59,28 @@ article p,
 article header,
 article ul, article li,
 article h2, article h3, article h4, article h5, article h6,
-#comment-form {
+#comment-form,
+ol#comments {
   width: 700px;
 }
 
-article blockquote {width: 600px;}
-
-/* center those tough-to-center elements */
-article div.container {text-align: center;}
-article canvas,
-article img {display: inline;}
-
 hr {width: 375px;}
+article blockquote {width: 600px;}
 
 header.main,
 footer.main,
 section.main,
 article *,
 hr,
-#comment-form {
+#comment-form,
+ol#comments {
   margin: 0 auto;
 }
+
+/* center those tough-to-center elements */
+article div.container {text-align: center;}
+article canvas,
+article img {display: inline;}
 
 /** Main structure - everything else **/
 
