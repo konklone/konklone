@@ -8,48 +8,74 @@ h1,h2,h3,h4,h5,h6 {font-weight: normal;}
 input.placeholder, textarea.placeholder {color: #999;} /* CSS class only used for HTML5 fallback */
 
 
-/** Colors **/
 
-body {
-  background-color: #002C41;
-  color: #f5f5f5;
-  border-color: #369FA1;
-}
-a {color: #1882BB;}
+/********* Colors ******/
+
+/* backgrounds */
+body {background-color: #002C41;}
+
+/* main text */
+body, 
+article h2,
 header.main a.me {color: #f5f5f5;}
-header.main p {color: #aaa;}
-hr {border-top-color: #369FA1;}
-footer.main hr {border-top-color: #369FA1;}
 
-article header h1 a {color: #369FA1;}
-article header h1 a.time {color: #777;}
+/* links */ 
+a {color: #1882BB;}
+
+/* faded color (e.g. quotes) */
+header.main p,
 article blockquote {color: #aaa;}
-ol#comments li header span {color: #369FA1}
-ol#comments li header span a {color: #369FA1}
+article header h1 a.time {color: #777;}
+
+/* code/pre */
+article pre {color: #999;}
+article pre strong {color: #c5c5c5;}
+article code {background-color: #444;}
+
+/* post title, separator */
+article header h1 a,
+#comments li header span,
+#comments li header span a {color: #369FA1;}
+hr, body {border-color: #369FA1;}
+
+/* error text(?) */
+#comments+section p {color: #990000;}
+
+
 
 /* Link decoration */
+
 header.main a.me {text-decoration: none;}
 header.main a.me:hover {text-decoration: underline;}
 article h1 a, article h2 a {text-decoration: none;}
 article h1 a:hover, article h2 a:hover {text-decoration: underline;}
 
-/* Font sizes */
 
-header.main h1     {font-size: 16pt;} /* blog title */
-article header h1  {font-size: 20pt;} /* article title */
+
+/********** Font sizes *************/
+
+header.main h1 {font-size: 16pt;} /* blog title */
+header.main    {font-size: 11pt;} /* main header */
+footer.main    {font-size: 11pt;} /* main footer */
+
+article header h1    {font-size: 20pt;} /* article title */
 article p, 
 article pre,
-article blockquote {font-size: 11pt;} /* article text */ 
-ol li header span  {font-size: 14pt;} /* comment name */
-ol li header time  {font-size: 11pt;} /* comment date */
-ol li p            {font-size: 11pt;} /* comment text */
-header.main        {font-size: 11pt;}
-footer.main        {font-size: 11pt;} /* footer text */
-p.comments a       {font-size: 14pt;}
+article blockquote   {font-size: 11pt;} /* article text */ 
+article ol li, 
+article ul li        {font-size: 11pt; line-height: 22px;} /* article lists */
+article h3 {font-size: 18pt;}                     /* article audio */
+article h4 {font-size: 12pt; line-height: 22px;}  /* article audio */
+article p.comments a {font-size: 14pt;} /* link to comments page */
 
-article+ol+section form>input {font-size: 14pt;}
-article+ol+section form textarea {font-size: 12pt;}
+article.idea span.status {font-size: 150%;} /* idea status */
 
+#comments li header span {font-size: 14pt;} /* comment name */
+#comments li header time {font-size: 11pt;} /* comment date */
+#comments li p           {font-size: 11pt;} /* comment text */
+
+#comment-form form input    {font-size: 14pt;} /* comment form */
+#comment-form form textarea {font-size: 12pt;} /* comment form */
 
 /** Main structure - center and width **/
 
@@ -60,9 +86,7 @@ article header,
 article ul, article li,
 article h2, article h3, article h4, article h5, article h6,
 #comment-form,
-ol#comments {
-  width: 700px;
-}
+#comments {width: 700px;}
 
 hr {width: 375px;}
 article blockquote {width: 600px;}
@@ -73,7 +97,7 @@ section.main,
 article *,
 hr,
 #comment-form,
-ol#comments {
+#comments {
   margin: 0 auto;
 }
 
@@ -81,6 +105,7 @@ ol#comments {
 article div.container {text-align: center;}
 article canvas,
 article img {display: inline;}
+
 
 /** Main structure - everything else **/
 
@@ -138,7 +163,6 @@ article header h1 {line-height: 35px;}
 
 article header h2 {
   margin-top: 6px;
-  color: #444;
 }
 
 article p {
@@ -155,44 +179,22 @@ article blockquote {
 
 article ol, article ul {list-style-position: outside;}
 article ul, article li {list-style-type: disc;}
-article ol li, article ul li {
-  margin-top: 7px; margin-bottom: 7px;
-  line-height: 22px;
-  font-size: 11pt;
-}
+article ol li, article ul li {margin-top: 7px; margin-bottom: 7px;}
 
-article h2 {
-  font-weight: bold;
-  color: #f5f5f5;
-  font-size: 110%;
-  letter-spacing: 1px;
-  padding-top: 10px;
-}
 
-article p.comments {
-  font-size: 80%; margin-top: 20px;
-}
-
-article.idea span.status {
-  font-size: 150%;
-}
+article p.comments {margin-top: 20px;}
 
 article pre {
   width: 700px; white-space: pre-wrap;
   font-family: inherit;
   line-height: 23px;
-  color: #999;
 }
 
 article pre blockquote, article blockquote pre {
   font-style: italic;
 }
 
-article pre strong {color: #c5c5c5;}
-
-article code {
-  background-color: #444; padding: 2px;
-}
+article code {padding: 2px;}
 
 /* Article permalink page */
 
@@ -204,23 +206,23 @@ article footer hr {
 
 /* Comment display */
 
-ol#comments {list-style-type: none;}
-ol#comments li {margin: 50px 0;}
+#comments {list-style-type: none;}
+#comments li {margin: 50px 0;}
 
-ol#comments li header span {
+#comments li header span {
   float: left; 
   margin-bottom: 20px;
   font-style: normal;
 }
 
-ol#comments li header a {text-decoration: underline;}
+#comments li header a {text-decoration: underline;}
 
-ol#comments li header time {
+#comments li header time {
   float: right;
   margin-top: 2px;
 }
 
-ol#comments li p {
+#comments li p {
   clear: both;
   line-height: 25px;
   margin: 20px 0;
@@ -228,32 +230,26 @@ ol#comments li p {
 
 /* Comment form */
 
-ol#comments+section p {
-  color: #990000;
+#comments+section p {
   margin-bottom: 10px;
 }
 
-ol#comments+section form>input {
+#comments+section form>input {
   margin-bottom: 15px; margin-right: 10px;
   padding: 5px;
 }
 
-ol#comments+section form textarea {
+#comments+section form textarea {
   clear: both; display: block;
   width: 100%; height: 100px;
   padding: 5px;
 }
 
-ol#comments+section form textarea+input {
+#comments+section form textarea+input {
   display: block;
   padding: 4px 20px 1px 20px;
   margin-top: 10px;
-  font-size: 12pt;
 }
-
-
-
-
 
 
 /* Audio */
@@ -269,20 +265,9 @@ div.controls a.play, div.controls a.pause {
 div.controls a.play {background-image: url(/images/play.png);}
 div.controls a.pause {background-image: url(/images/pause.png); display: none;}
 
-h3 {
-  font-size: 18pt;
-  padding-top: 14px;
-}
-
-h4 {
-  font-size: 12pt;
-  margin-top: 10px;
-  line-height: 22px;
-}
-
+h3 {padding-top: 14px;}
+h4 {margin-top: 10px;}
 h3 a:hover, h4 a {text-decoration: underline}
 
 /* first paragraph after an audio block of stuff */
-h4+script+p {
-  clear: both;
-}
+h4+script+p {clear: both;}
