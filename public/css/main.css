@@ -17,13 +17,13 @@ body {background-color: #002C41;}
 /* main text */
 body, 
 article h2,
-header.main a.me {color: #f5f5f5;}
+header.main a.me {color: #f5f5f5;} 
 
 /* links */ 
 a {color: #1882BB;}
 
 /* faded color (e.g. quotes) */
-header.main p,
+header.main,
 article blockquote {color: #aaa;}
 article header h1 a.time {color: #777;}
 
@@ -54,7 +54,7 @@ article h1 a:hover, article h2 a:hover {text-decoration: underline;}
 
 /********** Font sizes *************/
 
-header.main h1 {font-size: 16pt;} /* blog title */
+header.main h1 {font-size: 12pt;} /* blog title */
 header.main    {font-size: 11pt;} /* main header */
 footer.main    {font-size: 11pt;} /* main footer */
 
@@ -119,11 +119,13 @@ body {
   border-style: solid;
 }
 
-header.main {
-  position: relative; height: 60px; margin-top: 30px;
-}
-header.main div {position: absolute; bottom: 15px; left: 0;}
-header.main ul {position: absolute; bottom: 0px; right: 0;}
+header.main {height: 60px; padding-top: 15px;}
+
+header.main h1,
+header.main p {display: inline-block;}
+
+header.main ul {padding-top: 7px;}
+header.main li {display: inline-block; margin-right: 7px;}
 
 section.main {
   padding-top: 40px;
