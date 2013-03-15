@@ -1,12 +1,7 @@
 <% content_for :sidebar do %>
   <a href="/admin/posts/">&laquo; all posts</a><br/>
 
-  <% if defined?(newer_post) and newer_post %>
-    <a href="/admin/post/<%= newer_post.slug %>?offset=<%= offset - 1 %>&q=<%= params[:q] %>">&laquo; newer</a><br/>
-  <% end %>
-  <% if defined?(older_post) and older_post %>
-    <a href="/admin/post/<%= older_post.slug %>?offset=<%= offset + 1 %>&q=<%= params[:q] %>">older &raquo;</a><br/>
-  <% end %>
+  <%= partial "admin/cheat", engine: :erb %>
 <% end %>
 
 <% if post.errors.any? %>

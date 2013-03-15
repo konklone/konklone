@@ -7,7 +7,7 @@ get '/admin/?' do
   if admin?
     redirect '/admin/posts/'
   else
-    erb :"admin/login", :layout => :"admin/layout", :locals => {:message => nil}
+    erb :"admin/login", layout: :"admin/layout", locals: {message: nil}
   end
 end
 
@@ -17,7 +17,7 @@ post '/admin/login' do
     session[:admin] = true
     redirect '/admin/posts/'
   else
-    erb :"admin/login", :layout => :"admin/layout", :locals => {:message => "Invalid credentials."}
+    erb :"admin/login", layout: :"admin/layout", locals: {message: "Invalid credentials."}
   end
 end
 
@@ -37,12 +37,12 @@ get '/admin/posts/?' do
   end
   
   posts, page = paginate 20, posts
-  erb :"admin/posts", :layout => :"admin/layout", :locals => {:posts => posts, :page => page, :per_page => 20}
+  erb :"admin/posts", layout: :"admin/layout", locals: {posts: posts, page: page, per_page: 20}
 end
 
 # form for creating a new post
 get '/admin/posts/new/?' do
-  erb :"admin/new", :layout => :"admin/layout"
+  erb :"admin/new", layout: :"admin/layout"
 end
 
 # create a new post
@@ -54,31 +54,15 @@ end
 
 # main edit form for a post
 get '/admin/post/:slug' do
-  post = Post.where(:slug => params[:slug]).first
+  post = Post.where(slug: params[:slug]).first
   raise Sinatra::NotFound unless post
   
-  # if coming from a list, figure out the next and previous post from that list
-  older_post = nil
-  newer_post = nil
-  if params[:offset].present?
-    
-    posts = Post.admin
-    if params[:q].present?
-      posts = posts.admin_search(params[:q])
-    end
-    
-    offset = params[:offset].to_i
-    
-    newer_post = posts.skip(offset - 1).first if offset > 0
-    older_post = posts.skip(offset + 1).first
-  end
-  
-  erb :"admin/post", :layout => :"admin/layout", :locals => {:post => post, :newer_post => newer_post, :older_post => older_post, :offset => offset}
+  erb :"admin/post", layout: :"admin/layout", locals: {post: post}
 end
 
 # update a post
 put '/admin/post/:slug' do
-  post = Post.where(:slug => params[:slug]).first
+  post = Post.where(slug: params[:slug]).first
   raise Sinatra::NotFound unless post
   
   if params[:submit] == "Update"
@@ -86,8 +70,6 @@ put '/admin/post/:slug' do
     params[:post]['post_type'] = (params[:post]['post_type'] || []).split /, ?/
     
     post.attributes = params[:post]
-
-    p post.post_type
 
     if params[:post]['slug']
       post.slug = params[:post]['slug']
@@ -108,7 +90,7 @@ put '/admin/post/:slug' do
   if post.save
     redirect "/admin/post/#{post.slug}"
   else
-    erb :"admin/post", :layout => :"admin/layout", :locals => {:post => post}
+    erb :"admin/post", layout: :"admin/layout", locals: {post: post}
   end
 end
 
@@ -127,22 +109,22 @@ get '/admin/post/:id/preview/?' do
   post = Post.where(:_id => BSON::ObjectId(params[:id])).first
   raise Sinatra::NotFound unless post
   
-  erb :post, :locals => {:post => post}
+  erb :post, locals: {post: post}
 end
 
 # list of non-spam comments
 get '/admin/comments/?' do
   per_page = (params[:per_page] || 20).to_i
-  comments, page = paginate per_page, Comment.desc(:created_at).where(:flagged => false)
+  comments, page = paginate per_page, Comment.desc(:created_at).where(flagged: false)
   
-  erb :"admin/comments", :layout => :"admin/layout", :locals => {:comments => comments, :flagged => false, :page => page, :per_page => per_page}
+  erb :"admin/comments", layout: :"admin/layout", locals: {comments: comments, flagged: false, page: page, per_page: per_page}
 end
 
 # list of comments marked as spam
 get '/admin/comments/flagged/?' do
   per_page = (params[:per_page] || 20).to_i
   comments, page = paginate per_page, Comment.desc(:created_at).where(:flagged => true)
-  erb :"admin/comments", :layout => :"admin/layout", :locals => {:comments => comments, :flagged => true, :page => page, :per_page => per_page}
+  erb :"admin/comments", layout: :"admin/layout", locals: {comments: comments, flagged: true, page: page, per_page: per_page}
 end
 
 delete '/admin/comments/flagged/clear/?' do
@@ -155,7 +137,7 @@ get '/admin/comment/:id' do
   comment = Comment.where(:_id => BSON::ObjectId(params[:id])).first
   raise Sinatra::NotFound unless comment
   
-  erb :"admin/comment", :layout => :"admin/layout", :locals => {:comment => comment}
+  erb :"admin/comment", layout: :"admin/layout", locals: {comment: comment}
 end
 
 # update a comment
@@ -185,7 +167,7 @@ put '/admin/comment/:id' do
   if comment.save
     redirect "/admin/comment/#{comment._id}"
   else
-    erb :"admin/comment", :layout => :"admin/layout", :locals => {:comment => comment}
+    erb :"admin/comment", layout: :"admin/layout", locals: {comment: comment}
   end
 end
 
