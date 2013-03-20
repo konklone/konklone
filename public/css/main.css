@@ -1,5 +1,5 @@
 /* Fonts */
-/*@import url(http://fonts.googleapis.com/css?family=Open+Sans);*/
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
 body, input, textarea {font-family: "Open Sans", Arial, serif;}
 
 /** Extra reset **/
@@ -12,20 +12,20 @@ input.placeholder, textarea.placeholder {color: #999;} /* CSS class only used fo
 /********* Colors ******/
 
 /* backgrounds */
-body {background-color: #002C41;}
+body {background-color: #fafafa;}
 
 /* main text */
 body, 
 article h2,
-header.main a.me {color: #f5f5f5;} 
+header.main a.me {color: #151515;} 
 
 /* links */ 
 a {color: #1882BB;}
 
 /* faded color (e.g. quotes) */
 header.main,
-article blockquote {color: #aaa;}
-article header h1 a.time {color: #777;}
+article blockquote {color: #555;}
+article header h1 a.time {color: #808080;}
 
 /* code/pre */
 article pre {color: #999;}
@@ -35,8 +35,8 @@ article code {background-color: #444;}
 /* post title, separator */
 article header h1 a,
 #comments li header span,
-#comments li header span a {color: #369FA1;}
-hr, body {border-color: #369FA1;}
+#comments li header span a {color: #1882BB;}
+hr, body {border-color: #1882BB;}
 
 /* error text(?) */
 #comments+section p {color: #990000;}
@@ -61,7 +61,8 @@ footer.main    {font-size: 11pt;} /* main footer */
 article header h1    {font-size: 20pt;} /* article title */
 article p, 
 article pre,
-article blockquote   {font-size: 11pt;} /* article text */ 
+article blockquote   {font-size: 11pt; line-height: 22px;} /* article text */ 
+
 article ol li, 
 article ul li        {font-size: 11pt; line-height: 22px;} /* article lists */
 article h3 {font-size: 18pt;}                     /* article audio */
@@ -89,6 +90,7 @@ article h2, article h3, article h4, article h5, article h6,
 #comments {width: 700px;}
 
 hr {width: 375px;}
+article blockquote {padding: 0 30px;}
 article blockquote,
 article blockquote p {width: 600px;}
 
@@ -182,10 +184,6 @@ article p {
 }
 
 article p a {text-decoration: underline;}
-article blockquote {
-  line-height: 21px;
-  padding: 0 30px;
-}
 
 article ol, article ul {list-style-position: outside;}
 article ul, article li {list-style-type: disc;}
