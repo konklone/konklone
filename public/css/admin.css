@@ -142,3 +142,7 @@ body.admin #flash .info {}
 body.admin span.state {float: right; margin-top: 10px;}
 body.admin span.state.published {color: #900;}
 body.admin span.state.draft {color: #777;}
+
+
+body.admin div.cheat {}
+body.admin div.cheat h3 {}

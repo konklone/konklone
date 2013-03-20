@@ -1,8 +1,4 @@
-<% content_for :sidebar do %>
-  <a href="/admin/posts/">&laquo; all posts</a><br/>
-
-  <%= partial "admin/cheat", engine: :erb %>
-<% end %>
+<a href="/admin/posts/">&laquo; all posts</a><br/>
 
 <% if post.errors.any? %>
   <ol class="errors">
@@ -87,3 +83,5 @@
     });
   });
 </script>
+
+<%= partial "admin/cheat", engine: :erb %>
