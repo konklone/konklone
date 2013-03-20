@@ -20,7 +20,7 @@ article h2,
 header.main a.me {color: #151515;} 
 
 /* links */ 
-a {color: #1882BB;}
+a {color: rgb(10, 105, 156);}
 
 /* faded color (e.g. quotes) */
 header.main,
@@ -34,8 +34,8 @@ article code {background-color: #ccc;}
 /* post title, separator */
 article header h1 a,
 #comments li header span,
-#comments li header span a {color: #1882BB;}
-hr, body {border-color: #1882BB;}
+#comments li header span a {color: rgb(10, 105, 156);}
+hr, body {border-color: #1882BB}
 
 /* error text(?) */
 #comments+section p {color: #990000;}
@@ -53,7 +53,7 @@ article h1 a:hover, article h2 a:hover {text-decoration: underline;}
 
 /********** Font sizes *************/
 
-header.main h1 {font-size: 12pt;} /* blog title */
+header.main h1 {font-size: 11pt;} /* blog title */
 header.main    {font-size: 11pt;} /* main header */
 footer.main    {font-size: 11pt;} /* main footer */
 
@@ -66,9 +66,7 @@ article ol li,
 article ul li        {font-size: 11pt; line-height: 22px;} /* article lists */
 article h3 {font-size: 18pt;}                     /* article audio */
 article h4 {font-size: 12pt; line-height: 22px;}  /* article audio */
-article p.comments a {font-size: 14pt;} /* link to comments page */
-
-article.idea span.status {font-size: 150%;} /* idea status */
+article p.comments a {font-size: 11pt;} /* link to comments page */
 
 #comments li header span {font-size: 14pt;} /* comment name */
 #comments li header time {font-size: 11pt;} /* comment date */
@@ -79,7 +77,6 @@ article.idea span.status {font-size: 150%;} /* idea status */
 
 /** Main structure - center and width **/
 
-header.main,
 footer.main,
 article p,
 article header,
@@ -94,7 +91,6 @@ article blockquote {padding: 0 30px;}
 article blockquote,
 article blockquote p {width: 600px;}
 
-header.main,
 footer.main,
 section.main,
 article *,
@@ -107,7 +103,7 @@ hr,
 article div.image.strip {
   background-position-y: center; 
   background-size: cover; 
-  padding: 20px; 
+  margin-top: 20px; margin-bottom: 20px;
   width: 100%;
 }
 
@@ -120,7 +116,7 @@ article img {display: inline;}
 /** Main structure - everything else **/
 
 body {
-  min-width: 1024px; position: relative;
+  min-width: 1000px; position: relative;
   padding: 0; margin: 0; 
 
   border-top-width: 15px;
@@ -128,18 +124,16 @@ body {
   border-style: solid;
 }
 
-header.main {height: 60px; padding-top: 15px;}
+header.main {position: relative;}
 
-header.main h1,
+header.main div {position: absolute; left: 20px; top: 15px;}
+header.main h1, 
 header.main p {display: inline-block;}
 
-header.main ul {padding-top: 7px;}
+header.main ul {position: absolute; right: 20px; top: 15px;}
 header.main li {display: inline-block; margin-right: 7px;}
 
-section.main {
-  padding-top: 40px;
-}
-
+section.main {margin-top: 65px;}
 article {margin-bottom: 40px;}
 
 hr {
@@ -147,11 +141,6 @@ hr {
   margin-top: 70px;
   margin-bottom: 70px;
 }
-
-/** Header **/
-
-header.main div p {margin-top: 10px;}
-header.main ul li {padding: 5px 0;}
 
 /** Footer */
 
