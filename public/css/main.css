@@ -24,13 +24,12 @@ a {color: #1882BB;}
 
 /* faded color (e.g. quotes) */
 header.main,
-article blockquote {color: #555;}
+article blockquote,
+article pre {color: #555;}
 article header h1 a.time {color: #808080;}
 
 /* code/pre */
-article pre {color: #999;}
-article pre strong {color: #c5c5c5;}
-article code {background-color: #444;}
+article code {background-color: #ccc;}
 
 /* post title, separator */
 article header h1 a,
@@ -58,10 +57,10 @@ header.main h1 {font-size: 12pt;} /* blog title */
 header.main    {font-size: 11pt;} /* main header */
 footer.main    {font-size: 11pt;} /* main footer */
 
-article header h1    {font-size: 20pt;} /* article title */
+article header h1    {font-size: 20pt; line-height: 35px;} /* article title */
 article p, 
 article pre,
-article blockquote   {font-size: 11pt; line-height: 22px;} /* article text */ 
+article blockquote   {font-size: 14pt; line-height: 28px;} /* article text */ 
 
 article ol li, 
 article ul li        {font-size: 11pt; line-height: 22px;} /* article lists */
@@ -85,6 +84,7 @@ footer.main,
 article p,
 article header,
 article ul, article li,
+article pre,
 article h2, article h3, article h4, article h5, article h6,
 #comment-form,
 #comments {width: 700px;}
@@ -171,18 +171,9 @@ footer.main hr {
 article header {margin-bottom: 20px;}
 article header a.time {margin-right: 5px;}
 
-article header h1 {line-height: 35px;}
+article header h2 {margin-top: 6px;}
 
-article header h2 {
-  margin-top: 6px;
-}
-
-article p {
-  line-height: 23px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
+article p {margin-top: 20px; margin-bottom: 20px;}
 article p a {text-decoration: underline;}
 
 article ol, article ul {list-style-position: outside;}
@@ -193,13 +184,8 @@ article ol li, article ul li {margin-top: 7px; margin-bottom: 7px;}
 article p.comments {margin-top: 20px;}
 
 article pre {
-  width: 700px; white-space: pre-wrap;
+  white-space: pre-wrap;
   font-family: inherit;
-  line-height: 23px;
-}
-
-article pre blockquote, article blockquote pre {
-  font-style: italic;
 }
 
 article code {padding: 2px;}
@@ -207,10 +193,6 @@ article code {padding: 2px;}
 /* Article permalink page */
 
 article footer {margin-top: 25px;}
-article footer hr {
-  width: 375px; 
-  margin: 50px 0 0px 0;
-}
 
 /* Comment display */
 
