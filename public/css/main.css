@@ -64,6 +64,7 @@ article blockquote   {font-size: 14pt; line-height: 28px;} /* article text */
 
 article ol li, 
 article ul li        {font-size: 11pt; line-height: 22px;} /* article lists */
+article h2 {font-size: 18pt; line-height: 30px; letter-spacing: 1px;}
 article h3 {font-size: 18pt;}                     /* article audio */
 article h4 {font-size: 12pt; line-height: 22px;}  /* article audio */
 article p.comments a {font-size: 11pt;} /* link to comments page */
@@ -82,10 +83,12 @@ article p,
 article header,
 article ul, article li,
 article pre,
-article h2, article h3, article h4, article h5, article h6,
+article h3, article h4, article h5, article h6,
 article iframe.youtube,
 #comment-form,
 #comments {width: 700px;}
+
+article h2 {width: 100%; text-align: center; padding-top: 20px;}
 
 article iframe.youtube {height: 394px;}
 
