@@ -49,12 +49,12 @@ post '/post/:slug/comments' do
   
   if comment.save
     if comment.flagged
-      halt 500, "500 Server Error"
+      halt 500, "500 Server Error" # that'll fool 'em
     else
       redirect "#{post_path post}#comment-#{comment.id}"
     end
   else
-    erb :post, :locals => {:post => post, :new_comment => comment}
+    erb :post, locals: {post: post, new_comment: comment}
   end
 end
 
@@ -65,12 +65,12 @@ get /\/(?:unburned-)?rss.xml$/ do
   headers['Content-Type'] = 'application/rss+xml'
   
   posts = Post.visible.desc(:published_at).limit(20).to_a
-  erb :rss, :locals => {:site => config[:site], :posts => posts}, :layout => false
+  erb :rss, locals: {site: config[:site], posts: posts}, layout: false
 end
 
 get '/comments.xml' do
   headers['Content-Type'] = 'application/rss+xml'
   
   comments = Comment.visible.desc(:created_at).limit(20).to_a
-  erb :comments, :locals => {:site => config[:site], :comments => comments}, :layout => false
+  erb :comments, locals: {site: config[:site], comments: comments}, layout: false
 end
