@@ -1,21 +1,19 @@
-<header>
+<header>  
+  <% if post.published_at %>
+    <time class="left" datetime="<%= short_datetime post.published_at %>" pubdate>
+      <%= short_date post.published_at %>
+    </time>
+  <% end %>
+
+  <% if !post.visible? %>
+    <small class="unpublished right">
+      Unpublished, last updated <%= long_date post.updated_at %>
+    </small>
+  <% end %>
+
   <h1>
-    <% if post.published_at %>
-      <a class="time" href="<%= post_path post %>">
-        <time datetime="<%= short_datetime post.published_at %>" pubdate>
-          <%= short_date post.published_at %>
-        </time>
-      </a>
-    <% end %>
-    
     <a class="title" href="<%= post_path post %>">
       <%= h post.title %>
     </a>
   </h1>
-  
-  <% if !post.visible? %>
-    <h3>
-      Unpublished, last updated <%= long_date post.updated_at %>
-    </h3>
-  <% end %>
 </header>
