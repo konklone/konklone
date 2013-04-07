@@ -1,7 +1,8 @@
 <% content_for(:title) { "#{post.title} | Konklone" } %>
 
 <article>
-  <%= post_header post %>
+  <%= partial "header", engine: :erb, locals: {post: post} %>
+  
   <%= post_body post %>
 </article>
 

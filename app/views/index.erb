@@ -1,26 +1,13 @@
-<ul>
-  <% posts.each do |post| %>
-    <li>
-      <article class="<%= post.post_type.first %>">
-        <%= post_header post %>
-        <%= post_body post %>
+<ul class="posts">
 
-        <p class="comments">
-          <a href="<%= post_path post %>#comments">
-            <% if post.comments.visible.count == 1 %>
-              <%= post.comments.visible.count %> comment
-            <% elsif post.comments.visible.count > 0 %>
-              <%= post.comments.visible.count %> comments
-            <% else %>
-              no comments
-            <% end %>
-          </a>
-        </p>
+  <% posts.each_with_index do |post, i| %>
+    <li class="<%= "first" if i == 0 %>">
+      <article class="<%= post.post_type.first %>">
+        <%= partial "header", engine: :erb, locals: {post: post} %>
+
+        <%= post_excerpt post %>
       </article>
     </li>
-    <% if post != posts.last %>
-      <hr />
-    <% end %>
   <% end %>
 </ul>
 

@@ -12,14 +12,16 @@ class Post
   
   field :body
   field :published_at, type: Time
-  field :tags, type: Array, :default => []
+  field :tags, type: Array, default: []
 
-  field :private, type: Boolean, :default => false
-  field :draft, type: Boolean, :default => true
-  field :display_title, type: Boolean, :default => true
+  field :excerpt
+
+  field :private, type: Boolean, default: false
+  field :draft, type: Boolean, default: true
+  field :display_title, type: Boolean, default: true
 
   # channel the post appears in
-  field :post_type, type: Array, :default => ["blog"]
+  field :post_type, type: Array, default: ["blog"]
   
   index :slug
   index :published_at
@@ -29,14 +31,14 @@ class Post
   index :draft
   index :created_at
   
-  validates_uniqueness_of :slug, :allow_nil => true
+  validates_uniqueness_of :slug, allow_nil: true
   
   scope :visible, where: {:private => false, draft: false}
   scope :admin, order: [[:created_at, :desc]]
   
   scope :admin_search, lambda {|query|
     {where: {"$or" => 
-      [:body, :title].map {|key| {key => regex_for(query)}}
+      [:body, :title, :excerpt, :slug].map {|key| {key => regex_for(query)}}
      }}
   }
 

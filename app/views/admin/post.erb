@@ -16,7 +16,9 @@
       value="<%= form_escape post.title %>"
       />
 
-    <textarea class="body" name="post[body]"><%= post.body %></textarea>
+    <textarea placeholder="excerpt (text/links only)" class="excerpt" name="post[excerpt]"><%= post.excerpt %></textarea>
+
+    <textarea placeholder="body" class="body" name="post[body]"><%= post.body %></textarea>
     
     <input type="submit" name="submit" value="Update" />
     
