@@ -173,7 +173,7 @@ header.main .inner.me p {display: inline-block;}
 header.main .inner.me .right a {display: inline-block; margin-left: 10px;}
 
 header.main .inner.article {display: none;}
-header.main .inner.article time,
+header.main .inner.article a.left {text-decoration: none;}
 header.main .inner.article h1 {display: inline-block;}
 header.main .inner.article a.right {display: block; text-decoration: none;}
 header.main .inner.article a.right .arrow {display: inline-block; margin-right: 7px;}
