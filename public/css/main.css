@@ -2,6 +2,7 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans);
 body, 
 input, textarea, 
+
 article header, article h2 {font-family: "Open Sans", Arial, sans-serif;}
 article {font-family: "Georgia", serif;}
 
@@ -18,8 +19,7 @@ input.placeholder, textarea.placeholder {color: #999;} /* CSS class only used fo
 body {background-color: #fafafa;}
 
 /* main text */
-body, 
-header.main a.me {color: #151515;} 
+body {color: #151515;} 
 
 article h2 {color: #555;}
 
@@ -41,8 +41,17 @@ article header h1 a,
 #comments li header span a {color: rgb(10, 105, 156);}
 hr, body {border-color: #1882BB}
 
+header.main,
+header.main a {color: #fff;}
+
+header.main {
+  background-image: url(/images/big_blue.png);
+  background-position-y: center; 
+  background-size: cover;
+}
+
 /* error text(?) */
-#comments+section p {color: #990000;}
+#comment-form p {color: #990000;}
 
 
 
@@ -57,15 +66,15 @@ article h1 a:hover, article h2 a:hover {text-decoration: underline;}
 
 /********** Font sizes *************/
 
-header.main h1 {font-size: 11pt;} /* blog title */
-header.main    {font-size: 11pt;} /* main header */
+header.main    {font-size: 12pt;} /* main header */
 footer.main    {font-size: 11pt;} /* main footer */
 
 article header h1,
 article header time  {font-size: 26pt; line-height: 55px;} /* article title */
+
 article p, 
 article pre,
-article blockquote   {font-size: 14pt; line-height: 30px;} /* article text */ 
+article blockquote   {font-size: 12pt; line-height: 27px;} /* article text */ 
 
 article ol li, 
 article ul li        {font-size: 12pt; line-height: 25px;} /* article lists */
@@ -73,17 +82,20 @@ article h2 {font-size: 16pt; line-height: 35px; letter-spacing: 0px;}
 article h3 {font-size: 18pt;}                     /* article audio */
 article h4 {font-size: 12pt; line-height: 22px;}  /* article audio */
 article p.comments a {font-size: 11pt;} /* link to comments page */
-article small {font-size: 10pt; line-height: 20px;} /* aside text */
+
+article small {font-size: 9pt; line-height: 20px;} /* aside text */
 
 #comments li header span {font-size: 14pt;} /* comment name */
 #comments li header time {font-size: 11pt;} /* comment date */
 #comments li p           {font-size: 11pt;} /* comment text */
 
+#comment-form span          {font-size: 14pt; display: block; margin-bottom: 20px;}
 #comment-form form input    {font-size: 14pt;} /* comment form */
 #comment-form form textarea {font-size: 12pt;} /* comment form */
 
 /** Main structure - center and width **/
 
+header.main .inner,
 footer.main,
 article p,
 article header,
@@ -106,6 +118,7 @@ article blockquote {padding: 0 30px;}
 article blockquote,
 article blockquote p {width: 600px;}
 
+header.main .inner,
 footer.main,
 section.main,
 article *,
@@ -127,14 +140,17 @@ article div.container {text-align: center;}
 article canvas,
 article img {display: inline;}
 
-/* asides */
-article .left,
-article .right {
-  padding: 5px 10px; 
+/* things to the left and right of center */
+.left,
+.right {
   width: 210px; 
 }
-article .left {float: left; margin-left: -260px; padding-left: 20px; text-align: right;}
-article .right {float: right; margin-right: -260px; padding-right: 20px;}
+.left {float: left; margin-left: -260px; padding-left: 20px; text-align: right;}
+.right {float: right; margin-right: -260px; padding-right: 20px;}
+
+article .left,
+article .right {padding: 5px 10px;}
+
 
 article time.left {padding-top: 0;}
 article .unpublished {padding-top: 10px;}
@@ -142,24 +158,27 @@ article .unpublished {padding-top: 10px;}
 /** Main structure - everything else **/
 
 body {
-  min-width: 1000px; position: relative;
-  padding: 0; margin: 0; 
-
-  border-top-width: 15px;
-  border-bottom-width: 15px;
-  border-style: solid;
+  min-width: 1000px;
+  padding: 0; margin: 0;
 }
 
-header.main {position: relative;}
+header.main {
+  width: 100%;
+  padding: 15px 0; 
+  position: fixed; top: 0; left: 0;
+}
 
-header.main div {position: absolute; left: 20px; top: 15px;}
-header.main h1, 
-header.main p {display: inline-block;}
+header.main .inner.me {display: block;}
+header.main .inner.me p {display: inline-block;}
+header.main .inner.me .right a {display: inline-block; margin-left: 10px;}
 
-header.main ul {position: absolute; right: 20px; top: 15px;}
-header.main li {display: inline-block; margin-right: 7px;}
+header.main .inner.article {display: none;}
+header.main .inner.article time,
+header.main .inner.article h1 {display: inline-block;}
+header.main .inner.article a.right {display: block; text-decoration: none;}
+header.main .inner.article a.right .arrow {display: inline-block; margin-right: 7px;}
 
-section.main {margin-top: 65px;}
+section.main {margin-top: 100px;}
 article {margin-bottom: 40px;}
 
 hr {
@@ -175,12 +194,6 @@ footer.main p {
   padding: 30px 0;
 }
 
-footer.main hr {
-  margin: 70px auto 0 auto;
-  border-top-width: 1px;
-}
-
-
 /* Regular posts */
 
 article header {margin-bottom: 20px;}
@@ -192,7 +205,6 @@ article ol, article ul {list-style-position: outside;}
 article ul, article li {list-style-type: disc;}
 article ol li, article ul li {margin-top: 7px; margin-bottom: 7px;}
 
-
 article p.comments {margin-top: 20px;}
 
 article pre {
@@ -202,9 +214,6 @@ article pre {
 
 article code {padding: 2px;}
 
-/* Article permalink page */
-
-article footer {margin-top: 25px;}
 
 /* Comment display */
 
@@ -230,24 +239,25 @@ article footer {margin-top: 25px;}
   margin: 20px 0;
 }
 
+
 /* Comment form */
 
-#comments+section p {
+#comment-form p {
   margin-bottom: 10px;
 }
 
-#comments+section form>input {
+#comment-form form>input {
   margin-bottom: 15px; margin-right: 10px;
   padding: 5px;
 }
 
-#comments+section form textarea {
+#comment-form form textarea {
   clear: both; display: block;
   width: 100%; height: 100px;
   padding: 5px;
 }
 
-#comments+section form textarea+input {
+#comment-form form textarea+input {
   display: block;
   padding: 4px 20px 1px 20px;
   margin-top: 10px;

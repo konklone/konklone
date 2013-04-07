@@ -1,17 +1,37 @@
-<% content_for(:title) { post.title } %>
+<% content_for(:title) { "#{post.title} | Konklone" } %>
 
 <article>
   <%= post_header post %>
-  
   <%= post_body post %>
 </article>
 
 <hr />
 
+<% new_comment = nil unless defined?(new_comment) %>
+<section id="comment-form">
+
+  <span>Sure, leave a comment:</span>
+
+  <% if new_comment and new_comment.errors.any? %>
+    <p>Comments must have a name and a body.</p>
+  <% end %>
+  
+  <form method="post" action="<%= comment_path post %>#comment-form">
+    <input name="comment[author]" type="text" placeholder="name" required 
+      <% if new_comment %>value="<%= new_comment.author %>"<% end %>
+      />
+    <input name="comment[author_url]" type="url" placeholder="website" 
+      <% if new_comment %>value="<%= new_comment.author_url %>"<% end %>
+      />
+    <textarea name="comment[body]" required><% if new_comment %><%= h new_comment.body %><% end %></textarea>
+    <input type="submit" value="Thanks, I will" />
+  </form>
+</section>
+
 <ol id="comments">
   <% if post.comments.visible.count > 0 %>
     <% post.comments.visible.asc(:created_at).each do |comment| %>
-      <li id="comment-<%= comment.id %>"> <!-- id used for anchor -->
+      <li id="comment-<%= comment.id %>">
         <header>
           <span class="author">
             <% if comment.author_url.present? %>
@@ -34,20 +54,32 @@
   <% end %>
 </ol>
 
-<% new_comment = nil unless defined?(new_comment) %>
-<section id="comment-form">
-  <% if new_comment and new_comment.errors.any? %>
-    <p>Comments must have a name and a body.</p>
-  <% end %>
-  
-  <form method="post" action="<%= comment_path post %>#comment-form">
-    <input name="comment[author]" type="text" placeholder="name" required 
-      <% if new_comment %>value="<%= new_comment.author %>"<% end %>
-      />
-    <input name="comment[author_url]" type="url" placeholder="website" 
-      <% if new_comment %>value="<%= new_comment.author_url %>"<% end %>
-      />
-    <textarea name="comment[body]" required><% if new_comment %><%= h new_comment.body %><% end %></textarea>
-    <input type="submit" value="Post" />
-  </form>
-</section>
+<script type="text/javascript">
+  $("header.main a.right").click(function() {
+    window.location.hash = "";
+    window.scrollTo(0,0);
+    return false;
+  });
+
+  $(document).ready(function() {
+    var articleHeader = $('article header');
+    
+    // var offset = $("header.main").outerHeight();
+    var start = $(articleHeader).offset().top;
+    var offset = 0;
+
+    var headerMe = $("header.main .inner.me");
+    var headerArticle = $("header.main .inner.article");
+    headerArticle.find("h1").text($("article header .title").text());
+    // headerArticle.find("time").text($("article header time").text());
+
+    $.event.add(window, "scroll", function() {
+      var p = $(window).scrollTop();
+      var flip = p > (start - offset);
+
+      headerMe.css('display', flip ? 'none' : 'block');
+      headerArticle.css('display', flip ? 'block' : 'none');
+    });
+   
+  });
+</script>
