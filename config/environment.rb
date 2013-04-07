@@ -19,6 +19,7 @@ end
 
 configure do
   Mongoid.configure {|c| c.from_hash config[:mongoid]}
+
   Rakismet.key = config[:rakismet][:key]
   Rakismet.url = config[:rakismet][:url]
   Rakismet.host = config[:rakismet][:host]
@@ -44,6 +45,10 @@ end
 # extra controllers and helpers
 
 Dir.glob("./app/controllers/*.rb").each {|filename| load filename}
-require './app/helpers'
+
+Dir.glob('app/helpers/*.rb').each {|filename| load filename}
+helpers Helpers::General
+helpers Helpers::Admin
+
 require 'padrino-helpers'
 helpers Padrino::Helpers
