@@ -6,7 +6,7 @@
   <% if title = content_from(:title) %>
     <title><%= title %></title>
   <% else %>
-    <title>Konklone | by Eric Mill</title>
+    <title>Konklone</title>
   <% end %>
 
   <meta name="description" content="Eric Mill's writing and INSIDE FEELINGS" />
@@ -18,14 +18,20 @@
   
   <link rel="stylesheet" href="/css/html5-reset.css" />
   <link rel="stylesheet" href="/css/main.css?<%= Time.now.to_i %>" />
-  <link rel="alternate" href="/rss.xml" type="application/rss+xml" title="Posts (RSS)" />
+
+  <!-- rss must live on -->
+  <link rel="alternate" href="/rss.xml" type="application/rss+xml" title="All posts" />
   
   <!--[if lt IE 9]><script src="/js/html5.js"></script><![endif]-->
   
+  <!-- jquery is the jquery of the web -->
   <script src="/js/jquery-1.8.2.min.js"></script>
   <script src="/js/jquery.placehold-0.3.min.js"></script>
-  <script src="/js/three.min.js"></script>
+  
   <script src="/js/main.js"></script>
+
+  <!-- on the off chance -->
+  <script src="/js/three.min.js"></script>
 </head>
 
 <body>
@@ -53,7 +59,7 @@
 
       <li>
         <span>email:</span>
-        <a href="mailto:konklone@gmail.com">konklone@</a>
+        <a class="email" href="mailto:konklone@gmail.com">konklone@</a>
       </li>
     </ul>
 
