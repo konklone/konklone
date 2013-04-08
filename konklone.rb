@@ -6,13 +6,8 @@ require './config/environment'
 # base controller
 
 get '/' do
-  posts, page = paginate 10, Post.visible.channel("blog").desc(:published_at)
+  posts, page = paginate 20, Post.visible.channel("blog").desc(:published_at)
   erb :index, locals: {posts: posts, per_page: 10, page: page, channel: "blog"}
-end
-
-get '/ideas' do
-  posts, page = paginate 20, Post.visible.channel("idea").desc(:published_at)
-  erb :index, locals: {posts: posts, per_page: 10, page: page, channel: "idea"}
 end
 
 get '/post/:slug/?' do
@@ -23,12 +18,6 @@ get '/post/:slug/?' do
 
   raise Sinatra::NotFound unless post
   
-  erb :post, locals: {post: post, new_comment: nil}
-end
-
-get '/idea/:slug/?' do
-  post = Post.visible.channel("idea").where(slug: params[:slug]).first
-  raise Sinatra::NotFound unless post
   erb :post, locals: {post: post, new_comment: nil}
 end
 

@@ -1,13 +1,35 @@
 <ul class="posts">
 
-  <% posts.each_with_index do |post, i| %>
-    <li class="<%= "first" if i == 0 %>">
-      <article class="<%= post.post_type.first %>">
-        <%= partial "header", engine: :erb, locals: {post: post} %>
+  <li>
+    <article class="index first">
+      <%= partial "header", engine: :erb, locals: {post: posts.first} %>
 
-        <%= post_excerpt post %>
-      </article>
-    </li>
+      <%= post_excerpt posts.first %>
+
+      <p>
+        <a class="readon" href="<%= post_path posts.first %>">Read on…</a>
+      </p>
+    </article>
+  </li>
+
+  <% posts[1..-1].each do |post| %>
+  <li>
+    <article class="small">
+      <div class="inner">
+        <time class="left" datetime="<%= short_datetime post.published_at %>" pubdate>
+          <%= short_date post.published_at %>
+        </time>
+
+        <h1>
+          <a class="title" href="<%= post_path post %>">
+            <%= h post.title %>
+          </a>
+        </h1>
+
+        <span class="excerpt"><%= small_excerpt post %></span>
+      </div>
+    </article>
+  </li>
   <% end %>
 </ul>
 

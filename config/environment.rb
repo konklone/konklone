@@ -38,7 +38,7 @@ configure(:development) do |config|
   config.also_reload "./konklone.rb"
   config.also_reload "./app/models/*.rb"
   config.also_reload "./app/controllers/*.rb"
-  config.also_reload "./app/helpers.rb"
+  config.also_reload "./app/helpers/*.rb"
 end
 
 

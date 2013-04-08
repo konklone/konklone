@@ -1,5 +1,8 @@
 # encoding: utf-8
 
+require 'nokogiri'
+require 'loofah'
+
 module Helpers
   module General
 
@@ -107,8 +110,24 @@ module Helpers
       markdowned.render text
     end
 
-    def post_excerpt(post)
-      markdown post.excerpt || ""
+
+
+    # excerpts are text only, so markdown only does autolinks and line breaks
+    def post_excerpt(post, render_options = {})
+      markdown(post.excerpt || "")
+    end
+
+    # small excerpt is text only, filter out html
+    def small_excerpt(post)
+      excerpt(strip_tags(sanitize(post_excerpt post)), (170 - post.title.size))
+    end
+
+    def excerpt(text, max)
+      if text.size > max
+        text[0..max-3] + "…"
+      else
+        text
+      end
     end
 
     def post_body(post)
@@ -157,6 +176,18 @@ module Helpers
           slug: slug
         }
       end
+    end
+
+    def strip_tags(string)
+      doc = Nokogiri::HTML string
+      (doc/"//*/text()").map do |text| 
+        text.inner_text.strip
+      end.select {|text| text.present?}.join " "
+    end
+
+    def sanitize(string)
+      return nil unless string
+      Loofah.scrub_fragment(string.encode(Encoding::UTF_8), :prune).to_s.strip
     end
     
   end

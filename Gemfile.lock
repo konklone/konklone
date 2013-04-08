@@ -24,6 +24,8 @@ GEM
       url_mount (~> 0.2.1)
     i18n (0.6.0)
     kgio (2.7.4)
+    loofah (1.2.1)
+      nokogiri (>= 1.4.4)
     mongo (1.6.2)
       bson (~> 1.6.2)
     mongoid (2.4.8)
@@ -86,6 +88,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord (= 3.2.6)
   bson_ext (= 1.6.2)
+  loofah
   mongo (= 1.6.2)
   mongoid (= 2.4.8)
   mongoid_slug (= 0.10.0)
