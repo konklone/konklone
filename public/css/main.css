@@ -41,7 +41,9 @@ article code {background-color: #ccc;}
 article header h1 a,
 article.small h1 a,
 #comments li header span,
-#comments li header span a {color: rgb(10, 105, 156);}
+#comments li header span a {
+  color: #444
+}
 hr, body {border-color: #1882BB}
 
 header.main,
