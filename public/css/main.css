@@ -88,7 +88,10 @@ article h3 {font-size: 18pt;}                     /* article audio */
 article h4 {font-size: 12pt; line-height: 22px;}  /* article audio */
 article p.comments a {font-size: 11pt;} /* link to comments page */
 
-article small {font-size: 9pt; line-height: 20px;} /* aside text */
+article small {
+  font-size: 9pt; 
+  line-height: 20px;
+} /* aside text */
 
 #comments li header span {font-size: 14pt;} /* comment name */
 #comments li header time {font-size: 11pt;} /* comment date */
@@ -153,6 +156,7 @@ article img {display: inline;}
 .left {float: left; margin-left: -260px; padding-left: 20px; text-align: right;}
 .right {float: right; margin-right: -260px; padding-right: 20px;}
 
+/* if in an article, pad it */
 article .left,
 article .right {padding: 5px 10px;}
 
