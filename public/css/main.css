@@ -196,6 +196,11 @@ header.main {
 }
 
 header.main .inner.me {display: block;}
+header.main .inner.me a.left {
+  display: block; text-decoration: none; 
+  display: none;
+}
+header.main .inner.me a.left .arrow {display: inline-block; margin-right: 7px;}
 header.main .inner.me p {display: inline-block;}
 header.main .inner.me .right a {display: inline-block; margin-left: 10px;}
 

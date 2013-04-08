@@ -56,11 +56,13 @@
 </ol>
 
 <script type="text/javascript">
-  $("header.main a.right").click(function() {
+  $("header.main .inner.article a.right").click(function() {
     window.location.hash = "";
     window.scrollTo(0,0);
     return false;
   });
+
+  $("header.main .inner.me a.left").show();
 
   $(document).ready(function() {
     var articleHeader = $('article header');
