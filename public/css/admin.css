@@ -24,7 +24,8 @@ main, #flash .flash {
 
 nav.posts {margin-bottom: 10px;}
 nav.posts a, nav.posts div.search input {margin-right: 10px;}
-nav.posts a.left {margin-top: 1px;}
+nav.posts a.left {margin-top: 1px; text-decoration: none;}
+nav.posts a.left:hover {text-decoration: underline;}
 nav.posts a.active {font-weight: bold; color: #444;}
 nav.posts div.search {display: inline-block;}
 nav.posts div.search input {width: 100px; margin-top: -2px;}
