@@ -2,9 +2,9 @@ before '/admin/[^(login|logout)]*' do
   halt(401, "Not authorized") unless admin?
 end
 
-get '/admin' do
+get '/admin/?' do
   if admin?
-    redirect '/admin/posts'
+    redirect '/admin/posts/published'
   else
     erb :"admin/login", layout: :"admin/layout", locals: {message: nil}
   end
@@ -13,11 +13,9 @@ end
 post '/admin/login' do
   if (params[:username] == config[:admin][:username]) and (params[:password] == config[:admin][:password])
     session[:admin] = true
-    redirect '/admin/posts'
+    redirect '/admin/posts/published'
   else
-    erb :"admin/login", layout: :"admin/layout", locals: {
-      message: "Invalid credentials."
-    }
+    erb :"admin/login", layout: :"admin/layout", locals: {message: "Invalid credentials."}
   end
 end
 
