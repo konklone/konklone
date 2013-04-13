@@ -2,32 +2,30 @@ before '/admin/[^(login|logout)]*' do
   halt(401, "Not authorized") unless admin?
 end
 
-# login form
 get '/admin' do
   if admin?
-    redirect '/admin/posts/'
+    redirect '/admin/posts'
   else
     erb :"admin/login", layout: :"admin/layout", locals: {message: nil}
   end
 end
 
-# log in
 post '/admin/login' do
   if (params[:username] == config[:admin][:username]) and (params[:password] == config[:admin][:password])
     session[:admin] = true
-    redirect '/admin/posts/'
+    redirect '/admin/posts'
   else
-    erb :"admin/login", layout: :"admin/layout", locals: {message: "Invalid credentials."}
+    erb :"admin/login", layout: :"admin/layout", locals: {
+      message: "Invalid credentials."
+    }
   end
 end
 
-# log out
 get '/admin/logout' do
   session[:admin] = false
-  redirect '/admin/'
+  redirect '/admin'
 end
 
-# list all posts 
 get %r{^/admin/posts/(all|published|drafts|private)$} do
   posts = Post.desc :created_at
 
@@ -44,19 +42,16 @@ get %r{^/admin/posts/(all|published|drafts|private)$} do
   erb :"admin/posts", layout: :"admin/layout", locals: {posts: posts, filter: filter}
 end
 
-# form for creating a new post
 get '/admin/posts/new' do
   erb :"admin/new", layout: :"admin/layout"
 end
 
-# create a new post
 post '/admin/posts' do
   post = Post.new params[:post]
-  post.save! # should be no reason for failure
+  post.save! 
   redirect "/admin/post/#{post.slug}"
 end
 
-# main edit form for a post
 get '/admin/post/:slug' do
   post = Post.where(slug: params[:slug]).first
   raise Sinatra::NotFound unless post
@@ -64,14 +59,12 @@ get '/admin/post/:slug' do
   erb :"admin/post", layout: :"admin/layout", locals: {post: post}
 end
 
-# update a post
 put '/admin/post/:slug' do
   post = Post.where(slug: params[:slug]).first
   raise Sinatra::NotFound unless post
   
   if params[:submit] == "Update"
     params[:post]['tags'] = (params[:post]['tags'] || []).split /, ?/
-    params[:post]['post_type'] = (params[:post]['post_type'] || []).split /, ?/
     
     post.attributes = params[:post]
 
@@ -105,7 +98,7 @@ delete '/admin/post/:slug' do
   post.destroy
   flash[:success] = "Deleted post with slug #{post.slug}."
   
-  redirect "/admin/posts/"
+  redirect "/admin/posts"
 end
 
 # post preview page (URL requires guessing db ID)
@@ -121,24 +114,34 @@ get '/admin/comments' do
   per_page = (params[:per_page] || 20).to_i
   comments, page = paginate per_page, Comment.desc(:created_at).where(flagged: false)
   
-  erb :"admin/comments", layout: :"admin/layout", locals: {comments: comments, flagged: false, page: page, per_page: per_page}
+  erb :"admin/comments", layout: :"admin/layout", locals: {
+    comments: comments, 
+    flagged: false, 
+    page: page, 
+    per_page: per_page
+  }
 end
 
 # list of comments marked as spam
 get '/admin/comments/flagged' do
-  per_page = (params[:per_page] || 20).to_i
-  comments, page = paginate per_page, Comment.desc(:created_at).where(:flagged => true)
-  erb :"admin/comments", layout: :"admin/layout", locals: {comments: comments, flagged: true, page: page, per_page: per_page}
+  per_page = (params[:per_page] || 100).to_i
+  comments, page = paginate per_page, Comment.desc(:created_at).where(flagged: true)
+  erb :"admin/comments", layout: :"admin/layout", locals: {
+    comments: comments, 
+    flagged: true, 
+    page: page, 
+    per_page: per_page
+  }
 end
 
 delete '/admin/comments/flagged/clear' do
   Comment.flagged.delete_all
-  redirect "/admin/comments/flagged/"
+  redirect "/admin/comments/flagged"
 end
 
 # edit form for a comment
 get '/admin/comment/:id' do
-  comment = Comment.where(:_id => BSON::ObjectId(params[:id])).first
+  comment = Comment.where(_id: BSON::ObjectId(params[:id])).first
   raise Sinatra::NotFound unless comment
   
   erb :"admin/comment", layout: :"admin/layout", locals: {comment: comment}
@@ -146,7 +149,7 @@ end
 
 # update a comment
 put '/admin/comment/:id' do
-  comment = Comment.where(:_id => BSON::ObjectId(params[:id])).first
+  comment = Comment.where(_id: BSON::ObjectId(params[:id])).first
   raise Sinatra::NotFound unless comment
   
   mine = (params[:comment]['mine'] == "on")

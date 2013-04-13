@@ -2,20 +2,32 @@
 
 body {padding: 20px 0;}
 
-main {
+main, #flash .flash {
   width: 700px;
   margin: 0px auto;
 }
 
+#flash {
+  padding: 12px;
+  background-color: #eee; border-bottom: 1px solid #aaa;
+  position: fixed; top: 0;
+  width: 100%;
+  font-size: 14pt;
+  
+}
+#flash .flash {vertical-align: middle;}
+#flash .success {color: #282;}
+#flash .failure {color: #822;}
+#flash .info {}
 
 /** listing **/
 
-nav.posts {margin-bottom: 5px;}
+nav.posts {margin-bottom: 10px;}
 nav.posts a, nav.posts div.search input {margin-right: 10px;}
-nav.posts a.left {margin-top: 3px;}
+nav.posts a.left {margin-top: 1px;}
 nav.posts a.active {font-weight: bold; color: #444;}
 nav.posts div.search {display: inline-block;}
-nav.posts div.search input {width: 100px;}
+nav.posts div.search input {width: 100px; margin-top: -2px;}
 
 ol.posts li {
   padding: 8px 0px; margin: 0;
@@ -33,6 +45,25 @@ ol.posts li span.flag {
 }
 ol.posts li span.flag.draft {background-color: #880000;}
 ol.posts li span.flag.private {background-color: #222288;}
+
+
+/** listing comments */
+
+nav.comments {margin-bottom: 5px;}
+nav.comments div.controls label.akismet {font-size: 10pt;}
+nav.comments div.controls input[type=submit],
+nav.comments div.controls button {
+  font-size: 12pt; padding: 2px 5px;
+}
+nav.comments div.controls button {margin-left: 15px;}
+
+nav.comments div.controls,
+nav.comments a {display: inline-block;}
+nav.comments li.header {margin-top: 14px;}
+
+ol.comments li {padding: 5px 0; margin: 0;}
+ol.comments li.shown span.excerpt {color: #888;}
+ol.comments li.hidden * {color: #aaa;}
 
 /** post form */
 
@@ -128,18 +159,5 @@ a.visit.preview {
 }
 
 
-/** errors and flash **/
-
-h1 {font-size: 18pt; margin: 5px 0;}
-p.error {color: #a00;}
-
 ol.errors {font-size: 12pt;}
 ol.errors li {margin: 5px 0; padding: 0; color: #a00;}
-
-#flash {
-  background-color: #e5e5e5; 
-  padding: 1px 15px;
-}
-#flash .success {color: #060;}
-#flash .failure {color: #600;}
-#flash .info {}

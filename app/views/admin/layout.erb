@@ -4,8 +4,8 @@
   <title><%= yield_content :title %></title>
   
   <link rel="stylesheet" href="/css/html5-reset.css" />
-  <link rel="stylesheet" href="/css/main.css" />
-  <link rel="stylesheet" href="/css/admin.css" />
+  <link rel="stylesheet" href="/css/main.css?<%= Time.now.to_i %>" />
+  <link rel="stylesheet" href="/css/admin.css?<%= Time.now.to_i %>" />
   
   <script src="/js/jquery-1.8.2.min.js"></script>
   <script src="/js/jquery.placehold-0.3.min.js"></script>
@@ -40,6 +40,10 @@
 
     <%= yield %>
   </main>
+
+  <script type="text/javascript">
+    $(function() { $("#flash").delay(500).fadeOut(500); });
+  </script>
   
 </body>
 </html>

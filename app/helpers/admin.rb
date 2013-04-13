@@ -14,5 +14,13 @@ module Helpers
         "<a href=\"#{path}\">#{text}</a>"
       end
     end
+
+    def tiny_date(time)
+      if time.year == Time.now.year
+        time.strftime "%m/%d"
+      else
+        time.strftime "%m/%d/%y"
+      end
+    end
   end
 end

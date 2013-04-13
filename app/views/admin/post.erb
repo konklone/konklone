@@ -37,10 +37,6 @@
     <% else %>
       <input type="submit" name="submit" value="Make private" />
     <% end %>
-
-    <input type="text" name="post[post_type]" class="small tags" placeholder="channels"
-        value="<%= form_escape post.post_type.join(", ") %>"
-        />
     
     <% if post.visible? %>
       <a class="visit published" href="<%= post_path post %>">See on site &raquo;</a>
@@ -56,21 +52,24 @@
       <input type="text" id="post_slug" name="post[slug]" class="small slug" value="<%= post.slug %>" />
     </fieldset>
   </form>
+  
   <br/>
+  
   <form method="post" action="/admin/post/<%= post.slug %>">
     <input type="hidden" name="_method" value="delete" />
     <input type="submit" style="display: none" />
     <a class="delete post" href="#">Delete post</a>
   </form>
+  
   <% if post.published_at %>
-        <span class="state published">
-          Published on <%= long_date post.published_at %>
-        </span>
-      <% else %>
-        <span class="state draft">
-          Never published
-        </span>
-      <% end %>
+    <span class="state published">
+      Published on <%= long_date post.published_at %>
+    </span>
+  <% else %>
+    <span class="state draft">
+      Never published
+    </span>
+  <% end %>
 </article>
 
 <script type="text/javascript">
