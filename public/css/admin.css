@@ -8,6 +8,34 @@ body.admin section.admin {
 }
 
 
+/** listing **/
+
+body.admin p.none {
+  width: 700px; margin: 0 auto; 
+  padding-bottom: 50px; padding-top: 10px;
+}
+
+body.admin ol.listing {
+  
+}
+
+body.admin ol.listing li {
+  padding: 10px 0px; margin: 0;
+}
+body.admin ol.listing li a {
+  font-size: 18pt;
+}
+
+body.admin ol.listing li.comment span.excerpt {color: #888;}
+body.admin ol.listing li.comment time {margin-left: 10px;}
+
+body.admin ol.listing li span.flags {font-size: 12pt;}
+body.admin ol.listing li span.flags.hidden {color: #880000;}
+body.admin ol.listing li span.flags.draft {color: #882222;}
+body.admin ol.listing li span.flags.private {color: #000088;}
+
+
+
 /** post form */
 
 body.admin fieldset {
@@ -117,54 +145,3 @@ body.admin #flash {
 body.admin #flash .success {color: #060;}
 body.admin #flash .failure {color: #600;}
 body.admin #flash .info {}
-
-
-
-/** listing **/
-
-body.admin p.none {
-  width: 700px; margin: 0 auto; 
-  padding-bottom: 50px; padding-top: 10px;
-}
-
-body.admin ol.listing {
-  font-size: 12pt;
-  list-style-type: none;
-}
-
-body.admin ol.listing li.header {
-  border-bottom: 3px double #888;
-  padding: 10px 10px;
-  margin: 0;
-}
-
-body.admin ol.listing li.comment {
-  border-bottom: 1px solid #888;
-  padding: 10px 10px;
-  margin: 0;
-}
-
-body.admin ol.listing li.comment:hover {
-  background-color: #e5e5dd;
-  cursor: pointer;
-}
-body.admin ol.listing li.comment:hover a {text-decoration: underline;}
-
-body.admin ol.listing li.comment span.excerpt {
-  color: #888;
-}
-
-body.admin ol.listing li.comment span.flags {
-  margin-left: 10px;
-  float: right;
-  vertical-align: center;
-}
-
-body.admin ol.listing li.comment time {
-  float: right;
-  margin-left: 10px;
-}
-
-body.admin ol.listing li span.flags.hidden {color: #880000;}
-body.admin ol.listing li span.flags.draft {color: #880000;}
-body.admin ol.listing li span.flags.private {color: #000088;}

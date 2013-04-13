@@ -29,15 +29,15 @@ end
 
 # list all posts 
 get '/admin/posts/?' do
-  posts = Post.admin
+  posts = Post.desc(:created_at)
   
   # filtering
   if params[:q].present?
-    posts = posts.admin_search params[:q]
+    posts = posts.search params[:q]
   end
   
-  posts, page = paginate 20, posts
-  erb :"admin/posts", layout: :"admin/layout", locals: {posts: posts, page: page, per_page: 20}
+  # posts, page = paginate 20, posts
+  erb :"admin/posts", layout: :"admin/layout", locals: {posts: posts}
 end
 
 # form for creating a new post

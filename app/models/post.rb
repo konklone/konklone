@@ -34,9 +34,8 @@ class Post
   validates_uniqueness_of :slug, allow_nil: true
   
   scope :visible, where: {:private => false, draft: false}
-  scope :admin, order: [[:created_at, :desc]]
   
-  scope :admin_search, lambda {|query|
+  scope :search, lambda {|query|
     {where: {"$or" => 
       [:body, :title, :excerpt, :slug].map {|key| {key => regex_for(query)}}
      }}

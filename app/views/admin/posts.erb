@@ -1,14 +1,4 @@
-<% content_for :head do %>
-  <script type="text/javascript">
-    $(function() {
-      $("ol.listing li").click(function() {
-        location.href = $(this).children("a")[0].href;
-      });
-    })
-  </script>
-<% end %>
-
-<% content_for :sidebar do %>
+<div class="left">
   <a href="/admin/posts/new">+ new post</a><br/>
   <a href="/admin/comments/">all comments</a><br/>
   <a href="/admin/comments/flagged/">flagged comments</a><br/>
@@ -17,27 +7,24 @@
   <form action="/admin/posts/" method="get">
     <input type="search" name="q" placeholder="search posts" />
   </form>
-  
-  <% if previous_page?(posts, page, per_page) %>
-    <a href="/admin/posts/?page=<%= page - 1 %>&q=<%= params[:q] %>">&laquo; newer</a><br/>
-  <% end %>
-
-  <% if next_page?(posts, page, per_page) %>
-    <a href="/admin/posts/?page=<%= page + 1 %>&q=<%= params[:q] %>">older &raquo;</a><br/>
-  <% end %>
-<% end %>
+</div>
 
 <ol class="listing">
-  <% base = (page - 1) * per_page %>
-  <% posts.each_with_index do |post, i| %>
-    <% offset = base + i %>
-    <li>
-      <a href="/admin/post/<%= post.slug %>?offset=<%= offset %>&q=<%= params[:q] %>"><%= h post.title %></a>
+  <% posts.each do |post| %>
+    <li class="post">
+      <time>
+        <%= short_date post.created_at %>
+      </time>
+      
+      <a href="/admin/post/<%= post.slug %>">
+        <%= h post.title %>
+      </a>
     
-      <% if post.draft %>
+      <% if post.draft? %>
         <span class="flags draft">draft</span>
       <% end %>
-      <% if post.private %>
+
+      <% if post.private? %>
         <span class="flags private">private</span>
       <% end %>
     </li>
