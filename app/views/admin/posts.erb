@@ -1,31 +1,21 @@
-<div class="left">
-  <a href="/admin/posts/new">+ new post</a><br/>
-  <a href="/admin/comments/">all comments</a><br/>
-  <a href="/admin/comments/flagged/">flagged comments</a><br/>
-  <a href="/admin/logout">&raquo; logout &laquo;</a><br/>
-
-  <form action="/admin/posts/" method="get">
-    <input type="search" name="q" placeholder="search posts" />
-  </form>
-</div>
-
-<ol class="listing">
+<ol class="posts <%= filter %>">
   <% posts.each do |post| %>
     <li class="post">
-      <time>
+      <time class="left">
         <%= short_date post.created_at %>
       </time>
-      
+
       <a href="/admin/post/<%= post.slug %>">
         <%= h post.title %>
       </a>
-    
-      <% if post.draft? %>
-        <span class="flags draft">draft</span>
-      <% end %>
 
-      <% if post.private? %>
-        <span class="flags private">private</span>
+      <% if filter == "all" %>
+        <% if post.draft? %>
+          <span class="flag draft">draft</span>
+        <% end %>
+        <% if post.private? %>
+          <span class="flag private">private</span>
+        <% end %>
       <% end %>
     </li>
   <% end %>

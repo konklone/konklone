@@ -16,9 +16,30 @@
   
   <%= styled_flash %>
 
-  <section class="admin">
+  <main>
+
+    <nav class="posts">
+      <a class="left" href="/admin/logout">&raquo; Logout &laquo;</a>
+
+      <%= link_to_current "+ New post", "/admin/posts/new" %>
+
+      <%= link_to_current "Published", "/admin/posts/published" %>
+      <%= link_to_current "Drafts", "/admin/posts/drafts" %>
+      <%= link_to_current "Private", "/admin/posts/private" %>
+      <%= link_to_current "All", "/admin/posts/all" %>
+
+      <div class="search">
+        <form action="/admin/posts/all" method="get">
+          <input type="search" name="q" placeholder="Search" />
+        </form>
+      </div>
+
+      <%= link_to_current "Comments", "/admin/comments" %>
+      <%= link_to_current "Spam", "/admin/comments/flagged" %>
+    </nav>
+
     <%= yield %>
-  </section>
+  </main>
   
 </body>
 </html>

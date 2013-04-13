@@ -1,8 +1,8 @@
 /** main **/
 
-body.admin {padding: 10px 0;}
+body {padding: 20px 0;}
 
-body.admin section.admin {
+main {
   width: 700px;
   margin: 0px auto;
 }
@@ -10,73 +10,71 @@ body.admin section.admin {
 
 /** listing **/
 
-body.admin p.none {
-  width: 700px; margin: 0 auto; 
-  padding-bottom: 50px; padding-top: 10px;
+nav.posts {margin-bottom: 5px;}
+nav.posts a, nav.posts div.search input {margin-right: 10px;}
+nav.posts a.left {margin-top: 3px;}
+nav.posts a.active {font-weight: bold; color: #444;}
+nav.posts div.search {display: inline-block;}
+nav.posts div.search input {width: 100px;}
+
+ol.posts li {
+  padding: 8px 0px; margin: 0;
+  font-size: 12pt;
 }
 
-body.admin ol.listing {
-  
+ol.posts li a {color: #444;}
+ol.posts.drafts li a {color: #880000;}
+ol.posts.private li a {color: #222288;}
+
+ol.posts li span.flag {
+  margin-left: 4px; padding: 0px 5px; 
+  color: #fff; font-size: 8pt; 
+  border: 1px solid; border-radius: 4px; 
 }
-
-body.admin ol.listing li {
-  padding: 10px 0px; margin: 0;
-}
-body.admin ol.listing li a {
-  font-size: 18pt;
-}
-
-body.admin ol.listing li.comment span.excerpt {color: #888;}
-body.admin ol.listing li.comment time {margin-left: 10px;}
-
-body.admin ol.listing li span.flags {font-size: 12pt;}
-body.admin ol.listing li span.flags.hidden {color: #880000;}
-body.admin ol.listing li span.flags.draft {color: #882222;}
-body.admin ol.listing li span.flags.private {color: #000088;}
-
-
+ol.posts li span.flag.draft {background-color: #880000;}
+ol.posts li span.flag.private {background-color: #222288;}
 
 /** post form */
 
-body.admin fieldset {
+fieldset {
   display: block;
   margin-top: 20px;
 }
 
-body.admin span.state {float: right; margin-top: 10px;}
-body.admin span.state.published {color: #900;}
-body.admin span.state.draft {color: #777;}
+span.state {float: right; margin-top: 10px;}
+span.state.published {color: #900;}
+span.state.draft {color: #777;}
 
-body.admin div.cheat {}
-body.admin div.cheat h3 {}
+div.cheat {}
+div.cheat h3 {}
 
-body.admin input[type="text"].big, body.admin input[type="password"].big {
+input[type="text"].big, input[type="password"].big {
   font-size: 14pt;
   padding: 10px 10px 10px 8px;
   margin: 10px 0;
 }
 
-body.admin input[type="text"].small {
+input[type="text"].small {
   font-size: 10pt;
   padding: 5px;
 }
 
-body.admin fieldset {position: relative;}
+fieldset {position: relative;}
 
-body.admin input[type="text"].small.slug {
+input[type="text"].small.slug {
   margin-left: 20px;
   position: absolute; right: 0;
 }
 
-body.admin input.title {
+input.title {
   width: 100%;
 }
 
-body.admin input[type="checkbox"] {
+input[type="checkbox"] {
   margin-left: 10px;
 }
 
-body.admin textarea.excerpt {
+textarea.excerpt {
   height: 90px;
   width: 100%;
   font-size: 12pt;
@@ -85,7 +83,7 @@ body.admin textarea.excerpt {
   margin: 10px 0;
 }
 
-body.admin textarea.body {
+textarea.body {
   height: 400px;
   width: 100%;
   font-size: 12pt;
@@ -93,22 +91,22 @@ body.admin textarea.body {
   padding: 10px;
 }
 
-body.admin textarea.comment.body {
+textarea.comment.body {
   height: 200px;
 }
 
-body.admin input[type="submit"] {
+input[type="submit"] {
   font-size: 14pt;
   padding: 3px 10px;
   margin: 10px 10px 10px 0px;
 }
 
-body.admin span.divider {
+span.divider {
   margin-right: 10px;
   font-size: 14pt;
 }
 
-body.admin a.visit {
+a.visit {
   float: right;
   font-size: 14pt;
   margin-top: 13px;
@@ -117,13 +115,13 @@ body.admin a.visit {
   border-style: solid;
 }
 
-body.admin a.visit.published {
+a.visit.published {
   border-color: #336699;
   background-color: #224466;
   color: #fff;
 }
 
-body.admin a.visit.preview {
+a.visit.preview {
   border-color: #666666;
   background-color: #444444;
   color: #fff;
@@ -132,16 +130,16 @@ body.admin a.visit.preview {
 
 /** errors and flash **/
 
-body.admin h1 {font-size: 18pt; margin: 5px 0;}
-body.admin p.error {color: #a00;}
+h1 {font-size: 18pt; margin: 5px 0;}
+p.error {color: #a00;}
 
-body.admin ol.errors {font-size: 12pt;}
-body.admin ol.errors li {margin: 5px 0; padding: 0; color: #a00;}
+ol.errors {font-size: 12pt;}
+ol.errors li {margin: 5px 0; padding: 0; color: #a00;}
 
-body.admin #flash {
+#flash {
   background-color: #e5e5e5; 
   padding: 1px 15px;
 }
-body.admin #flash .success {color: #060;}
-body.admin #flash .failure {color: #600;}
-body.admin #flash .info {}
+#flash .success {color: #060;}
+#flash .failure {color: #600;}
+#flash .info {}

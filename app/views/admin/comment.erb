@@ -1,11 +1,3 @@
-<% content_for :sidebar do %>
-  <% if comment.flagged? %>
-    <a href="/admin/comments/flagged/">&laquo; flagged comments</a><br/>
-  <% else %>
-    <a href="/admin/comments/">&laquo; all comments</a><br/>
-  <% end %>
-<% end %>
-
 <% if comment.errors.any? %>
   <ol class="errors">
     <% comment.errors.full_messages.each do |message| %>

@@ -18,6 +18,7 @@ class Post
 
   field :private, type: Boolean, default: false
   field :draft, type: Boolean, default: true
+  field :flagged, type: Boolean, default: false
   field :display_title, type: Boolean, default: true
 
   # channel the post appears in
@@ -34,8 +35,10 @@ class Post
   validates_uniqueness_of :slug, allow_nil: true
   
   scope :visible, where: {:private => false, draft: false}
+  scope :drafts, where: {draft: true}
+  scope :private, where: {:private => true}
   
-  scope :search, lambda {|query|
+  scope :admin_search, lambda {|query|
     {where: {"$or" => 
       [:body, :title, :excerpt, :slug].map {|key| {key => regex_for(query)}}
      }}

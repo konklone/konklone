@@ -1,9 +1,5 @@
-<% content_for :sidebar do %>
-  <a href="/admin/posts/">&laquo; all posts</a>
-<% end %>
-
 <article>
-  <form action="/admin/posts/" method="post">
+  <form action="/admin/posts" method="post">
     <input type="text" class="big title" name="post[title]" placeholder="title" />
     <textarea class="body" name="post[body]"></textarea>
     

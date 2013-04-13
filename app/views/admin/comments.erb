@@ -71,35 +71,5 @@
       var checked = !!($(this).attr("checked"));
       $("ol.listing li.comment input[type=checkbox]").attr("checked", checked);
     });
-
-    // $("ol.listing li.comment").click(function() {
-    //   var checked = !!($(this).children("input[type=checkbox]").attr("checked"));
-    //   $(this).children("input[type=checkbox]").attr("checked", !checked);
-    //   return false;
-    // });
   });
 </script>
-
-
-
-<% content_for :sidebar do %>
-  <a href="/admin/posts/">&laquo; all posts</a><br/>
-  <% if flagged %>
-    <a href="/admin/comments/">all comments</a>
-    <form method="post" action="/admin/comments/flagged/clear">
-      <input type="hidden" name="_method" value="delete" />
-      <input type="submit" style="display: none" />
-      <a class="clear flagged" href="#">&raquo; clear spam comments &laquo;</a>
-    </form>
-  <% else %>
-    <a href="/admin/comments/flagged/">spam comments</a><br/>
-  <% end %>
-
-  <% if previous_page?(comments, page, per_page) %>
-    <a href="/admin/comments/<%= flagged ? "flagged/" : "" %>?page=<%= page - 1 %>">&laquo; newer comments</a><br/>
-  <% end %>
-
-  <% if next_page?(comments, page, per_page) %>
-    <a href="/admin/comments/<%= flagged ? "flagged/" : "" %>?page=<%= page + 1 %>">older comments &raquo;</a>
-  <% end %>
-<% end %>

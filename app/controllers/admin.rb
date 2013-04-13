@@ -3,7 +3,7 @@ before '/admin/[^(login|logout)]*' do
 end
 
 # login form
-get '/admin/?' do
+get '/admin' do
   if admin?
     redirect '/admin/posts/'
   else
@@ -22,31 +22,35 @@ post '/admin/login' do
 end
 
 # log out
-get '/admin/logout/?' do
+get '/admin/logout' do
   session[:admin] = false
   redirect '/admin/'
 end
 
 # list all posts 
-get '/admin/posts/?' do
-  posts = Post.desc(:created_at)
+get %r{^/admin/posts/(all|published|drafts|private)$} do
+  posts = Post.desc :created_at
+
+  filter = params[:captures].first
+
+  posts = posts.visible if filter == "published"
+  posts = posts.private if filter == "private"
+  posts = posts.drafts if filter == "drafts"
   
-  # filtering
   if params[:q].present?
-    posts = posts.search params[:q]
+    posts = posts.admin_search params[:q]
   end
   
-  # posts, page = paginate 20, posts
-  erb :"admin/posts", layout: :"admin/layout", locals: {posts: posts}
+  erb :"admin/posts", layout: :"admin/layout", locals: {posts: posts, filter: filter}
 end
 
 # form for creating a new post
-get '/admin/posts/new/?' do
+get '/admin/posts/new' do
   erb :"admin/new", layout: :"admin/layout"
 end
 
 # create a new post
-post '/admin/posts/?' do
+post '/admin/posts' do
   post = Post.new params[:post]
   post.save! # should be no reason for failure
   redirect "/admin/post/#{post.slug}"
@@ -105,7 +109,7 @@ delete '/admin/post/:slug' do
 end
 
 # post preview page (URL requires guessing db ID)
-get '/admin/post/:id/preview/?' do
+get '/admin/post/:id/preview' do
   post = Post.where(:_id => BSON::ObjectId(params[:id])).first
   raise Sinatra::NotFound unless post
   
@@ -113,7 +117,7 @@ get '/admin/post/:id/preview/?' do
 end
 
 # list of non-spam comments
-get '/admin/comments/?' do
+get '/admin/comments' do
   per_page = (params[:per_page] || 20).to_i
   comments, page = paginate per_page, Comment.desc(:created_at).where(flagged: false)
   
@@ -121,13 +125,13 @@ get '/admin/comments/?' do
 end
 
 # list of comments marked as spam
-get '/admin/comments/flagged/?' do
+get '/admin/comments/flagged' do
   per_page = (params[:per_page] || 20).to_i
   comments, page = paginate per_page, Comment.desc(:created_at).where(:flagged => true)
   erb :"admin/comments", layout: :"admin/layout", locals: {comments: comments, flagged: true, page: page, per_page: per_page}
 end
 
-delete '/admin/comments/flagged/clear/?' do
+delete '/admin/comments/flagged/clear' do
   Comment.flagged.delete_all
   redirect "/admin/comments/flagged/"
 end
