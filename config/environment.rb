@@ -1,8 +1,12 @@
 require 'sinatra'
+
 require 'mongoid'
 require 'mongoid/slug'
+
 require 'rakismet'
+
 require 'redcarpet'
+
 require 'sinatra/content_for'
 require 'sinatra/flash'
 require 'tzinfo'

@@ -101,7 +101,7 @@ delete '/admin/post/:slug' do
   post.destroy
   flash[:success] = "Deleted post with slug #{post.slug}."
   
-  redirect "/admin/posts"
+  redirect "/admin/posts/published"
 end
 
 # post preview page (URL requires guessing db ID)
