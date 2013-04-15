@@ -2,7 +2,7 @@
 
 body {padding: 20px 0;}
 
-main, #flash .flash {
+div.main, #flash .flash {
   width: 700px;
   margin: 0px auto;
 }
