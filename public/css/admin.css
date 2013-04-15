@@ -127,6 +127,7 @@ section.cheat textarea {width: 200px; height: 35px; margin: 10px 0; padding: 2 5
 
 section.controls {}
 section.controls input[type="submit"],
+section.controls button.preview,
 input.create {
   font-size: 10pt;
   padding: 3px 10px;
@@ -134,28 +135,15 @@ input.create {
   display: block;
 }
 
-section.controls input.update {font-weight: bold; margin-bottom: 20px;}
+section.controls input.update {font-weight: bold; margin-bottom: 10px;}
+section.controls button.preview {margin-bottom: 20px;}
+
 input.create {font-size: 12pt;}
 
 section.controls a.visit {
-  font-size: 12pt;
-  padding: 5px 10px;
-  border-width: 1px;
-  border-style: solid;
   display: inline-block;
   margin-top: 20px;
-}
-
-section.controls a.visit.published {
-  border-color: #336699;
-  background-color: #224466;
-  color: #fff;
-}
-
-section.controls a.visit.preview {
-  border-color: #666666;
-  background-color: #444444;
-  color: #fff;
+  font-size: 14pt;
 }
 
 section.controls a.delete {

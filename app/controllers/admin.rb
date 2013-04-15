@@ -109,11 +109,8 @@ delete '/admin/post/:slug' do
 end
 
 # post preview page (URL requires guessing db ID)
-get '/admin/post/:id/preview' do
-  post = Post.where(:_id => BSON::ObjectId(params[:id])).first
-  raise Sinatra::NotFound unless post
-  
-  erb :post, locals: {post: post}
+post '/admin/preview' do
+  erb :preview, locals: {title: params[:title], body: params[:body]}
 end
 
 # list of non-spam comments

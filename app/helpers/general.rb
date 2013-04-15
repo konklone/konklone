@@ -126,8 +126,8 @@ module Helpers
       end
     end
 
-    def post_body(post)
-      body = markdown render_songs(post.body, post.slug)
+    def post_body(body)
+      body = markdown body
 
       # hack: make standalone img tags stand alone
       body.gsub!(/<p>(<img [^>]+>)<\/p>/) do
@@ -160,18 +160,6 @@ module Helpers
     
     def url_escape(url)
       URI.escape url
-    end
-    
-    def render_songs(body, slug)
-      body.gsub /(?:<p>\s*)?\[song "([^"]+)"\].*?\[name\](.*?)\[\/name\].*?\[by(?: "([^"]+)")?\](.*?)\[\/by\].*?\[\/song\](?:\s*<\/p>)?/im do
-        partial "song", engine: :erb, locals: {
-          filename: $1,
-          name: $2,
-          link: $3,
-          by: $4,
-          slug: slug
-        }
-      end
     end
 
     def strip_tags(string)

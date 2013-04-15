@@ -19,7 +19,7 @@
         <item>
           <title><%= post.title %></title>
           <description><![CDATA[
-            <%= post_body post %>
+            <%= post_body post.body %>
           ]]></description>
           
           <% (post.tags || []).each do |tag| %>
