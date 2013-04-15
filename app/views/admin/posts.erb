@@ -17,6 +17,10 @@
         <% if post.private? %>
           <span class="flag private">private</span>
         <% end %>
+
+        <% if post.flagged? %>
+          <span class="flag flagged">flagged</span>
+        <% end %>
       <% end %>
     </li>
   <% end %>

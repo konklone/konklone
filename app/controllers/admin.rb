@@ -24,7 +24,7 @@ get '/admin/logout' do
   redirect '/admin'
 end
 
-get %r{^/admin/posts/(all|published|drafts|private)$} do
+get %r{^/admin/posts/(all|published|drafts|private|flagged)$} do
   posts = Post.desc :created_at
 
   filter = params[:captures].first
@@ -32,6 +32,7 @@ get %r{^/admin/posts/(all|published|drafts|private)$} do
   posts = posts.visible if filter == "published"
   posts = posts.private if filter == "private"
   posts = posts.drafts if filter == "drafts"
+  posts = posts.flagged if filter == "flagged"
   
   if params[:q].present?
     posts = posts.admin_search params[:q]
@@ -80,6 +81,10 @@ put '/admin/post/:slug' do
     post.private = false
   elsif params[:submit] == "Make private"
     post.private = true
+  elsif params[:submit] == "Flag"
+    post.flagged = true
+  elsif params[:submit] == "Un-flag"
+    post.flagged = false
   end
   
   if post.save
@@ -90,7 +95,7 @@ put '/admin/post/:slug' do
 end
 
 delete '/admin/post/:slug' do
-  post = Post.where(:slug => params[:slug]).first
+  post = Post.where(slug: params[:slug]).first
   raise Sinatra::NotFound unless post
   
   post.destroy

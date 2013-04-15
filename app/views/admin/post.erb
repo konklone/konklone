@@ -31,6 +31,12 @@
     <% else %>
       <input type="submit" name="submit" value="Unpublish" />
     <% end %>
+
+    <% if post.flagged? %>
+      <input type="submit" name="submit" value="Un-flag" />
+    <% else %>
+      <input type="submit" name="submit" value="Flag" />
+    <% end %>
     
     <% if post.private? %>
       <input type="submit" name="submit" value="Make public" />

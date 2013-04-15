@@ -37,6 +37,7 @@ class Post
   scope :visible, where: {:private => false, draft: false}
   scope :drafts, where: {draft: true}
   scope :private, where: {:private => true}
+  scope :flagged, where: {flagged: true}
   
   scope :admin_search, lambda {|query|
     {where: {"$or" => 
