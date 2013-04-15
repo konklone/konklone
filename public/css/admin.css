@@ -108,6 +108,9 @@ input[type="checkbox"] {
   margin-left: 10px;
 }
 
+textarea.excerpt,
+textarea.body {font-family: "Georgia", serif;}
+
 textarea.excerpt {
   height: 90px;
   width: 100%;
@@ -161,6 +164,11 @@ a.visit.preview {
   color: #fff;
 }
 
-
 ol.errors {font-size: 12pt;}
 ol.errors li {margin: 5px 0; padding: 0; color: #a00;}
+
+/** post form - cheat area **/
+
+div.cheat {text-align: left;}
+div.cheat h3 {font-size: 10pt;}
+div.cheat textarea {width: 200px; height: 35px; margin: 10px 0; padding: 2 5px;}

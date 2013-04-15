@@ -1,15 +1,24 @@
-<div class="cheat">
+<div class="cheat left">
 
 <h3>Full-width image strips</h3>
 
-<code>
-&lt;div style="background-image: url(/assets/images/giant.jpg); height: 500px;" class="image strip"&gt;&lt;/div&gt;
-</code>
+<textarea wrap="off">
+<div style="background-image: url(/assets/images/________); height: ___px;" class="image strip"></div></textarea>
 
 <h3>YouTube videos</h3>
 
-<code>
-&lt;center&gt;&lt;iframe class="youtube" src="http://www.youtube.com/embed/e_LcBQuaM1s" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;&lt;/center&gt;
-</code>
+<textarea wrap="off">
+<p style="text-align: center"><iframe class="youtube" src="http://www.youtube.com/embed/_______" frameborder="0" allowfullscreen></iframe></p>
+</textarea>
+
+
 
 </div>
+
+<script type="text/javascript">
+  $(function() {
+    $("div.cheat textarea").click(function() {
+      $(this).select();
+    })
+  });
+</script>

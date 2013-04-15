@@ -6,6 +6,8 @@
   </ol>
 <% end %>
 
+<%= partial "admin/cheat", engine: :erb %>
+
 <article>
   <form action="/admin/post/<%= post.slug %>" method="post">
     <input type="hidden" name="_method" value="put" />
@@ -55,7 +57,7 @@
         value="<%= form_escape post.tags.join(", ") %>"
         />
       
-      <input type="text" id="post_slug" name="post[slug]" class="small slug" value="<%= post.slug %>" />
+      <input type="text" placeholder="slug" id="post_slug" name="post[slug]" class="small slug" value="<%= post.slug %>" />
     </fieldset>
   </form>
   
@@ -88,5 +90,3 @@
     });
   });
 </script>
-
-<%= partial "admin/cheat", engine: :erb %>

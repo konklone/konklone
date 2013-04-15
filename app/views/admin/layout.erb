@@ -39,6 +39,9 @@
         <%= link_to_current "Comments", "/admin/comments" %>
         <%= link_to_current "Spam", "/admin/comments/flagged" %>
       </nav>
+    <% else %>
+      <p>Not logged in.</p>
+      <br/> 
     <% end %>
 
     <%= yield %>
