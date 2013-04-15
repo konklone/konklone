@@ -6,7 +6,7 @@ before '/admin/*' do
   end
 end
 
-get '/admin/?' do
+get '/admin' do
   if admin?
     redirect '/admin/posts/published'
   else
