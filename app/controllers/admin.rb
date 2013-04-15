@@ -1,5 +1,9 @@
-before '/admin/[^(login|logout)]*' do
-  halt(401, "Not authorized") unless admin?
+before '/admin/*' do
+  if ["login", "logout"].include?(params[:captures].first)
+    pass
+  else
+    halt 404 unless admin?
+  end
 end
 
 get '/admin/?' do

@@ -25,10 +25,6 @@ module Helpers
       forwarded.present? ? forwarded.split(',').first : nil
     end
     
-    def admin?
-      session[:admin] == true
-    end
-
     def paginate(per_page, criteria)
       page = (params[:page]).to_i || 1
       page = 1 if page < 1

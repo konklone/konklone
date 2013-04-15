@@ -3,6 +3,10 @@
 module Helpers
   module Admin
 
+    def admin?
+      session[:admin] == true
+    end
+    
     def form_escape(string)
       string ? string.gsub("\"", "&quot;") : nil
     end
