@@ -9,8 +9,60 @@
 <%= partial "admin/cheat", engine: :erb %>
 
 <article>
+
   <form action="/admin/post/<%= post.slug %>" method="post">
     <input type="hidden" name="_method" value="put" />
+
+    <section class="controls right">
+      <input type="submit" name="submit" class="update" value="Update" />
+      
+      <% if post.draft? %>
+        <% if post.published_at %>
+          <input type="submit" name="submit" value="Republish" />
+        <% else %>
+          <input type="submit" name="submit" value="Publish" />
+        <% end %>
+      <% else %>
+        <input type="submit" name="submit" value="Unpublish" />
+      <% end %>
+
+      <% if post.flagged? %>
+        <input type="submit" name="submit" value="Un-flag" />
+      <% else %>
+        <input type="submit" name="submit" value="Flag" />
+      <% end %>
+      
+      <% if post.private? %>
+        <input type="submit" name="submit" value="Make public" />
+      <% else %>
+        <input type="submit" name="submit" value="Make private" />
+      <% end %>
+      
+      <% if post.visible? %>
+        <a target="_blank" class="visit published" href="<%= post_path post %>">See on site &raquo;</a>
+      <% else %>
+        <a target="_blank" class="visit preview" href="/admin/post/<%= post.id %>/preview">Preview &raquo;</a>
+      <% end %>
+
+      <br/>
+      <a class="delete post" href="#">Delete post</a>
+
+      <% if post.published_at %>
+        <span class="state published">
+          Published <%= long_date post.published_at %>
+        </span>
+      <% else %>
+        <span class="state draft">
+          Never published
+        </span>
+      <% end %>
+
+      <span class="state updated">
+        Updated <%= long_date post.updated_at %>
+      </span>
+
+    </section>
+
     
     <input type="text" class="big title" name="post[title]" placeholder="title" 
       value="<%= form_escape post.title %>"
@@ -20,71 +72,28 @@
 
     <textarea placeholder="body" class="body" name="post[body]"><%= post.body %></textarea>
     
-    <input type="submit" name="submit" value="Update" />
     
-    <span class="divider">or</span>
-    
-    <% if post.draft? %>
-      <% if post.published_at %>
-        <input type="submit" name="submit" value="Republish" />
-      <% else %>
-        <input type="submit" name="submit" value="Publish" />
-      <% end %>
-    <% else %>
-      <input type="submit" name="submit" value="Unpublish" />
-    <% end %>
-
-    <% if post.flagged? %>
-      <input type="submit" name="submit" value="Un-flag" />
-    <% else %>
-      <input type="submit" name="submit" value="Flag" />
-    <% end %>
-    
-    <% if post.private? %>
-      <input type="submit" name="submit" value="Make public" />
-    <% else %>
-      <input type="submit" name="submit" value="Make private" />
-    <% end %>
-    
-    <% if post.visible? %>
-      <a class="visit published" href="<%= post_path post %>">See on site &raquo;</a>
-    <% else %>
-      <a class="visit preview" href="/admin/post/<%= post.id %>/preview">Preview &raquo;</a>
-    <% end %>
     
     <fieldset>
+      <input type="text" placeholder="slug" id="post_slug" name="post[slug]" class="small slug" value="<%= post.slug %>" />
+      
       <input type="text" name="post[tags]" class="small tags" placeholder="tags"
         value="<%= form_escape post.tags.join(", ") %>"
         />
-      
-      <input type="text" placeholder="slug" id="post_slug" name="post[slug]" class="small slug" value="<%= post.slug %>" />
     </fieldset>
   </form>
-  
-  <br/>
-  
-  <form method="post" action="/admin/post/<%= post.slug %>">
-    <input type="hidden" name="_method" value="delete" />
-    <input type="submit" style="display: none" />
-    <a class="delete post" href="#">Delete post</a>
-  </form>
-  
-  <% if post.published_at %>
-    <span class="state published">
-      Published on <%= long_date post.published_at %>
-    </span>
-  <% else %>
-    <span class="state draft">
-      Never published
-    </span>
-  <% end %>
 </article>
+
+<form id="delete_post" method="post" action="/admin/post/<%= post.slug %>">
+  <input type="hidden" name="_method" value="delete" />
+  <input type="submit" style="display: none" />
+</form>
 
 <script type="text/javascript">
   $(function() {
     $("a.post.delete").click(function() {
       if (confirm("Really delete this post?"))
-        this.parentNode.submit();
+        $("#delete_post").get(0).submit();
       
       return false;
     });

@@ -70,54 +70,34 @@ ol.comments li.hidden * {color: #aaa;}
 
 /** post form */
 
-fieldset {
-  display: block;
-  margin-top: 20px;
-}
-
-span.state {float: right; margin-top: 10px;}
-span.state.published {color: #900;}
-span.state.draft {color: #777;}
-
-div.cheat {}
-div.cheat h3 {}
-
 input[type="text"].big, input[type="password"].big {
   font-size: 14pt;
   padding: 10px 10px 10px 8px;
   margin: 10px 0;
 }
 
-input[type="text"].small {
-  font-size: 10pt;
-  padding: 5px;
+input.title.big {width: 100%; margin-bottom: 0;}
+
+fieldset {
+  position: relative;
+  display: block;
+  margin-top: 20px;
 }
 
-fieldset {position: relative;}
-
-input[type="text"].small.slug {
-  margin-left: 20px;
-  position: absolute; right: 0;
-}
-
-input.title {
-  width: 100%;
-}
-
-input[type="checkbox"] {
-  margin-left: 10px;
-}
+input[type="text"].small {font-size: 10pt; padding: 5px;}
+input[type="text"].small.slug {width: 300px;}
+input[type="text"].small.tags {width: 300px; margin-left: 10px;}
 
 textarea.excerpt,
 textarea.body {font-family: "Georgia", serif;}
 
 textarea.excerpt {
-  height: 90px;
+  height: 83px;
   width: 100%;
   font-size: 12pt;
   line-height: 22px;
   padding: 10px;
-  margin: 10px 0;
+  margin-top: 10px;
 }
 
 textarea.body {
@@ -126,42 +106,11 @@ textarea.body {
   font-size: 12pt;
   line-height: 22px;
   padding: 10px;
+  margin-top: 10px;
 }
 
 textarea.comment.body {
   height: 200px;
-}
-
-input[type="submit"] {
-  font-size: 14pt;
-  padding: 3px 10px;
-  margin: 10px 10px 10px 0px;
-}
-
-span.divider {
-  margin-right: 10px;
-  font-size: 14pt;
-}
-
-a.visit {
-  float: right;
-  font-size: 14pt;
-  margin-top: 13px;
-  padding: 5px 10px;
-  border-width: 1px;
-  border-style: solid;
-}
-
-a.visit.published {
-  border-color: #336699;
-  background-color: #224466;
-  color: #fff;
-}
-
-a.visit.preview {
-  border-color: #666666;
-  background-color: #444444;
-  color: #fff;
 }
 
 ol.errors {font-size: 12pt;}
@@ -169,6 +118,52 @@ ol.errors li {margin: 5px 0; padding: 0; color: #a00;}
 
 /** post form - cheat area **/
 
-div.cheat {text-align: left;}
-div.cheat h3 {font-size: 10pt;}
-div.cheat textarea {width: 200px; height: 35px; margin: 10px 0; padding: 2 5px;}
+section.cheat {text-align: left;}
+section.cheat * {color: #888;}
+section.cheat h3 {font-size: 10pt;}
+section.cheat textarea {width: 200px; height: 35px; margin: 10px 0; padding: 2 5px;}
+
+/** post form - controls right hand **/
+
+section.controls {}
+section.controls input[type="submit"],
+input.create {
+  font-size: 10pt;
+  padding: 3px 10px;
+  margin: 5px 0px;
+  display: block;
+}
+
+section.controls input.update {font-weight: bold; margin-bottom: 20px;}
+input.create {font-size: 12pt;}
+
+section.controls a.visit {
+  font-size: 12pt;
+  padding: 5px 10px;
+  border-width: 1px;
+  border-style: solid;
+  display: inline-block;
+  margin-top: 20px;
+}
+
+section.controls a.visit.published {
+  border-color: #336699;
+  background-color: #224466;
+  color: #fff;
+}
+
+section.controls a.visit.preview {
+  border-color: #666666;
+  background-color: #444444;
+  color: #fff;
+}
+
+section.controls a.delete {
+  display: inline-block; 
+  margin-top: 20px; margin-bottom: 10px;
+  font-size: 10pt;
+}
+
+section.controls span.state {display: block; font-size: 10pt; margin: 10px 0;}
+section.controls span.state.published {color: #900;}
+section.controls span.state.draft {color: #888;}
