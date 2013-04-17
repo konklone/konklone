@@ -22,6 +22,10 @@
           <span class="flag flagged">flagged</span>
         <% end %>
       <% end %>
+
+      <% post.tags.each do |tag| %>
+        <span class="flag tag"><%= tag %></span>
+      <% end %>
     </li>
   <% end %>
 </ol>
