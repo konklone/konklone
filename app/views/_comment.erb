@@ -1,0 +1,25 @@
+<li id="comment-<%= comment.id %>" class="<%= "hidden" if admin? and comment.hidden? %>">
+  <header>
+    <span class="author">
+      <% if comment.author_url.present? %>
+        <a rel="nofollow" href="<%= h comment.author_url %>">
+          <%= h comment.author %>
+        </a>
+      <% else %>
+        <%= h comment.author %>
+      <% end %>
+    </span>
+
+    <time class="left" datetime="<%= long_datetime comment.created_at %>" pubdate>
+      <%= short_date comment.created_at %>
+    </time>
+
+    <% if admin? and comment.hidden? %>
+      <span class="right hidden">hidden</span>
+    <% end %>
+
+  </header>
+  
+  <%= comment_body comment.body %>
+  
+</li>

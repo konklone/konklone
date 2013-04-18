@@ -10,9 +10,9 @@ class Comment
   field :author_url
   field :body
   field :ip
-  field :hidden, type: Boolean, :default => false
-  field :flagged, type: Boolean, :default => false
-  field :mine, type: Boolean, :default => false
+  field :hidden, type: Boolean, default: false
+  field :flagged, type: Boolean, default: false
+  field :mine, type: Boolean, default: false
   
   index :author
   index :author_url
