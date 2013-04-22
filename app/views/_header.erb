@@ -1,9 +1,8 @@
 <header>  
-  <% if post.published_at %>
-    <time class="left" datetime="<%= short_datetime post.published_at %>" pubdate>
-      <%= short_date post.published_at %>
-    </time>
-  <% end %>
+  <% date = post.published_at || post.updated_at %>
+  <time class="left" datetime="<%= short_datetime date %>" pubdate>
+    <%= short_date date %>
+  </time>
 
   <% if !post.visible? %>
     <small class="unpublished right">

@@ -165,3 +165,9 @@ section.controls span.state {display: block; font-size: 10pt; margin: 10px 0;}
 section.controls span.state.status {padding: 10px 0;}
 section.controls span.state.published {padding-top: 10px}
 section.controls span.state.draft {color: #900; padding-top: 10px}
+
+ul.versions, ul.versions li {list-style-type: none;}
+ul.versions {margin-top: 20px;}
+ul.versions h5 {margin-bottom: 5px; font-size: 10pt;}
+ul.versions li {margin-bottom: 5px; font-size: 10pt;}
+ul.versions li .because {margin-left: 5px; color: #888;}

@@ -88,9 +88,25 @@
         Updated <%= long_date post.updated_at %>
       </span>
 
-      <br/>
       <a class="delete post" href="#">Delete post</a>
 
+      <% if post.versions and post.versions.any? %>
+        <ul class="versions">
+          <h5>Older versions</h5>
+          <% post.versions.each_with_index do |version, i| %>
+            <li>
+              <a href="/admin/preview/<%= post.id %>?version=<%= i %>"
+                target="_blank"
+                >
+                <%= long_date version['last_updated_at'] %>
+              </a>
+              <span class="because">
+                <%= excerpt version['replaced_because'], 15 %>
+              </span>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
     </section>
 
     

@@ -124,7 +124,16 @@ get '/admin/preview/:id' do
   post = Post.find params[:id]
   raise Sinatra::NotFound unless post
 
-  erb :post, locals: {post: post}
+  if params[:version]
+    version = post.versions[params[:version].to_i]
+    erb :preview, locals: {
+      title: version['title'],
+      body: version['body'],
+      version: version
+    }
+  else
+    erb :post, locals: {post: post}
+  end
 end
 
 # list of non-spam comments
