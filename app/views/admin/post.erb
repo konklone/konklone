@@ -14,29 +14,47 @@
     <input type="hidden" name="_method" value="put" />
 
     <section class="controls right">
-      <input type="submit" name="submit" class="update" value="Update" />
-      <button class="preview">Preview &raquo;</button>
+      <input type="submit" name="submit" class="update" value="Update" 
+        tabindex="6"
+      />
+      <button class="preview"
+        tabindex="7"
+        >Preview &raquo;</button>
       
       <% if post.draft? %>
         <% if post.published_at %>
-          <input type="submit" name="submit" value="Republish" />
+          <input type="submit" name="submit" value="Republish" 
+            tabindex="8"
+            />
         <% else %>
-          <input type="submit" name="submit" value="Publish" />
+          <input type="submit" name="submit" value="Publish" 
+            tabindex="8"
+            />
         <% end %>
       <% else %>
-        <input type="submit" name="submit" value="Unpublish" />
+        <input type="submit" name="submit" value="Unpublish" 
+          tabindex="8"
+          />
       <% end %>
 
       <% if post.flagged? %>
-        <input type="submit" name="submit" value="Un-flag" />
+        <input type="submit" name="submit" value="Un-flag" 
+          tabindex="9"
+          />
       <% else %>
-        <input type="submit" name="submit" value="Flag" />
+        <input type="submit" name="submit" value="Flag" 
+          tabindex="9"
+          />
       <% end %>
       
       <% if post.private? %>
-        <input type="submit" name="submit" value="Make public" />
+        <input type="submit" name="submit" value="Make public" 
+          tabindex="10"
+          />
       <% else %>
-        <input type="submit" name="submit" value="Make private" />
+        <input type="submit" name="submit" value="Make private" 
+          tabindex="10"
+          />
       <% end %>
       
       <% if post.visible? %>
@@ -65,19 +83,27 @@
     
     <input type="text" class="big title" name="post[title]" placeholder="title" 
       value="<%= form_escape post.title %>"
+      tabindex="1"
       />
 
-    <textarea placeholder="excerpt (html welcome)" class="excerpt" name="post[excerpt]"><%= post.excerpt %></textarea>
+    <textarea placeholder="excerpt (html welcome)" class="excerpt" 
+      name="post[excerpt]" tabindex="2"
+      ><%= post.excerpt %></textarea>
 
-    <textarea placeholder="body" class="body" name="post[body]"><%= post.body %></textarea>
+    <textarea placeholder="body" class="body" 
+      name="post[body]" tabindex="3"
+      ><%= post.body %></textarea>
     
     
     
     <fieldset>
-      <input type="text" placeholder="slug" id="post_slug" name="post[slug]" class="small slug" value="<%= post.slug %>" />
+      <input type="text" placeholder="slug" id="post_slug" name="post[slug]" class="small slug" value="<%= post.slug %>" 
+      tabindex="4"
+      />
       
       <input type="text" name="post[tags]" class="small tags" placeholder="tags"
         value="<%= form_escape post.tags.join(", ") %>"
+        tabindex="5"
         />
     </fieldset>
   </form>
