@@ -17,9 +17,6 @@
       <input type="submit" name="submit" class="update" value="Update" 
         tabindex="6"
       />
-      <button class="preview"
-        tabindex="7"
-        >Preview &raquo;</button>
       
       <% if post.draft? %>
         <% if post.published_at %>
@@ -32,13 +29,23 @@
             />
         <% end %>
       <% else %>
-        <input type="submit" name="submit" value="Unpublish" 
+        <input type="submit" name="submit" value="Unpublish"
           tabindex="8"
           />
       <% end %>
 
+      <% if post.private? %>
+        <input type="submit" name="submit" value="Make public"
+          tabindex="10"
+          />
+      <% else %>
+        <input type="submit" name="submit" value="Make private" 
+          tabindex="10"
+          />
+      <% end %>
+
       <% if post.flagged? %>
-        <input type="submit" name="submit" value="Un-flag" 
+        <input type="submit" name="submit" value="Un-flag"
           tabindex="9"
           />
       <% else %>
@@ -47,36 +54,37 @@
           />
       <% end %>
       
-      <% if post.private? %>
-        <input type="submit" name="submit" value="Make public" 
-          tabindex="10"
-          />
-      <% else %>
-        <input type="submit" name="submit" value="Make private" 
-          tabindex="10"
-          />
-      <% end %>
-      
       <% if post.visible? %>
-        <a target="_blank" class="visit published" href="<%= post_path post %>">See on site &raquo;</a>
+        <a target="_blank" class="visit public" href="<%= post_path post %>">Public post &raquo;</a>
+      <% else %>
+        <a target="_blank" class="visit private" href="/admin/preview/<%= post.id %>">Private post &raquo;</a>
       <% end %>
       
-      <br/>
-      <a class="delete post" href="#">Delete post</a>
+      <!-- <span class="state status">
+        <%= post.private? ? "Private" : "Public" %>,
+        <%= post.draft? ? "draft" : "published" %>
+        <%= post.flagged? ? "(flagged)" : "" %>
+      </span> -->
 
-      <% if post.published_at %>
-        <span class="state published">
-          Published <%= long_date post.published_at %>
+      <% if post.draft? %>
+        <span class="state draft">
+          Draft
+          <% if post.published_at %>
+            (<%= long_date post.published_at %>)
+          <% end %>
         </span>
       <% else %>
-        <span class="state draft">
-          Never published
+        <span class="state published">
+          Published <%= long_date post.published_at %>
         </span>
       <% end %>
 
       <span class="state updated">
         Updated <%= long_date post.updated_at %>
       </span>
+
+      <br/>
+      <a class="delete post" href="#">Delete post</a>
 
     </section>
 
@@ -120,11 +128,12 @@
   <input type="submit" style="display: none" />
 </form>
 
-<form id="preview" method="post" target="_blank" action="/admin/preview">
+<!-- <form id="preview" method="post" target="_blank" action="/admin/preview">
   <input type="submit" style="display: none" />
   <input type="hidden" class="title" name="title" />
   <input type="hidden" class="body" name="body" />
-</form>
+</form> -->
+
 
 <script type="text/javascript">
   $(function() {
@@ -135,11 +144,11 @@
       return false;
     });
 
-    $("button.preview").click(function() {
-      $("#preview .title").val($("input.title").val());
-      $("#preview .body").val($("textarea.body").val());
-      $("#preview").get(0).submit();
-      return false;
-    })
+    // $("button.preview").click(function() {
+    //   $("#preview .title").val($("input.title").val());
+    //   $("#preview .body").val($("textarea.body").val());
+    //   $("#preview").get(0).submit();
+    //   return false;
+    // });
   });
 </script>

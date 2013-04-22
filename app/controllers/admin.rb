@@ -110,9 +110,16 @@ delete '/admin/post/:slug' do
   redirect "/admin/posts/published"
 end
 
-# post preview page (URL requires guessing db ID)
+# post preview page (doesn't work for pages with iframes...)
 post '/admin/preview' do
   erb :preview, locals: {title: params[:title], body: params[:body]}
+end
+
+get '/admin/preview/:id' do
+  post = Post.find params[:id]
+  raise Sinatra::NotFound unless post
+
+  erb :post, locals: {post: post}
 end
 
 # list of non-spam comments

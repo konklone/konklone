@@ -147,12 +147,15 @@ section.controls a.visit {
   font-size: 14pt;
 }
 
+section.controls a.visit.private {color: #444;}
+
 section.controls a.delete {
   display: inline-block; 
-  margin-top: 20px; margin-bottom: 10px;
-  font-size: 10pt;
+  margin-bottom: 10px;
+  font-size: 10pt; color: #888;
 }
 
 section.controls span.state {display: block; font-size: 10pt; margin: 10px 0;}
-section.controls span.state.published {color: #900;}
-section.controls span.state.draft {color: #888;}
+section.controls span.state.status {padding: 10px 0;}
+section.controls span.state.published {padding-top: 10px}
+section.controls span.state.draft {color: #900; padding-top: 10px}
