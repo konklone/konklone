@@ -19,11 +19,16 @@ class Post
   field :private, type: Boolean, default: false
   field :draft, type: Boolean, default: true
   field :flagged, type: Boolean, default: false
+
+  field :versions, type: Array, default: []
+  
+  # MARKEDFORDEATH
   field :display_title, type: Boolean, default: true
 
-  # channel the post appears in
+  # MARKEDFORDEATH
   field :post_type, type: Array, default: ["blog"]
   
+
   index :slug
   index :published_at
   index :post_type
@@ -50,14 +55,27 @@ class Post
   def visible?
     !private and !draft
   end
-
-  def idea?
-    post_type.include? "idea"
-  end
   
   def self.regex_for(value)
     regex_value = value.dup
     %w{+ ? . * ^ $ ( ) [ ] { } | \ }.each {|char| regex_value.gsub! char, "\\#{char}"}
     /#{regex_value}/i
+  end
+
+  # snap current values to the end of the versions array, but don't save
+  def snap_version(because)
+    version = {
+      replaced_at: Time.now,
+      replaced_because: because,
+
+      last_updated_at: self.updated_at,
+      draft: self.draft,
+      private: self.private,
+
+      excerpt: self.excerpt,
+      body: self.body
+    }
+
+    self.versions << version
   end
 end

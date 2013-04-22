@@ -7,6 +7,11 @@ div.main, #flash .flash {
   margin: 0px auto;
 }
 
+/* admin sidebars can be bigger */
+/*.left, .right {width: 350px;}
+.left {margin-left: -400px;}
+.right {margin-right: -400px;}*/
+
 #flash {
   padding: 12px;
   background-color: #eee; border-bottom: 1px solid #aaa;
@@ -86,8 +91,9 @@ fieldset {
 }
 
 input[type="text"].small {font-size: 10pt; padding: 5px;}
-input[type="text"].small.slug {width: 300px;}
-input[type="text"].small.tags {width: 300px; margin-left: 10px;}
+input[type="text"].small.slug {width: 200px;}
+input[type="text"].small.tags {width: 200px; margin-left: 10px;}
+input[type="text"].small.version {width: 200px; margin-left: 10px;}
 
 textarea.excerpt,
 textarea.body {font-family: "Georgia", serif;}
@@ -119,7 +125,7 @@ ol.errors li {margin: 5px 0; padding: 0; color: #a00;}
 
 /** post form - cheat area **/
 
-section.cheat {text-align: left;}
+section.cheat {}
 section.cheat * {color: #888;}
 section.cheat h3 {font-size: 10pt;}
 section.cheat textarea {width: 200px; height: 35px; margin: 10px 0; padding: 2 5px;}

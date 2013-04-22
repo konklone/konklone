@@ -65,6 +65,11 @@ end
 put '/admin/post/:slug' do
   post = Post.where(slug: params[:slug]).first
   raise Sinatra::NotFound unless post
+
+  # BEFORE AFFECTING POST: snap a new version if asked
+  if params[:new_version].present?
+    post.snap_version params[:new_version]
+  end
   
   params[:post]['tags'] = (params[:post]['tags'] || []).split /, ?/
   
@@ -164,7 +169,7 @@ end
 put '/admin/comment/:id' do
   comment = Comment.where(_id: BSON::ObjectId(params[:id])).first
   raise Sinatra::NotFound unless comment
-  
+
   mine = (params[:comment]['mine'] == "on")
   tell_akismet = (params['tell_akismet'] == "on")
   

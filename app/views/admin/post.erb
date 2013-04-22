@@ -14,28 +14,28 @@
     <input type="hidden" name="_method" value="put" />
 
     <section class="controls right">
-      <input type="submit" name="submit" class="update" value="Update" 
-        tabindex="6"
+      <input type="submit" name="submit" class="update" value="Save" 
+        tabindex="7"
       />
 
       <button class="preview"
-        tabindex="7"
+        tabindex="8"
         >Preview &raquo;</button>
 
       
       <% if post.draft? %>
         <% if post.published_at %>
           <input type="submit" name="submit" value="Republish" 
-            tabindex="8"
+            tabindex="9"
             />
         <% else %>
           <input type="submit" name="submit" value="Publish" 
-            tabindex="8"
+            tabindex="9"
             />
         <% end %>
       <% else %>
         <input type="submit" name="submit" value="Unpublish"
-          tabindex="8"
+          tabindex="9"
           />
       <% end %>
 
@@ -51,11 +51,11 @@
 
       <% if post.flagged? %>
         <input type="submit" name="submit" value="Un-flag"
-          tabindex="9"
+          tabindex="11"
           />
       <% else %>
         <input type="submit" name="submit" value="Flag" 
-          tabindex="9"
+          tabindex="11"
           />
       <% end %>
       
@@ -117,6 +117,11 @@
       <input type="text" name="post[tags]" class="small tags" placeholder="tags"
         value="<%= form_escape post.tags.join(", ") %>"
         tabindex="5"
+        />
+
+      <input type="text" name="new_version" class="small version" 
+        placeholder="save new version because"
+        tabindex="6"
         />
     </fieldset>
   </form>
