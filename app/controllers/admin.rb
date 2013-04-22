@@ -66,17 +66,16 @@ put '/admin/post/:slug' do
   post = Post.where(slug: params[:slug]).first
   raise Sinatra::NotFound unless post
   
-  if params[:submit] == "Update"
-    params[:post]['tags'] = (params[:post]['tags'] || []).split /, ?/
-    
-    post.attributes = params[:post]
-
-    if params[:post]['slug']
-      post.slug = params[:post]['slug']
-    end
+  params[:post]['tags'] = (params[:post]['tags'] || []).split /, ?/
   
-  # all the toggle buttons ignore any changes made to the form
-  elsif ["Publish", "Republish"].include?(params[:submit])
+  post.attributes = params[:post]
+
+  if params[:post]['slug']
+    post.slug = params[:post]['slug']
+  end
+  
+  # the toggle buttons also store any changes made to the post
+  if ["Publish", "Republish"].include?(params[:submit])
     post.published_at ||= Time.now # don't overwrite this if it was published once already
     post.draft = false
   elsif params[:submit] == "Unpublish"
@@ -85,10 +84,13 @@ put '/admin/post/:slug' do
     post.private = false
   elsif params[:submit] == "Make private"
     post.private = true
+
+  # to be killed
   elsif params[:submit] == "Flag"
     post.flagged = true
   elsif params[:submit] == "Un-flag"
     post.flagged = false
+
   end
   
   if post.save
