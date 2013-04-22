@@ -72,6 +72,7 @@ class Post
       draft: self.draft,
       private: self.private,
 
+      title: self.title,
       excerpt: self.excerpt,
       body: self.body
     }
