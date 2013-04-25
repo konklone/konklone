@@ -36,8 +36,9 @@ nav.posts div.search {display: inline-block;}
 nav.posts div.search input {width: 100px; margin-top: -2px;}
 
 ol.posts li {
-  padding: 8px 0px; margin: 0;
+  padding: 3px 0px; margin: 0;
   font-size: 12pt;
+  line-height: 25px;
 }
 
 ol.posts li a {color: #444;}
@@ -47,12 +48,13 @@ ol.posts.flagged li a {color: #228822;}
 
 ol.posts li span.flag {
   margin-left: 4px; padding: 0px 5px; 
-  color: #fff; font-size: 8pt; 
+  font-size: 8pt; 
   border: 1px solid; border-radius: 4px; 
 }
-ol.posts li span.flag.draft {background-color: #880000;}
-ol.posts li span.flag.private {background-color: #000;}
-ol.posts li span.flag.flagged {background-color: #ff0000;}
+ol.posts li span.flag.count {color: #444;}
+ol.posts li span.flag.draft {background-color: #880000; color: #fff;}
+ol.posts li span.flag.private {background-color: #000; color: #fff;}
+ol.posts li span.flag.flagged {background-color: #ff0000; color: #fff;}
 
 ol.posts li span.tag {color: #888;}
 

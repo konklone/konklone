@@ -21,6 +21,8 @@ class Post
   field :flagged, type: Boolean, default: false
 
   field :versions, type: Array, default: []
+
+  field :comment_count, type: Integer, default: 0
   
   # MARKEDFORDEATH
   field :display_title, type: Boolean, default: true
@@ -36,6 +38,7 @@ class Post
   index :private
   index :draft
   index :created_at
+  index :comment_count
   
   validates_uniqueness_of :slug, allow_nil: true
   
@@ -51,7 +54,12 @@ class Post
   }
 
   scope :channel, lambda {|type| {where: {post_type: type}}}
-  
+
+  def update_count!
+    self.comment_count = self.comments.ham.count
+    self.save!
+  end
+
   def visible?
     !private and !draft
   end

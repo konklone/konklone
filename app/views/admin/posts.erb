@@ -6,8 +6,11 @@
       </time>
 
       <a href="/admin/post/<%= post.slug %>">
-        <%= h post.title %>
-      </a>
+        <%= h post.title %></a>
+
+      <% if post.comment_count > 0 %>
+        <span class="flag count"><%= post.comment_count %></span>
+      <% end %>
 
       <% if filter == "all" %>
         <% if post.draft? %>

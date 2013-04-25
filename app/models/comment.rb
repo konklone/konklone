@@ -1,4 +1,4 @@
-class Comment
+ class Comment
   include Mongoid::Document
   include Mongoid::Timestamps
   
@@ -27,6 +27,7 @@ class Comment
   
   scope :visible, where: {hidden: false, flagged: false}
   scope :flagged, where: {flagged: true}
+  scope :ham, where: {flagged: false}
   
   
   # prefix URLs with http:// if they exist and don't have it
@@ -37,6 +38,10 @@ class Comment
     end
   end
   
+  after_create :update_post_count!
+  def update_post_count!
+    self.post.update_count!
+  end
   
   # spam protection
   include Rakismet::Model
