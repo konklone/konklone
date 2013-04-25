@@ -38,7 +38,8 @@
     end
   end
   
-  after_create :update_post_count!
+  after_save :update_post_count!
+  after_destroy :update_post_count!
   def update_post_count!
     self.post.update_count!
   end
