@@ -87,6 +87,28 @@ module Helpers
       time.strftime "%b #{day.to_i}, #{hour.to_i}:%M#{meridian.downcase}"
     end
 
+    def custom_tags(text)
+      text.gsub!(/\[(left|right)\s+(\d{4}-\d{2}-\d{2}\s+)?([^\]]+)\]/i) do
+        date = Time.zone.parse($2).strftime("%b %d, %Y") if $2
+        "<small class=\"#{$1}\">
+          <span>#{$3}</span>" +
+          (date ? "<time datetime=\"#{$2}\">#{date}</time>" : "") +
+        "</small>"
+      end
+
+      # hack: make standalone img tags stand alone
+      text.gsub!(/<p>(<img [^>]+>)<\/p>/) do
+        "<div class=\"container\">#{$1}</div>" 
+      end
+
+      # even standalone img tags with links around them
+      text.gsub!(/<p>(<a [^>]+>?<img [^>]+><\/a>)<\/p>/) do
+        "<div class=\"container\">#{$1}</div>" 
+      end
+
+      text
+    end
+
     def markdown(text)
       renderer = Redcarpet::Render::HTML.new(
         hard_wrap: true
@@ -102,11 +124,18 @@ module Helpers
       markdowned.render text
     end
 
-
-
-    # excerpts are text only, so markdown only does autolinks and line breaks
+    # regular excerpt can have html
     def post_excerpt(post, render_options = {})
-      markdown(post.excerpt || "")
+      text = post.excerpt || ""
+      text = markdown text
+      text = custom_tags text
+      text
+    end
+
+    def post_body(text)
+      text = markdown text
+      text = custom_tags text
+      text
     end
 
     # small excerpt is text only, filter out html
@@ -122,22 +151,6 @@ module Helpers
       end
     end
 
-    def post_body(body)
-      body = markdown body
-
-      # hack: make standalone img tags stand alone
-      body.gsub!(/<p>(<img [^>]+>)<\/p>/) do
-        "<div class=\"container\">#{$1}</div>" 
-      end
-
-      # even standalone img tags with links around them
-      body.gsub!(/<p>(<a [^>]+>?<img [^>]+><\/a>)<\/p>/) do
-        "<div class=\"container\">#{$1}</div>" 
-      end
-
-      body
-    end
-    
     def comment_body(body)
       renderer = Redcarpet::Render::HTML.new(
         filter_html: true,

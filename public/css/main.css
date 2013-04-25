@@ -13,7 +13,6 @@ h1,h2,h3,h4,h5,h6 {font-weight: normal;}
 input.placeholder, textarea.placeholder {color: #999;} /* CSS class only used for HTML5 fallback */
 
 
-
 /********* Colors ******/
 
 /* backgrounds */
@@ -33,6 +32,7 @@ article blockquote,
 article pre {color: #555;}
 article header time,
 article.small time {color: #808080;}
+article small time {color: #777;}
 
 /* code/pre */
 article code {background-color: #ccc;}
@@ -77,6 +77,8 @@ footer.main    {font-size: 12pt;} /* main footer */
 
 article header h1,
 article header time  {font-size: 26pt; line-height: 55px;} /* article title */
+
+article sup {font-size: 8pt; vertical-align: super;}
 
 article p, 
 article pre,
@@ -164,6 +166,9 @@ article .right {padding: 5px 10px;}
 article time.left {padding-top: 0;}
 article .unpublished {padding-top: 10px;}
 
+
+article sup {margin-left: -3px;}
+article small span {margin-right: 3px;}
 
 /** front page - post index **/
 
