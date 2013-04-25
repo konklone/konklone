@@ -7,11 +7,6 @@ div.main, #flash .flash {
   margin: 0px auto;
 }
 
-/* admin sidebars can be bigger */
-/*.left, .right {width: 350px;}
-.left {margin-left: -400px;}
-.right {margin-right: -400px;}*/
-
 #flash {
   padding: 12px;
   background-color: #eee; border-bottom: 1px solid #aaa;
@@ -130,6 +125,7 @@ ol.errors li {margin: 5px 0; padding: 0; color: #a00;}
 section.cheat {}
 section.cheat * {color: #888;}
 section.cheat h3 {font-size: 10pt;}
+section.cheat span {font-size: 10pt; line-height: 25px;}
 section.cheat textarea {width: 200px; height: 35px; margin: 10px 0; padding: 2 5px;}
 
 /** post form - controls right hand **/
