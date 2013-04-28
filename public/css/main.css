@@ -138,7 +138,7 @@ article blockquote p {width: 600px;}
 
 header.main .inner,
 footer.main,
-section.main,
+main,
 article *,
 hr,
 #comment-form,
@@ -213,10 +213,7 @@ header.main {
 }
 
 header.main .inner.me {display: block;}
-header.main .inner.me a.left {
-  display: block; text-decoration: none; 
-  display: none;
-}
+header.main .inner.me a.left {display: block; text-decoration: none; }
 header.main .inner.me a.left .arrow {display: inline-block; margin-right: 7px;}
 header.main .inner.me p,
 header.main .inner.me ul,
@@ -237,7 +234,7 @@ header.main .inner.article h1 {display: inline-block;}
 header.main .inner.article a.right {display: block; text-decoration: none;}
 header.main .inner.article a.right .arrow {display: inline-block; margin-right: 7px;}
 
-section.main {margin-top: 100px;}
+main {margin-top: 100px;}
 article {margin-bottom: 40px;}
 
 hr {
@@ -311,24 +308,3 @@ article code {padding: 2px;}
   padding: 4px 20px 1px 20px;
   margin-top: 10px;
 }
-
-
-/* Audio */
-
-div.controls a.play, div.controls a.pause {
-  display: block; text-indent: -9999em;
-  width: 80px; height: 80px;
-  margin-right: 0px; 
-  margin-bottom: 20px;
-  float: left;
-}
-
-div.controls a.play {background-image: url(/images/play.png);}
-div.controls a.pause {background-image: url(/images/pause.png); display: none;}
-
-h3 {padding-top: 14px;}
-h4 {margin-top: 10px;}
-h3 a:hover, h4 a {text-decoration: underline}
-
-/* first paragraph after an audio block of stuff */
-h4+script+p {clear: both;}
