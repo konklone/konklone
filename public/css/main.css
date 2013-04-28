@@ -3,9 +3,14 @@
 body, 
 input, textarea, 
 
-article header, article h2,
-article.small time, article.small h1 {font-family: "Open Sans", Arial, sans-serif;}
-article, #comments li p {font-family: "Georgia", serif;}
+article header, 
+article h2,
+article.small time, 
+article.small h1 {font-family: "Open Sans", Arial, sans-serif;}
+
+header.main, 
+article, 
+#comments li p {font-family: "Georgia", serif;}
 
 /** Extra reset **/
 ul, ol, li {list-style-type: none;}
@@ -21,10 +26,10 @@ body {background-color: #fafafa;}
 /* main text */
 body {color: #151515;} 
 
-article h2 {color: #555;}
-
 /* links */ 
-a {color: rgb(10, 105, 156);}
+a {
+  color: rgb(0, 53, 102);
+}
 
 /* faded color (e.g. quotes) */
 header.main,
@@ -40,18 +45,21 @@ article code {background-color: #ccc;}
 /* post title, separator */
 article header h1 a,
 article.small h1 a,
+article h2,
 #comments li header time,
 #comments li header span,
 #comments li header span a {
   color: #444
 }
-hr, body {border-color: #1882BB}
+
+hr {border-color: rgb(0, 53, 102)}
 
 header.main,
 header.main a {color: #fff;}
 
 header.main {
-  background-image: url(/images/big_blue.png);
+  xbackground-image: url(/images/big_blue.png);
+  background-color: rgb(0, 53, 102);
   background-position-y: center; 
   background-size: cover;
 }
