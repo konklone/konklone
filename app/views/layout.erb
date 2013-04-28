@@ -39,14 +39,19 @@
 
   <header class="main">
     <div class="inner me">
-      <a class="left" href="/">
+      <!-- <a class="left" href="/">
         <span class="arrow">&larr;</span>
         all posts
-      </a>
-      <a rel="me" class="me" href="/">Eric Mill</a>,
-      <p>
+      </a> -->
+      <a rel="me" class="me left" href="/">Eric Mill</a>
+      <ul>
+        <li><a class="<%= active?(:blog) %>" href="/">blog</a></li>
+        <li><a class="<%= active?(:projects) %>" href="/projects">projects</a></li>
+        <!-- <li><a class="<%= active?(:ideas) %>" href="/ideas">ideas</a></li> -->
+      </ul>
+      <!-- <p>
         developer at <a href="http://sunlightfoundation.com">Sunlight Foundation</a>, trustee at <a href="http://www.awesomefoundation.org/en/chapters/dc">Awesome Foundation</a>
-      </p>
+      </p> -->
       <div class="right">
         <a class="twitter" rel="me" href="https://twitter.com/konklone">@konklone</a>
         <a class="email" href="mailto:konklone@gmail.com">email</a>

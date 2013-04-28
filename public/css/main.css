@@ -32,7 +32,6 @@ a {
 }
 
 /* faded color (e.g. quotes) */
-header.main,
 article blockquote,
 article pre {color: #555;}
 article header time,
@@ -219,7 +218,17 @@ header.main .inner.me a.left {
   display: none;
 }
 header.main .inner.me a.left .arrow {display: inline-block; margin-right: 7px;}
-header.main .inner.me p {display: inline-block;}
+header.main .inner.me p,
+header.main .inner.me ul,
+header.main .inner.me li {display: inline-block;}
+header.main .inner.me li a {
+  padding: 15px 30px 15px 0; 
+  text-transform: uppercase; text-decoration: none;
+  color: #aaa;
+}
+header.main .inner.me li a.active,
+header.main .inner.me li a:hover {color: #fff;}
+
 header.main .inner.me .right a {display: inline-block; margin-left: 10px;}
 
 header.main .inner.article {display: none;}

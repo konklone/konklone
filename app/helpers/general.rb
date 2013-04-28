@@ -6,6 +6,10 @@ require 'loofah'
 module Helpers
   module General
 
+    def active?(tag)
+      (tag == :blog) ? "active" : ""
+    end
+
     # don't give me empty strings
     def content_from(symbol)
       content = yield_content symbol
