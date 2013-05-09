@@ -14,6 +14,7 @@ GEM
       multi_json (~> 1.0)
     arel (3.0.2)
     backports (2.6.2)
+    big_sitemap (1.1.0)
     bson (1.6.4)
     bson_ext (1.6.2)
       bson (~> 1.6.2)
@@ -87,6 +88,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord (= 3.2.6)
+  big_sitemap
   bson_ext (= 1.6.2)
   loofah
   mongo (= 1.6.2)

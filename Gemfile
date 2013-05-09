@@ -11,6 +11,8 @@ gem "mongoid", '2.4.8'
 gem 'bson_ext', '1.6.2' # mongo gem asks for this
 gem 'mongoid_slug', '0.10.0'
 
+gem 'big_sitemap'
+
 gem 'nokogiri'
 gem 'loofah'
 

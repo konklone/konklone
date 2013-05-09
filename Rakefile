@@ -13,6 +13,7 @@ load 'importers/blog3/blog3.rake'
 
 desc "Create indexes on posts and comments"
 task :create_indexes => :define_import_indexes do
+  # todo: change this to Mongoid.models.each
   Post.create_indexes
   Comment.create_indexes
   puts "Created indexes for posts and comments."
@@ -36,4 +37,32 @@ task :define_import_indexes => :environment do
     index :import_id
     index :import_post_id
   end
+end
+
+desc "Generate a sitemap."
+task :sitemap => :environment do
+  require 'big_sitemap'
+
+  include Helpers::General
+
+  ping = ENV['debug'] ? false : true
+  
+  count = 1 # assume / works
+
+  BigSitemap.generate(
+    base_url: "http://konklone.com", 
+    document_root: "public/sitemap",
+    url_path: "sitemap",
+    ping_google: ping,
+    ping_bing: ping) do
+
+    add "/", change_frequency: "daily"
+
+    Post.visible.channel("blog").desc(:published_at).each do |post|
+      add post_path(post), change_frequency: "weekly"
+      count += 1
+    end
+  end
+
+  puts "Saved sitemap with #{count} links."
 end
