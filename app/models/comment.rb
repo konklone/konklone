@@ -8,6 +8,7 @@
   
   field :author
   field :author_url
+  field :author_email
   field :body
   field :ip
   field :hidden, type: Boolean, default: false
@@ -16,6 +17,7 @@
   
   index :author
   index :author_url
+  index :author_email
   index :hidden
   index :ip
   index :flagged
@@ -24,6 +26,7 @@
   
   validates_presence_of :body
   validates_presence_of :author
+  validates_presence_of :author_email
   
   scope :visible, where: {hidden: false, flagged: false}
   scope :flagged, where: {flagged: true}
@@ -50,7 +53,7 @@
   # not saved to db
   attr_accessor :user_agent, :referrer
   
-  rakismet_attrs author_email: nil,
+  rakismet_attrs author_email: :author_email,
     comment_type: "comment", content: :body,
     permalink: nil, user_ip: :ip
 end

@@ -24,6 +24,9 @@
     <input name="comment[author_url]" type="url" placeholder="website" 
       <% if new_comment %>value="<%= new_comment.author_url %>"<% end %>
       />
+    <input name="comment[author_email]" type="email" required placeholder="email (not displayed)"
+      <% if new_comment %>value="<%= new_comment.author_url %>"<% end %>
+      />
     <textarea name="comment[body]" required><% if new_comment %><%= h new_comment.body %><% end %></textarea>
     <input type="submit" value="Thanks, I will" />
   </form>
