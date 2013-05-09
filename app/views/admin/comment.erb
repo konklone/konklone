@@ -6,7 +6,7 @@
   </ol>
 <% end %>
 
-<article>
+<article class="comment">
   <form action="/admin/comment/<%= comment.id %>" method="post">
     <input type="hidden" name="_method" value="put" />
     
@@ -16,6 +16,10 @@
       
     <input type="text" class="big" name="comment[author_url]" placeholder="website"
       value="<%= form_escape comment.author_url %>"
+      />
+
+      <input type="text" class="big" name="comment[author_email]" placeholder="email"
+      value="<%= form_escape comment.author_email %>"
       />
     
     <textarea class="comment body" name="comment[body]"><%= comment.body %></textarea>

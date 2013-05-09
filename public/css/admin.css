@@ -169,3 +169,7 @@ ul.versions {margin-top: 20px;}
 ul.versions h5 {margin-bottom: 5px; font-size: 10pt;}
 ul.versions li {margin-bottom: 5px; font-size: 10pt;}
 ul.versions li .because {margin-left: 5px; color: #888;}
+
+/* comment form */
+
+article.comment input.big {width: 180px; margin-right: 10px;}
