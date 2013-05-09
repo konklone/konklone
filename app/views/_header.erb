@@ -5,9 +5,9 @@
   </time>
 
   <% if !post.visible? %>
-    <small class="unpublished right">
+    <div class="unpublished right">
       Unpublished, last updated <%= long_date post.updated_at %>
-    </small>
+    </div>
   <% end %>
 
   <h1>
