@@ -1,0 +1,1 @@
+Sitemap: http://konklone.com/sitemap/sitemap_index.xml.gz
