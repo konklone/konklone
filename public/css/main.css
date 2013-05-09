@@ -85,7 +85,7 @@ footer.main    {font-size: 12pt;} /* main footer */
 article header h1,
 article header time  {font-size: 26pt; line-height: 55px;} /* article title */
 
-article sup {font-size: 8pt; vertical-align: super;}
+article sup {font-size: 8pt;}
 
 article p, 
 article pre,
@@ -182,7 +182,7 @@ article .right {padding: 5px 10px;}
 article time.left {padding-top: 0;}
 article .unpublished {padding-top: 10px;}
 
-article sup {margin-left: -3px;}
+article sup {margin-left: -3px; margin-top: -3px; vertical-align: 10%;}
 article small span {margin-right: 3px;}
 
 
