@@ -15,47 +15,47 @@
 
     <section class="controls right">
       <input type="submit" name="submit" class="update" value="Save" 
-        tabindex="7"
+        tabindex="8"
       />
 
       <button class="preview"
-        tabindex="8"
+        tabindex="9"
         >Preview &raquo;</button>
 
       
       <% if post.draft? %>
         <% if post.published_at %>
           <input type="submit" name="submit" value="Republish" 
-            tabindex="9"
+            tabindex="10"
             />
         <% else %>
           <input type="submit" name="submit" value="Publish" 
-            tabindex="9"
+            tabindex="10"
             />
         <% end %>
       <% else %>
         <input type="submit" name="submit" value="Unpublish"
-          tabindex="9"
+          tabindex="10"
           />
       <% end %>
 
       <% if post.private? %>
         <input type="submit" name="submit" value="Make public"
-          tabindex="10"
+          tabindex="11"
           />
       <% else %>
         <input type="submit" name="submit" value="Make private" 
-          tabindex="10"
+          tabindex="11"
           />
       <% end %>
 
       <% if post.flagged? %>
         <input type="submit" name="submit" value="Un-flag"
-          tabindex="11"
+          tabindex="12"
           />
       <% else %>
         <input type="submit" name="submit" value="Flag" 
-          tabindex="11"
+          tabindex="12"
           />
       <% end %>
       
@@ -123,8 +123,6 @@
       name="post[body]" tabindex="3"
       ><%= post.body %></textarea>
     
-    
-    
     <fieldset>
       <input type="text" placeholder="slug" id="post_slug" name="post[slug]" class="small slug" value="<%= post.slug %>" 
       tabindex="4"
@@ -140,6 +138,12 @@
         tabindex="6"
         />
     </fieldset>
+
+    <textarea placeholder="footer (raw html)" class="footer" 
+      name="post[footer]" tabindex="7"
+      style="height: <%= post.footer.present? ? "400px" : "80px" %>"
+      ><%= post.footer %></textarea>
+
   </form>
 </article>
 

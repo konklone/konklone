@@ -23,6 +23,8 @@ class Post
   field :versions, type: Array, default: []
 
   field :comment_count, type: Integer, default: 0
+
+  field :footer # raw html to include in footer
   
   # MARKEDFORDEATH
   field :display_title, type: Boolean, default: true
