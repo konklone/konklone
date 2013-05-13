@@ -184,7 +184,7 @@ module Helpers
 
     def sanitize(string)
       return nil unless string
-      Loofah.scrub_fragment(string.encode(Encoding::UTF_8), :prune).to_s.strip
+      Loofah.scrub_fragment(string, :prune).to_s.strip
     end
     
   end
