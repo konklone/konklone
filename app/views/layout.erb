@@ -16,23 +16,13 @@
   
   <link rel="openid.server" href="http://www.myopenid.com/server" />
   <link rel="openid.delegate" href="http://klondike.myopenid.com/" />
-  
+
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="/css/html5-reset.css" />
   <link rel="stylesheet" href="/css/main.css?<%= Time.now.to_i %>" />
 
   <!-- rss must live on -->
   <link rel="alternate" href="/rss.xml" type="application/rss+xml" title="All posts" />
-  
-  <!--[if lt IE 9]><script src="/js/html5.js"></script><![endif]-->
-  
-  <!-- jquery is the jquery of the web -->
-  <script src="/js/jquery-2.0.0.min.js"></script>
-  <script src="/js/jquery.placehold-0.3.min.js"></script>
-  
-  <script src="/js/main.js?<%= Time.now.to_i %>"></script>
-
-  <!-- on the off chance -->
-  <script src="/js/three.min.js"></script>
 </head>
 
 <body>
@@ -94,5 +84,17 @@
     })();
   </script>
   
+  <!--[if lt IE 9]><script src="/js/html5.js"></script><![endif]-->
+  
+  <!-- jquery is the jquery of the web -->
+  <script src="/js/jquery-2.0.0.min.js"></script>
+  <script src="/js/jquery.placehold-0.3.min.js"></script>
+  
+  <script src="/js/main.js?<%= Time.now.to_i %>"></script>
+
+  <!-- on the off chance -->
+  <script src="/js/three.min.js"></script>
+
+  <%= content_from :foot %>
 </body>
 </html>

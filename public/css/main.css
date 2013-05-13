@@ -5,7 +5,7 @@ input, textarea,
 article header, 
 article h2,
 article.small time, 
-article.small h1 {font-family: Arial, sans-serif;}
+article.small h1 {font-family: "Open Sans", Arial, sans-serif;}
 
 header.main, 
 article, 
@@ -288,7 +288,6 @@ article code {padding: 2px;}
 
 #comments li header span {}
 #comments li header a {text-decoration: underline;}
-#comments li header time {;}
 
 #comments li p {
   line-height: 25px;
