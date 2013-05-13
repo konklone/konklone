@@ -20,6 +20,7 @@
 /tmp
 /.bundle
 /logs
+/log
 *.pyc
 
 # google webmaster tools verification file
