@@ -1,12 +1,11 @@
 /* Fonts */
-@import url(http://fonts.googleapis.com/css?family=Open+Sans);
 body, 
 input, textarea, 
 
 article header, 
 article h2,
 article.small time, 
-article.small h1 {font-family: "Open Sans", Arial, sans-serif;}
+article.small h1 {font-family: Arial, sans-serif;}
 
 header.main, 
 article, 
