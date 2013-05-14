@@ -10,6 +10,10 @@ get '/' do
   erb :index, locals: {posts: posts, per_page: 10, page: page, channel: "blog"}
 end
 
+get '/projects' do
+  erb :projects
+end
+
 get '/post/:slug/?' do
   unless post = Post.visible.channel("blog").where(slug: params[:slug]).first
     # fallback for legacy URLs

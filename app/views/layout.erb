@@ -11,7 +11,7 @@
 
   <meta name="description" content="Eric Mill's writing and INSIDE FEELINGS" />
   <meta name="author" content="Eric Mill" />
-  <meta name="copyright" content="2003-<%= Time.now.year %>" />
+  <meta name="copyright" content="2002-<%= Time.now.year %>" />
   <meta name="google-site-verification" content="BXdkAuVxuVdwYrDQxUbThU19WVlKsmyFMVxZgoAckdo" />
   
   <link rel="openid.server" href="http://www.myopenid.com/server" />
@@ -35,13 +35,10 @@
       </a> -->
       <a rel="me" class="me left" href="/">Eric Mill</a>
       <ul>
-        <!-- <li><a class="<%= active?(:blog) %>" href="/">blog</a></li> -->
-        <!-- <li><a class="<%= active?(:projects) %>" href="/projects">projects</a></li> -->
-        <!-- <li><a class="<%= active?(:ideas) %>" href="/ideas">ideas</a></li> -->
+        <li><%= header_link "blog", "/" %></li>
+        <li><%= header_link "projects", "/projects" %></li>
+        <!-- <li><%= header_link "ideas", "/ideas" %></li> -->
       </ul>
-      <!-- <p>
-        developer at <a href="http://sunlightfoundation.com">Sunlight Foundation</a>, trustee at <a href="http://www.awesomefoundation.org/en/chapters/dc">Awesome Foundation</a>
-      </p> -->
       <div class="right">
         <a class="twitter" rel="me" href="https://twitter.com/konklone">@konklone</a>
         <a class="email" href="mailto:konklone@gmail.com">email</a>

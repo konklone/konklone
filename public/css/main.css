@@ -23,7 +23,7 @@ input.placeholder, textarea.placeholder {color: #999;} /* CSS class only used fo
 body {background-color: #fafafa;}
 
 /* main text */
-body {color: #151515;} 
+body {color: #151515;}
 
 /* links */ 
 a {
@@ -32,7 +32,8 @@ a {
 
 /* faded color (e.g. quotes) */
 article blockquote,
-article pre {color: #555;}
+article pre,
+footer.main {color: #555;}
 article header time,
 article.small time {color: #808080;}
 article small time {color: #777;}
@@ -79,7 +80,7 @@ article h1 a:hover, article h2 a:hover {text-decoration: underline;}
 /********** Font sizes *************/
 
 header.main    {font-size: 12pt;} /* main header */
-footer.main    {font-size: 12pt;} /* main footer */
+footer.main    {font-size: 10pt;} /* main footer */
 
 article header h1,
 article header time  {font-size: 26pt; line-height: 55px;} /* article title */

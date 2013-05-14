@@ -1,0 +1,55 @@
+
+.projects * {
+  font-family: "Open Sans", Arial, sans-serif;
+}
+
+.projects .project header h1,
+.projects .project header span {font-size: 14pt;}
+.projects .project header h1 {font-weight: bold;}
+
+.projects .project li {font-size: 10pt; line-height: 20px;}
+.projects .project ul h2 {font-size: 12pt;}
+
+.projects .project ul,
+.projects .project li {list-style-type: none;}
+
+
+/** spacing **/
+
+.projects header,
+.projects .stuff {width: 700px; margin: 0 auto;}
+
+.projects .project header h1,
+.projects .project header span {
+  padding: 0 15px; 
+  display: inline-block; vertical-align: top;
+  line-height: 30px;
+}
+.projects .project header h1 {}
+.projects .project header span {
+  width: 450px; line-height: 30px;
+}
+
+.projects .project ul h2 {
+  margin-bottom: 0px; padding-bottom: 0;
+  line-height: 30px;
+}
+
+.projects .project ul {
+  width: 200px; padding: 0 15px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.projects .project li {
+  width: 200px; 
+}
+
+
+/* isitchristmas-specific */
+
+.projects .project.isitchristmas .icon {
+  width: 200px; height: 200px;
+  display: inline-block;
+  background-image: url(/images/projects/wide.jpg);
+}

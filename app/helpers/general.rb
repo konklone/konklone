@@ -6,8 +6,8 @@ require 'loofah'
 module Helpers
   module General
 
-    def active?(tag)
-      (tag == :blog) ? "active" : ""
+    def header_link(text, path)
+      "<a href=\"#{path}\" class=\"#{request.path == path ? "active" : ""}\">#{text}</a>"
     end
 
     # don't give me empty strings
