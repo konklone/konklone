@@ -7,6 +7,7 @@
   color: #444;
 }
 
+.projects .project h1 a {text-decoration: underline; color: #444;}
 .projects .project h1 {font-size: 20pt;}
 .projects .project li {font-size: 10pt;}
 
@@ -16,7 +17,8 @@
 
 /** spacing **/
 
-.projects .project {width: 700px; margin: 0 auto;}
+.projects .project {width: 700px; margin: 80px auto;}
+.projects .other {width: 700px; margin: 0 auto;}
 
 .projects .project header,
 .projects .project ul {
@@ -30,12 +32,28 @@
 
 .projects .project h1,
 .projects .project ul {padding: 0 15px;}
+.projects .project ul.desc {font-weight: bold;}
 
 .projects .project h1 {line-height: 20px; margin-bottom: 15px;}
 
-.projects .project .icon {width: 670px; height: 200px; margin-bottom: 15px;}
+.projects .project .icon {
+  display: block; 
+  width: 670px; height: 200px; 
+  margin-bottom: 15px;
+  border: 1px solid #bbb;
+}
 
 /* isitchristmas */
 .projects .project.isitchristmas .icon {
-  background-image: url(/images/projects/wide.jpg);
+  background-image: url(/images/projects/isitchristmas.png); 
+  background-position: center center;
+}
+
+.projects .project.unitedstates .icon {
+  background-image: url(/images/projects/unitedstates.png);
+  background-position: -1px -1px;
+}
+
+.projects .project.scout .icon {
+  background-image: url(/images/projects/scout.png);
 }
