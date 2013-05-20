@@ -52,10 +52,26 @@ post '/post/:slug/comments' do
   end
 end
 
+get '/error' do
+  raise Exception.new("YOU'RE KILLING MEEEEE")
+end
 
-# RSS feeds
+error do
+  exception = env['sinatra.error']
+  
+  request = {
+    method: env['REQUEST_METHOD'], 
+    url: "#{config[:site][:root]}#{env['REQUEST_URI']}",
+    params: params.inspect,
+    user_agent: env['HTTP_USER_AGENT']
+  }
+  
+  Email.exception(exception, request: request)
+  erb :"500"
+end
 
-get /\/(?:unburned-)?rss.xml$/ do
+
+get '/rss.xml' do
   headers['Content-Type'] = 'application/rss+xml'
   
   posts = Post.visible.desc(:published_at).limit(20).to_a

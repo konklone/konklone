@@ -12,8 +12,21 @@
 :admin:
   :username: # admin username
   :password: # admin password
+  :email: # email this person when things happen
 
 :rakismet:
   :host: rest.akismet.com
   :url: # http://yourdomain.com
   :key: # api key
+
+# outgoing email details
+email:
+  :from: # authorized email address
+  :via: :smtp
+  :via_options:
+    :address: 
+    :port: 
+    :user_name: 
+    :password: 
+    :authentication: plain
+    :enable_starttls_auto: false

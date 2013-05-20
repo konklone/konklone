@@ -16,6 +16,8 @@ gem 'big_sitemap'
 gem 'nokogiri'
 gem 'loofah'
 
+gem 'pony'
+
 gem 'redcarpet', '2.2.2'
 gem 'rakismet', '1.2.1'
 gem 'simple-rss', '1.2.3'

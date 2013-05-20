@@ -11,6 +11,9 @@ require 'sinatra/content_for'
 require 'sinatra/flash'
 require 'tzinfo'
 
+require 'pony'
+require './config/email'
+
 set :logging, false
 set :views, 'app/views'
 set :public_folder, 'public'
