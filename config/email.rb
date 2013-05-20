@@ -9,7 +9,7 @@ class Email
   def self.exception(exception, attributes = {})
     name = exception.class.name
     message = exception.message
-    subject = "#{config[:site][:root]} - #{name}: #{message}"
+    subject = "#{name}: #{message}"
 
     body = "#{exception.class.to_s}: #{exception.message}\n\n" 
     
