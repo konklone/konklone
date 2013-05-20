@@ -48,7 +48,8 @@ post '/post/:slug/comments' do
       redirect "#{post_path post}#comment-#{comment.id}"
     end
   else
-    erb :post, locals: {post: post, new_comment: comment}
+    comments = post.comments.visible.asc(:created_at).to_a
+    erb :post, locals: {post: post, new_comment: comment, comments: comments}
   end
 end
 
