@@ -124,15 +124,18 @@ get '/admin/preview/:id' do
   post = Post.find params[:id]
   raise Sinatra::NotFound unless post
 
+  comments = post.comments.visible.asc(:created_at).to_a
+
   if params[:version]
     version = post.versions[params[:version].to_i]
     erb :preview, locals: {
       title: version['title'],
       body: version['body'],
-      version: version
+      version: version,
+      comments: comments
     }
   else
-    erb :post, locals: {post: post}
+    erb :post, locals: {post: post, comments: comments}
   end
 end
 
