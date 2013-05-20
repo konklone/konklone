@@ -1,16 +1,18 @@
 <ul class="posts">
 
-  <li>
-    <article class="index first">
-      <%= partial "header", engine: :erb, locals: {post: posts.first} %>
+  <% if posts.first %>
+    <li>
+      <article class="index first">
+        <%= partial "header", engine: :erb, locals: {post: posts.first} %>
 
-      <%= post_excerpt posts.first %>
+        <%= post_excerpt posts.first %>
 
-      <p>
-        <a class="readon" href="<%= post_path posts.first %>">Read on…</a>
-      </p>
-    </article>
-  </li>
+        <p>
+          <a class="readon" href="<%= post_path posts.first %>">Read on…</a>
+        </p>
+      </article>
+    </li>
+  <% end %>
 
   <% posts[1..-1].each do |post| %>
   <li>
