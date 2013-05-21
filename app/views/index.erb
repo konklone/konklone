@@ -1,6 +1,5 @@
 <ul class="posts">
-
-  <% if posts.first %>
+  <% if posts.any? %>
     <li>
       <article class="index first">
         <%= partial "header", engine: :erb, locals: {post: posts.first} %>
@@ -12,25 +11,31 @@
         </p>
       </article>
     </li>
-  <% end %>
 
-  <% posts[1..-1].each do |post| %>
-  <li>
-    <article class="small">
-      <div class="inner">
-        <time class="left" datetime="<%= short_datetime post.published_at %>" pubdate>
-          <%= short_date post.published_at %>
-        </time>
+    <% if posts.size > 1 %>
+      <% posts[1..-1].each do |post| %>
+        <li>
+          <article class="small">
+            <div class="inner">
+              <time class="left" datetime="<%= short_datetime post.published_at %>" pubdate>
+                <%= short_date post.published_at %>
+              </time>
 
-        <h1>
-          <a class="title" href="<%= post_path post %>">
-            <%= h post.title %>
-          </a>
-        </h1>
+              <h1>
+                <a class="title" href="<%= post_path post %>">
+                  <%= h post.title %>
+                </a>
+              </h1>
 
-        <span class="excerpt"><%= small_excerpt post %></span>
-      </div>
-    </article>
-  </li>
+              <span class="excerpt"><%= small_excerpt post %></span>
+            </div>
+          </article>
+        </li>
+      <% end %>
+    <% end %>
+  <% else %>
+    <p class="error">
+      You've gone too far! No posts.
+    </p>
   <% end %>
 </ul>
