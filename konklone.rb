@@ -30,6 +30,8 @@ post '/post/:slug/comments' do
   redirect '/' unless params[:comment].present?
   raise Sinatra::NotFound unless post = Post.visible.where(slug: params[:slug]).first
   
+  params[:comment]['body'].encode!('UTF-8', invalid: :replace)
+
   comment = post.comments.build params[:comment]
   comment.ip = get_ip
 
