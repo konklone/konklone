@@ -29,7 +29,7 @@ gem 'rake', '0.9.2.2'
 group :development do
   gem 'wirble'
   gem 'unicorn'
-  gem 'rblineprof', github: 'tmm1/rblineprof' # required until v0.3.1 is pushed
+  gem 'rblineprof'
   gem 'rack-lineprof'
 end
 
