@@ -6,8 +6,17 @@ require 'loofah'
 module Helpers
   module General
 
-    def header_link(text, path)
-      "<a href=\"#{path}\" class=\"#{request.path.start_with?(path) ? "active" : ""}\">#{text}</a>"
+    def header_link(text, paths)
+      paths = [paths] unless paths.is_a? Array
+      active = paths.select do |path|
+        if path.is_a?(String)
+          request.path == path
+        else
+          request.path =~ path
+        end
+      end.any?
+
+      "<a href=\"#{paths.first}\" class=\"#{active ? "active" : ""}\">#{text}</a>"
     end
 
     # don't give me empty strings
