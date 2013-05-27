@@ -137,7 +137,6 @@ module Helpers
       markdowned.render text
     end
 
-    # regular excerpt can have html
     def post_excerpt(post, render_options = {})
       text = post.excerpt || ""
       text = markdown text

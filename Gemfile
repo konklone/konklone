@@ -3,7 +3,7 @@ source 'http://rubygems.org'
 gem 'sinatra'
 gem 'sinatra-contrib'
 gem 'sinatra-flash', '0.3.0'
-gem 'padrino-helpers'
+gem 'padrino-helpers', '>=0.11.2'
 
 gem "mongoid"
 gem 'mongoid_slug'
@@ -16,9 +16,9 @@ gem 'loofah'
 
 gem 'pony'
 
-gem 'redcarpet', '2.2.2'
-gem 'rakismet', '1.2.1'
-gem 'simple-rss', '1.2.3'
+gem 'redcarpet'
+gem 'rakismet'
+gem 'simple-rss'
 gem 'tzinfo'
 
 gem 'rack'
