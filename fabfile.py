@@ -9,6 +9,7 @@ env.hosts = ["new.konklone.com"]
 branch = "master"
 repo = "git://github.com/konklone/konklone.git"
 
+username = "konklone"
 home = "/home/konklone/konklone"
 shared_path = "%s/shared" % home
 version_path = "%s/versions/%s" % (home, time.strftime("%Y%m%d%H%M%S"))
