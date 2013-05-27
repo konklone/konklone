@@ -19,20 +19,6 @@ module Helpers
       "<a href=\"#{paths.first}\" class=\"#{active ? "active" : ""}\">#{text}</a>"
     end
 
-    # don't give me empty strings
-    def content_from(symbol)
-      content = yield_content symbol
-
-      # not sure why yield_content returns US-ASCII
-      content.force_encoding("UTF-8") if content
-
-      if content.present?
-        content
-      else
-        nil
-      end
-    end
-
     def get_ip
       forwarded = request.env['HTTP_X_FORWARDED_FOR']
       forwarded.present? ? forwarded.split(',').first : nil
