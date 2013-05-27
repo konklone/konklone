@@ -13,7 +13,7 @@
   <meta name="author" content="Eric Mill" />
   <meta name="copyright" content="2002-<%= Time.now.year %>" />
   <meta name="google-site-verification" content="BXdkAuVxuVdwYrDQxUbThU19WVlKsmyFMVxZgoAckdo" />
-  
+
   <link rel="openid.server" href="http://www.myopenid.com/server" />
   <link rel="openid.delegate" href="http://klondike.myopenid.com/" />
 
@@ -58,7 +58,7 @@
     </div>
 
   </header>
-  
+
   <div class="main" role="main">
     <%= yield %>
   </div>
@@ -68,7 +68,7 @@
       Everything written under <a href="http://creativecommons.org/licenses/by-nd/3.0/">Creative Commons BY-ND</a>.
     </p>
   </footer>
-  
+
   <script type="text/javascript">
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-252618-1']);
@@ -80,13 +80,13 @@
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
   </script>
-  
+
   <!--[if lt IE 9]><script src="/js/html5.js"></script><![endif]-->
-  
+
   <!-- jquery is the jquery of the web -->
   <script src="/js/jquery-2.0.0.min.js"></script>
   <script src="/js/jquery.placehold-0.3.min.js"></script>
-  
+
   <script src="/js/main.js?<%= Time.now.to_i %>"></script>
 
   <%= content_from :foot %>
