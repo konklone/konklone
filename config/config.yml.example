@@ -1,13 +1,8 @@
-:mongoid:
-  host: localhost
-  database: blog
-  raise_not_found_error: false
-  logger: # leaving blank suppresses logging, to enable delete this line
-
 # root of the site, used in RSS feeds, primarily
 :site:
   :root: http://localhost:8080
   :check_spam: # whether to enable spam checking for comments
+  session_secret: # some unique string
 
 :admin:
   :username: # admin username
@@ -24,9 +19,32 @@ email:
   :from: # authorized email address
   :via: :smtp
   :via_options:
-    :address: 
-    :port: 
-    :user_name: 
-    :password: 
+    :address:
+    :port:
+    :user_name:
+    :password:
     :authentication: plain
     :enable_starttls_auto: false
+
+mongoid:
+  development:
+    sessions:
+      default:
+        database: konklone
+        hosts:
+          - "localhost:27017"
+        options:
+          safe: true
+    options:
+      raise_not_found_error: false
+
+  production:
+    sessions:
+      default:
+        database: konklone
+        hosts:
+          - "localhost:27017"
+        options:
+          safe: true
+    options:
+      raise_not_found_error: false

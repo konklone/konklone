@@ -1,11 +1,11 @@
  class Comment
   include Mongoid::Document
   include Mongoid::Timestamps
-  
-  referenced_in :post
-  
+
+  belongs_to :post
+
   attr_protected :_id, :hidden, :ip, :flagged, :mine
-  
+
   field :author
   field :author_url
   field :author_email
@@ -14,25 +14,25 @@
   field :hidden, type: Boolean, default: false
   field :flagged, type: Boolean, default: false
   field :mine, type: Boolean, default: false
-  
-  index :author
-  index :author_url
-  index :author_email
-  index :hidden
-  index :ip
-  index :flagged
-  index :mine
-  index :created_at
-  
+
+  index author: 1
+  index author_url: 1
+  index author_email: 1
+  index hidden: 1
+  index ip: 1
+  index flagged: 1
+  index mine: 1
+  index created_at: 1
+
   validates_presence_of :body
   validates_presence_of :author
   validates_presence_of :author_email
-  
-  scope :visible, where: {hidden: false, flagged: false}
-  scope :flagged, where: {flagged: true}
-  scope :ham, where: {flagged: false}
-  
-  
+
+  scope :visible, where(hidden: false, flagged: false)
+  scope :flagged, where(flagged: true)
+  scope :ham, where(flagged: false)
+
+
   # prefix URLs with http:// if they exist and don't have it
   before_create :adjust_url
   def adjust_url
@@ -40,19 +40,19 @@
       self.author_url = "http://#{author_url}"
     end
   end
-  
+
   after_save :update_post_count!
   after_destroy :update_post_count!
   def update_post_count!
     self.post.update_count!
   end
-  
+
   # spam protection
   include Rakismet::Model
-  
+
   # not saved to db
   attr_accessor :user_agent, :referrer
-  
+
   rakismet_attrs author_email: :author_email,
     comment_type: "comment", content: :body,
     permalink: nil, user_ip: :ip

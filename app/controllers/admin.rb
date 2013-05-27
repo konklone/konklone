@@ -37,11 +37,11 @@ get %r{^/admin/posts/(all|published|drafts|private|flagged)$} do
   posts = posts.private if filter == "private"
   posts = posts.drafts if filter == "drafts"
   posts = posts.flagged if filter == "flagged"
-  
+
   if params[:q].present?
     posts = posts.admin_search params[:q]
   end
-  
+
   erb :"admin/posts", layout: :"admin/layout", locals: {posts: posts, filter: filter}
 end
 
@@ -51,34 +51,38 @@ end
 
 post '/admin/posts' do
   post = Post.new params[:post]
-  post.save! 
+  post.save!
   redirect "/admin/post/#{post.slug}"
 end
 
 get '/admin/post/:slug' do
-  post = Post.where(slug: params[:slug]).first
+  post = Post.find_by_slug! params[:slug]
   raise Sinatra::NotFound unless post
-  
+
   erb :"admin/post", layout: :"admin/layout", locals: {post: post}
 end
 
 put '/admin/post/:slug' do
-  post = Post.where(slug: params[:slug]).first
+  post = Post.find_by_slug! params[:slug]
   raise Sinatra::NotFound unless post
 
   # BEFORE AFFECTING POST: snap a new version if asked
   if params[:new_version].present?
     post.snap_version params[:new_version]
   end
-  
+
   params[:post]['tags'] = (params[:post]['tags'] || []).split /, ?/
-  
+
   post.attributes = params[:post]
 
-  if params[:post]['slug']
-    post.slug = params[:post]['slug']
+  # a manual slug override
+  if params[:post]['slug'] != params[:slug]
+    # have to check manually if slug is available
+    if Post.where(_slugs: params[:post]['slug']).count == 0
+      post.slugs << params[:post]['slug']
+    end
   end
-  
+
   # the toggle buttons also store any changes made to the post
   if ["Publish", "Republish"].include?(params[:submit])
     post.published_at ||= Time.now # don't overwrite this if it was published once already
@@ -97,7 +101,7 @@ put '/admin/post/:slug' do
     post.flagged = false
 
   end
-  
+
   if post.save
     redirect "/admin/post/#{post.slug}"
   else
@@ -106,12 +110,12 @@ put '/admin/post/:slug' do
 end
 
 delete '/admin/post/:slug' do
-  post = Post.where(slug: params[:slug]).first
+  post = Post.find_by_slug! params[:slug]
   raise Sinatra::NotFound unless post
-  
+
   post.destroy
   flash[:success] = "Deleted post with slug #{post.slug}."
-  
+
   redirect "/admin/posts/published"
 end
 
@@ -143,11 +147,11 @@ end
 get '/admin/comments' do
   per_page = (params[:per_page] || 20).to_i
   comments, page = paginate per_page, Comment.desc(:created_at).where(flagged: false)
-  
+
   erb :"admin/comments", layout: :"admin/layout", locals: {
-    comments: comments, 
-    flagged: false, 
-    page: page, 
+    comments: comments,
+    flagged: false,
+    page: page,
     per_page: per_page
   }
 end
@@ -157,9 +161,9 @@ get '/admin/comments/flagged' do
   per_page = (params[:per_page] || 100).to_i
   comments, page = paginate per_page, Comment.desc(:created_at).where(flagged: true)
   erb :"admin/comments", layout: :"admin/layout", locals: {
-    comments: comments, 
-    flagged: true, 
-    page: page, 
+    comments: comments,
+    flagged: true,
+    page: page,
     per_page: per_page
   }
 end
@@ -173,7 +177,7 @@ end
 get '/admin/comment/:id' do
   comment = Comment.where(_id: BSON::ObjectId(params[:id])).first
   raise Sinatra::NotFound unless comment
-  
+
   erb :"admin/comment", layout: :"admin/layout", locals: {comment: comment}
 end
 
@@ -184,11 +188,11 @@ put '/admin/comment/:id' do
 
   mine = (params[:comment]['mine'] == "on")
   tell_akismet = (params['tell_akismet'] == "on")
-  
+
   comment.attributes = params[:comment]
   comment.ip = params[:comment]['ip']
   comment.mine = mine
-  
+
   if params[:submit] == "Hide"
     comment.hidden = true
   elsif params[:submit] == "Show"
@@ -200,7 +204,7 @@ put '/admin/comment/:id' do
     comment.flagged = true
     comment.spam! if tell_akismet
   end
-  
+
   if comment.save
     redirect "/admin/comment/#{comment._id}"
   else

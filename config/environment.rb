@@ -1,10 +1,11 @@
 require 'sinatra'
 
 require 'mongoid'
-require 'mongoid/slug'
+require 'mongoid_slug'
 
 require 'rakismet'
 
+# require 'escape_utils'
 require 'redcarpet'
 
 require 'sinatra/content_for'
@@ -17,7 +18,6 @@ require './config/email'
 set :logging, false
 set :views, 'app/views'
 set :public_folder, 'public'
-set :sessions, true
 
 
 def config
@@ -25,13 +25,25 @@ def config
 end
 
 configure do
-  Mongoid.configure {|c| c.from_hash config[:mongoid]}
+  Mongoid.configure do |c|
+    c.load_configuration config['mongoid'][Sinatra::Base.environment.to_s]
+  end
 
   Rakismet.key = config[:rakismet][:key]
   Rakismet.url = config[:rakismet][:url]
   Rakismet.host = config[:rakismet][:host]
 
   Time.zone = ActiveSupport::TimeZone.find_tzinfo "America/New_York"
+end
+
+
+# disable sessions in test environment so it can be manually set
+unless test?
+  use Rack::Session::Cookie,
+    key: 'rack.session',
+    path: '/',
+    expire_after: (60 * 60 * 24 * 30),
+    secret: config[:site]['session_secret']
 end
 
 

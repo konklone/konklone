@@ -87,6 +87,6 @@
 
   <script src="/js/main.js?<%= Time.now.to_i %>"></script>
 
-  <%= content_from :foot %>
+  <%= yield_content :foot %>
 </body>
 </html>

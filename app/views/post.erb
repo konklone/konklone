@@ -2,7 +2,7 @@
 
 <article class="post" data-slug="<%= post.slug %>">
   <%= partial "header", engine: :erb, locals: {post: post} %>
-  
+
   <%= post_body post.body %>
 </article>
 
@@ -16,12 +16,12 @@
   <% if new_comment and new_comment.errors.any? %>
     <p>Comments must have a name and a body.</p>
   <% end %>
-  
+
   <form method="post" action="<%= comment_path post %>#comment-form">
-    <input name="comment[author]" type="text" placeholder="name" required 
+    <input name="comment[author]" type="text" placeholder="name" required
       <% if new_comment %>value="<%= new_comment.author %>"<% end %>
       />
-    <input name="comment[author_url]" type="url" placeholder="website" 
+    <input name="comment[author_url]" type="text" placeholder="website"
       <% if new_comment %>value="<%= new_comment.author_url %>"<% end %>
       />
     <input name="comment[author_email]" type="email" required placeholder="email (not displayed)"
@@ -39,7 +39,8 @@
 </ol>
 
 <% content_for :foot do %>
-  <script src="/js/post.js"></script>
+  <%# geez %>
+  <%= '<script src="/js/post.js"></script>'.html_safe %>
 
-  <%= post.footer %>
+  <%= post.footer.html_safe %>
 <% end %>

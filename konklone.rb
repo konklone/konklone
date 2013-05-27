@@ -15,7 +15,7 @@ get '/projects' do
 end
 
 get '/post/:slug/?' do
-  unless post = Post.visible.channel("blog").where(slug: params[:slug]).first
+  unless post = Post.visible.channel("blog").find_by_slug!(params[:slug])
     # fallback for legacy URLs
     post = Post.visible.where(import_source: "blog3", import_id: params[:slug].to_i).first
   end
@@ -28,7 +28,7 @@ end
 
 post '/post/:slug/comments' do
   redirect '/' unless params[:comment].present?
-  raise Sinatra::NotFound unless post = Post.visible.where(slug: params[:slug]).first
+  raise Sinatra::NotFound unless post = Post.visible.find_by_slug!(params[:slug])
 
   # sanitize for utf-8 errors
   ['body', 'author', 'author_url', 'author_email'].each do |field|

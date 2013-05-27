@@ -2,14 +2,14 @@ class Post
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Slug
-  
+
   attr_protected :_id, :slug
-  
-  references_many :comments
-  
+
+  has_many :comments
+
   field :title
   slug :title, permanent: true
-  
+
   field :body
   field :published_at, type: Time
   field :tags, type: Array, default: []
@@ -25,37 +25,37 @@ class Post
   field :comment_count, type: Integer, default: 0
 
   field :footer # raw html to include in footer
-  
+
   # MARKEDFORDEATH
   field :display_title, type: Boolean, default: true
 
   # MARKEDFORDEATH
   field :post_type, type: Array, default: ["blog"]
-  
 
-  index :slug
-  index :published_at
-  index :post_type
-  index :tags
-  index :private
-  index :draft
-  index :created_at
-  index :comment_count
-  
+
+  index slug: 1
+  index published_at: 1
+  index post_type: 1
+  index tags: 1
+  index private: 1
+  index draft: 1
+  index created_at: 1
+  index comment_count: 1
+
   validates_uniqueness_of :slug, allow_nil: true
-  
-  scope :visible, where: {:private => false, draft: false}
-  scope :drafts, where: {draft: true}
-  scope :private, where: {:private => true}
-  scope :flagged, where: {flagged: true}
-  
+
+  scope :visible, where(private: false, draft: false)
+  scope :drafts, where(draft: true)
+  scope :private, where(private: true)
+  scope :flagged, where(flagged: true)
+
   scope :admin_search, lambda {|query|
-    {where: {"$or" => 
+    where({"$or" =>
       [:body, :title, :excerpt, :slug].map {|key| {key => regex_for(query)}}
-     }}
+    })
   }
 
-  scope :channel, lambda {|type| {where: {post_type: type}}}
+  scope :channel, lambda {|type| where(post_type: type)}
 
   def update_count!
     self.comment_count = self.comments.ham.count
@@ -65,7 +65,7 @@ class Post
   def visible?
     !private and !draft
   end
-  
+
   def self.regex_for(value)
     regex_value = value.dup
     %w{+ ? . * ^ $ ( ) [ ] { } | \ }.each {|char| regex_value.gsub! char, "\\#{char}"}
