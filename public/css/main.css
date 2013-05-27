@@ -74,8 +74,8 @@ header.main {
 
 /* Link decoration */
 
-header.main a.me {text-decoration: none;}
-header.main a.me:hover {text-decoration: underline;}
+header.main a {text-decoration: none;}
+header.main a:hover {text-decoration: underline;}
 article h1 a, article h2 a {text-decoration: none;}
 article h1 a:hover, article h2 a:hover {text-decoration: underline;}
 
