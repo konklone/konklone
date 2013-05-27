@@ -60,11 +60,8 @@ header.main,
 header.main a {color: #fff;}
 
 header.main {
-  xbackground-image: url(/images/big_blue.png);
   z-index: 1000;
   background-color: rgb(0, 53, 102);
-  background-position-y: center;
-  background-size: cover;
 }
 
 /* error text(?) */
@@ -240,7 +237,24 @@ header.main .inner.me li a {
 header.main .inner.me li a.active,
 header.main .inner.me li a:hover {color: #fff;}
 
-header.main .inner.me .right a {display: inline-block; margin-left: 10px;}
+header.main .inner.me .right a,
+header.main .inner.me .right span {
+  display: inline-block;
+}
+
+header.main .inner.me .right a.feed {
+  background-image: url(/images/feed-16.png);
+  background-size: 16px 16px;
+  background-position: 0 -1px;
+  background-repeat: no-repeat;
+  padding-left: 24px;
+  margin-right: 16px;
+}
+
+header.main .inner.me .right span.twitter {margin-right: 0px;}
+header.main .inner.me .right a.twitter {margin-right: 16px;}
+
+header.main .inner.me .right span.email {margin-right: 0px;}
 
 header.main .inner.article {display: none;}
 header.main .inner.article a.left {text-decoration: none;}
