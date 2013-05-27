@@ -170,16 +170,15 @@ article div.gist ul,
 article div.gist ol {padding: 0 20px;}
 
 /* things to the left and right of center */
-.left,
-.right {
-  width: 210px;
+.left, .right {
+  width: 220px;
 }
-.left {float: left; margin-left: -260px; padding-left: 20px; text-align: right;}
-.right {float: right; margin-right: -260px; padding-right: 20px;}
+.left {float: left; margin-left: -260px; padding-left: 0px; text-align: right;}
+.right {float: right; margin-right: -260px; padding-right: 0px;}
 
 /* if in an article, pad it */
 article .left,
-article .right {padding: 5px 10px;}
+article .right {padding: 5px 0px;}
 
 article time.left {padding-top: 0;}
 article .unpublished {padding-top: 10px;}
@@ -230,7 +229,7 @@ header.main .inner.me p,
 header.main .inner.me ul,
 header.main .inner.me li {display: inline-block;}
 header.main .inner.me li a {
-  padding: 15px 30px 15px 0;
+  padding: 15px 20px 15px 0;
   text-transform: uppercase; text-decoration: none;
   color: #aaa;
 }

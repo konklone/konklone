@@ -26,10 +26,6 @@
 
 .projects .project h1 a.name {text-decoration: underline; color: #444;}
 
-/*.projects .project h1 a.link {margin-left: -230px; color: #999;}
-.projects .project a.link:before {content: "";}
-.projects .project:hover a.link:before {content: "#";}*/
-
 .projects .project ul,
 .projects .project li {list-style-type: none;}
 
