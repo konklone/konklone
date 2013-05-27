@@ -29,13 +29,31 @@ task :define_import_indexes => :environment do
     index :import_id
     index :import_sequence # LJ post sequence IDs
   end
-  
+
   class Comment
     index :imported_at
     index :import_source
     index :import_source_filename
     index :import_id
     index :import_post_id
+  end
+end
+
+desc "Set the crontab in place for this environment"
+task set_crontab: :environment do
+  environment = ENV['environment']
+  current_path = ENV['current_path']
+
+  if environment.blank? or current_path.blank?
+    puts "No environment or current path given, exiting."
+    exit
+  end
+
+  if system("cat #{current_path}/config/cron/#{environment}.crontab | crontab")
+    puts "Successfully overwrote crontab."
+  else
+    Email.message "Crontab overwriting failed on deploy."
+    puts "Unsuccessful in overwriting crontab, emailed report."
   end
 end
 
@@ -46,11 +64,11 @@ task :sitemap => :environment do
   include Helpers::General
 
   ping = ENV['debug'] ? false : true
-  
+
   count = 1 # assume / works
 
   BigSitemap.generate(
-    base_url: "http://konklone.com", 
+    base_url: "http://konklone.com",
     document_root: "public/sitemap",
     url_path: "sitemap",
     ping_google: ping,

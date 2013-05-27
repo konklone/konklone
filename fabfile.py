@@ -38,6 +38,9 @@ def create_indexes():
 def make_current():
   run('rm -f %s && ln -s %s %s' % (current_path, version_path, current_path))
 
+def set_crontab():
+  run("cd %s && bundle exec rake set_crontab environment=%s current_path=%s" % (current_path, environment, current_path))
+
 def prune_releases():
   pass
 
@@ -61,5 +64,6 @@ def deploy():
   execute(dependencies)
   execute(create_indexes)
   execute(make_current)
+  execute(set_crontab)
   execute(restart)
   execute(prune_releases)
