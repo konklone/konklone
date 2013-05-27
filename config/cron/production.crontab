@@ -1,8 +1,7 @@
 # update sitemap each night
-0 8 * * * /home/klondike/webapps/konklone/konklone/shared/cron/rake.sh sitemap
+0 8 * * * /home/konklone/konklone/shared/cron/rake.sh sitemap
 
 # backup my mongodb each day, don't bother keeping lots of backups
-0 1 * * * /home/klondike/backup/mongo.sh > /home/klondike/backup/output.txt 2>&1
-12,32,52 * * * * /home/klondike/webapps/konklone/bin/start
+# 0 1 * * * /home/klondike/backup/mongo.sh > /home/klondike/backup/output.txt 2>&1
 
 # keep trailing newline
