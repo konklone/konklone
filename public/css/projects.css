@@ -9,8 +9,17 @@
 
 .projects .left {font-size: 10pt;}
 
-.projects .project h1 a {text-decoration: underline; color: #444;}
+/*.projects .project {position: relative;}*/
+.projects .project h1 a.name {text-decoration: underline; color: #444;}
 .projects .project h1 {font-size: 20pt;}
+
+.projects .project h1 a.link {
+  margin-left: -230px; margin-top: -4px;
+  font-size: 20pt; color: #444; text-decoration: underline;
+}
+.projects .project a.link:before {content: "";}
+.projects .project:hover a.link:before {content: "#";}
+
 .projects .project li {font-size: 10pt;}
 
 .projects .project ul,
@@ -25,9 +34,9 @@
 .projects .project header,
 .projects .project ul {
   width: 200px; display: inline-block; vertical-align: top;
-} 
+}
 .projects .project ul li {
-  width: 200px; 
+  width: 200px;
   line-height: 20px;
   margin-top: 0; margin-bottom: 7px;
 }
@@ -39,15 +48,15 @@
 .projects .project h1 {line-height: 20px; margin-bottom: 15px;}
 
 .projects .project .icon {
-  display: block; 
-  width: 670px; height: 200px; 
+  display: block;
+  width: 670px; height: 200px;
   margin-bottom: 15px;
   border: 1px solid #bbb;
 }
 
 /* isitchristmas */
 .projects .project.isitchristmas .icon {
-  background-image: url(/images/projects/isitchristmas.png); 
+  background-image: url(/images/projects/isitchristmas.png);
   background-position: center center;
 }
 

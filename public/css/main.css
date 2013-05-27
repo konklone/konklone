@@ -1,14 +1,14 @@
 /* Fonts */
-body, 
-input, textarea, 
+body,
+input, textarea,
 
-article header, 
+article header,
 article h2,
-article.small time, 
+article.small time,
 article.small h1 {font-family: "Open Sans", Arial, sans-serif;}
 
-header.main, 
-article, 
+header.main,
+article,
 #comments li p {font-family: "Georgia", serif;}
 
 /** Extra reset **/
@@ -25,7 +25,7 @@ body {background-color: #fafafa;}
 /* main text */
 body {color: #151515;}
 
-/* links */ 
+/* links */
 a {
   color: rgb(0, 53, 102);
 }
@@ -53,13 +53,17 @@ article h2,
 
 hr {border-color: rgb(0, 53, 102)}
 
+/* any anchor gets offset by 100px to accommodate fixed header */
+.anchor {top: -100px; position: relative; display: block; visibility: hidden;}
+
 header.main,
 header.main a {color: #fff;}
 
 header.main {
   xbackground-image: url(/images/big_blue.png);
+  z-index: 1000;
   background-color: rgb(0, 53, 102);
-  background-position-y: center; 
+  background-position-y: center;
   background-size: cover;
 }
 
@@ -87,11 +91,11 @@ article header time  {font-size: 26pt; line-height: 55px;} /* article title */
 
 article sup {font-size: 8pt;}
 
-article p, 
+article p,
 article pre,
-article blockquote   {font-size: 12pt; line-height: 27px;} /* article text */ 
+article blockquote   {font-size: 12pt; line-height: 27px;} /* article text */
 
-article ol li, 
+article ol li,
 article ul li        {font-size: 12pt; line-height: 25px;} /* article lists */
 article h2 {font-size: 16pt; line-height: 35px; letter-spacing: 0px;}
 article h3 {font-size: 18pt;}                     /* article audio */
@@ -99,7 +103,7 @@ article h4 {font-size: 12pt; line-height: 22px;}  /* article audio */
 article p.comments a {font-size: 11pt;} /* link to comments page */
 
 article small {
-  font-size: 9pt; 
+  font-size: 9pt;
   line-height: 20px;
 } /* aside text */
 article .unpublished {font-size: 10pt; line-height: 20px;}
@@ -148,8 +152,8 @@ hr,
 }
 
 article div.image.strip {
-  background-position-y: center; 
-  background-size: cover; 
+  background-position-y: center;
+  background-size: cover;
   margin-top: 20px; margin-bottom: 20px;
   width: 100%;
 }
@@ -171,7 +175,7 @@ article div.gist ol {padding: 0 20px;}
 /* things to the left and right of center */
 .left,
 .right {
-  width: 210px; 
+  width: 210px;
 }
 .left {float: left; margin-left: -260px; padding-left: 20px; text-align: right;}
 .right {float: right; margin-right: -260px; padding-right: 20px;}
@@ -204,7 +208,7 @@ article.small p {width: inherit;}
 article.small time,
 article.small h1 {font-size: 16pt; line-height: 30px;}
 article.small span.excerpt {
-  color: #555; font-size: 12pt; 
+  color: #555; font-size: 12pt;
   line-height: 30px;
   margin-left: 5px;
 }
@@ -218,7 +222,7 @@ body {
 
 header.main {
   width: 100%;
-  padding: 15px 0; 
+  padding: 15px 0;
   position: fixed; top: 0; left: 0;
 }
 
@@ -229,7 +233,7 @@ header.main .inner.me p,
 header.main .inner.me ul,
 header.main .inner.me li {display: inline-block;}
 header.main .inner.me li a {
-  padding: 15px 30px 15px 0; 
+  padding: 15px 30px 15px 0;
   text-transform: uppercase; text-decoration: none;
   color: #aaa;
 }
