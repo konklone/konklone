@@ -22,15 +22,18 @@ get '/post/:slug/?' do
   raise Sinatra::NotFound unless post
 
   comments = post.comments.visible.asc(:created_at).to_a
-  
+
   erb :post, locals: {post: post, new_comment: nil, comments: comments}
 end
 
 post '/post/:slug/comments' do
   redirect '/' unless params[:comment].present?
   raise Sinatra::NotFound unless post = Post.visible.where(slug: params[:slug]).first
-  
-  params[:comment]['body'].encode!('UTF-8', invalid: :replace)
+
+  # sanitize for utf-8 errors
+  ['body', 'author', 'author_url', 'author_email'].each do |field|
+    params[:comment][field].encode!('UTF-8', invalid: :replace, undef: :replace, replace: "") if params[:comment][field]
+  end
 
   comment = post.comments.build params[:comment]
   comment.ip = get_ip
@@ -39,10 +42,10 @@ post '/post/:slug/comments' do
     # not saved, used only for spam checking
     comment.user_agent = request.env['HTTP_USER_AGENT']
     comment.referrer = request.referer unless request.referer == "/"
-    
+
     comment.flagged = comment.spam?
   end
-  
+
   if comment.save
     if comment.flagged
       halt 500, "500 Server Error" # that'll fool 'em
@@ -61,14 +64,14 @@ end
 
 error do
   exception = env['sinatra.error']
-  
+
   request = {
-    method: env['REQUEST_METHOD'], 
+    method: env['REQUEST_METHOD'],
     url: "#{config[:site][:root]}#{env['REQUEST_URI']}",
     params: params.inspect,
     user_agent: env['HTTP_USER_AGENT']
   }
-  
+
   Email.exception(exception, request: request)
   erb :"500"
 end
@@ -76,14 +79,14 @@ end
 
 get '/rss.xml' do
   headers['Content-Type'] = 'application/rss+xml'
-  
+
   posts = Post.visible.desc(:published_at).limit(20).to_a
   erb :rss, locals: {site: config[:site], posts: posts}, layout: false
 end
 
 get '/comments.xml' do
   headers['Content-Type'] = 'application/rss+xml'
-  
+
   comments = Comment.visible.desc(:created_at).limit(20).to_a
   erb :comments, locals: {site: config[:site], comments: comments}, layout: false
 end
