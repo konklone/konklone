@@ -1,6 +1,3 @@
-# deliberate error!
-jsdhf
-
 # update sitemap each night
 0 8 * * * /home/klondike/webapps/konklone/konklone/shared/cron/rake.sh sitemap
 
