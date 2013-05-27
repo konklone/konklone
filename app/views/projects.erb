@@ -1,45 +1,47 @@
 <section class="projects">
-  <header class="other">
-<!--    <div class="left">
-      Some things I've done, over time.
+  <header> <!-- provides a 700px width -->
+    <div class="right"> <!-- floats to the right -->
+      <nav> <!-- fixes it -->
+        <ul class="big">
+          <span>Some things I've done, over time.</span>
+          <li>
+            <a href="#isitchristmas">isitchristmas.com</a>
+          </li>
+          <li>
+            <a href="#unitedstates">github.com/unitedstates</a>
+          </li>
+          <li>
+            <a href="#scout">Scout</a>
+          </li>
+        </ul>
 
-      <ul>
-        <li>
-          <a href="#isitchristmas">isitchristmas.com</a>
-        </li>
-        <li>
-          <a href="#unitedstates">github.com/unitedstates</a>
-        </li>
-        <li>
-          <a href="#scout">Scout</a>
-        </li>
+        <ul class="small">
+          <span>and...</span>
 
-      </ul>
-      and
-      <ul>
+          <li>
+            <a href="#congress">Congress for Android</a>
+          </li>
+          <li>
+            <a href="#ohnomymoney">Oh No My Money</a> (retired)
+          </li>
+          <li>
+            <a href="#everyone">everyoneishereinthefuture.com</a>
+          </li>
+        </ul>
 
-        <li class="small">
-          <a href="#congress">Congress for Android</a>
-        </li>
-        <li>
-          <a href="#everyone">everyoneishereinthefuture.com</a>
-        </li>
-        <li class="small">
-          <a href="#ohnomymoney">Oh No My Money</a>
-        </li>
-      </ul>
-    </div>-->
+      </nav>
+    </div>
   </header>
 
-  <article class="project isitchristmas" >
+  <article class="project isitchristmas">
     <span class="anchor" id="isitchristmas"></span>
 
     <h1>
-      <a class="left link" href="#isitchristmas"></a>
-      <a class="name" href="http://isitchristmas.com">isitchristmas.com</a>
+      <!-- <a class="left link" href="#isitchristmas"></a> -->
+      <a class="name" target="_blank" href="http://isitchristmas.com">isitchristmas.com</a>
     </h1>
 
-    <a class="icon" href="http://isitchristmas.com"></a>
+    <a class="icon" target="_blank" href="http://isitchristmas.com"></a>
 
     <ul class="desc">
       <li>
@@ -64,11 +66,10 @@
     <span class="anchor" id="unitedstates"></span>
 
     <h1>
-      <a class="left link" href="#unitedstates"></a>
-      <a class="name" href="https://github.com/unitedstates">github.com/unitedstates</a>
+      <a class="name" target="_blank" href="https://github.com/unitedstates">github.com/unitedstates</a>
     </h1>
 
-    <a href="https://github.com/unitedstates" class="icon"></a>
+    <a href="https://github.com/unitedstates" target="_blank" class="icon"></a>
 
     <ul class="desc">
       <li>
@@ -100,11 +101,10 @@
     <span class="anchor" id="scout"></span>
 
     <h1>
-      <a class="left link" href="#scout"></a>
-      <a class="name" href="https://scout.sunlightfoundation.com">Scout</a>
+      <a class="name" target="_blank" href="https://scout.sunlightfoundation.com">Scout</a>
     </h1>
 
-    <a href="https://scout.sunlightfoundation.com" class="icon"></a>
+    <a href="https://scout.sunlightfoundation.com" target="_blank" class="icon"></a>
 
     <ul class="desc">
       <li>
@@ -131,28 +131,40 @@
     </ul>
 
   </article>
-<!--
-  <ul class="other">
-    <li id="congress">
-      <a href="https://play.google.com/store/apps/details?id=com.sunlightlabs.android.congress">Congress for Android</a>
-      <p>
-      </p>
-    </li>
 
-    <li id="everyone">
-      <a href="http://everyoneishereinthefuture.com/">everyoneishereinthefuture.com</a>
-      <p>
-      </p>
-    </li>
+  <article class="other project">
+    <span class="anchor" id="congress"></span>
+    <h1>
+      <a class="name" target="_blank" href="https://play.google.com/store/apps/details?id=com.sunlightlabs.android.congress">Congress for Android</a>
+    </h1>
+    <p>
+      A live pocket directory for the people and work of Congress, for Android phones. I built it for the <a href="http://sunlightfoundation.com">Sunlight Foundation</a> in 2009 to try my hand at Android development, and over time it's become modestly successful and quite well reviewed.
+    </p>
+  </article>
 
-    <li id="ohnomymoney">
-      <a href="http://ohnomymoney.com">Oh No My Money</a>
-      <p>
-        <strong>Retired.</strong> An experiment at displaying (and graphing) my checking, savings, credit, and loan balances online, from 2008-2010. It was updated automatically every night through <a href="http://wesabe.com/">Wesabe</a>, until they shut down. The site did get one piece of coverage before it died: the New York Times magazine included me in <a href="http://www.nytimes.com/2010/05/16/magazine/16Worth-t.html">a profile of 3 people</a> dealing with their net worth online.
-      </p>
-    </li>
-  </ul>
--->
+  <article class="other project">
+    <span class="anchor" id="ohnomymoney"></span>
+
+    <h1>
+      <a class="name" target="_blank" href="http://ohnomymoney.com">Oh No My Money</a>
+    </h1>
+
+    <p>
+      <strong>Retired.</strong> An experiment at violating money taboos by displaying my checking, savings, credit, and loan balances online, from 2008-2010. It even drew sweet graphs of my net worth over time. It was updated automatically every night through <a href="http://wesabe.com">Wesabe</a>, until they shut down. The site did get one piece of coverage before it died: the New York Times Magazine included me in <a href="http://www.nytimes.com/2010/05/16/magazine/16Worth-t.html">a profile of 3 people</a> dealing with their net worth online.
+    </p>
+  </article>
+
+  <article class="other project">
+    <span class="anchor" id="everyone"></span>
+    <h1>
+      <a class="name" target="_blank" href="http://everyoneishereinthefuture.com/">everyoneishereinthefuture.com</a>
+    </h1>
+
+    <p>
+    My part in archiving <a href="https://en.wikipedia.org/wiki/Why_the_lucky_stiff">_why's</a> stuff is to preserve a couple of animations, called Everyone is Here in the Future, he made to open his presentations at conferences. They're some of my favorite things.
+    </p>
+  </article>
+
 </section>
 
 <% content_for :foot do %>

@@ -1,3 +1,14 @@
+/* font sizes */
+
+.projects nav ul.big {font-size: 12pt; line-height: 28px;}
+.projects nav ul.small {font-size: 10pt; line-height: 24px;}
+
+.projects .project h1 {font-size: 20pt;}
+.projects .project.other h1 {font-size: 16pt;}
+/*.projects .project h1 a.link {margin-top: -4px; font-size: 20pt;}*/
+.projects .project li {font-size: 10pt;}
+.projects .project.other p {font-size: 10pt; line-height: 24px;}
+
 
 .projects,
 .projects ul, .projects li,
@@ -7,20 +18,17 @@
   color: #444;
 }
 
-.projects .left {font-size: 10pt;}
+/* fixed nav */
+.projects nav {position: fixed;}
+.projects nav a {color: #444;}
+.projects nav ul.big span {margin-bottom: 10px; display: block;}
+.projects nav ul.small span {margin-top: 20px; margin-bottom: 10px; display: block;}
 
-/*.projects .project {position: relative;}*/
 .projects .project h1 a.name {text-decoration: underline; color: #444;}
-.projects .project h1 {font-size: 20pt;}
 
-.projects .project h1 a.link {
-  margin-left: -230px; margin-top: -4px;
-  font-size: 20pt; color: #444; text-decoration: underline;
-}
+/*.projects .project h1 a.link {margin-left: -230px; color: #999;}
 .projects .project a.link:before {content: "";}
-.projects .project:hover a.link:before {content: "#";}
-
-.projects .project li {font-size: 10pt;}
+.projects .project:hover a.link:before {content: "#";}*/
 
 .projects .project ul,
 .projects .project li {list-style-type: none;}
@@ -29,7 +37,8 @@
 /** spacing **/
 
 .projects .project {width: 700px; margin: 80px auto;}
-.projects .other {width: 700px; margin: 0 auto;}
+.projects header {width: 700px; margin: 0 auto;}
+.projects .project.other {margin: 50px auto;}
 
 .projects .project header,
 .projects .project ul {
@@ -41,20 +50,19 @@
   margin-top: 0; margin-bottom: 7px;
 }
 
-.projects .project h1,
-.projects .project ul {padding: 0 15px;}
+.projects .project {padding: 0;}
+.projects .project ul {padding-right: 30px;}
 .projects .project ul.desc {font-weight: bold;}
 
 .projects .project h1 {line-height: 20px; margin-bottom: 15px;}
 
 .projects .project .icon {
   display: block;
-  width: 670px; height: 200px;
-  margin-bottom: 15px;
+  width: 700px; height: 200px;
+  margin-bottom: 15px; margin-left: 0;
   border: 1px solid #bbb;
 }
 
-/* isitchristmas */
 .projects .project.isitchristmas .icon {
   background-image: url(/images/projects/isitchristmas.png);
   background-position: center center;
