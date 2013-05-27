@@ -1,3 +1,5 @@
+<% content_for(:title) { "Projects" } %>
+
 <section class="projects">
   <header> <!-- provides a 700px width -->
     <div class="right"> <!-- floats to the right -->
@@ -167,6 +169,7 @@
 
 </section>
 
-<% content_for :foot do %>
-  <link rel="stylesheet" href="/css/projects.css?<%= Time.now.to_i %>" />
+<% content_for :head do %>
+  <%# geez %>
+  <%= "<link rel=\"stylesheet\" href=\"/css/projects.css?#{Time.now.to_i}\"/>".html_safe %>
 <% end %>

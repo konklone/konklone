@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
 
-  <% if title = content_from(:title) %>
+  <% if title = yield_content(:title) %>
     <title><%= title %> | Eric Mill</title>
   <% else %>
     <title>Eric Mill</title>
@@ -20,6 +20,8 @@
   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="/css/html5-reset.css" />
   <link rel="stylesheet" href="/css/main.css?<%= Time.now.to_i %>" />
+
+  <%= yield_content :head %>
 
   <!-- rss must live on -->
   <link rel="alternate" href="/rss.xml" type="application/rss+xml" title="All posts" />
