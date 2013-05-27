@@ -4,7 +4,7 @@ from fabric.api import run, execute, env
 environment = "production"
 
 env.use_ssh_config = True
-env.hosts = ["new.konklone.com"]
+env.hosts = ["konklone.com"]
 
 branch = "master"
 repo = "git://github.com/konklone/konklone.git"
