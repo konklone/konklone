@@ -42,5 +42,7 @@
   <%# geez %>
   <%= '<script src="/js/post.js"></script>'.html_safe %>
 
-  <%= post.footer.html_safe %>
+  <% if post.footer.present? %>
+    <%= post.footer.html_safe %>
+  <% end %>
 <% end %>
