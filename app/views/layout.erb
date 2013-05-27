@@ -29,28 +29,20 @@
 
   <header class="main">
     <div class="inner me">
-      <!-- <a class="left" href="/">
-        <span class="arrow">&larr;</span>
-        all posts
-      </a> -->
       <a rel="me" class="me left" href="/">Eric Mill</a>
+
+      <!-- important: this needs to go before main ul block,
+           or it can get knocked down below the ul block on first load -->
+      <div class="right">
+        <a class="feed" href="/rss.xml">feed</a>
+        <a class="twitter" rel="me" href="https://twitter.com/konklone">twitter</a>
+        <a class="email" href="mailto:konklone@gmail.com">email</a>
+      </div>
+
       <ul>
         <li><%= header_link "blog", "/" %></li>
         <li><%= header_link "projects", "/projects" %></li>
-        <!-- <li><%= header_link "ideas", "/ideas" %></li> -->
       </ul>
-      <div class="right">
-        <a class="feed" href="/rss.xml">feed</a>
-
-        <a class="twitter" rel="me" href="https://twitter.com/konklone">
-          twitter
-        </a>
-
-        <a class="email" href="mailto:konklone@gmail.com">
-          email
-        </a>
-        <!-- <a class="github" rel="me" href="https://github.com/konklone">github</a> -->
-      </div>
     </div>
 
     <!-- may be shown and filled in on an article page -->

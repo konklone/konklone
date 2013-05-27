@@ -219,7 +219,7 @@ body {
 
 header.main {
   width: 100%;
-  padding: 15px 0;
+  padding: 15px 0; height: 16px;
   position: fixed; top: 0; left: 0;
 }
 
