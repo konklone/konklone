@@ -13,29 +13,32 @@ end
 
 desc "Create indexes on posts and comments"
 task :create_indexes => :define_import_indexes do
-  # todo: change this to Mongoid.models.each
-  Post.create_indexes
-  Comment.create_indexes
-  puts "Created indexes for posts and comments."
+  begin
+    Mongoid.models.each &:create_indexes
+    puts "Created indexes for posts and comments."
+  rescue Exception => ex
+    Email.exception ex
+    puts "Error creating indexes, emailed report."
+  end
 end
 
 # indexes on fields used only in importing
 task :define_import_indexes => :environment do
   class Post
-    index :imported_at
-    index :import_source
-    index :import_source_filename
-    index :import_song_filename
-    index :import_id
-    index :import_sequence # LJ post sequence IDs
+    index imported_at: 1
+    index import_source: 1
+    index import_source_filename: 1
+    index import_song_filename: 1
+    index import_id: 1
+    index import_sequence: 1 # LJ post sequence IDs
   end
 
   class Comment
-    index :imported_at
-    index :import_source
-    index :import_source_filename
-    index :import_id
-    index :import_post_id
+    index imported_at: 1
+    index import_source: 1
+    index import_source_filename: 1
+    index import_id: 1
+    index import_post_id: 1
   end
 end
 
