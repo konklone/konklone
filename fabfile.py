@@ -4,18 +4,15 @@ from fabric.api import run, execute, env
 environment = "production"
 
 env.use_ssh_config = True
-env.hosts = ["konklone.com"]
+env.hosts = ["new.konklone.com"]
 
 branch = "master"
 repo = "git://github.com/konklone/konklone.git"
 
-home = "/home/klondike/webapps/konklone/konklone"
+home = "/home/konklone/konklone"
 shared_path = "%s/shared" % home
 version_path = "%s/versions/%s" % (home, time.strftime("%Y%m%d%H%M%S"))
 current_path = "%s/current" % home
-
-gems_dir = "/home/klondike/webapps/konklone/gems"
-bin_path = "/home/klondike/webapps/konklone/bin"
 
 
 # can be run only as part of deploy
@@ -30,7 +27,7 @@ def links():
   run("mkdir %s/tmp" % version_path)
 
 def dependencies():
-  run("cd %s && bundle install --local --path=%s" % (version_path, gems_dir))
+  run("cd %s && bundle install --local" % version_path)
 
 def create_indexes():
   run("cd %s && bundle exec rake create_indexes" % version_path)
@@ -48,14 +45,15 @@ def prune_releases():
 ## can be run on their own
 
 def start():
-  run("%s/start" % bin_path)
+  run("cd %s && unicorn -D -l %s/%s.sock -c unicorn.rb" % (current_path, shared_path, username))
 
 def stop():
-  run("%s/stop" % bin_path)
+  run("kill `cat %s/unicorn.pid`" % shared_path)
 
 def restart():
-  run("touch %s/tmp/restart.txt" % current_path)
-
+  stop()
+  start()
+  # run("kill -HUP `cat %s/unicorn.pid`" % shared_path)
 
 
 def deploy():
@@ -66,4 +64,13 @@ def deploy():
   execute(make_current)
   execute(set_crontab)
   execute(restart)
-  execute(prune_releases)
+
+# only difference is it uses start instead of restart
+def deploy_cold():
+  execute(checkout)
+  execute(links)
+  execute(dependencies)
+  execute(create_indexes)
+  execute(make_current)
+  execute(set_crontab)
+  execute(start)
