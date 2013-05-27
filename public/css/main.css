@@ -342,4 +342,4 @@ article code {padding: 2px;}
 .error {width: 700px; margin: 0 auto;}
 .error h1 {font-size: 100pt;}
 .error h1 a {color: #151515; text-decoration: none}
-.error p {margin-top: 50px; font-size: 20pt;}
+.error p {margin-top: 50px; font-size: 20pt; line-height: 45px;}
