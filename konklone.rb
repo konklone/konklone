@@ -50,7 +50,7 @@ post '/post/:slug/comments' do
   begin
     saved = comment.save
   rescue ArgumentError => ex
-    comment.errors.add(:body, "has invalid characters")
+    comment.errors.add(:body, "has some invalid characters. Try removing any special characters and try again.")
   end
 
   if saved
