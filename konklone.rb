@@ -46,7 +46,14 @@ post '/post/:slug/comments' do
     comment.flagged = comment.spam?
   end
 
-  if comment.save
+  saved = false
+  begin
+    saved = comment.save
+  rescue ArgumentError => ex
+    comment.errors.add(:body, "has invalid characters")
+  end
+
+  if saved
     if comment.flagged
       halt 500, "500 Server Error" # that'll fool 'em
     else
