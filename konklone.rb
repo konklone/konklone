@@ -50,6 +50,7 @@ post '/post/:slug/comments' do
   begin
     saved = comment.save
   rescue ArgumentError => ex
+    Event.bad_comment! comment
     comment.errors.add(:body, "has some invalid characters. Try removing any special characters and try again.")
   end
 
