@@ -33,11 +33,6 @@ post '/post/:slug/comments' do
   comment = post.comments.build params[:comment]
   comment.ip = get_ip
 
-  # sanitize for utf-8 errors
-  ['body', 'author', 'author_url', 'author_email'].each do |field|
-    comment[field].encode!('UTF-8', invalid: :replace, undef: :replace, replace: "") if comment[field]
-  end
-
   if config[:site][:check_spam]
     # not saved, used only for spam checking
     comment.user_agent = request.env['HTTP_USER_AGENT']
@@ -50,8 +45,18 @@ post '/post/:slug/comments' do
   begin
     saved = comment.save
   rescue ArgumentError => ex
-    Event.bad_comment! comment
-    comment.errors.add(:body, "has some invalid characters. Try removing any special characters and try again.")
+    # broken utf-8, get out the hatchet (don't want to use
+    # this unless I must, as it kills valid unicode too)
+
+    # if this proves too blunt, then the next solution would be:
+    # .force_encoding("ISO-8859-1").encode("utf-8", replace: nil)
+    # as in http://stackoverflow.com/questions/9607554/ruby-invalid-byte-sequence-in-utf-8
+    # which works, but it's not clear to me whether it properly preserves real unicode.
+
+    ['body', 'author', 'author_url', 'author_email'].each do |field|
+      comment[field].encode!('utf-8', 'binary', invalid: :replace, undef: :replace, replace: "") if comment[field]
+    end
+    saved = comment.save # if it still will crash, let it crash
   end
 
   if saved
