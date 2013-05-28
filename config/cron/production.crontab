@@ -1,3 +1,7 @@
+# start unicorn on boot
+@reboot  /home/konklone/konklone/shared/cron/start.sh
+
+
 # update sitemap each morning
 0 8 * * * /home/konklone/konklone/shared/cron/rake.sh sitemap
 
