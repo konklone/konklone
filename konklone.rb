@@ -30,13 +30,13 @@ post '/post/:slug/comments' do
   redirect '/' unless params[:comment].present?
   raise Sinatra::NotFound unless post = Post.visible.find_by_slug!(params[:slug])
 
-  # sanitize for utf-8 errors
-  ['body', 'author', 'author_url', 'author_email'].each do |field|
-    params[:comment][field].encode!('UTF-8', invalid: :replace, undef: :replace, replace: "") if params[:comment][field]
-  end
-
   comment = post.comments.build params[:comment]
   comment.ip = get_ip
+
+  # sanitize for utf-8 errors
+  ['body', 'author', 'author_url', 'author_email'].each do |field|
+    comment[field].encode!('UTF-8', invalid: :replace, undef: :replace, replace: "") if comment[field]
+  end
 
   if config[:site][:check_spam]
     # not saved, used only for spam checking
