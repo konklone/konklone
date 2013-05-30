@@ -211,6 +211,16 @@ put '/admin/comment/:id' do
   end
 end
 
+delete '/admin/comment/:id' do
+  raise Sinatra::NotFound unless comment = Comment.find(params[:id])
+
+  comment.destroy
+  flash[:success] = "Deleted comment with ID #{comment.id}."
+
+  # redirect "/admin/comments/published"
+  redirect params[:redirect_to]
+end
+
 put '/admin/comments' do
   comment_ids = params[:comment_ids] || []
   tell_akismet = (params['tell_akismet'] == "on")
