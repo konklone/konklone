@@ -95,4 +95,10 @@ class Post
 
     self.versions << version
   end
+
+  # send post through rendering pipeline,
+  # including full layout template, and to disk
+  def cache!
+    # pass for now
+  end
 end

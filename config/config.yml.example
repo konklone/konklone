@@ -3,6 +3,7 @@
   :root: http://localhost:8080
   :check_spam: # whether to enable spam checking for comments
   session_secret: # some unique string
+  cache_enabled: # defaults to false (caching off)
 
 :admin:
   :username: # admin username

@@ -87,3 +87,13 @@ task :sitemap => :environment do
 
   puts "Saved sitemap with #{count} links."
 end
+
+
+namespace :cache do
+  desc "Regenerate post cache"
+  task regenerate: :environment do
+    if config[:site]['cache_enabled']
+      Post.visible.each &:cache!
+    end
+  end
+end
