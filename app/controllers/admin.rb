@@ -175,16 +175,14 @@ end
 
 # edit form for a comment
 get '/admin/comment/:id' do
-  comment = Comment.where(_id: BSON::ObjectId(params[:id])).first
-  raise Sinatra::NotFound unless comment
+  raise Sinatra::NotFound unless comment = Comment.find(params[:id])
 
   erb :"admin/comment", layout: :"admin/layout", locals: {comment: comment}
 end
 
 # update a comment
 put '/admin/comment/:id' do
-  comment = Comment.where(_id: BSON::ObjectId(params[:id])).first
-  raise Sinatra::NotFound unless comment
+  raise Sinatra::NotFound unless comment = Comment.find(params[:id])
 
   mine = (params[:comment]['mine'] == "on")
   tell_akismet = (params['tell_akismet'] == "on")
