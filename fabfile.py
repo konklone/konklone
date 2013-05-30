@@ -25,7 +25,7 @@ def links():
   run("ln -s %s/config.yml %s/config/config.yml" % (shared_path, version_path))
   run("ln -s %s/config.ru %s/config.ru" % (shared_path, version_path))
   run("ln -s %s/unicorn.rb %s/unicorn.rb" % (shared_path, version_path))
-  run("mkdir %s/tmp" % version_path)
+  run("ln -s %s/cache %s/cache" % (shared_path, version_path))
 
 def dependencies():
   run("cd %s && bundle install --local" % version_path)
