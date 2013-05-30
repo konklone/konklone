@@ -95,6 +95,9 @@ namespace :cache do
     if config[:site]['cache_enabled']
       # Post.visible.each &:uncache!
       system "rm #{Environment.cache_dir}/*"
-    end
+      puts "Reset the cache"
+    else
+      puts "Cache not enabled, not resetting anything."
+    en
   end
 end
