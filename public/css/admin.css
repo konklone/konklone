@@ -13,7 +13,7 @@ div.main, #flash .flash {
   position: fixed; top: 0;
   width: 100%;
   font-size: 14pt;
-  
+
 }
 #flash .flash {vertical-align: middle;}
 #flash .success {color: #282;}
@@ -41,17 +41,18 @@ ol.posts.drafts li a {color: #cc0000;}
 ol.posts.private li * {color: #aaa;}
 ol.posts.flagged li a {color: #228822;}
 
-ol.posts li span.flag {
-  margin-left: 4px; padding: 0px 5px; 
-  font-size: 8pt; 
-  border: 1px solid; border-radius: 4px; 
+ol.posts li a.flag {
+  margin-left: 4px; padding: 0px 5px;
+  font-size: 8pt;
+  border: 1px solid; border-radius: 4px;
+  text-decoration: none;
 }
-ol.posts li span.flag.count {color: #444;}
-ol.posts li span.flag.draft {background-color: #880000; color: #fff;}
-ol.posts li span.flag.private {background-color: #000; color: #fff;}
-ol.posts li span.flag.flagged {background-color: #ff0000; color: #fff;}
+ol.posts li a.flag.count {color: #444;}
+ol.posts li a.flag.draft {background-color: #880000; color: #fff;}
+ol.posts li a.flag.private {background-color: #000; color: #fff;}
+ol.posts li a.flag.flagged {background-color: #ff0000; color: #fff;}
 
-ol.posts li span.tag {color: #888;}
+ol.posts li a.tag {color: #888;}
 
 /** listing comments */
 
@@ -163,7 +164,7 @@ section.controls a.visit {
 section.controls a.visit.private {color: #444;}
 
 section.controls a.delete {
-  display: inline-block; 
+  display: inline-block;
   margin-bottom: 10px;
   font-size: 10pt; color: #888;
 }

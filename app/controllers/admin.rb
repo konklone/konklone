@@ -39,6 +39,8 @@ get %r{^/admin/posts/(all|published|drafts|private|flagged)$} do
   posts = posts.drafts if filter == "drafts"
   posts = posts.flagged if filter == "flagged"
 
+  posts = posts.tagged(params[:tag]) if params[:tag]
+
   if params[:q].present?
     posts = posts.admin_search params[:q]
   end

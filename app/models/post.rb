@@ -56,11 +56,12 @@ class Post
 
   scope :admin_search, lambda {|query|
     where({"$or" =>
-      [:body, :title, :excerpt, :slug].map {|key| {key => regex_for(query)}}
+      [:tags, :body, :title, :excerpt, :slug].map {|key| {key => regex_for(query)}}
     })
   }
 
   scope :channel, lambda {|type| where(post_type: type)}
+  scope :tagged, lambda {|tag| where(tags: tag)}
 
   def update_count!
     self.comment_count = self.comments.ham.count

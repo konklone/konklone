@@ -9,25 +9,33 @@
         <%= h post.title %></a>
 
       <% if post.comment_count > 0 %>
-        <span class="flag count"><%= post.comment_count %></span>
+        <a class="flag count"><%= post.comment_count %></a>
       <% end %>
 
       <% if filter == "all" %>
         <% if post.draft? %>
-          <span class="flag draft">draft</span>
+          <a class="flag draft"
+            href="/admin/posts/drafts"
+            >draft</a>
         <% end %>
-        
+
         <% if post.private? %>
-          <span class="flag private">private</span>
+          <a class="flag private"
+            href="/admin/posts/private"
+            >private</a>
         <% end %>
 
         <% if post.flagged? %>
-          <span class="flag flagged">flagged</span>
+          <a class="flag flagged"
+            href="/admin/posts/flagged"
+            >flagged</a>
         <% end %>
       <% end %>
 
       <% post.tags.each do |tag| %>
-        <span class="flag tag"><%= tag %></span>
+        <a class="flag tag"
+          href="?tag=<%= tag %>"
+          ><%= tag %></a>
       <% end %>
     </li>
   <% end %>
