@@ -53,7 +53,7 @@ Dir.glob('app/models/*.rb').each {|filename| load filename}
 # reload in development without starting server
 configure(:development) do |config|
   require 'sinatra/reloader'
-  config.also_reload "./config/environment.rb"
+  config.also_reload "./config/*.rb"
   config.also_reload "./konklone.rb"
   config.also_reload "./app/models/*.rb"
   config.also_reload "./app/controllers/*.rb"

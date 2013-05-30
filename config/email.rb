@@ -1,7 +1,7 @@
 # utilities for sending email
 
 class Email
-  
+
   def self.message(message)
     send_email message, message, config[:admin][:email]
   end
@@ -11,8 +11,8 @@ class Email
     message = exception.message
     subject = "#{name}: #{message}"
 
-    body = "#{exception.class.to_s}: #{exception.message}\n\n" 
-    
+    body = "#{exception.class.to_s}: #{exception.message}\n\n"
+
     if exception.backtrace.respond_to?(:each)
       exception.backtrace.each {|line| body += "#{line}\n"}
     end
@@ -22,11 +22,27 @@ class Email
     send_email subject, body, config[:admin][:email]
   end
 
+  def self.flagged_comment(comment)
+    subject = "Flagged comment by \"#{comment.author}\" on recent post"
+    body = "#{config[:site][:root]}/admin/comment/#{comment.id}"
+    body += "\n\n"
+    body += comment.author
+    body += " - #{comment.author_url}" if comment.author_url.present?
+    body += " (#{comment.author_email})"
+    body += "\n\n"
+    body += comment.body
+
+    send_email subject, body, config[:admin][:email]
+  end
+
+
+  ## workhorse
+
   def self.send_email(subject, body, to)
     if config['email'][:from]
       Pony.mail config['email'].merge(
-        subject: subject, 
-        body: body, 
+        subject: subject,
+        body: body,
         to: to
       )
     else

@@ -60,11 +60,11 @@ post '/post/:slug/comments' do
   end
 
   if saved
-    if comment.flagged
-      halt 500, "500 Server Error" # that'll fool 'em
-    else
-      redirect "#{post_path post}#comment-#{comment.id}"
+    if comment.flagged and (post.published_at > 2.weeks.ago)
+      Email.flagged_comment comment
     end
+
+    redirect "#{post_path post}#comment-#{comment.id}"
   else
     comments = post.comments.visible.asc(:created_at).to_a
     erb :post, locals: {post: post, new_comment: comment, comments: comments}
