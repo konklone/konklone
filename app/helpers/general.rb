@@ -47,7 +47,7 @@ module Helpers
     end
 
     def comment_path(post)
-      "/post/#{post.slug}/comments"
+      "/comments/post/#{post.slug}"
     end
 
     def h(text)

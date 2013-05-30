@@ -15,18 +15,13 @@
 
 /config/config.yml
 /vendor/gems
-/vendor/bundle
 /config.ru
-/tmp
 /.bundle
 /logs
 /log
 *.pyc
 
-# google webmaster tools verification file
-/public/google*.html
-
-*.kate-swp
+/cache
 
 /unicorn.pid
 /unicorn.rb

@@ -101,4 +101,10 @@ class Post
   def cache!
     # pass for now
   end
+
+  # includes normal saves, and comment adding (thanks to the comment counter)
+  after_save :uncache!
+  def uncache!
+    Environment.uncache!(slug) if config[:site]['cache_enabled']
+  end
 end

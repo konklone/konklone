@@ -15,6 +15,8 @@ require 'tzinfo'
 require 'pony'
 require './config/email'
 
+require "fileutils"
+
 set :logging, false
 set :views, 'app/views'
 set :public_folder, 'public'
@@ -22,6 +24,21 @@ set :public_folder, 'public'
 
 def config
   @config ||= YAML.load_file File.join(File.dirname(__FILE__), "config.yml")
+end
+
+class Environment
+  def self.cache_dest(slug)
+    @cache_dir ||= File.join(File.dirname(__FILE__), "..", "cache", "post", slug)
+  end
+
+  def self.cache!(slug, content)
+    File.open(cache_dest(slug), "w") {|f| f.write content}
+  end
+
+  def self.uncache!(slug)
+    FileUtils.rm cache_dest(slug)
+  rescue Errno::ENOENT
+  end
 end
 
 configure do

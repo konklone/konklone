@@ -19,10 +19,16 @@ get '/post/:slug/?' do
   raise Sinatra::NotFound unless post
 
   comments = post.comments.visible.asc(:created_at).to_a
-  erb :post, locals: {post: post, new_comment: nil, comments: comments}
+
+  rendered = erb :post, locals: {post: post, new_comment: nil, comments: comments}
+
+  # nginx will serve anything cached
+  Environment.cache!(post.slug, rendered) if config[:site]['cache_enabled']
+
+  rendered
 end
 
-post '/post/:slug/comments' do
+post '/comments/post/:slug' do
   redirect '/' unless params[:comment].present?
   raise Sinatra::NotFound unless post = Post.visible.find_by_slug!(params[:slug])
 
