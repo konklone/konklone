@@ -28,7 +28,7 @@ end
 
 class Environment
   def self.cache_dest(slug)
-    @cache_dir ||= File.join(File.dirname(__FILE__), "..", "cache", "post", slug)
+    File.join File.dirname(__FILE__), "..", "cache", "post", slug
   end
 
   def self.cache!(slug, content)
