@@ -90,10 +90,11 @@ end
 
 
 namespace :cache do
-  desc "Regenerate post cache"
-  task regenerate: :environment do
+  desc "Reset post cache"
+  task reset: :environment do
     if config[:site]['cache_enabled']
-      Post.visible.each &:cache!
+      # Post.visible.each &:uncache!
+      system "rm #{Environment.cache_dir}/*"
     end
   end
 end
