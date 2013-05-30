@@ -44,7 +44,12 @@ class Post
 
   validates_uniqueness_of :slug, allow_nil: true
 
+  # default post scope to public ones - safer this way
+  default_scope where(private: false, draft: false)
+
+  # but use an explicit visible scope where possible, to make code clear
   scope :visible, where(private: false, draft: false)
+
   scope :drafts, where(draft: true)
   scope :private, where(private: true)
   scope :flagged, where(flagged: true)
