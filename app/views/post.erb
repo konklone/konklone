@@ -1,4 +1,7 @@
-<% content_for(:title) { "#{post.title} | konklone" } %>
+<% content_for(:title) { post.title } %>
+
+<%# ensures current slug is used for canonical link %>
+<% content_for(:canonical) { post_path post } %>
 
 <article class="post" data-slug="<%= post.slug %>">
   <%= partial "header", engine: :erb, locals: {post: post} %>

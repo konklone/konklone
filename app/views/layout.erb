@@ -21,6 +21,10 @@
   <link rel="stylesheet" href="/css/html5-reset.css" />
   <link rel="stylesheet" href="/css/main.css?<%= Time.now.to_i %>" />
 
+  <% if canonical = yield_content(:canonical) %>
+  <link rel="canonical" href="<%= canonical %>" />
+  <% end %>
+
   <%= yield_content :head %>
 
   <!-- rss must live on -->
