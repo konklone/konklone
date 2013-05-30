@@ -96,12 +96,6 @@ class Post
     self.versions << version
   end
 
-  # send post through rendering pipeline,
-  # including full layout template, and to disk
-  def cache!
-    # pass for now
-  end
-
   # includes normal saves, and comment adding (thanks to the comment counter)
   after_save :uncache!
   def uncache!

@@ -93,11 +93,22 @@ namespace :cache do
   desc "Reset post cache"
   task reset: :environment do
     if config[:site]['cache_enabled']
-      # Post.visible.each &:uncache!
       system "rm #{Environment.cache_dir}/*"
-      puts "Reset the cache"
+
+      # proactive caching.
+
+      # all right this is crazy, but to avoid simulating Sinatra's
+      # whole render pipeline and helper set up (including Padrino::Helper's deps)
+      # we will hit the app locally and trigger the render step for each post, at deploy time
+      Post.visible.desc(:published_at).each do |post|
+        puts "[#{post.slug}] Caching..."
+        system "curl --silent #{config[:site]['local_root']}/post/#{post.slug} > /dev/null"
+      end
+
+      puts
+      puts "Reset the cache. I hope you're happy."
     else
       puts "Cache not enabled, not resetting anything."
-    en
+    end
   end
 end

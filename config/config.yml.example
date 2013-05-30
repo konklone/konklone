@@ -4,6 +4,7 @@
   :check_spam: # whether to enable spam checking for comments
   session_secret: # some unique string
   cache_enabled: # defaults to false (caching off)
+  local_root: # for internal queries, e.g. http://localhost:8080
 
 :admin:
   :username: # admin username
