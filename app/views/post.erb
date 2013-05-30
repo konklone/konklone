@@ -43,7 +43,7 @@
 
 <% content_for :foot do %>
   <%# geez %>
-  <%= '<script src="/js/post.js"></script>'.html_safe %>
+  <%= "<script src=\"/js/post.js?#{Time.now.to_i}\"></script>".html_safe %>
 
   <% if post.footer.present? %>
     <%= post.footer.html_safe %>

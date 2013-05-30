@@ -91,7 +91,10 @@
   <script src="/js/jquery-2.0.0.min.js"></script>
   <script src="/js/jquery.placehold-0.3.min.js"></script>
 
-  <script src="/js/main.js?<%= Time.now.to_i %>"></script>
+  <script type="text/javascript">
+  // workaround for chrome bug: http://code.google.com/p/chromium/issues/detail?id=35980#c12
+  if ( window.innerWidth === 0 ) { window.innerWidth = parent.innerWidth; window.innerHeight = parent.innerHeight; }
+  </script>
 
   <%= yield_content :foot %>
 </body>
