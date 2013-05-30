@@ -15,14 +15,10 @@ get '/projects' do
 end
 
 get '/post/:slug/?' do
-  unless post = Post.visible.channel("blog").find_by_slug!(params[:slug])
-    # fallback for legacy URLs
-    post = Post.visible.where(import_source: "blog3", import_id: params[:slug].to_i).first
-  end
+  post = Post.visible.channel("blog").find_by_slug! params[:slug]
   raise Sinatra::NotFound unless post
 
   comments = post.comments.visible.asc(:created_at).to_a
-
   erb :post, locals: {post: post, new_comment: nil, comments: comments}
 end
 
