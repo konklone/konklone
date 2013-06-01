@@ -30,7 +30,7 @@ end
 
 get %r{^/admin/posts/(all|published|drafts|private|flagged)$} do
   # explicitly remove the public default scope in the admin area
-  posts = Post.unscoped.desc :created_at
+  posts = Post.desc :created_at
 
   filter = params[:captures].first
 
@@ -59,14 +59,14 @@ post '/admin/posts' do
 end
 
 get '/admin/post/:slug' do
-  post = Post.unscoped.find_by_slug! params[:slug]
+  post = Post.find_by_slug! params[:slug]
   raise Sinatra::NotFound unless post
 
   erb :"admin/post", layout: :"admin/layout", locals: {post: post}
 end
 
 put '/admin/post/:slug' do
-  post = Post.unscoped.find_by_slug! params[:slug]
+  post = Post.find_by_slug! params[:slug]
   raise Sinatra::NotFound unless post
 
   # BEFORE AFFECTING POST: snap a new version if asked
@@ -81,7 +81,7 @@ put '/admin/post/:slug' do
   # a manual slug override
   if params[:post]['slug'] != params[:slug]
     # have to check manually if slug is available
-    if Post.unscoped.where(_slugs: params[:post]['slug']).count == 0
+    if Post.where(_slugs: params[:post]['slug']).count == 0
       post.slugs << params[:post]['slug']
     end
   end
@@ -113,7 +113,7 @@ put '/admin/post/:slug' do
 end
 
 delete '/admin/post/:slug' do
-  post = Post.unscoped.find_by_slug! params[:slug]
+  post = Post.find_by_slug! params[:slug]
   raise Sinatra::NotFound unless post
 
   post.destroy
@@ -128,7 +128,7 @@ post '/admin/preview' do
 end
 
 get '/admin/preview/:id' do
-  post = Post.unscoped.find params[:id]
+  post = Post.find params[:id]
   raise Sinatra::NotFound unless post
 
   comments = post.comments.visible.asc(:created_at).to_a
