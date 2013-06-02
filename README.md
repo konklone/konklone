@@ -1,3 +1,3 @@
-Code for http://konklone.com, a small Sinatra app.
+Code for [konklone.com](http://konklone.com), a small Sinatra app.
 
-Blog, archive, idea log.
+Eric Mill's blog, projects, ideas.
