@@ -11,10 +11,16 @@ class Post
   slug :title, permanent: true
 
   field :body
+  field :excerpt
+  field :footer # raw html to include in footer
+
+  # some cached rendered fields
+  field :body_rendered
+  field :excerpt_rendered
+  field :excerpt_text # plain-text
+
   field :published_at, type: Time
   field :tags, type: Array, default: []
-
-  field :excerpt
 
   field :private, type: Boolean, default: false
   field :draft, type: Boolean, default: true
@@ -23,8 +29,6 @@ class Post
   field :versions, type: Array, default: []
 
   field :comment_count, type: Integer, default: 0
-
-  field :footer # raw html to include in footer
 
   # MARKEDFORDEATH
   field :display_title, type: Boolean, default: true
@@ -96,5 +100,15 @@ class Post
   after_save :uncache!
   def uncache!
     Environment.uncache!(slug) if config[:site]['cache_enabled']
+  end
+
+  # mixing in the rendering methods...
+  include ::Helpers::Rendering
+
+  before_save :render_fields
+  def render_fields
+    self.body_rendered = render_post_body self.body
+    self.excerpt_rendered = render_post_excerpt self.excerpt
+    self.excerpt_text = render_post_excerpt_text self.excerpt
   end
 end

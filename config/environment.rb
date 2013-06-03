@@ -68,9 +68,6 @@ unless test?
 end
 
 
-Dir.glob('app/models/*.rb').each {|filename| load filename}
-
-
 # reload in development without starting server
 configure(:development) do |config|
   require 'sinatra/reloader'
@@ -84,11 +81,15 @@ end
 
 # extra controllers and helpers
 
-Dir.glob("./app/controllers/*.rb").each {|filename| load filename}
-
+# helpers first, models depend on them
 Dir.glob('app/helpers/*.rb').each {|filename| load filename}
 helpers Helpers::General
+helpers Helpers::Rendering
 helpers Helpers::Admin
+
+Dir.glob('app/models/*.rb').each {|filename| load filename}
+
+Dir.glob("./app/controllers/*.rb").each {|filename| load filename}
 
 require 'padrino-helpers'
 helpers Padrino::Helpers

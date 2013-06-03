@@ -15,6 +15,9 @@
   field :flagged, type: Boolean, default: false
   field :mine, type: Boolean, default: false
 
+  # cache the rendered, sanitized body
+  field :body_rendered
+
   index author: 1
   index author_url: 1
   index author_email: 1
@@ -46,6 +49,17 @@
   def update_post_count!
     self.post.update_count!
   end
+
+
+  # mixing in the rendering methods...
+  include ::Helpers::Rendering
+
+  before_save :render_fields
+  def render_fields
+    self.body_rendered = render_comment_body self.body
+  end
+
+
 
   # spam protection
   include Rakismet::Model

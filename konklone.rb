@@ -34,7 +34,7 @@ get '/post/:slug/?' do
   rendered = erb :post, locals: {post: post, new_comment: nil, comments: comments}
 
   # nginx will serve anything cached
-  Environment.cache!(post.slug, rendered) if config[:site]['cache_enabled']
+  # Environment.cache!(post.slug, rendered) if config[:site]['cache_enabled']
 
   rendered
 end

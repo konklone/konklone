@@ -20,8 +20,8 @@
       </a>
     </h1>
   </header>
-  
-  <%= post_body body %>
+
+  <%= render_post_body body %>
 </article>
 
 <script type="text/javascript">
@@ -35,7 +35,7 @@
 
   $(document).ready(function() {
     var articleHeader = $('article header');
-    
+
     // var offset = $("header.main").outerHeight();
     var start = $(articleHeader).offset().top;
     var offset = 0;
@@ -52,6 +52,6 @@
       headerMe.css('display', flip ? 'none' : 'block');
       headerArticle.css('display', flip ? 'block' : 'none');
     });
-   
+
   });
 </script>

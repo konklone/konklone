@@ -4,7 +4,7 @@
       <article class="index first">
         <%= partial "header", engine: :erb, locals: {post: posts.first} %>
 
-        <%= post_excerpt posts.first %>
+        <%= posts.first.excerpt_rendered %>
 
         <p>
           <a class="readon" href="<%= post_path posts.first %>">Read on…</a>
