@@ -55,9 +55,7 @@ def stop():
   run("kill `cat %s/unicorn.pid`" % shared_path)
 
 def restart():
-  stop()
-  start()
-  # run("kill -HUP `cat %s/unicorn.pid`" % shared_path)
+  run("kill -USR2 `cat %s/unicorn.pid`" % shared_path)
 
 
 def deploy():
