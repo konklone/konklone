@@ -3,6 +3,17 @@
 require './config/environment'
 
 
+# log google hits in a database, to understand behavior better
+
+before do
+  @start_time = Time.now
+end
+
+after do
+  Event.google!(env, @start_time) if google?
+end
+
+
 # base controller
 
 get '/' do
@@ -104,4 +115,10 @@ get '/comments.xml' do
 
   comments = Comment.visible.desc(:created_at).limit(20).to_a
   erb :comments, locals: {site: config[:site], comments: comments}, layout: false
+end
+
+helpers do
+  def google?
+    request.env['HTTP_USER_AGENT']["Googlebot"] if request.env['HTTP_USER_AGENT']
+  end
 end
