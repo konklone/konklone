@@ -26,6 +26,10 @@
   index flagged: 1
   index mine: 1
   index created_at: 1
+  index post_id: 1
+
+  # index the way these are asked for
+  index({post_id: 1, hidden: 1, flagged: 1, created_at: 1})
 
   validates_presence_of :body
   validates_presence_of :author
