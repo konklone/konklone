@@ -47,7 +47,7 @@ class Post
   index comment_count: 1
 
   # index the way posts are found
-  index({published_at: 1, private: 1, draft: 1})
+  index({private: 1, draft: 1, published_at: 1}) # published_at must be last in the index
   index({_slugs: 1, private: 1, draft: 1})
 
   validates_uniqueness_of :slug, allow_nil: true

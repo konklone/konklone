@@ -50,6 +50,9 @@ configure do
     c.load_configuration config['mongoid'][Sinatra::Base.environment.to_s]
   end
 
+  # Mongoid.logger.level = Logger::DEBUG
+  # Moped.logger.level = Logger::DEBUG
+
   Rakismet.key = config[:rakismet][:key]
   Rakismet.url = config[:rakismet][:url]
   Rakismet.host = config[:rakismet][:host]
