@@ -14,12 +14,12 @@
       <height>144</height>
     </image>
     <atom:link href="<%= site[:root] %>/comments.xml" rel="self" type="application/rss+xml" />
-    
+
       <% comments.each do |comment| %>
         <item>
           <title>Comment: <%= h comment.author %></title>
           <description><![CDATA[
-            <%= comment_body comment.body %>
+            <%= comment.body_rendered %>
           ]]></description>
           <link><%= site[:root] %><%= post_path comment.post %>#comment-<%= comment.id %></link>
           <guid><%= site[:root] %><%= post_path comment.post %>#comment-<%= comment.id %></guid>

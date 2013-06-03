@@ -14,18 +14,18 @@
       <height>144</height>
     </image>
     <atom:link href="<%= site[:root] %>/rss.xml" rel="self" type="application/rss+xml" />
-    
+
       <% posts.each do |post| %>
         <item>
           <title><%= post.title %></title>
           <description><![CDATA[
-            <%= post_body post.body %>
+            <%= post.body_rendered %>
           ]]></description>
-          
+
           <% (post.tags || []).each do |tag| %>
             <category><%= tag %></category>
           <% end %>
-            
+
           <link><%= site[:root] %><%= post_path post %></link>
           <guid><%= site[:root] %><%= post_path post %></guid>
           <pubDate><%= rss_date post.published_at %></pubDate>
