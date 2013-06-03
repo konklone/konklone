@@ -79,7 +79,7 @@ task :sitemap => :environment do
 
     add "/", change_frequency: "daily"
 
-    Post.visible.channel("blog").desc(:published_at).each do |post|
+    Post.visible.desc(:published_at).each do |post|
       add post_path(post), change_frequency: "weekly"
       count += 1
     end

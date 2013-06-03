@@ -37,7 +37,7 @@ class Post
   field :post_type, type: Array, default: ["blog"]
 
 
-  index slug: 1
+  index _slugs: 1
   index published_at: 1
   index post_type: 1
   index tags: 1
@@ -45,6 +45,10 @@ class Post
   index draft: 1
   index created_at: 1
   index comment_count: 1
+
+  # index the way posts are found
+  index({published_at: 1, private: 1, draft: 1})
+  index({_slugs: 1, private: 1, draft: 1})
 
   validates_uniqueness_of :slug, allow_nil: true
 
@@ -60,7 +64,6 @@ class Post
     })
   }
 
-  scope :channel, lambda {|type| where(post_type: type)}
   scope :tagged, lambda {|tag| where(tags: tag)}
 
   def update_count!

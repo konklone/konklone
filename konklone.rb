@@ -17,8 +17,8 @@ end
 # base controller
 
 get '/' do
-  posts, page = paginate 20, Post.visible.channel("blog").desc(:published_at)
-  erb :index, locals: {posts: posts, per_page: 10, page: page, channel: "blog"}
+  posts, page = paginate 20, Post.visible.desc(:published_at)
+  erb :index, locals: {posts: posts, per_page: 10, page: page}
 end
 
 get '/projects' do
@@ -26,17 +26,15 @@ get '/projects' do
 end
 
 get '/post/:slug/?' do
-  post = Post.visible.channel("blog").find_by_slug! params[:slug]
+  post = Post.visible.find_by_slug! params[:slug]
   raise Sinatra::NotFound unless post
 
   comments = post.comments.visible.asc(:created_at).to_a
 
-  rendered = erb :post, locals: {post: post, new_comment: nil, comments: comments}
-
   # nginx will serve anything cached
   # Environment.cache!(post.slug, rendered) if config[:site]['cache_enabled']
 
-  rendered
+  erb :post, locals: {post: post, new_comment: nil, comments: comments}
 end
 
 post '/comments/post/:slug' do
