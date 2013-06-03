@@ -91,7 +91,7 @@ module Helpers
     end
 
     def small_post_excerpt(post)
-      excerpt post.excerpt_text, (170 - post.title.size)
+      excerpt(post.excerpt_text || "", (170 - post.title.size))
     end
   end
 end

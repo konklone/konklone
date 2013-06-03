@@ -65,7 +65,7 @@ def deploy():
   execute(create_indexes)
   execute(make_current)
   execute(set_crontab)
-  execute(reset_cache)
+  # execute(reset_cache)
   execute(restart)
 
 # only difference is it uses start instead of restart
