@@ -11,7 +11,13 @@
     </span>
 
     <time class="left" datetime="<%= long_datetime comment.created_at %>" pubdate>
-      <%= short_date comment.created_at %>
+      <% if admin? %>
+        <a href="/admin/comment/<%= comment.id %>">
+          <%= short_date comment.created_at %>
+        </a>
+      <% else %>
+        <%= short_date comment.created_at %>
+      <% end %>
     </time>
 
     <% if admin? and comment.hidden? %>
