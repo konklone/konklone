@@ -4,3 +4,6 @@ User-agent: *
 Disallow: /idea/
 Disallow: /ideas
 Disallow: /journal.php
+Disallow: /javascripts/
+Disallow: /stylesheets/
+Disallow: /rss.xml
