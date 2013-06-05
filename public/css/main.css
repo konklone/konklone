@@ -92,7 +92,10 @@ article p,
 article pre   {font-size: 12pt; line-height: 27px;} /* article text */
 
 article blockquote,
-article blockquote p {font-size: 11pt; line-height: 21px;}
+article blockquote p,
+article blockquote ul, article blockquote ol,
+article blockquote ul li, article blockquote ol li,
+article blockquote * {font-size: 11pt; line-height: 21px;}
 
 article ol li,
 article ul li        {font-size: 12pt; line-height: 25px;} /* article lists */
@@ -291,6 +294,8 @@ article p {margin-top: 20px; margin-bottom: 20px;}
 article p a {text-decoration: underline;}
 
 article ol, article ul {list-style-position: outside;}
+article blockquote ul, article blockquote ol,
+article blockquote ul li, article blockquote ol li {list-style-position: inside;}
 article ul, article ul li {list-style-type: disc;}
 article ol, article ol li {list-style-type: decimal;}
 article ol li, article ul li {margin-top: 7px; margin-bottom: 7px;}
