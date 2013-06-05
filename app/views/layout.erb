@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
 
   <% if title = yield_content(:title) %>
-    <title><%= title %> | Eric Mill</title>
+    <title><%= h title %> | Eric Mill</title>
   <% else %>
     <title>Eric Mill</title>
   <% end %>
