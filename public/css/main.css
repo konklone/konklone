@@ -89,8 +89,10 @@ article header time  {font-size: 26pt; line-height: 55px;} /* article title */
 article sup {font-size: 8pt;}
 
 article p,
-article pre,
-article blockquote   {font-size: 12pt; line-height: 27px;} /* article text */
+article pre   {font-size: 12pt; line-height: 27px;} /* article text */
+
+article blockquote,
+article blockquote p {font-size: 11pt; line-height: 21px;}
 
 article ol li,
 article ul li        {font-size: 12pt; line-height: 25px;} /* article lists */
@@ -134,7 +136,10 @@ article h2 {
 article iframe.youtube {height: 394px;}
 
 hr {width: 375px;}
-article blockquote {padding: 0 30px;}
+article blockquote {
+  padding: 0 20px;
+  border-left: 1px solid #888;
+}
 article blockquote,
 article blockquote p {width: 600px;}
 
