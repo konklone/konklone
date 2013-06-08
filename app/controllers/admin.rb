@@ -8,11 +8,7 @@ end
 
 get '/admin' do
   if admin?
-    if Post.where(draft: true).any?
-      redirect '/admin/posts/drafts'
-    else
-      redirect '/admin/posts/published'
-    end
+    redirect '/admin/posts/published'
   else
     erb :"admin/login", layout: :"admin/layout", locals: {message: nil}
   end
@@ -32,14 +28,13 @@ get '/admin/logout' do
   redirect '/admin'
 end
 
-get %r{^/admin/posts/(all|published|drafts|private|flagged)$} do
+get %r{^/admin/posts/(all|published|drafts|flagged)$} do
   # explicitly remove the public default scope in the admin area
   posts = Post.desc :created_at
 
   filter = params[:captures].first
 
   posts = posts.visible if filter == "published"
-  posts = posts.private if filter == "private"
   posts = posts.drafts if filter == "drafts"
   posts = posts.flagged if filter == "flagged"
 
