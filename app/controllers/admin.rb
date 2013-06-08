@@ -8,7 +8,11 @@ end
 
 get '/admin' do
   if admin?
-    redirect '/admin/posts/published'
+    if Post.where(draft: true).any?
+      redirect '/admin/posts/drafts'
+    else
+      redirect '/admin/posts/published'
+    end
   else
     erb :"admin/login", layout: :"admin/layout", locals: {message: nil}
   end
