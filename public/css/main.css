@@ -39,7 +39,11 @@ article.small time {color: #808080;}
 article small time {color: #777;}
 
 /* code/pre */
-article code {background-color: #ccc;}
+article code {
+  background-color: #eaeaff;
+  font-size: 10pt;
+  font-family: monospace;
+}
 
 /* post title, separator */
 article header h1 a,
