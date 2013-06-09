@@ -138,7 +138,7 @@ article iframe.youtube,
 
 article h2 {
   padding-top: 20px;
-}
+} article h2:before {}
 
 article iframe.youtube {height: 394px;}
 
