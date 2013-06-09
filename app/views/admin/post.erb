@@ -14,7 +14,7 @@
     <input type="hidden" name="_method" value="put" />
 
     <section class="controls right">
-      <input type="submit" name="submit" class="update" value="Save" 
+      <input type="submit" name="submit" class="update" value="Save"
         tabindex="8"
       />
 
@@ -22,14 +22,14 @@
         tabindex="9"
         >Preview &raquo;</button>
 
-      
+
       <% if post.draft? %>
         <% if post.published_at %>
-          <input type="submit" name="submit" value="Republish" 
+          <input type="submit" name="submit" value="Republish"
             tabindex="10"
             />
         <% else %>
-          <input type="submit" name="submit" value="Publish" 
+          <input type="submit" name="submit" value="Publish"
             tabindex="10"
             />
         <% end %>
@@ -44,7 +44,7 @@
           tabindex="11"
           />
       <% else %>
-        <input type="submit" name="submit" value="Make private" 
+        <input type="submit" name="submit" value="Make private"
           tabindex="11"
           />
       <% end %>
@@ -54,22 +54,16 @@
           tabindex="12"
           />
       <% else %>
-        <input type="submit" name="submit" value="Flag" 
+        <input type="submit" name="submit" value="Flag"
           tabindex="12"
           />
       <% end %>
-      
+
       <% if post.visible? %>
         <a target="_blank" class="visit public" href="<%= post_path post %>">Public post &raquo;</a>
       <% else %>
         <a target="_blank" class="visit private" href="/admin/preview/<%= post.id %>">Private post &raquo;</a>
       <% end %>
-      
-      <!-- <span class="state status">
-        <%= post.private? ? "Private" : "Public" %>,
-        <%= post.draft? ? "draft" : "published" %>
-        <%= post.flagged? ? "(flagged)" : "" %>
-      </span> -->
 
       <% if post.draft? %>
         <span class="state draft">
@@ -109,37 +103,42 @@
       <% end %>
     </section>
 
-    
-    <input type="text" class="big title" name="post[title]" placeholder="title" 
+
+    <input type="text" class="big title" name="post[title]" placeholder="title"
       value="<%= form_escape post.title %>"
       tabindex="1"
       />
 
-    <textarea placeholder="excerpt (html welcome)" class="excerpt" 
+    <input type="text" class="big title" name="post[subtitle]" placeholder="subtitle (optional)"
+      value="<%= form_escape post.subtitle %>"
+      tabindex="1"
+      />
+
+    <textarea placeholder="excerpt (html welcome)" class="excerpt"
       name="post[excerpt]" tabindex="2"
       ><%= post.excerpt %></textarea>
 
-    <textarea placeholder="body" class="body" 
+    <textarea placeholder="body" class="body"
       name="post[body]" tabindex="3"
       ><%= post.body %></textarea>
-    
+
     <fieldset>
-      <input type="text" placeholder="slug" id="post_slug" name="post[slug]" class="small slug" value="<%= post.slug %>" 
+      <input type="text" placeholder="slug" id="post_slug" name="post[slug]" class="small slug" value="<%= post.slug %>"
       tabindex="4"
       />
-      
+
       <input type="text" name="post[tags]" class="small tags" placeholder="tags"
         value="<%= form_escape post.tags.join(", ") %>"
         tabindex="5"
         />
 
-      <input type="text" name="new_version" class="small version" 
+      <input type="text" name="new_version" class="small version"
         placeholder="save new version because"
         tabindex="6"
         />
     </fieldset>
 
-    <textarea placeholder="footer (raw html)" class="footer" 
+    <textarea placeholder="footer (raw html)" class="footer"
       name="post[footer]" tabindex="7"
       style="height: <%= post.footer.present? ? "400px" : "80px" %>"
       ><%= post.footer %></textarea>
@@ -170,7 +169,7 @@
     $("a.post.delete").click(function() {
       if (confirm("Really delete this post?"))
         $("#delete_post").get(0).submit();
-      
+
       return false;
     });
 

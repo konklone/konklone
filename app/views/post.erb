@@ -6,7 +6,9 @@
 <article class="post" data-slug="<%= post.slug %>">
   <%= partial "header", engine: :erb, locals: {post: post} %>
 
-  <%= post.body_rendered %>
+  <section class="body">
+    <%= post.body_rendered %>
+  </section>
 </article>
 
 <hr />

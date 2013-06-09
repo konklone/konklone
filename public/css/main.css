@@ -1,11 +1,11 @@
 /* Fonts */
-body,
-input, textarea,
-
-article header,
-article h2,
+/*body,
+article h2,*/
+/*article header,*/
 article.small time,
-article.small h1 {font-family: "Open Sans", Arial, sans-serif;}
+article.small h1,
+input, textarea {font-family: "Open Sans", Arial, sans-serif;}
+
 
 header.main,
 article,
@@ -55,10 +55,16 @@ article h2,
   color: #444
 }
 
+article header h2 {
+  color: #444;
+  padding-top: 0px;
+  font-weight: normal;
+}
+
 hr {border-color: rgb(0, 53, 102)}
 
 /* any anchor gets offset by 100px to accommodate fixed header */
-.anchor {top: -100px; position: relative; display: block; visibility: hidden;}
+.anchor {top: -70px; position: relative; display: block; visibility: hidden;}
 
 header.main,
 header.main a {color: #fff;}
@@ -136,9 +142,18 @@ article iframe.youtube,
 #comment-form,
 #comments {width: 700px;}
 
-article h2 {
-  padding-top: 20px;
-} article h2:before {}
+article .body h2 {
+  margin-top: 30px;
+  font-weight: normal;
+} article .body h2 .block {
+  display: inline-block;
+  background-color: rgb(0, 53, 102);
+  padding: 4px;
+  margin-bottom: 3px; margin-left: -24px;
+  margin-right: 16px;
+} article .body h2:hover .block {
+  xbackground-color: rgb(54, 150, 238);
+}
 
 article iframe.youtube {height: 394px;}
 

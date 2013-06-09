@@ -8,7 +8,12 @@ class Post
   has_many :comments
 
   field :title
+
+  # slug the title,
+  #   :permanent says don't re-slug automatically (except on initial create)
   slug :title, permanent: true
+
+  field :subtitle
 
   field :body
   field :excerpt

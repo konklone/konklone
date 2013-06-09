@@ -24,34 +24,11 @@
   <%= render_post_body body %>
 </article>
 
-<script type="text/javascript">
-  $("header.main .inner.article a.right").click(function() {
-    window.location.hash = "";
-    window.scrollTo(0,0);
-    return false;
-  });
+<% content_for :foot do %>
+  <%# geez %>
+  <%= "<script src=\"/js/post.js?#{Time.now.to_i}\"></script>".html_safe %>
 
-  $("header.main .inner.me a.left").show();
-
-  $(document).ready(function() {
-    var articleHeader = $('article header');
-
-    // var offset = $("header.main").outerHeight();
-    var start = $(articleHeader).offset().top;
-    var offset = 0;
-
-    var headerMe = $("header.main .inner.me");
-    var headerArticle = $("header.main .inner.article");
-    headerArticle.find("h1").text($("article header .title").text());
-    // headerArticle.find("time").text($("article header time").text());
-
-    $.event.add(window, "scroll", function() {
-      var p = $(window).scrollTop();
-      var flip = p > (start - offset);
-
-      headerMe.css('display', flip ? 'none' : 'block');
-      headerArticle.css('display', flip ? 'block' : 'none');
-    });
-
-  });
-</script>
+  <% if post.footer.present? %>
+    <%= post.footer.html_safe %>
+  <% end %>
+<% end %>

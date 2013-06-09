@@ -1,4 +1,4 @@
-<header>  
+<header>
   <% date = post.published_at || post.updated_at %>
   <time class="left" datetime="<%= short_datetime date %>" pubdate>
     <%= short_date date %>
@@ -15,4 +15,8 @@
       <%= h post.title %>
     </a>
   </h1>
+
+  <% if post.subtitle.present? %>
+    <h2 class="subtitle"><%= h post.subtitle %></h2>
+  <% end %>
 </header>
