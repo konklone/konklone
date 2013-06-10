@@ -123,7 +123,12 @@ end
 
 # post preview page (doesn't work for pages with iframes...)
 post '/admin/preview' do
-  erb :preview, locals: {title: params[:title], body: params[:body]}
+  erb :preview, locals: {
+    title: params[:title],
+    subtitle: params[:subtitle],
+    body: params[:body],
+    footer: params[:footer]
+  }
 end
 
 get '/admin/preview/:id' do

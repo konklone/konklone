@@ -160,7 +160,9 @@
 <form id="preview" method="post" target="_blank" action="/admin/preview">
   <input type="submit" style="display: none" />
   <input type="hidden" class="title" name="title" />
+  <input type="hidden" class="subtitle" name="subtitle" />
   <input type="hidden" class="body" name="body" />
+  <input type="hidden" class="footer" name="footer" />
 </form>
 
 
@@ -175,7 +177,9 @@
 
     $("button.preview").click(function() {
       $("#preview .title").val($("input.title").val());
+      $("#preview .subtitle").val($("input.subtitle").val());
       $("#preview .body").val($("textarea.body").val());
+      $("#preview .footer").val($("textarea.footer").val());
       $("#preview").get(0).submit();
       return false;
     });

@@ -28,7 +28,7 @@
   <%# geez %>
   <%= "<script src=\"/js/post.js?#{Time.now.to_i}\"></script>".html_safe %>
 
-  <% if post.footer.present? %>
-    <%= post.footer.html_safe %>
+  <% if footer.present? %>
+    <%= footer.html_safe %>
   <% end %>
 <% end %>
