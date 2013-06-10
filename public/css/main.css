@@ -95,6 +95,7 @@ footer.main    {font-size: 10pt;} /* main footer */
 
 article header h1,
 article header time  {font-size: 26pt; line-height: 55px;} /* article title */
+article header time .admin {font-size: 12pt;}
 
 article sup {font-size: 8pt;}
 
