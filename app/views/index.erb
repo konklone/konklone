@@ -4,19 +4,27 @@
       <article class="index first">
         <%= partial "header", engine: :erb, locals: {post: posts.first} %>
 
-        <section class="body">
-          <% if posts.first.excerpt_rendered.present? %>
-            <%= posts.first.excerpt_rendered %>
-          <% else %>
+        <% if posts.first.excerpt_rendered.present? %>
+          <%= posts.first.excerpt_rendered %>
+          <p>
+            <a class="readon" href="<%= post_path posts.first %>">Read on…</a>
+          </p>
+        <% else %>
+          <section class="body">
             <%= posts.first.body_rendered %>
-          <% end %>
-        </section>
-
-        <p>
-          <a class="readon" href="<%= post_path posts.first %>">Read on…</a>
-        </p>
+          </section>
+        <% end %>
       </article>
     </li>
+
+    <% content_for :foot do %>
+      <%# geez %>
+      <%= "<script src=\"/js/post.js?#{Time.now.to_i}\"></script>".html_safe %>
+
+      <% if posts.first.footer.present? %>
+        <%= posts.first.footer.html_safe %>
+      <% end %>
+    <% end %>
 
     <% if posts.size > 1 %>
       <% posts[1..-1].each do |post| %>

@@ -222,7 +222,7 @@ article.small {margin-bottom: 25px;}
 
 /* hide small asides from excerpts */
 article.index small.left,
-article.index small.right {display: none;}
+article.index small.right {xdisplay: none;}
 
 article.small div.inner {width: 700px; margin: 0 auto;}
 article.small p,
