@@ -4,7 +4,13 @@
       <article class="index first">
         <%= partial "header", engine: :erb, locals: {post: posts.first} %>
 
-        <%= posts.first.excerpt_rendered %>
+        <section class="body">
+          <% if posts.first.excerpt_rendered.present? %>
+            <%= posts.first.excerpt_rendered %>
+          <% else %>
+            <%= posts.first.body_rendered %>
+          <% end %>
+        </section>
 
         <p>
           <a class="readon" href="<%= post_path posts.first %>">Read on…</a>
