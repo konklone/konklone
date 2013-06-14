@@ -18,14 +18,12 @@ $("a.block").each(function(i, elem) {
 $(function() {
   var articleHeader = $('article header');
 
-  // var offset = $("header.main").outerHeight();
   var start = $(articleHeader).offset().top;
   var offset = 0;
 
   var headerMe = $("header.main .inner.me");
   var headerArticle = $("header.main .inner.article");
   headerArticle.find("h1").text($("article header .title").text());
-  // headerArticle.find("time").text($("article header time").text());
 
   $.event.add(window, "scroll", function() {
     var p = $(window).scrollTop();
