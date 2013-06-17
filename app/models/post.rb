@@ -116,7 +116,15 @@ class Post
   before_save :render_fields
   def render_fields
     self.body_rendered = render_post_body self.body
-    self.excerpt_rendered = render_post_excerpt(self.excerpt.present? ? self.excerpt : self.body)
-    self.excerpt_text = render_post_excerpt_text(self.excerpt.present? ? self.excerpt : self.body)
+
+    # if there's a specific excerpt, use it for the front page and the flat text
+    if self.excerpt.present?
+      self.excerpt_rendered = render_post_excerpt(self.excerpt)
+      self.excerpt_text = render_post_excerpt_text(self.excerpt)
+
+    # otherwise, well we still need some flat (no HTML) text for glimpses, so use the body
+    else
+      self.excerpt_text = render_post_excerpt_text(self.body)
+    end
   end
 end
