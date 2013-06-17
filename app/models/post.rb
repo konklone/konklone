@@ -116,7 +116,7 @@ class Post
   before_save :render_fields
   def render_fields
     self.body_rendered = render_post_body self.body
-    self.excerpt_rendered = render_post_excerpt self.excerpt
-    self.excerpt_text = render_post_excerpt_text self.excerpt
+    self.excerpt_rendered = render_post_excerpt(self.excerpt.present? ? self.excerpt : self.body)
+    self.excerpt_text = render_post_excerpt_text(self.excerpt.present? ? self.excerpt : self.body)
   end
 end
