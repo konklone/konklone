@@ -52,6 +52,7 @@ class Post
   index draft: 1
   index created_at: 1
   index comment_count: 1
+  index related_post_ids: 1
 
   # index the way posts are found
   index({private: 1, draft: 1, published_at: 1}) # published_at must be last in the index
