@@ -56,6 +56,8 @@ class Post
 
   # index the way posts are found
   index({private: 1, draft: 1, published_at: 1}) # published_at must be last in the index
+  index({related_post_ids: 1, published_at: 1})
+
   index({_slugs: 1, private: 1, draft: 1})
 
   validates_uniqueness_of :slug, allow_nil: true
@@ -84,7 +86,7 @@ class Post
   end
 
   def related_posts
-    @related_posts ||= Post.visible.where(_id: {"$in" => related_post_ids}).all
+    @related_posts ||= Post.visible.where(_id: {"$in" => related_post_ids}).desc(:published_at).all
   end
 
   def self.regex_for(value)
