@@ -185,6 +185,9 @@ article div.image.strip {
 
 /* center those tough-to-center elements */
 article div.container {text-align: center;}
+article iframe.twitter-tweet {
+  margin-left: auto !important; margin-right: auto !important;
+}
 article canvas,
 article img {display: inline;}
 
