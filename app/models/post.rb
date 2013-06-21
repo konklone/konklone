@@ -35,6 +35,8 @@ class Post
 
   field :comment_count, type: Integer, default: 0
 
+  field :related_post_ids, type: Array, default: []
+
   # MARKEDFORDEATH
   field :display_title, type: Boolean, default: true
 
@@ -78,6 +80,10 @@ class Post
 
   def visible?
     !private and !draft
+  end
+
+  def related_posts
+    @related_posts ||= Post.visible.where(_id: {"$in" => related_post_ids}).all
   end
 
   def self.regex_for(value)

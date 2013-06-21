@@ -11,6 +11,23 @@
   </section>
 </article>
 
+<% if post.related_post_ids.any? %>
+  <div class="related">
+    <h5>Related:</h5>
+
+    <ul>
+    <% post.related_posts.each do |related_post| %>
+      <li>
+        <a href="<%= post_path related_post %>"><%= h related_post.title %></a>
+        <time datetime="<%= short_datetime related_post.published_at %>">
+          <%= short_date related_post.published_at %>
+        </time>
+      </li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <hr />
 
 <% new_comment = nil unless defined?(new_comment) %>

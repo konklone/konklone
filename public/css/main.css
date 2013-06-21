@@ -140,6 +140,7 @@ article pre,
 article h2,
 article h3, article h4, article h5, article h6,
 article iframe.youtube,
+.related,
 #comment-form,
 #comments {width: 700px;}
 
@@ -152,8 +153,6 @@ article .body h2 {
   padding: 4px;
   margin-bottom: 3px; margin-left: -24px;
   margin-right: 16px;
-} article .body h2:hover .block {
-  xbackground-color: rgb(54, 150, 238);
 }
 
 article iframe.youtube {height: 394px;}
@@ -169,6 +168,7 @@ article blockquote p {width: 600px;}
 header.main .inner,
 footer.main,
 div.main,
+.related,
 article *,
 hr,
 #comment-form,
@@ -239,6 +239,13 @@ article.small span.excerpt {
   line-height: 30px;
   margin-left: 5px;
 }
+
+.related {color: #555; font-size: 90%;}
+.related h5 {margin-bottom: 10px; display: inline-block; vertical-align: top;}
+.related ul {display: inline-block; margin-left: 10px;}
+.related li {margin-bottom: 15px;}
+.related li a {display: inline-block; margin-right: 5px;}
+.related li time {display: inline-block;}
 
 /** Main structure - everything else **/
 
