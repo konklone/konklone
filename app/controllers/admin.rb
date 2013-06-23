@@ -134,8 +134,13 @@ post '/admin/preview' do
 end
 
 get '/admin/preview/:id' do
+  # we do our own admin check - allow it for draft posts, but not private posts
   post = Post.find params[:id]
   raise Sinatra::NotFound unless post
+
+  unless post.draft?
+    halt 404 unless admin?
+  end
 
   comments = post.comments.visible.asc(:created_at).to_a
 
