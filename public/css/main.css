@@ -176,7 +176,7 @@ article blockquote {
   background-color: #e5e5e5;
 }
 article blockquote cite {
-  width: 100%; display: block; text-align: right; margin-top: 4px;
+  width: 100%; display: block; text-align: right; margin-top: -5px;
 } article blockquote cite:before {content: "— "}
 
 article blockquote,
