@@ -7,7 +7,6 @@
   local_root: # for internal queries, e.g. http://localhost:8080
 
 :admin:
-  :username: # admin username
   :password: # admin password
   :email: # email this person when things happen
 
