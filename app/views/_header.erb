@@ -2,10 +2,6 @@
   <% date = post.published_at || post.updated_at %>
   <time class="left" datetime="<%= short_datetime date %>" pubdate>
     <%= short_date date %>
-
-    <% if admin? %>
-      <br/><a class="admin" href="/admin<%= post_path post %>">edit</a>
-    <% end %>
   </time>
 
   <% if !post.visible? %>
