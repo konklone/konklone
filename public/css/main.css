@@ -234,6 +234,8 @@ article div.gist ol {padding: 0 20px;}
 .left {float: left; margin-left: -260px; padding-left: 0px; text-align: right;}
 .right {float: right; margin-right: -260px; padding-right: 0px;}
 
+header.main .right {width: 250px;}
+
 /* if in an article, pad it */
 article .right {
   padding: 5px 7px; width: 210px;
