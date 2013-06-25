@@ -1,12 +1,9 @@
 /* Fonts */
-article.small time,
-article.small h1,
 input, textarea {font-family: "Open Sans", Arial, sans-serif;}
-
 
 header.main,
 article,
-#comments li p {font-family: "Georgia", serif;}
+#comments li p {font-family: "Average", "Georgia", serif;}
 
 /** Extra reset **/
 ul, ol, li {list-style-type: none;}
@@ -90,17 +87,18 @@ article h1 a:hover, article h2 a:hover {text-decoration: underline;}
 
 /********** Font sizes *************/
 
-header.main    {font-size: 12pt;} /* main header */
+header.main    {font-size: 13pt;} /* main header */
 footer.main    {font-size: 10pt;} /* main footer */
 
 article header h1,
 article header time  {font-size: 20pt; line-height: 40px;} /* article title */
-article header time .admin {font-size: 12pt;}
 
 article sup {font-size: 10pt;}
 
 article p,
-article pre   {font-size: 12pt; line-height: 24px;} /* article text */
+article pre,
+article ol li,
+article ul li   {font-size: 13pt; line-height: 25px;} /* article text */
 article .callout {font-size: 11pt; line-height: 20px;}
 
 article blockquote,
@@ -109,8 +107,6 @@ article blockquote ul, article blockquote ol,
 article blockquote ul li, article blockquote ol li,
 article blockquote * {font-size: 11pt; line-height: 20px;} /* blockquotes */
 
-article ol li,
-article ul li        {font-size: 12pt; line-height: 24px;} /* article lists */
 article h2 {font-size: 18pt; line-height: 32px;}
 article h3 {font-size: 14pt; line-height: 29px;}
 article p.comments a {font-size: 11pt;} /* link to comments page */
@@ -123,14 +119,14 @@ article .unpublished {font-size: 10pt; line-height: 20px;}
 
 #comments li header span {font-size: 14pt;} /* comment name */
 #comments li header time {font-size: 14pt;} /* comment date */
-#comments li p           {font-size: 12pt;} /* comment text */
+#comments li p           {font-size: 13pt;} /* comment text */
 
 #comment-form span          {
   font-size: 14pt; font-family: "Open Sans", Arial, sans-serif;
   display: block; margin-bottom: 20px;
 }
 #comment-form form input    {font-size: 14pt;} /* comment form */
-#comment-form form textarea {font-size: 12pt;} /* comment form */
+#comment-form form textarea {font-size: 13pt;} /* comment form */
 
 /** Main structure - center and width **/
 
@@ -266,7 +262,7 @@ article.small p {width: inherit;}
 article.small time,
 article.small h1 {font-size: 16pt; line-height: 30px;}
 article.small span.excerpt {
-  color: #555; font-size: 12pt;
+  color: #555; font-size: 13pt;
   line-height: 30px;
   margin-left: 5px;
 }
