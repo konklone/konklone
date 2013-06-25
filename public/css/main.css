@@ -49,14 +49,14 @@ article code {
 /* post title, separator */
 article header h1 a,
 article.small h1 a,
-article h2,
 #comments li header time,
 #comments li header span,
 #comments li header span a {
   color: #444
 }
 
-article h3 {color: #444;}
+article h2,
+article h3 {color: #222;}
 
 article header h2 {
   color: #444;
@@ -101,6 +101,7 @@ article sup {font-size: 10pt;}
 
 article p,
 article pre   {font-size: 12pt; line-height: 24px;} /* article text */
+article .callout {font-size: 11pt; line-height: 20px;}
 
 article blockquote,
 article blockquote p,
@@ -110,7 +111,7 @@ article blockquote * {font-size: 11pt; line-height: 20px;} /* blockquotes */
 
 article ol li,
 article ul li        {font-size: 12pt; line-height: 24px;} /* article lists */
-article h2 {font-size: 16pt; line-height: 35px; letter-spacing: 0px;}
+article h2 {font-size: 18pt; line-height: 32px;}
 article h3 {font-size: 14pt; line-height: 29px;}
 article p.comments a {font-size: 11pt;} /* link to comments page */
 
@@ -176,10 +177,20 @@ article blockquote {
 }
 article blockquote cite {
   width: 100%; display: block; text-align: right; margin-top: -3px;
-}article blockquote cite:before {content: "— "}
+} article blockquote cite:before {content: "— "}
 
 article blockquote,
 article blockquote p {width: 550px;}
+
+article .callout {
+  background-color: rgb(213, 230, 255);
+  padding: 10px;
+  margin: 30px auto;
+  width: 630px;
+  font-style: italic;
+}
+
+article .callout strong {}
 
 header.main .inner,
 footer.main,
