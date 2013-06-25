@@ -314,11 +314,11 @@ header.main .inner.me .right a.feed {
   background-position: 0 -1px;
   background-repeat: no-repeat;
   padding-left: 24px;
-  margin-right: 16px;
+  margin-right: 14px;
 }
 
-header.main .inner.me .right a.twitter {margin-right: 16px;}
-header.main .inner.me .right a.email {margin-right: 16px;}
+header.main .inner.me .right a.twitter {margin-right: 14px;}
+header.main .inner.me .right a.email {margin-right: 14px;}
 
 header.main .inner.article {display: none;}
 header.main .inner.article a.left {text-decoration: none;}
