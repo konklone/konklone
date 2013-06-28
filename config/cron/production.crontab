@@ -6,6 +6,11 @@
 0 8 * * * /home/konklone/konklone/shared/cron/rake.sh sitemap
 
 
+# download copy of FISC website every 5 minutes
+*/5 * * * * /home/konklone/apps/fisa/fisa.sh > /home/konklone/apps/fisa/fisa.log 2>&1
+
+
+
 # daily db backups, monthly asset backups
 
 @daily /home/konklone/backup/mongo.sh > /home/konklone/backup/output-mongo.txt 2>&1
