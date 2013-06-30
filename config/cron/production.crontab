@@ -7,7 +7,7 @@
 
 
 # download copy of FISC website every 5 minutes
-*/5 * * * * /home/konklone/apps/fisa/fisa.sh > /home/konklone/apps/fisa/fisa.log 2>&1
+*/5 * * * * /home/konklone/apps/fisa/fisa.rb > /home/konklone/apps/fisa/fisa.log 2>&1
 
 
 
