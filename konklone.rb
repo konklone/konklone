@@ -10,7 +10,7 @@ before do
 end
 
 after do
-  Event.google!(env, @start_time) if google?
+  Event.google!(env, @start_time) if @start_time and google?
 end
 
 
@@ -23,6 +23,10 @@ end
 
 get '/projects' do
   erb :projects
+end
+
+get '/resume' do
+  erb :resume
 end
 
 get '/post/:slug/?' do
