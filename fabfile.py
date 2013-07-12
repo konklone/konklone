@@ -7,7 +7,7 @@ env.use_ssh_config = True
 env.hosts = ["konklone.com"]
 
 branch = "master"
-repo = "git://github.com/konklone/konklone.git"
+repo = "git@github.com:konklone/konklone.git"
 
 username = "konklone"
 home = "/home/konklone/konklone"
