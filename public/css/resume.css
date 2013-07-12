@@ -1,0 +1,26 @@
+
+header.main, footer.main {display: none;}
+div.main {margin-top: 30px;}
+
+article.resume header,
+article.resume p,
+article.resume ol, article.resume ul,
+article.resume h2, article.resume h3,
+article.resume h4, article.resume h5, article.resume h6,
+article.resume section {
+  width: 850px;
+}
+article.resume li {width: auto;}
+
+article.resume td,
+article.resume td * {width: 425px;}
+
+.resume section h1,
+.resume section h2,
+.resume section h3 {width: auto;}
+
+.resume section h2 .date,
+.resume section h3 .date {
+  color: #888; display: inline-block; margin-left: 10px;
+  font-size: 90%;
+}
