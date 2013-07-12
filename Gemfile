@@ -27,8 +27,8 @@ gem 'rake', '0.9.2.2'
 group :development do
   gem 'wirble'
   gem 'unicorn'
-  gem 'rblineprof'
-  gem 'rack-lineprof'
+  # gem 'rblineprof'
+  # gem 'rack-lineprof'
 end
 
 group :import do
