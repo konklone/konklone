@@ -148,6 +148,8 @@ get '/admin/preview/:id' do
     version = post.versions[params[:version].to_i]
     erb :preview, locals: {
       title: version['title'],
+      subtitle: version['subtitle'],
+      footer: version['footer'],
       body: version['body'],
       version: version,
       comments: comments
