@@ -141,7 +141,6 @@ article h3, article h4, article h5, article h6,
 article iframe.youtube,
 .related,
 .error,
-article div.gist,
 article.small div.inner,
 #comment-form,
 #comments {width: 650px;}
@@ -216,12 +215,12 @@ article img {display: inline;}
 
 /* handle gists, which embed inline, interestingly enough */
 
-article div.gist {}
+article div.gist {width: 650px;}
 article div.gist-data {padding: 0px;}
 article div.gist p,
-article div.gist li {width: 640px;}
+article div.gist li {width: 570px;}
 article div.gist ul,
-article div.gist ol {padding: 0 20px;}
+article div.gist ol {padding: 0 40px; width: 570px;}
 
 /* things to the left and right of center */
 .left, .right {
