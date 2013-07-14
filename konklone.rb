@@ -25,8 +25,8 @@ get '/projects' do
   erb :projects
 end
 
-get '/resume' do
-  erb :resume
+get /\/(resume|r%C3%A9sum%C3%A9)/i do
+  erb :resume, locals: {resume: true}
 end
 
 get '/post/:slug/?' do
