@@ -1,23 +1,47 @@
+article {font-family: "Average", "Georgia", serif;}
+
+ul, ol, li {list-style-type: none;}
+h1,h2,h3,h4,h5,h6 {font-weight: normal;}
+
+body {background-color: #f5f5f5; color: #151515;}
+a {color: rgb(0, 53, 102);}
+
+
+
+.resume {font-size: 12pt; line-height: 25px;}
+.resume h1 {font-size: 20pt; line-height: 40px;}
+.resume h2 {font-size: 16pt; line-height: 32px;}
+.resume h3 {font-size: 16pt; line-height: 29px;}
+.resume h4 {font-size: 13pt;}
+.resume ul li {font-size: 12pt;}
+.resume .summary {font-size: 14pt; line-height: 30px;}
+
+/** Main structure **/
+
+body {
+  min-width: 1000px;
+  padding: 0; margin: 0;
+}
 
 header.main, footer.main {display: none;}
-div.main {margin-top: 30px;}
+div.main {margin-top: 20px;}
 
-article.resume header,
-article.resume p,
-article.resume ol, article.resume ul,
-article.resume h2, article.resume h3,
-article.resume h4, article.resume h5, article.resume h6,
-article.resume section {
-  width: 850px;
+article p {margin: 10px 0;}
+
+article pre {
+  white-space: pre-wrap;
+  font-family: inherit;
 }
-article.resume li {width: auto;}
 
-article.resume td,
-article.resume td * {width: 425px;}
 
-.resume section h1,
-.resume section h2,
-.resume section h3 {width: auto;}
+.resume {margin: 0 auto;}
+
+.resume {width: 850px;}
+.resume ul li {width: 390px;}
+.resume .before ul li,
+.resume .personal ul li {width: 815px;}
+.resume td {width: 425px;}
+.resume td.right {padding-left: 20px;}
 
 .resume section h2 .date,
 .resume section h3 .date {
@@ -25,7 +49,37 @@ article.resume td * {width: 425px;}
   font-size: 90%;
 }
 
-.resume .contact li {
+.resume ol, .resume ul {
+  list-style-position: outside;
+}
+
+.resume ol li, .resume ul li {margin-top: 15px; margin-bottom: 15px;}
+.resume ul, .resume ul li {list-style-type: none;}
+.resume ol, .resume ol li {list-style-type: decimal;}
+
+.resume ul {margin-top: 10px;}
+.resume ul li {line-height: 19px; padding-left: 10px;}
+
+/** section-specific **/
+
+.resume .contact ul {margin-top: 0; margin-left: 20px; display: inline-block;}
+.resume .contact h1 {display: inline-block;}
+.resume .contact ul li {
   display: inline-block;
   margin: 0 20px 0 0;
+  padding: 0;
+  width: auto;
+  font-size: 12pt;
 }
+
+.summary {padding: 20px 0;}
+
+.sunlight, .work, .before {margin-bottom: 25px;}
+.sunlight table td {padding-bottom: 10px;}
+
+.thoughtbot p {padding-right: 20px;}
+.thoughtbot p, .bsd p {line-height: 25px;}
+.resume .bsd ul,
+.resume .bsd ul li,
+.resume .thoughtbot ul,
+.resume .thoughtbot ul li {xlist-style-type: disc; }
