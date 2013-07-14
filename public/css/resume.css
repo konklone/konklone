@@ -62,7 +62,13 @@ article pre {
 
 /** section-specific **/
 
-.resume .contact ul {margin-top: 0; margin-left: 20px; display: inline-block;}
+.resume .contact {position: relative;}
+
+.resume .contact ul {
+  margin-top: 0; margin-left: 20px;
+  display: inline-block;
+  position: absolute; right: 15px; top: 7px;
+}
 .resume .contact h1 {display: inline-block;}
 .resume .contact ul li {
   display: inline-block;
