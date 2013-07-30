@@ -80,7 +80,7 @@ put '/admin/post/:slug' do
   post.attributes = params[:post]
 
   # a manual slug override
-  if params[:post]['slug'] != params[:slug]
+  if params[:post]['slug'].present? and (params[:post]['slug'] != params[:slug])
     # have to check manually if slug is available
     if Post.where(_slugs: params[:post]['slug']).count == 0
       post.slugs << params[:post]['slug']
