@@ -115,10 +115,6 @@
       tabindex="1"
       /> -->
 
-    <textarea placeholder="excerpt (html welcome)" class="excerpt"
-      name="post[excerpt]" tabindex="2"
-      ><%= post.excerpt %></textarea>
-
     <textarea placeholder="body" class="body"
       name="post[body]" tabindex="3"
       ><%= post.body %></textarea>
@@ -138,6 +134,10 @@
         tabindex="6"
         />
     </fieldset>
+
+    <textarea placeholder="excerpt (html welcome)" class="excerpt"
+      name="post[excerpt]" tabindex="8"
+      ><%= post.excerpt %></textarea>
 
     <textarea placeholder="footer (raw html)" class="footer"
       name="post[footer]" tabindex="7"
