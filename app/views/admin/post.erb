@@ -168,21 +168,21 @@
 
 
 <script type="text/javascript">
-  $(function() {
-    $("a.post.delete").click(function() {
-      if (confirm("Really delete this post?"))
-        $("#delete_post").get(0).submit();
+$(function() {
+  $("a.post.delete").click(function() {
+    if (confirm("Really delete this post?"))
+      $("#delete_post").get(0).submit();
 
-      return false;
-    });
-
-    $("button.preview").click(function() {
-      $("#preview .title").val($("input.title").val());
-      $("#preview .subtitle").val($("input.subtitle").val());
-      $("#preview .body").val($("textarea.body").val());
-      $("#preview .footer").val($("textarea.footer").val());
-      $("#preview").get(0).submit();
-      return false;
-    });
+    return false;
   });
+
+  $("button.preview").click(function() {
+    $("#preview .title").val($("input.title").val());
+    $("#preview .subtitle").val($("input.subtitle").val());
+    $("#preview .body").val($("textarea.body").val());
+    $("#preview .footer").val($("textarea.footer").val());
+    $("#preview").get(0).submit();
+    return false;
+  });
+});
 </script>
