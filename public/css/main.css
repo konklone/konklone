@@ -144,6 +144,7 @@ article iframe.youtube,
 article.small div.inner,
 #comment-form,
 article figure figcaption,
+article div.footer-text,
 #comments {width: 650px;}
 
 article li {width: 570px;}
@@ -184,6 +185,17 @@ article .callout {
   margin: 30px auto;
   width: 620px;
   font-style: italic;
+}
+
+article div.footer-text {
+  font-size: 11pt;
+  color: #222;
+  background-color: #e5e5e5;
+  font-style: italic;
+  line-height: 26px;
+  width: 630px;
+  padding: 10px;
+  margin-top: 50px;
 }
 
 article .callout strong {}
