@@ -317,11 +317,12 @@ header.main .inner.me .right a.feed {
 header.main .inner.me .right a.twitter {margin-right: 14px;}
 header.main .inner.me .right a.email {margin-right: 14px;}
 
-header.main .inner.article {display: none;}
-header.main .inner.article a.left {text-decoration: none;}
-header.main .inner.article h1 {display: inline-block;}
-header.main .inner.article a.right {display: block; text-decoration: none;}
-header.main .inner.article a.right .arrow {display: inline-block; margin-right: 7px;}
+header.main .inner {display: none;}
+header.main .inner a.left {text-decoration: none;}
+header.main .inner h1 {display: inline-block; display: none;}
+
+/*header.main .inner a.right {display: block; text-decoration: none;}
+header.main .inner a.right .arrow {display: inline-block; margin-right: 7px;}*/
 
 div.main {margin-top: 70px;}
 /* any anchor gets offset by 100px to accommodate fixed header */
