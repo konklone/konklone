@@ -37,6 +37,12 @@
 
   <!-- rss must live on -->
   <link rel="alternate" href="/rss.xml" type="application/rss+xml" title="All posts" />
+
+  <!--[if lt IE 9]><script src="/js/html5.js"></script><![endif]-->
+
+  <!-- jquery is the jquery of the web -->
+  <script src="/js/jquery-2.0.0.min.js"></script>
+  <script src="/js/jquery.placehold-0.3.min.js"></script>
 </head>
 
 <body>
@@ -61,6 +67,7 @@
       <ul>
         <li><%= header_link "blog", ["/", /^\/post\//] %></li>
         <li><%= header_link "projects", "/projects" %></li>
+        <li><%= header_link "motion", "/motion" %></li>
         <% if admin? %>
           <li><a href="/admin">Admin</a></li>
         <% end %>
@@ -103,12 +110,6 @@
     })();
   </script>
 
-  <!--[if lt IE 9]><script src="/js/html5.js"></script><![endif]-->
-
-  <!-- jquery is the jquery of the web -->
-  <script src="/js/jquery-2.0.0.min.js"></script>
-  <script src="/js/jquery.placehold-0.3.min.js"></script>
-
   <script type="text/javascript">
   // workaround for chrome bug: http://code.google.com/p/chromium/issues/detail?id=35980#c12
   if ( window.innerWidth === 0 ) { window.innerWidth = parent.innerWidth; window.innerHeight = parent.innerHeight; }
@@ -116,7 +117,7 @@
 
   <%= yield_content :foot %>
 
-  <!-- so help me, I am tetsing out chartbeat -->
+  <!-- so help me, I am testing out chartbeat -->
   <script type="text/javascript">
     var _sf_async_config = { uid: 49764, domain: 'konklone.com', useCanonical: true };
     (function() {

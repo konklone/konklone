@@ -25,6 +25,18 @@ get '/projects' do
   erb :projects
 end
 
+get '/motion' do
+  motion = Environment.motions.last
+  page = File.read "app/views/motion/#{motion}.html"
+  erb :motion, locals: {page: page, current_motion: motion}
+end
+
+get '/motion/:motion' do
+  page = File.read "app/views/motion/#{params[:motion]}.html"
+  erb :motion, locals: {page: page, current_motion: params[:motion]}
+end
+
+# if I don't support an accented é, why did I bothér
 get /\/(resume|r%C3%A9sum%C3%A9)/i do
   erb :resume, locals: {resume: true}
 end
@@ -34,9 +46,6 @@ get '/post/:slug/?' do
   raise Sinatra::NotFound unless post
 
   comments = post.comments.visible.asc(:created_at).to_a
-
-  # nginx will serve anything cached
-  # Environment.cache!(post.slug, rendered) if config[:site]['cache_enabled']
 
   erb :post, locals: {post: post, new_comment: nil, comments: comments}
 end

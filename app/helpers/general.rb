@@ -14,6 +14,10 @@ module Helpers
       "<a href=\"#{paths.first}\" class=\"#{active ? "active" : ""}\">#{text}</a>"
     end
 
+    def motion_text(motion)
+      motion.sub /\d+ - /, ''
+    end
+
     def get_ip
       forwarded = request.env['HTTP_X_FORWARDED_FOR']
       forwarded.present? ? forwarded.split(',').first : nil

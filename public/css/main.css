@@ -234,6 +234,32 @@ article figure figcaption {
   font-size: 10pt;
 }
 
+section.motion {
+  margin-top: -24px;
+}
+
+.motion header {
+  width: 100%; height: 16px;
+  padding: 15px 0;
+  background-color: rgb(19,19,19); color: white;
+}
+
+.motion header p {
+  width: 650px; margin: 0 auto;
+  text-transform: uppercase;
+  font-family: "Open Sans", Arial, sans-serif;
+}
+
+.motion article p {
+  margin-top: 10px; margin-bottom: 10px;
+}
+
+.motion ol {
+  width: 650px; margin: 0 auto;
+}
+
+.motion ol, .motion ol li {list-style-type: decimal;}
+
 /* handle gists, which embed inline, interestingly enough */
 
 article div.gist {width: 650px;}

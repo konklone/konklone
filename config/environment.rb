@@ -43,6 +43,11 @@ class Environment
     FileUtils.rm cache_dest(slug)
   rescue Errno::ENOENT
   end
+
+  def self.motions
+    path = File.join File.dirname(__FILE__), "..", "app", "views", "motion", "*.html"
+    @motions ||= Dir.glob(path).sort.map {|f| File.basename f, ".html"}
+  end
 end
 
 configure do

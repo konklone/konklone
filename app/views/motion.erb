@@ -1,0 +1,28 @@
+<section class="motion">
+  <header>
+    <p><%= motion_text current_motion %></p>
+  </header>
+
+  <article>
+    <%= page %>
+  </article>
+
+  <ol reversed>
+    <% Environment.motions.reverse.each do |motion| %>
+      <li>
+        <% if current_motion == motion %>
+          <%= motion_text motion %>
+        <% else %>
+          <a href="/motion/<%= motion %>">
+            <%= motion_text motion %>
+          </a>
+        <% end %>
+      </li>
+    <% end %>
+  </ol>
+</section>
+
+<% content_for :head do %>
+  <%# geez %>
+  <%= "<script src=\"/js/processing-1.4.1-api.min.js?#{Time.now.to_i}\"></script>".html_safe %>
+<% end %>
