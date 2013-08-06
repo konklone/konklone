@@ -19,13 +19,15 @@ $(function() {
   var actualTitle = $("article header .title").text();
   headerTitle.find("a").text(actualTitle);
 
-  $.event.add(window, "scroll", function() {
-    var p = $(window).scrollTop();
-    var flip = p > (start - offset);
+  if ($("article").size() == 1) {
+    $.event.add(window, "scroll", function() {
+      var p = $(window).scrollTop();
+      var flip = p > (start - offset);
 
-    headerLinks.css('display', flip ? 'none' : 'block');
-    headerTitle.css('display', flip ? 'block' : 'none');
-  });
+      headerLinks.css('display', flip ? 'none' : 'block');
+      headerTitle.css('display', flip ? 'block' : 'none');
+    });
+  }
 
 
   // easy footnotes
