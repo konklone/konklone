@@ -75,10 +75,6 @@ post '/comments/post/:slug' do
   end
 
   if saved
-    if comment.flagged and (post.published_at > 2.weeks.ago)
-      Email.flagged_comment comment
-    end
-
     redirect "#{post_path post}#comment-#{comment.id}"
   else
     comments = post.comments.visible.asc(:created_at).to_a
