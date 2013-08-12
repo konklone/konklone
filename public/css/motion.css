@@ -1,0 +1,38 @@
+body, header.main, section.motion, footer.main {
+  background-color: #131313;
+  color: white;
+}
+
+a {color: rgb(18, 121, 216);}
+
+section.motion {
+  margin-top: -24px;
+}
+
+.motion article header h1 {
+  text-transform: uppercase;
+  font-family: "Open Sans", Arial, sans-serif;
+}
+
+.motion article header h1 a {color: white;}
+
+.motion article p {
+  margin-top: 10px; margin-bottom: 10px;
+}
+
+.motion article header,
+.motion ol {
+  width: 650px; margin: 0 auto;
+}
+
+.motion article header {
+  margin-bottom: 10px;
+}
+
+/* center that canvas */
+.motion article canvas,
+.motion article .canvas {
+  margin: 0 auto; display: block;
+}
+
+/*.motion ol, .motion ol li {list-style-type: decimal;}*/

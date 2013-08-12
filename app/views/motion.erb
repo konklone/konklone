@@ -1,16 +1,21 @@
 <section class="motion">
-  <header>
-    <p><%= motion_text current_motion %></p>
-  </header>
-
   <article>
+    <header>
+      <h1>
+        <a href="/motion/<%= current_motion %>">
+          <%= motion_text current_motion %>
+        </a>
+      </h1>
+    </header>
+
     <%= page %>
   </article>
 
   <ol reversed>
-    <% Environment.motions.reverse.each do |motion| %>
+    <% Environment.motions.reverse.each_with_index do |motion, i| %>
       <li>
-        <% if current_motion == motion %>
+        <%= Environment.motions.size - i %>.
+        <% if URI.decode(request.path) == "/motion/#{motion}" %>
           <%= motion_text motion %>
         <% else %>
           <a href="/motion/<%= motion %>">
@@ -24,5 +29,6 @@
 
 <% content_for :head do %>
   <%# geez %>
+  <%= "<link rel=\"stylesheet\" href=\"/css/motion.css?#{Time.now.to_i}\"/>".html_safe %>
   <%= "<script src=\"/js/processing-1.4.1-api.min.js?#{Time.now.to_i}\"></script>".html_safe %>
 <% end %>
