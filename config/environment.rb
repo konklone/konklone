@@ -27,27 +27,56 @@ def config
 end
 
 class Environment
-  def self.cache_dir
-    @cache_dir ||= File.join(File.dirname(__FILE__), "..", "cache", "post")
+  # def self.cache_dir
+  #   @cache_dir ||= File.join(File.dirname(__FILE__), "..", "cache", "post")
+  # end
+
+  # def self.cache_dest(slug)
+  #   File.join cache_dir, slug
+  # end
+
+  # def self.cache!(slug, content)
+  #   File.open(cache_dest(slug), "w") {|f| f.write content}
+  # end
+
+  # def self.uncache!(slug)
+  #   FileUtils.rm cache_dest(slug)
+  # rescue Errno::ENOENT
+  # end
+
+  # my own slugifier
+  def self.to_url(string)
+    string = string.dup
+    string.gsub! /[^\w\-\s]+/, ""
+    string.gsub! /\s+/, '-'
+    string.downcase!
+    string[0..200]
   end
 
-  def self.cache_dest(slug)
-    File.join cache_dir, slug
+  def self.blackouts
+    if @blackouts
+      @blackouts
+    else
+      @blackouts = {}
+      path = File.join File.dirname(__FILE__), "..", "app", "views", "blackout", "*.html"
+
+      @blackouts = Dir.glob(path).sort.map do |file|
+        file = File.basename file, ".html"
+        id = file[0..3].to_i
+        title = file.sub /^\d+ - /, ''
+        {
+          title: title,
+          id: id,
+          slug: "#{id}-#{to_url title}",
+          file: file
+        }
+      end
+
+      @blackouts
+    end
   end
 
-  def self.cache!(slug, content)
-    File.open(cache_dest(slug), "w") {|f| f.write content}
-  end
-
-  def self.uncache!(slug)
-    FileUtils.rm cache_dest(slug)
-  rescue Errno::ENOENT
-  end
-
-  def self.motions
-    path = File.join File.dirname(__FILE__), "..", "app", "views", "motion", "*.html"
-    @motions ||= Dir.glob(path).sort.map {|f| File.basename f, ".html"}
-  end
+  blackouts # pre-calculate
 end
 
 configure do
