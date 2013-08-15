@@ -8,16 +8,26 @@
       height: 480,
 
       cube: 60,
-      jitter: 4,
+      jitter: 6,
+      jitterSpeed: 2, // jitter every X frames
 
-      starSpeed: 10, // stars per second
       stars: 10, // stars at one time
-      starMotion: 2, // pixels moved per frame
-      starFade: 5 // alpha decreased per frame
+      starSpeed: 10, // stars per second
+      starMotion: 1, // pixels moved per frame
+      starFade: 8, // alpha decreased per frame
+
+      points: 60, // points at one time
+      pointSpeed: 60, // points per second
+      pointFade: 8, // alpha decreased per frame
+      pointSize: 2 // size of point
     };
 
     var frames = 0;
     var stars = [];
+    var points = [];
+
+    var jX = 0, jY = 0; // destination jitter
+    var cJX = 0, cJY = 0; // current jitter
 
     function startProcessing(p) {
 
@@ -31,15 +41,28 @@
         // border();
         // crosshair();
 
-        var jX = (Math.random() * config.jitter) - (config.jitter / 2);
-        var jY = (Math.random() * config.jitter) - (config.jitter / 2);
-        cube(config.cube, (config.width / 2) + jX, (config.height / 2) + jY);
+        if (frames % config.jitterSpeed == 0) {
+          jX = (Math.random() * config.jitter) - (config.jitter / 2);
+          jY = (Math.random() * config.jitter) - (config.jitter / 2);
+        }
+        if (cJX < jX) cJX += Math.ceil((jX-cJX)/config.jitterSpeed);
+        else if (cJX > jX) cJX -= Math.ceil((cJX-jX)/config.jitterSpeed);
+        if (cJY < jY) cJY += Math.ceil((jY-cJY)/config.jitterSpeed);
+        else if (cJY > jY) cJY -= Math.ceil((cJY-jY)/config.jitterSpeed);
+        // debug: remove smooth jitter
+        // cJX = jX; cJY = jY;
+        cube(config.cube, (config.width / 2) + cJX, (config.height / 2) + cJY);
 
         if (frames % (60 / config.starSpeed) == 0)
           addStar();
-        frames++;
+
+        if (frames % (60 / config.pointSpeed) == 0)
+          addPoint();
 
         drawStars();
+        drawPoints();
+
+        frames++;
       };
 
       function drawStars() {
@@ -47,6 +70,7 @@
         for (var i=0; i<stars.length; i++) {
           var star = stars[i];
           p.stroke(255, 255, 255, star.alpha);
+
           p.line(
             star.x, star.y,
             star.x + (star.length * p.cos(star.angle)),
@@ -55,6 +79,38 @@
           star.length += config.starMotion;
           star.alpha -= config.starFade;
         }
+      }
+
+      function drawPoints() {
+        p.strokeWeight(3);
+        for (var i=0; i<points.length; i++) {
+          var point = points[i];
+          p.stroke(231, 245, 68, point.alpha)
+          p.line(point.x, point.y,
+            point.x,
+            point.y
+          );
+          point.alpha -= config.pointFade;
+        }
+      }
+
+      function addPoint() {
+        var point = {
+          alpha: 255
+        };
+
+        // random position, but keep a hole around the cube
+        var hole = config.cube + 30;
+        var rangeX = (config.width - hole);
+        var rangeY = (config.height - hole);
+        point.x = Math.random() * rangeX;
+        if (point.x > (rangeX / 2)) point.x += hole;
+        point.y = Math.random() * rangeY;
+        if (point.y > (rangeY / 2)) point.y += hole;
+
+        points.push(point);
+        if (points.length > config.points)
+          points.shift(point);
       }
 
       function addStar() {
@@ -100,6 +156,8 @@
 
         var back = {x: cX-oneQ, y: cY-thrQ};
         var front = {x: cX-thrQ, y: cY-oneQ};
+
+        p.strokeWeight(1);
 
         p.stroke(100, 40, 40);
         // p.fill(100, 40, 40, 128);
