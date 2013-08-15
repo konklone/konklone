@@ -27,23 +27,6 @@ def config
 end
 
 class Environment
-  # def self.cache_dir
-  #   @cache_dir ||= File.join(File.dirname(__FILE__), "..", "cache", "post")
-  # end
-
-  # def self.cache_dest(slug)
-  #   File.join cache_dir, slug
-  # end
-
-  # def self.cache!(slug, content)
-  #   File.open(cache_dest(slug), "w") {|f| f.write content}
-  # end
-
-  # def self.uncache!(slug)
-  #   FileUtils.rm cache_dest(slug)
-  # rescue Errno::ENOENT
-  # end
-
   # my own slugifier
   def self.to_url(string)
     string = string.dup

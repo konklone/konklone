@@ -1,12 +1,15 @@
 <section class="blackout">
   <article>
-    <header>
+<!--     <header>
       <h1>
         <a href="/blackout/<%= current_blackout[:slug] %>">
           <%= current_blackout[:title] %>
         </a>
+        <span class="code">
+          (<a href="https://github.com/konklone/konklone/blob/master/app/views/blackout/<%= current_blackout[:file] %>.html">code</a>)
+        </span>
       </h1>
-    </header>
+    </header> -->
 
     <%= page %>
   </article>
@@ -31,4 +34,5 @@
   <%# geez %>
   <%= "<link rel=\"stylesheet\" href=\"/css/blackout.css?#{Time.now.to_i}\"/>".html_safe %>
   <%= "<script src=\"/blackout/processing-1.4.1-api.min.js?#{Time.now.to_i}\"></script>".html_safe %>
+  <%= "<script src=\"/blackout/three.min.js?#{Time.now.to_i}\"></script>".html_safe %>
 <% end %>

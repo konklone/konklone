@@ -1,0 +1,34 @@
+<canvas></canvas>
+
+<script type="text/javascript">
+  (function() {
+
+    var config = {
+      width: 650,
+      height: 480
+    };
+
+    function startProcessing(p) {
+
+      p.setup = function() {
+        p.size(config.width, config.height);
+
+      };
+
+      p.draw = function() {
+
+      };
+
+      p.mousePressed = function() {};
+      p.mouseOver = function() {};
+      p.mouseOut = function() {};
+
+    }
+
+    /** boilerplate **/
+    var scripts = document.getElementsByTagName('script');
+    var elem = scripts[scripts.length-1];
+    var canvas = elem.parentNode.getElementsByTagName("canvas")[0];
+    var instance = new Processing(canvas, startProcessing);
+  })();
+</script>

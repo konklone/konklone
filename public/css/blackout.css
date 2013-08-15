@@ -9,6 +9,8 @@ section.blackout {
   margin-top: -24px;
 }
 
+.blackout article {margin-bottom: 0;}
+
 .blackout article header h1 {
   text-transform: uppercase;
   font-family: "Open Sans", Arial, sans-serif;
@@ -17,7 +19,8 @@ section.blackout {
 .blackout article header h1 a {color: white;}
 
 .blackout article p {
-  margin-top: 10px; margin-bottom: 10px;
+  margin-top: 10px; margin-bottom: 20px;
+  color: #888;
 }
 
 .blackout article header,
@@ -36,3 +39,7 @@ section.blackout {
 }
 
 /*.blackout ol, .blackout ol li {list-style-type: decimal;}*/
+.blackout ol li {
+  margin: 15px 0;
+  font-size: 16pt;
+}

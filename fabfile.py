@@ -39,9 +39,6 @@ def make_current():
 def set_crontab():
   run("cd %s && bundle exec rake set_crontab environment=%s current_path=%s" % (current_path, environment, current_path))
 
-def reset_cache():
-  run("cd %s && bundle exec rake cache:reset" % current_path)
-
 def prune_releases():
   pass
 
@@ -65,7 +62,6 @@ def deploy():
   execute(create_indexes)
   execute(make_current)
   execute(set_crontab)
-  # execute(reset_cache)
   execute(restart)
 
 # only difference is it uses start instead of restart

@@ -1,0 +1,166 @@
+<canvas></canvas>
+
+<script type="text/javascript">
+  (function() {
+
+    var config = {
+      width: 950,
+      height: 480,
+
+      cube: 60,
+      jitter: 4,
+
+      starSpeed: 10, // stars per second
+      stars: 10, // stars at one time
+      starMotion: 2, // pixels moved per frame
+      starFade: 5 // alpha decreased per frame
+    };
+
+    var frames = 0;
+    var stars = [];
+
+    function startProcessing(p) {
+
+      p.setup = function() {
+        p.size(config.width, config.height);
+      };
+
+      p.draw = function() {
+        p.background(0, 0, 0, 0);
+
+        // border();
+        // crosshair();
+
+        var jX = (Math.random() * config.jitter) - (config.jitter / 2);
+        var jY = (Math.random() * config.jitter) - (config.jitter / 2);
+        cube(config.cube, (config.width / 2) + jX, (config.height / 2) + jY);
+
+        if (frames % (60 / config.starSpeed) == 0)
+          addStar();
+        frames++;
+
+        drawStars();
+      };
+
+      function drawStars() {
+        p.strokeWeight(1);
+        for (var i=0; i<stars.length; i++) {
+          var star = stars[i];
+          p.stroke(255, 255, 255, star.alpha);
+          p.line(
+            star.x, star.y,
+            star.x + (star.length * p.cos(star.angle)),
+            star.y + (star.length * p.sin(star.angle))
+          );
+          star.length += config.starMotion;
+          star.alpha -= config.starFade;
+        }
+      }
+
+      function addStar() {
+        var star = {
+          length: 0,
+          alpha: 255
+        };
+
+        // random position, but keep a hole around the cube
+        var hole = config.cube + 30;
+        var rangeX = (config.width - hole);
+        var rangeY = (config.height - hole);
+        star.x = Math.random() * rangeX;
+        if (star.x > (rangeX / 2)) star.x += hole;
+        star.y = Math.random() * rangeY;
+        if (star.y > (rangeY / 2)) star.y += hole;
+
+
+        var left = (star.x < (config.width / 2));
+        var top = (star.y < (config.height / 2));
+        if (left && top)
+          star.angle = p.radians((Math.random() * 90) + 180);
+        else if (!left && top)
+          star.angle = p.radians((Math.random() * 90) + 270);
+        else if (!left && !top)
+          star.angle = p.radians((Math.random() * 90) + 0);
+        else // left && !top
+          star.angle = p.radians((Math.random() * 90) + 90);
+
+        // star.angle = p.radians(Math.random() * 360);
+
+        stars.push(star);
+        if (stars.length > config.stars)
+          stars.shift(star);
+      }
+
+      // diameter and center point
+      function cube(size, cX, cY) {
+        p.pushMatrix();
+
+        var oneQ = size / 4;
+        var thrQ = oneQ * 3;
+
+        var back = {x: cX-oneQ, y: cY-thrQ};
+        var front = {x: cX-thrQ, y: cY-oneQ};
+
+        p.stroke(100, 40, 40);
+        // p.fill(100, 40, 40, 128);
+        p.noFill()
+        p.rect(back.x, back.y, size, size); // back
+
+        // top plane
+        p.noStroke();
+        p.fill(120, 40, 40, 128);
+        p.triangle(front.x, front.y, back.x, back.y, front.x + (size/2), front.y);
+        p.quad(back.x, back.y, back.x + size, back.y, front.x + size, front.y, front.x + (size/2), front.y);
+
+        // right plane
+        p.triangle(front.x + size, front.y + size, front.x + size, front.y + (size/2), back.x + size, back.y + size);
+        p.quad(front.x + size, front.y, back.x + size, back.y, back.x + size, back.y + size, front.x + size, front.y + (size/2));
+
+        p.stroke(120, 40, 40);
+        p.line(front.x, front.y, back.x, back.y); // top-left
+        p.line(front.x + size, front.y, back.x + size, back.y); // top-right
+        p.line(front.x, front.y + size, back.x, back.y + size); // bottom-left
+        p.line(front.x + size, front.y + size, back.x + size, back.y + size); //bottom-right
+
+        p.stroke(180, 40, 40);
+        p.fill(180, 40, 40, 128);
+        p.rect(front.x, front.y, size, size); // front
+
+        p.popMatrix();
+      }
+
+      function border() {
+        p.noFill();
+        p.stroke(68);
+        p.strokeWeight(1);
+        p.rect(0, 0, config.width - 1, config.height - 1);
+      }
+
+      function crosshair() {
+        p.line(
+          (config.width / 2) - 2,
+          config.height / 2,
+          (config.width / 2) + 2,
+          config.height / 2
+        );
+        p.line(
+          (config.width / 2),
+          (config.height / 2) - 2,
+          (config.width / 2),
+          (config.height / 2) + 2
+        );
+      }
+
+      p.mousePressed = function() {};
+      p.mouseOver = function() {};
+      p.mouseOut = function() {};
+
+    }
+
+    /** boilerplate **/
+    var scripts = document.getElementsByTagName('script');
+    var elem = scripts[scripts.length-1];
+    var canvas = elem.parentNode.getElementsByTagName("canvas")[0];
+    var instance = new Processing(canvas, startProcessing);
+  })();
+</script>

@@ -21,7 +21,5 @@
 /log
 *.pyc
 
-/cache
-
 /unicorn.pid
 /unicorn.rb
