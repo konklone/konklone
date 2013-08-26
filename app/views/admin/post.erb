@@ -139,6 +139,11 @@
       name="post[excerpt]" tabindex="8"
       ><%= post.excerpt %></textarea>
 
+    <textarea placeholder="header (raw html)" class="header"
+      name="post[header]" tabindex="7"
+      style="height: <%= post.header.present? ? "400px" : "80px" %>"
+      ><%= post.header %></textarea>
+
     <textarea placeholder="footer (raw html)" class="footer"
       name="post[footer]" tabindex="7"
       style="height: <%= post.footer.present? ? "400px" : "80px" %>"

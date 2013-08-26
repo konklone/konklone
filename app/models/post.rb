@@ -17,6 +17,7 @@ class Post
 
   field :body
   field :excerpt
+  field :header # raw html to include in header
   field :footer # raw html to include in footer
 
   # some cached rendered fields

@@ -3,6 +3,8 @@
 <%# ensures current slug is used for canonical link %>
 <% content_for(:canonical) { post_path post } %>
 
+<% content_for(:head) { post.header } %>
+
 <article class="post" data-slug="<%= post.slug %>">
   <%= partial "header", engine: :erb, locals: {post: post} %>
 
