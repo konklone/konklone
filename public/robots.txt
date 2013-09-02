@@ -1,4 +1,4 @@
-Sitemap: http://konklone.com/sitemap/sitemap_index.xml.gz
+Sitemap: https://konklone.com/sitemap/sitemap_index.xml.gz
 
 User-agent: *
 Disallow: /idea/
