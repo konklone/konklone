@@ -62,7 +62,9 @@ def deploy():
   execute(create_indexes)
   execute(make_current)
   execute(set_crontab)
-  execute(restart)
+  execute(stop)
+  execute(start)
+  # execute(restart)
 
 # only difference is it uses start instead of restart
 def deploy_cold():
