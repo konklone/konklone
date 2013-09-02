@@ -71,7 +71,7 @@ task :sitemap => :environment do
   count = 1 # assume / works
 
   BigSitemap.generate(
-    base_url: "http://konklone.com",
+    base_url: "https://konklone.com",
     document_root: "public/sitemap",
     url_path: "sitemap",
     ping_google: ping,
