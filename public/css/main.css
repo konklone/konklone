@@ -107,7 +107,7 @@ article blockquote ul, article blockquote ol,
 article blockquote ul li, article blockquote ol li,
 article blockquote * {font-size: 11pt; line-height: 20px;} /* blockquotes */
 
-article h2 {font-size: 18pt; line-height: 32px;}
+article h2 {font-size: 16pt; line-height: 32px; font-family: Open Sans, sans-serif;}
 article h3 {font-size: 14pt; line-height: 29px;}
 article p.comments a {font-size: 11pt;} /* link to comments page */
 
@@ -150,13 +150,16 @@ article div.footer-text,
 article li {width: 570px;}
 
 article .body h2 {
-  margin-top: 40px;
+  margin-top: 45px;
   font-weight: normal;
 } article .body h2 .block {
-  display: inline-block;
+  xdisplay: inline-block;
+  display: none;
   background-color: rgb(0, 53, 102);
-  padding: 4px;
-  margin-bottom: 3px; margin-left: -24px;
+  height: 1px;
+  width: 180px;
+  margin-bottom: 6px;
+  margin-left: -197px;
   margin-right: 16px;
 }
 
@@ -256,8 +259,6 @@ header.main .right {width: 250px;}
 /* if in an article, pad it */
 article .right {
   padding: 5px 7px; width: 210px;
-  xbackground-color: #eaeaea;
-  xborder: 1px solid #d5d5d5;
 }
 
 article ul .right, article ol .right {margin-right: -300px;}
