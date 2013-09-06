@@ -38,7 +38,7 @@ $(function() {
 
   // dynamically prepend an anchor link to every h2
   $("article .body h2").prepend("<span class=\"anchor\"></span><span class=\"block\"></span>");
-  $("a.block").each(function(i, elem) {
+  $("span.block").each(function(i, elem) {
     var id = this.parentNode.id;
     this.parentNode.id = null;
     $(this).prev(".anchor")[0].id = id;
