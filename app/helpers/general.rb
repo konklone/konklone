@@ -58,7 +58,7 @@ module Helpers
     end
 
     def escape_attribute(string)
-      string ? string.gsub("\"", "&quot;").gsub("\'", "&#39;") : nil
+      string ? string.gsub("\"", "&quot;") : nil
     end
 
     def short_datetime(time)
