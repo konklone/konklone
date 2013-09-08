@@ -1,6 +1,14 @@
 module Helpers
   module General
 
+    def twitter_name
+      config[:twitter]['username']
+    end
+
+    def twitter_id
+      config[:twitter]['user_id']
+    end
+
     def header_link(text, paths)
       paths = [paths] unless paths.is_a? Array
       active = paths.select do |path|
@@ -47,6 +55,10 @@ module Helpers
 
     def h(text)
       Rack::Utils.escape_html text
+    end
+
+    def escape_attribute(string)
+      string.gsub("\"", "&quot;").gsub("\'", "&#39;")
     end
 
     def short_datetime(time)

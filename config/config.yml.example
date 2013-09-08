@@ -5,6 +5,11 @@
   session_secret: # some unique string
   local_root: # for internal queries, e.g. http://localhost:8080
 
+# twitter username and user ID (numeric), for use in Twitter cards
+:twitter:
+  username:
+  user_id:
+
 :admin:
   :password: # admin password
   :email: # email this person when things happen

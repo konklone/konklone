@@ -14,49 +14,31 @@
     <input type="hidden" name="_method" value="put" />
 
     <section class="controls right">
-      <input type="submit" name="submit" class="update" value="Save"
-        tabindex="8"
-      />
+      <input type="submit" name="submit" class="update" value="Save" tabindex="30"/>
 
-      <button class="preview"
-        tabindex="9"
-        >Preview &raquo;</button>
+      <button class="preview" tabindex="31">Preview &raquo;</button>
 
 
       <% if post.draft? %>
         <% if post.published_at %>
-          <input type="submit" name="submit" value="Republish"
-            tabindex="10"
-            />
+          <input type="submit" name="submit" value="Republish" tabindex="32" />
         <% else %>
-          <input type="submit" name="submit" value="Publish"
-            tabindex="10"
-            />
+          <input type="submit" name="submit" value="Publish" tabindex="32" />
         <% end %>
       <% else %>
-        <input type="submit" name="submit" value="Unpublish"
-          tabindex="10"
-          />
+        <input type="submit" name="submit" value="Unpublish" tabindex="32" />
       <% end %>
 
       <% if post.private? %>
-        <input type="submit" name="submit" value="Make public"
-          tabindex="11"
-          />
+        <input type="submit" name="submit" value="Make public" tabindex="33" />
       <% else %>
-        <input type="submit" name="submit" value="Make private"
-          tabindex="11"
-          />
+        <input type="submit" name="submit" value="Make private" tabindex="33" />
       <% end %>
 
       <% if post.flagged? %>
-        <input type="submit" name="submit" value="Un-flag"
-          tabindex="12"
-          />
+        <input type="submit" name="submit" value="Un-flag" tabindex="34" />
       <% else %>
-        <input type="submit" name="submit" value="Flag"
-          tabindex="12"
-          />
+        <input type="submit" name="submit" value="Flag" tabindex="34" />
       <% end %>
 
       <% if post.visible? %>
@@ -109,45 +91,65 @@
       tabindex="1"
       />
 
-
-    <!-- <input type="text" class="big title" name="post[subtitle]" placeholder="subtitle (optional)"
-      value="<%= form_escape post.subtitle %>"
-      tabindex="1"
-      /> -->
-
     <textarea placeholder="body" class="body"
-      name="post[body]" tabindex="3"
+      name="post[body]" tabindex="2"
       ><%= post.body %></textarea>
 
     <fieldset>
       <input type="text" placeholder="slug" id="post_slug" name="post[slug]" class="small slug" value="<%= post.slug %>"
-      tabindex="4"
+      tabindex="3"
       />
 
       <input type="text" name="post[tags]" class="small tags" placeholder="tags"
         value="<%= form_escape post.tags.join(", ") %>"
-        tabindex="5"
+        tabindex="4"
         />
 
       <input type="text" name="new_version" class="small version"
         placeholder="save new version because"
-        tabindex="6"
+        tabindex="5"
         />
     </fieldset>
 
+    <fieldset>
+      <input type="text" name="post[reddit]" class="small reddit"
+        placeholder="reddit"
+        value="<%= post.reddit %>"
+        tabindex="6" />
+      <input type="text" name="post[hacker_news]" class="small hacker_news"
+        placeholder="hacker news"
+        value="<%= post.hacker_news %>"
+        tabindex="7" />
+      <input type="text" name="post[redirect_url]" class="small redirect"
+        placeholder="301 redirect URL"
+        value="<%= post.redirect_url %>"
+        tabindex="8" />
+    </fieldset>
+
     <textarea placeholder="excerpt (html welcome)" class="excerpt"
-      name="post[excerpt]" tabindex="8"
+      name="post[excerpt]" tabindex="9"
       ><%= post.excerpt %></textarea>
 
-    <textarea placeholder="header (raw html)" class="header"
-      name="post[header]" tabindex="7"
+    <textarea placeholder="header (raw html)" class="extra header"
+      name="post[header]" tabindex="10"
       style="height: <%= post.header.present? ? "400px" : "80px" %>"
       ><%= post.header %></textarea>
 
-    <textarea placeholder="footer (raw html)" class="footer"
-      name="post[footer]" tabindex="7"
+    <textarea placeholder="footer (raw html)" class="extra footer"
+      name="post[footer]" tabindex="11"
       style="height: <%= post.footer.present? ? "400px" : "80px" %>"
       ><%= post.footer %></textarea>
+
+    <fieldset>
+      <input type="text" name="post[description]" class="small description"
+        placeholder="description (200 chars max, triggers card)"
+        value="<%= escape_attribute post.description %>"
+        tabindex="13" />
+      <input type="text" name="post[image]" class="small image"
+        placeholder="image (absolute link)"
+        value="<%= escape_attribute post.image %>"
+        tabindex="14" />
+    </fieldset>
 
   </form>
 </article>
@@ -166,7 +168,6 @@
 <form id="preview" method="post" target="_blank" action="/admin/preview">
   <input type="submit" style="display: none" />
   <input type="hidden" class="title" name="title" />
-  <input type="hidden" class="subtitle" name="subtitle" />
   <input type="hidden" class="body" name="body" />
   <input type="hidden" class="footer" name="footer" />
 </form>
@@ -183,7 +184,6 @@ $(function() {
 
   $("button.preview").click(function() {
     $("#preview .title").val($("input.title").val());
-    $("#preview .subtitle").val($("input.subtitle").val());
     $("#preview .body").val($("textarea.body").val());
     $("#preview .footer").val($("textarea.footer").val());
     $("#preview").get(0).submit();

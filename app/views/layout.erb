@@ -6,13 +6,30 @@
 
   <meta charset="utf-8" />
 
-  <% if title = yield_content(:title) %>
-    <title><%= h title %> | Eric Mill</title>
+  <!-- title, OG, and Twitter card stuff -->
+  <% if (title = yield_content(:title)).present? %>
+    <title><%= h title %></title>
+    <meta name="og:title" content="<%= escape_javascript title %>" />
   <% else %>
     <title>Eric Mill</title>
   <% end %>
 
-  <meta name="description" content="Eric Mill's writing and INSIDE FEELINGS" />
+  <% if (description = yield_content(:description)).present? %>
+    <meta name="description" content="<%= escape_attribute description %>" />
+    <meta name="og:description" content="<%= escape_attribute description %>" />
+  <% else %>
+    <meta name="description" content="Eric Mill's writing and INSIDE FEELINGS" />
+    <meta name="og:description" content="Eric Mill's writing and INSIDE FEELINGS" />
+  <% end %>
+
+  <% if (image = yield_content(:image)).present? %>
+    <meta name="og:image" content="<%= image %>" />
+  <% end %>
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:creator" content="@<%= twitter_name %>" />
+  <meta name="twitter:creator:id" content="<%= twitter_id %>" />
+
   <meta name="author" content="Eric Mill" />
   <meta name="copyright" content="2002-<%= Time.now.year %>" />
   <meta name="google-site-verification" content="BXdkAuVxuVdwYrDQxUbThU19WVlKsmyFMVxZgoAckdo" />

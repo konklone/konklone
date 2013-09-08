@@ -13,12 +13,14 @@ class Post
   #   :permanent says don't re-slug automatically (except on initial create)
   slug :title, permanent: true
 
-  field :subtitle
-
   field :body
   field :excerpt
   field :header # raw html to include in header
   field :footer # raw html to include in footer
+
+  # meta and Open Graph representation
+  field :description # 200 char max
+  field :image # relative path or URL to image
 
   # some cached rendered fields
   field :body_rendered
@@ -36,12 +38,15 @@ class Post
 
   field :comment_count, type: Integer, default: 0
 
+  # REFACTOR: use slugs, not IDs, make editable
   field :related_post_ids, type: Array, default: []
+
+  field :redirect_url
+  field :hacker_news
+  field :reddit
 
   # MARKEDFORDEATH
   field :display_title, type: Boolean, default: true
-
-  # MARKEDFORDEATH
   field :post_type, type: Array, default: ["blog"]
 
 

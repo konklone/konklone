@@ -98,7 +98,7 @@ put '/admin/post/:slug' do
   elsif params[:submit] == "Make private"
     post.private = true
 
-  # to be killed
+  # to be killed after audit
   elsif params[:submit] == "Flag"
     post.flagged = true
   elsif params[:submit] == "Un-flag"
@@ -127,7 +127,6 @@ end
 post '/admin/preview' do
   erb :preview, locals: {
     title: params[:title],
-    subtitle: params[:subtitle],
     body: params[:body],
     footer: params[:footer]
   }
@@ -148,7 +147,6 @@ get '/admin/preview/:id' do
     version = post.versions[params[:version].to_i]
     erb :preview, locals: {
       title: version['title'],
-      subtitle: version['subtitle'],
       footer: version['footer'],
       body: version['body'],
       version: version,

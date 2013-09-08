@@ -88,10 +88,11 @@ fieldset {
   margin-top: 20px;
 }
 
-input[type="text"].small {font-size: 10pt; padding: 5px;}
-input[type="text"].small.slug {width: 200px;}
-input[type="text"].small.tags {width: 200px; margin-left: 10px;}
-input[type="text"].small.version {width: 200px; margin-left: 10px;}
+input[type="text"].small {
+  font-size: 10pt; padding: 5px;
+  width: 200px; margin-right: 10px;
+}
+input[type="text"].small.description {width: 430px;}
 
 textarea.excerpt,
 textarea.body {font-family: "Georgia", serif;}
@@ -114,8 +115,7 @@ textarea.body {
   margin-top: 10px;
 }
 
-textarea.footer,
-textarea.header {
+textarea.extra {
   width: 100%;
   font-size: 10pt;
   line-height: 22px;

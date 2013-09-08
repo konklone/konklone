@@ -48,6 +48,7 @@ end
 get '/post/:slug/?' do
   post = Post.visible.find_by_slug! params[:slug]
   raise Sinatra::NotFound unless post
+  redirect(post.redirect_url, 301) if post.redirect_url.present?
 
   comments = post.comments.visible.asc(:created_at).to_a
 
