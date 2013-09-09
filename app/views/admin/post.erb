@@ -112,44 +112,44 @@
     </fieldset>
 
     <fieldset>
-      <input type="text" name="post[reddit]" class="small reddit"
-        placeholder="reddit"
-        value="<%= post.reddit %>"
-        tabindex="6" />
-      <input type="text" name="post[hacker_news]" class="small hacker_news"
-        placeholder="hacker news"
-        value="<%= post.hacker_news %>"
-        tabindex="7" />
-      <input type="text" name="post[redirect_url]" class="small redirect"
-        placeholder="301 redirect URL"
-        value="<%= post.redirect_url %>"
-        tabindex="8" />
-    </fieldset>
-
-    <textarea placeholder="excerpt (html welcome)" class="excerpt"
-      name="post[excerpt]" tabindex="9"
-      ><%= post.excerpt %></textarea>
-
-    <textarea placeholder="header (raw html)" class="extra header"
-      name="post[header]" tabindex="10"
-      style="height: <%= post.header.present? ? "400px" : "80px" %>"
-      ><%= post.header %></textarea>
-
-    <textarea placeholder="footer (raw html)" class="extra footer"
-      name="post[footer]" tabindex="11"
-      style="height: <%= post.footer.present? ? "400px" : "80px" %>"
-      ><%= post.footer %></textarea>
-
-    <fieldset>
       <input type="text" name="post[description]" class="small description"
         placeholder="description (200 chars max, triggers card)"
         value="<%= escape_attribute post.description %>"
-        tabindex="13" />
+        tabindex="6" />
       <input type="text" name="post[image]" class="small image"
         placeholder="image (absolute link)"
         value="<%= escape_attribute post.image %>"
-        tabindex="14" />
+        tabindex="7" />
     </fieldset>
+
+    <fieldset>
+      <input type="text" name="post[reddit]" class="small reddit"
+        placeholder="reddit"
+        value="<%= post.reddit %>"
+        tabindex="8" />
+      <input type="text" name="post[hacker_news]" class="small hacker_news"
+        placeholder="hacker news"
+        value="<%= post.hacker_news %>"
+        tabindex="9" />
+      <input type="text" name="post[redirect_url]" class="small redirect"
+        placeholder="301 redirect URL"
+        value="<%= post.redirect_url %>"
+        tabindex="10" />
+    </fieldset>
+
+    <textarea placeholder="excerpt (html welcome)" class="excerpt"
+      name="post[excerpt]" tabindex="11"
+      ><%= post.excerpt %></textarea>
+
+    <!-- <textarea placeholder="header (raw html)" class="extra header"
+      name="post[header]" tabindex="12"
+      style="height: <%= post.header.present? ? "400px" : "80px" %>"
+      ><%= post.header %></textarea> -->
+
+    <textarea placeholder="footer (raw html)" class="extra footer"
+      name="post[footer]" tabindex="13"
+      style="height: <%= post.footer.present? ? "400px" : "80px" %>"
+      ><%= post.footer %></textarea>
 
   </form>
 </article>
