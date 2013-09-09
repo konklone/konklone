@@ -85,6 +85,11 @@
       <% end %>
     </section>
 
+    <% if post.redirect_url.present? %>
+      <strong class="redirect">
+        This post now redirects to <a href="<%= post.redirect_url %>" target="_blank"><%= post.redirect_url %></a>.
+      </strong>
+    <% end %>
 
     <input type="text" class="big title" name="post[title]" placeholder="title"
       value="<%= form_escape post.title %>"

@@ -1,12 +1,18 @@
 <ol class="posts <%= filter %>">
   <% posts.each do |post| %>
-    <li class="post">
+    <li class="post <%= "redirect" if post.redirect_url.present? %>">
       <time class="left">
         <%= short_date post.created_at %>
       </time>
 
-      <a href="/admin/post/<%= post.slug %>">
+      <a href="/admin/post/<%= post.slug %>" class="post">
         <%= h post.title %></a>
+
+      <% if post.redirect_url.present? %>
+        <strong>
+          <a href="<%= post.redirect_url %>" target="_blank">redirect</a>
+        </strong>
+      <% end %>
 
       <% if post.comment_count > 0 %>
         <a class="flag count"><%= post.comment_count %></a>

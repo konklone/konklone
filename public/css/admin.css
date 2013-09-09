@@ -37,6 +37,10 @@ ol.posts li {
 }
 
 ol.posts li a {color: #444;}
+ol.posts li.redirect a.post {text-decoration: line-through;}
+ol.posts li.redirect strong {font-size: 90%;}
+ol.posts li.redirect strong a {text-decoration: none;}
+ol.posts li.redirect strong a:hover {text-decoration: underline;}
 ol.posts.drafts li a {color: #cc0000;}
 ol.posts.private li * {color: #aaa;}
 ol.posts.flagged li a {color: #228822;}
@@ -73,6 +77,8 @@ ol.comments li.shown span.excerpt {color: #888;}
 ol.comments li.hidden * {color: #aaa;}
 
 /** post form */
+
+strong.redirect {display: block; padding: 20px 0;}
 
 input[type="text"].big, input[type="password"].big {
   font-size: 14pt;
