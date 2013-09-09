@@ -69,6 +69,7 @@ class Post
   validates_uniqueness_of :slug, allow_nil: true
 
   scope :visible, where(private: false, draft: false)
+  scope :here, where(redirect_url: {"$in" => [nil, ""]})
 
   scope :drafts, where(draft: true)
   scope :private, where(private: true)

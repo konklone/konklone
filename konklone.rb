@@ -18,7 +18,7 @@ end
 
 get '/' do
   per_page = 30
-  posts, page = paginate per_page, Post.visible.desc(:published_at)
+  posts, page = paginate per_page, Post.visible.here.desc(:published_at)
   erb :index, locals: {posts: posts, per_page: per_page, page: page}
 end
 
@@ -118,7 +118,7 @@ end
 get '/rss.xml' do
   headers['Content-Type'] = 'application/rss+xml'
 
-  posts = Post.visible.desc(:published_at).limit(20).to_a
+  posts = Post.visible.here.desc(:published_at).limit(20).to_a
   erb :rss, locals: {site: config[:site], posts: posts}, layout: false
 end
 
