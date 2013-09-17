@@ -4,6 +4,7 @@
   :check_spam: # whether to enable spam checking for comments
   session_secret: # some unique string
   local_root: # for internal queries, e.g. http://localhost:8080
+  cache_markdown: true
 
 # twitter username and user ID (numeric), for use in Twitter cards
 :twitter:

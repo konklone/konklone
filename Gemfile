@@ -16,7 +16,7 @@ gem 'loofah'
 
 gem 'pony'
 
-gem 'redcarpet'
+gem 'kramdown'
 gem 'rakismet'
 gem 'simple-rss'
 gem 'tzinfo'

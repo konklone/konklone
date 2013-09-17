@@ -1,5 +1,6 @@
 require 'nokogiri'
 require 'loofah'
+require 'kramdown'
 
 # needs to be safe enough to be included into a Mongoid model
 
@@ -7,6 +8,14 @@ module Helpers
   module Rendering
 
     # any field-specific render methods begin with "render_"
+
+    def post_body(post)
+      if config[:site]['cache_markdown']
+        post.body_rendered
+      else
+        render_post_body post.body
+      end
+    end
 
     def render_post_body(text)
       text = markdown text
@@ -27,19 +36,20 @@ module Helpers
     end
 
     def render_comment_body(text)
-      renderer = Redcarpet::Render::HTML.new(
-        filter_html: true,
-        safe_links_only: true
-      )
+      # renderer = Redcarpet::Render::HTML.new(
+      #   filter_html: true,
+      #   safe_links_only: true
+      # )
 
-      markdown = Redcarpet::Markdown.new(
-        renderer,
-        no_intra_emphasis: true,
-        autolink: true,
-        space_after_headers: true
-      )
+      # markdown = Redcarpet::Markdown.new(
+      #   renderer,
+      #   no_intra_emphasis: true,
+      #   autolink: true,
+      #   space_after_headers: true
+      # )
 
-      markdown.render text
+      # markdown.render text
+      text
     end
 
 
@@ -68,18 +78,22 @@ module Helpers
     end
 
     def markdown(text)
-      renderer = Redcarpet::Render::HTML.new(
-        hard_wrap: true
-      )
+      # renderer = Redcarpet::Render::HTML.new(
+      #   hard_wrap: true
+      # )
 
-      markdowned = Redcarpet::Markdown.new(
-        renderer,
-        # no_intra_emphasis: true,
-        autolink: true,
-        space_after_headers: true
-      )
+      # markdowned = Redcarpet::Markdown.new(
+      #   renderer,
+      #   # no_intra_emphasis: true,
+      #   autolink: true,
+      #   space_after_headers: true
+      # )
 
-      markdowned.render text
+      # markdowned.render text
+
+      Kramdown::Document.new(text, {
+
+      }).to_html
     end
 
     def strip_tags(string)

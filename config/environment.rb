@@ -6,7 +6,6 @@ require 'mongoid_slug'
 require 'rakismet'
 
 require 'escape_utils'
-require 'redcarpet'
 
 require 'sinatra/content_for'
 require 'sinatra/flash'
