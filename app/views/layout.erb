@@ -13,6 +13,7 @@
     <meta name="og:title" content="<%= escape_javascript title %>" />
   <% else %>
     <title>Eric Mill</title>
+    <meta name="og:title" content="Eric Mill" />
   <% end %>
 
   <% if (description = yield_content(:description)).present? %>
@@ -28,7 +29,7 @@
     <meta name="og:image" content="<%= image %>" />
     <meta name="twitter:card" content="summary_large_image" />
   <% else %>
-    <meta name="og:image" content="/favicon.png" />
+    <meta name="og:image" content="https://konklone.com/favicon.png" />
     <meta name="twitter:card" content="summary" />
   <% end %>
 
