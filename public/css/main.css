@@ -13,28 +13,21 @@ input.placeholder, textarea.placeholder {color: #999;} /* CSS class only used fo
 
 /********* Colors ******/
 
-/* backgrounds */
 body {background-color: #f5f5f5;}
-
-/* main text */
 body {color: #151515;}
+a {color: rgb(0, 53, 102);}
 
-/* links */
-a {
-  color: rgb(0, 53, 102);
-}
-
-/* quotes */
 article blockquote {color: #222;}
 
 /* faded color (e.g. quotes) */
 article pre,
 footer.main {color: #555;}
-article header time,
+article header h6,
 article.small time {color: #808080;}
 article small time {color: #777;}
+article header h6 a.comments {color: #404040;}
 
-/* code/pre */
+/* code blocks */
 article code {
   padding: 2px 4px;
   background-color: #eaeaff;
@@ -75,14 +68,10 @@ header.main {
 #comment-form p {color: #990000;}
 
 
-
-/* Link decoration */
-
 header.main a {text-decoration: none;}
 header.main a:hover {text-decoration: underline;}
 article h1 a, article h2 a {text-decoration: none;}
 article h1 a:hover, article h2 a:hover {text-decoration: underline;}
-
 
 
 /********** Font sizes *************/
@@ -90,8 +79,8 @@ article h1 a:hover, article h2 a:hover {text-decoration: underline;}
 header.main    {font-size: 13pt;} /* main header */
 footer.main    {font-size: 10pt;} /* main footer */
 
-article header h1,
-article header time  {font-size: 20pt; line-height: 40px;} /* article title */
+article header h1  {font-size: 20pt; line-height: 40px;} /* article title */
+article header h6  {font-size: 10pt; line-height: 20px;}
 
 article sup {font-size: 10pt;}
 
