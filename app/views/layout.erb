@@ -23,6 +23,7 @@
     <meta name="og:description" content="Eric Mill's writing and INSIDE FEELINGS" />
   <% end %>
 
+  <!-- assumes any post-provided image will be appropriate for large format -->
   <% if (image = yield_content(:image)).present? %>
     <meta name="og:image" content="<%= image %>" />
     <meta name="twitter:card" content="summary_large_image" />
