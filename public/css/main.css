@@ -138,6 +138,12 @@ article div.footer-text,
 
 article li {width: 570px;}
 
+article blockquote ul,
+article blockquote ol {width: 550px;}
+
+article blockquote ol li,
+article blockquote ul li {padding: 0 20px; width: 510px;}
+
 article .body h2 {
   margin-top: 45px;
   font-weight: normal;
@@ -366,10 +372,7 @@ article header {margin-bottom: 20px;}
 article p {margin-top: 20px; margin-bottom: 20px;}
 article p a {text-decoration: underline;}
 
-article ol, article ul {
-  list-style-position: outside;
-}
-
+article ol, article ul {list-style-position: outside;}
 article li {padding-left: 2px;}
 article ol li, article ul li {margin-top: 15px; margin-bottom: 15px;}
 
