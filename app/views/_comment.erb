@@ -12,13 +12,7 @@
 
     <h6>
       <time datetime="<%= long_datetime comment.created_at %>" pubdate>
-        <% if admin? %>
-          <a href="/admin/comment/<%= comment.id %>">
-            <%= long_date comment.created_at %>
-          </a>
-        <% else %>
-          <%= long_date comment.created_at %>
-        <% end %>
+        <%= long_date comment.created_at %>
       </time>
     </h6>
 
