@@ -25,7 +25,8 @@ footer.main {color: #555;}
 article header h6,
 article.small time {color: #808080;}
 article small time {color: #777;}
-article header h6 a.comments {color: #404040;}
+article header h6 a.comments,
+#comments li header h6 {color: #404040;}
 
 /* code blocks */
 article code {
@@ -39,11 +40,10 @@ article code {
 /* post title, separator */
 article header h1 a,
 article.small h1 a,
-#comments li header time,
-#comments li header span,
-#comments li header span a {
-  color: #444
+#comments li header span {
+  color: #404040;
 }
+#comments li header span a {color: #404040;}
 
 article h2,
 article h3 {color: #222;}
@@ -107,7 +107,7 @@ article small {
 article .unpublished {font-size: 10pt; line-height: 20px;}
 
 #comments li header span {font-size: 14pt;} /* comment name */
-#comments li header time {font-size: 14pt;} /* comment date */
+#comments li header h6 {font-size: 10pt; line-height: 20px;} /* comment date */
 #comments li p           {font-size: 13pt;} /* comment text */
 
 #comment-form span          {
@@ -396,7 +396,7 @@ article pre {
 
 #comments li p {
   line-height: 25px;
-  margin: 20px 0;
+  margin: 10px 0 30px 0;
 }
 
 
