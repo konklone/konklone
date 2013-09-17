@@ -19,7 +19,7 @@ $(function() {
   var actualTitle = $("article header .title").text();
   headerTitle.find("a").text(actualTitle);
 
-  if ($("article").size() == 1) {
+  if ($("article.post").size() == 1) {
     $.event.add(window, "scroll", function() {
       var p = $(window).scrollTop();
       var flip = p > (start - offset);
