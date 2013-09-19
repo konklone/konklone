@@ -31,15 +31,15 @@
         <li>
           <article class="small">
             <div class="inner">
-              <time class="left" datetime="<%= short_datetime post.published_at %>" pubdate>
-                <%= short_date post.published_at %>
-              </time>
-
               <h1>
                 <a class="title" href="<%= post_path post %>">
                   <%= h post.title %>
                 </a>
               </h1>
+
+              <time datetime="<%= short_datetime post.published_at %>" pubdate>
+                <%= short_date post.published_at %>
+              </time>
 
               <span class="excerpt"><%= small_post_excerpt post %></span>
             </div>

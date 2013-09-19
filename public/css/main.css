@@ -262,7 +262,6 @@ article .right {
 
 article ul .right, article ol .right {margin-right: -300px;}
 
-article time.left {padding-top: 0;}
 article .unpublished {padding-top: 10px;}
 
 article sup {margin-left: 0px; margin-top: -3px; vertical-align: 8%;}
@@ -280,8 +279,9 @@ article.small p,
 article.small h1 {display: inline-block;}
 article.small h1 a {text-decoration: underline;}
 article.small p {width: inherit;}
-article.small time,
-article.small h1 {font-size: 16pt; line-height: 30px;}
+article.small time {font-size: 13pt; line-height: 30px; margin-left: 5px;}
+article.small time:after {content: "—"}
+article.small h1 {font-size: 14pt; line-height: 25px;}
 article.small span.excerpt {
   color: #555; font-size: 13pt;
   line-height: 30px;
