@@ -329,10 +329,10 @@ header.main .inner.me .right span {
 
 header.main .inner.me .right a.feed {
   background-image: url(/images/feed-16.png);
-  background-size: 16px 16px;
-  background-position: 0 -1px;
+  background-size: 12px 12px;
+  background-position: 0px 1px;
   background-repeat: no-repeat;
-  padding-left: 24px;
+  padding-left: 18px;
   margin-right: 14px;
 }
 
