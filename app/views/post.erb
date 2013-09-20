@@ -12,34 +12,42 @@
   <section class="body">
     <%= post_body post %>
   </section>
+
+  <hr/>
+
+  <% if post.reddit.present? or post.hacker_news.present? %>
+    <section class="discuss footer">
+      Discuss this post over at <%= social_links post %>.
+    </section>
+  <% end %>
+
+  <section class="author footer">
+    Follow <a href="https://twitter.com/konklone">@konklone</a> on Twitter. Subscribe to new posts by <a class="feed" href="/rss.xml">RSS</a> or <input type="email" placeholder="entering your email." class="email" /> <input type="submit" class="subscribe" value="Subscribe" />
+  </section>
+
+  <% if post.related_post_ids.any? %>
+    <section class="related footer">
+      <h5>Related posts:</h5>
+
+      <ul>
+      <% post.related_posts.each do |related_post| %>
+        <li>
+          <a href="<%= post_path related_post %>"><%= h related_post.title %></a>
+          <time datetime="<%= short_datetime related_post.published_at %>">
+            <%= short_date related_post.published_at %>
+          </time>
+        </li>
+      <% end %>
+      </ul>
+    </section>
+  <% end %>
 </article>
-
-<% if post.related_post_ids.any? %>
-  <div class="related">
-    <h5>Related:</h5>
-
-    <ul>
-    <% post.related_posts.each do |related_post| %>
-      <li>
-        <a href="<%= post_path related_post %>"><%= h related_post.title %></a>
-        <time datetime="<%= short_datetime related_post.published_at %>">
-          <%= short_date related_post.published_at %>
-        </time>
-      </li>
-    <% end %>
-    </ul>
-  </div>
-<% end %>
-
-<hr />
 
 <% new_comment = nil unless defined?(new_comment) %>
 <section id="comment-form">
 
-  <span>Sure, leave a comment:</span>
-
   <% if new_comment and new_comment.errors.any? %>
-    <p>Comments must have a name and a body.</p>
+    <p>Comments must have a name, email, and body.</p>
   <% end %>
 
   <form method="post" action="<%= comment_path post %>#comment-form">
@@ -53,7 +61,7 @@
       <% if new_comment %>value="<%= new_comment.author_email %>"<% end %>
       />
     <textarea name="comment[body]"><% if new_comment %><%= h new_comment.body %><% end %></textarea>
-    <input type="submit" value="Thanks, I will" />
+    <input type="submit" value="Leave a comment" />
   </form>
 </section>
 

@@ -9,6 +9,13 @@ module Helpers
       config[:twitter]['user_id']
     end
 
+    # post is assumed to have one social link or the other
+    def social_links(post)
+      link1 = "<a href=\"#{post.hacker_news}\">Hacker News</a>" if post.hacker_news.present?
+      link2 = "<a href=\"#{post.reddit}\">Reddit</a>" if post.reddit.present?
+      [link1, link2].compact.join " or "
+    end
+
     def header_link(text, paths)
       paths = [paths] unless paths.is_a? Array
       active = paths.select do |path|
@@ -70,11 +77,7 @@ module Helpers
     end
 
     def short_date(time)
-      if Time.now.year == time.year
-        time.strftime "%b #{time.day}"
-      else
-        time.strftime "%b #{time.day}, %Y"
-      end
+      time.strftime "%b #{time.day}, %Y"
     end
 
     def long_date(time)

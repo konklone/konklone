@@ -4,8 +4,6 @@ $("header.main .inner h1 a").click(function() {
   return false;
 });
 
-// $("header.main .inner.me a.left").show();
-
 
 $(function() {
 
@@ -44,5 +42,9 @@ $(function() {
   //   $(this).prev(".anchor")[0].id = id;
   //   $(this).attr("href", "#" + id);
   // });
+
+  $("article .author input.email").focus(function() {
+    $("article .author input.subscribe").show();
+  });
 
 });

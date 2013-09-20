@@ -12,7 +12,6 @@ ul, ol, li {list-style-type: none;}
 h1,h2,h3,h4,h5,h6 {font-weight: normal;}
 input.placeholder, textarea.placeholder {color: #999;} /* CSS class only used for HTML5 fallback */
 
-
 /********* Colors ******/
 
 body {background-color: #f5f5f5;}
@@ -56,8 +55,6 @@ article header h2 {
   font-weight: normal;
 }
 
-hr {border-color: rgb(0, 53, 102)}
-
 header.main,
 header.main a {color: #fff;}
 
@@ -79,7 +76,7 @@ article h1 a:hover, article h2 a:hover {text-decoration: underline;}
 /********** Font sizes *************/
 
 header.main    {font-size: 13pt;} /* main header */
-footer.main    {font-size: 10pt;} /* main footer */
+footer.main    {font-size: 11pt;} /* main footer */
 
 article header h1  {font-size: 20pt; line-height: 40px;} /* article title */
 article header h6  {font-size: 10pt; line-height: 20px;}
@@ -88,19 +85,18 @@ article sup {font-size: 10pt;}
 
 article p,
 article pre,
-article ol li,
-article ul li   {font-size: 13pt; line-height: 25px;} /* article text */
+article .body ol li,
+article .body ul li   {font-size: 13pt; line-height: 25px;} /* article text */
 article .callout {font-size: 11pt; line-height: 20px;}
 
 article blockquote,
 article blockquote p,
-article blockquote ul, article blockquote ol,
-article blockquote ul li, article blockquote ol li,
-article blockquote * {font-size: 11pt; line-height: 20px;} /* blockquotes */
+article .body blockquote ul, article .body blockquote ol,
+article .body blockquote ul li, article .body  blockquote ol li,
+article .body blockquote * {font-size: 11pt; line-height: 20px;} /* blockquotes */
 
-article h2 {font-size: 16pt; line-height: 32px;}
-article h3 {font-size: 14pt; line-height: 29px;}
-article p.comments a {font-size: 11pt;} /* link to comments page */
+article .body h2 {font-size: 16pt; line-height: 32px;}
+article .body h3 {font-size: 14pt; line-height: 29px;}
 
 article small {
   font-size: 10pt;
@@ -124,27 +120,26 @@ article .unpublished {font-size: 10pt; line-height: 20px;}
 header.main .inner,
 footer.main,
 article p,
-article ol, article ul,
+article .body ol, article .body ul,
 article header,
 article pre,
-article h2,
-article h3, article h4, article h5, article h6,
+article .body h2,
+article .body h3, article .body h4, article .body h5, article .body h6,
 article iframe.youtube,
-.related,
+article .footer,
 .error,
 article.small div.inner,
 #comment-form,
 article figure figcaption,
-article div.footer-text,
 #comments {width: 650px;}
 
-article li {width: 570px;}
+article .body li {width: 570px;}
 
-article blockquote ul,
-article blockquote ol {width: 550px;}
+article .body blockquote ul,
+article .body blockquote ol {width: 550px;}
 
-article blockquote ol li,
-article blockquote ul li {padding: 0 20px; width: 510px;}
+article .body blockquote ol li,
+article .body blockquote ul li {padding: 0 20px; width: 510px;}
 
 article .body h2 {
   margin-top: 45px;
@@ -164,7 +159,6 @@ article .body h3 {margin-top: 20px;}
 
 article iframe.youtube {height: 394px;}
 
-hr {width: 300px;}
 article blockquote {
   padding: 1px 20px;
   border: 1px solid #888;
@@ -187,25 +181,25 @@ article .callout {
   font-style: italic;
 }
 
-article div.footer-text {
+article .body .footer-text {
   font-size: 11pt;
-  color: #222;
+
   background-color: #e5e5e5;
+  border: 1px solid #c5c5c5;
+
   font-style: italic;
   line-height: 26px;
-  width: 630px;
-  padding: 10px;
-  margin-top: 50px;
-}
 
-article .callout strong {}
+  width: 630px; padding: 10px;
+
+  margin-top: 30px;
+}
 
 header.main .inner,
 footer.main,
 div.main,
-.related,
 article *,
-hr,
+article hr,
 #comment-form,
 #comments {
   margin: 0 auto;
@@ -266,7 +260,6 @@ article ul .right, article ol .right {margin-right: -300px;}
 article .unpublished {padding-top: 10px;}
 
 article sup {margin-left: 0px; margin-top: -3px; vertical-align: 8%;}
-article small sup {}
 article small span {margin-right: 3px;}
 
 
@@ -289,12 +282,47 @@ article.small span.excerpt {
   margin-left: 5px;
 }
 
-.related {color: #555; font-size: 90%;}
-.related h5 {margin-bottom: 10px; display: inline-block; vertical-align: top;}
-.related ul {display: inline-block; margin-left: 10px;}
-.related li {margin-bottom: 15px;}
-.related li a {display: inline-block; margin-right: 5px;}
-.related li time {display: inline-block;}
+article hr {
+  clear: both;
+  border-color: #888;
+  width: 650px;
+  border-top-width: 1px;
+  margin-top: 50px;
+  margin-bottom: 15px;
+}
+
+article .discuss {margin-bottom: 15px;}
+article .author {margin-bottom: 15px; display: none;}
+
+article .footer {color: #555; font-size: 11pt;}
+article .footer a {color: #333;}
+article .discuss {color: #111;}
+article .discuss a {color: rgb(0, 53, 102);}
+
+article .author input.email {
+  border: 0;
+  margin-left: 3px;
+  width: 135px;
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #888;
+}
+
+article .author input.subscribe {display: none;}
+
+article .author a.feed {
+  background-image: url(/images/feed-12-black.png);
+  background-size: 12px 12px;
+  background-position: 0px 1px;
+  background-repeat: no-repeat;
+  padding-left: 16px;
+  margin-left: 3px;
+}
+
+article .related h5 {display: inline-block; vertical-align: top;}
+article .related ul {display: inline-block; margin-left: 10px;}
+article .related li {margin-bottom: 15px;}
+article .related li a {display: inline-block; margin-right: 5px;}
+article .related li time {display: inline-block;}
 
 /** Main structure - everything else **/
 
@@ -353,12 +381,6 @@ div.main {margin-top: 70px;}
 
 article {margin-bottom: 40px;}
 
-hr {
-  clear: both;
-  margin-top: 70px;
-  margin-bottom: 70px;
-}
-
 /** Footer */
 
 footer.main p {
@@ -371,19 +393,19 @@ footer.main p {
 
 article header {margin-bottom: 20px;}
 
-article p {margin-top: 20px; margin-bottom: 20px;}
-article p a {text-decoration: underline;}
+article .body p {margin-top: 20px; margin-bottom: 20px;}
+article .body p a {text-decoration: underline;}
 
-article ol, article ul {list-style-position: outside;}
-article li {padding-left: 2px;}
-article ol li, article ul li {margin-top: 15px; margin-bottom: 15px;}
+article .body ol, article .body ul {list-style-position: outside;}
+article .body li {padding-left: 2px;}
+article .body ol li, article .body ul li {margin-top: 15px; margin-bottom: 15px;}
 
-article blockquote ul, article blockquote ol,
-article blockquote ul li, article blockquote ol li {list-style-position: inside;}
-article ul, article ul li {list-style-type: disc;}
-article ol, article ol li {list-style-type: decimal;}
+article .body blockquote ul, article .body blockquote ol,
+article .body blockquote ul li, article .body blockquote ol li {list-style-position: inside;}
+article .body ul, article .body ul li {list-style-type: disc;}
+article .body ol, article .body ol li {list-style-type: decimal;}
 
-article pre {
+article .body pre {
   white-space: pre-wrap;
   font-family: inherit;
 }
@@ -396,7 +418,6 @@ article pre {
 #comments li.hidden {background-color: #e5e5e5;}
 #comments li.hidden span.hidden {color: #a00;}
 
-#comments li header span {}
 #comments li header a {text-decoration: underline;}
 
 #comments li p {
