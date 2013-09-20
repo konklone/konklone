@@ -22,7 +22,14 @@
   <% end %>
 
   <section class="author footer">
-    Follow <a href="https://twitter.com/konklone">@konklone</a> on Twitter. Subscribe to new posts by <a class="feed" href="/rss.xml">RSS</a>. <!-- or <input type="email" placeholder="entering your email." class="email" /> <input type="submit" class="subscribe" value="Subscribe" /> -->
+    <form>
+      Follow <a href="https://twitter.com/konklone">@konklone</a> on Twitter. Subscribe to new posts by <a class="feed" href="/rss.xml" target="_blank">RSS</a> or
+      <div class="to_subscribe">
+        <input type="email" placeholder="entering your email." class="email" /> <input type="submit" class="subscribe" value="Subscribe" />
+      </div>
+      <div class="is_subscribing">Subscribing <span></span>...</div>
+      <div class="has_subscribed">Got it! Sent <span></span> an email to confirm.</div>
+    </form>
   </section>
 
   <% if post.related_post_ids.any? %>

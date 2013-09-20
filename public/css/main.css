@@ -307,6 +307,13 @@ article .author input.email {
   border-bottom: 1px solid #888;
 }
 
+article .author .to_subscribe {display: inline-block; }
+article .author .is_subscribing,
+article .author .has_subscribed  {
+  display: none; margin-top: 10px;
+  color: #111;
+}
+article .author .has_subscribed {font-weight: bold;}
 article .author input.subscribe {display: none;}
 
 article .author a.feed {
