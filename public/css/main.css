@@ -288,16 +288,21 @@ article hr {
   width: 650px;
   border-top-width: 1px;
   margin-top: 50px;
+  xmargin-top: 30px;
   margin-bottom: 15px;
 }
 
-article .discuss {margin-bottom: 15px;}
-article .author {margin-bottom: 15px;}
+/*article .related {margin-top: 20px;}*/
+article .discuss {
+  xmargin-bottom: 15px;
+  margin-top: 25px;
+}
+article .author {margin-bottom: 35px;}
 
 article .footer {color: #555; font-size: 11pt;}
 article .footer a {color: #333;}
-article .discuss {color: #111;}
-article .discuss a {color: rgb(0, 53, 102);}
+article .discuss {color: #111; font-style: italic; color: #555}
+article .discuss a {xcolor: rgb(0, 53, 102); }
 
 article .author input.email {
   border: 0;

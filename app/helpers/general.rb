@@ -13,7 +13,7 @@ module Helpers
     def social_links(post)
       link1 = "<a href=\"#{post.hacker_news}\">Hacker News</a>" if post.hacker_news.present?
       link2 = "<a href=\"#{post.reddit}\">Reddit</a>" if post.reddit.present?
-      [link1, link2].compact.join " or "
+      [link1, link2].compact.join " and "
     end
 
     def header_link(text, paths)

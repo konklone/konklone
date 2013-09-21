@@ -96,6 +96,29 @@ post '/comments/post/:slug' do
   end
 end
 
+# ajax endpoint for subscribe-by-email form
+post '/subscribe' do
+  email = params[:email].strip
+
+  Subscriber.find_or_initialize_by email: email
+  # TODO: handle unsubscribed user resubscribing
+
+  if subscriber.save
+    # TODO: send confirm email to user
+    head 201
+  else
+    head 500
+  end
+end
+
+# TODO: confirm email endpoint
+  # lookup user
+  # mark user as confirmed (confirmed_at)
+  # plain template saying they're confirmed (new view)
+
+# TODO: unsubscribe endpoint
+
+
 get '/error' do
   raise Exception.new("YOU'RE KILLING MEEEEE")
 end
