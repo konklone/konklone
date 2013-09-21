@@ -39,32 +39,16 @@ module Helpers
       text
     end
 
-    # small excerpt is text only, filter out html
-    def render_post_excerpt_text(text)
-      strip_tags sanitize(render_post_excerpt(text))
-    end
-
+    # sanitize comments pre-markdown
     def render_comment_body(text)
-      # renderer = Redcarpet::Render::HTML.new(
-      #   filter_html: true,
-      #   safe_links_only: true
-      # )
-
-      # markdown = Redcarpet::Markdown.new(
-      #   renderer,
-      #   no_intra_emphasis: true,
-      #   autolink: true,
-      #   space_after_headers: true
-      # )
-
-      # markdown.render text
-
       sanitized = strip_tags sanitize(text)
       sanitized = Rinku.auto_link sanitized, :all, "rel='nofollow'"
+      markdown sanitized
+    end
 
-      Kramdown::Document.new(sanitized, {
-
-      }).to_html
+    # sanitize text-only excerpt post-markdown
+    def render_post_excerpt_text(text)
+      strip_tags sanitize(render_post_excerpt(text))
     end
 
 
@@ -93,22 +77,7 @@ module Helpers
     end
 
     def markdown(text)
-      # renderer = Redcarpet::Render::HTML.new(
-      #   hard_wrap: true
-      # )
-
-      # markdowned = Redcarpet::Markdown.new(
-      #   renderer,
-      #   # no_intra_emphasis: true,
-      #   autolink: true,
-      #   space_after_headers: true
-      # )
-
-      # markdowned.render text
-
-      Kramdown::Document.new(text, {
-
-      }).to_html
+      Kramdown::Document.new(text).to_html
     end
 
     def strip_tags(string)
