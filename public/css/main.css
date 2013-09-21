@@ -289,13 +289,11 @@ article hr {
   width: 650px;
   border-top-width: 1px;
   margin-top: 50px;
-  xmargin-top: 30px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 /*article .related {margin-top: 20px;}*/
 article .discuss {
-  xmargin-bottom: 15px;
   margin-top: 25px;
 }
 article .author {margin-bottom: 35px;}
@@ -305,6 +303,9 @@ article .footer a {color: #333;}
 article .discuss {color: #111; font-style: italic; color: #555}
 article .discuss a {xcolor: rgb(0, 53, 102); }
 
+article .author span.hear,
+article .author span.hear a {vertical-align:bottom;}
+article .author span.hear {margin-bottom: 3px; display: inline-block;}
 article .author input.email {
   border: 0;
   margin-left: 3px;
@@ -315,12 +316,13 @@ article .author input.email {
 
 article .author .to_subscribe {display: inline-block; }
 article .author .is_subscribing,
+article .author .error_subscribing,
 article .author .has_subscribed  {
-  display: none; margin-top: 10px;
+  display: none; margin-top: 15px;
   color: #111;
 }
-article .author .has_subscribed {font-weight: bold;}
-article .author input.subscribe {display: none;}
+article .author .has_subscribed {font-weight: normal;}
+article .author input.subscribe {visibility: hidden;}
 
 article .author a.feed {
   background-image: url(/images/feed-12-black.png);

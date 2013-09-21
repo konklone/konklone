@@ -44,21 +44,25 @@ $(function() {
   // });
 
   $("article .author input.email").focus(function() {
-    $("article .author input.subscribe").show();
+    $("article .author input.subscribe").css("visibility", "visible");
   });
 
   $("article .author form").submit(function() {
     var email = $("article .author input.email").val();
     $("article .author input.email").val("");
 
-    $("article .author .is_subscribing span").html(email);
+    // $("article .author .is_subscribing span").html(email);
     $("article .author .has_subscribed span").html(email);
-    $("article .author .is_subscribing").show();
+    // $("article .author .is_subscribing").show();
     $("article .author .has_subscribed").hide();
-    setTimeout(function() {
-      $("article .author .is_subscribing").hide();
+    $("article .author .error_subscribing").hide();
+    $.post("/subscribe", {email: email}, function(data) {
+      // $("article .author .is_subscribing").hide();
       $("article .author .has_subscribed").show();
-    }, 2000);
+    }).error(function() {
+      // $("article .author .is_subscribing").hide();
+      $("article .author .error_subscribing").show();
+    });
     return false;
   });
 
