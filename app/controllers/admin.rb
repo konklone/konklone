@@ -153,7 +153,10 @@ get '/admin/preview/:id' do
       comments: comments
     }
   else
-    erb :post, locals: {post: post, comments: comments}
+    erb :post, locals: {
+      post: post, comments: comments,
+      preview: true
+    }
   end
 end
 
