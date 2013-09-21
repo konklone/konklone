@@ -1,6 +1,7 @@
 require 'nokogiri'
 require 'loofah'
 require 'kramdown'
+require 'rinku'
 
 # needs to be safe enough to be included into a Mongoid model
 
@@ -14,6 +15,14 @@ module Helpers
         post.body_rendered
       else
         render_post_body post.body
+      end
+    end
+
+    def comment_body(comment)
+      if config[:site]['cache_markdown']
+        comment.body_rendered
+      else
+        render_comment_body comment.body
       end
     end
 
@@ -49,7 +58,13 @@ module Helpers
       # )
 
       # markdown.render text
-      text
+
+      sanitized = strip_tags sanitize(text)
+      sanitized = Rinku.auto_link sanitized, :all, "rel='nofollow'"
+
+      Kramdown::Document.new(sanitized, {
+
+      }).to_html
     end
 
 

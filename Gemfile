@@ -11,12 +11,14 @@ gem 'mongoid_slug'
 gem 'big_sitemap'
 gem 'escape_utils'
 
+gem 'pony'
+
+# markdown/comment/parsing/sanitization
+gem 'kramdown'
+gem 'rinku'
 gem 'nokogiri'
 gem 'loofah'
 
-gem 'pony'
-
-gem 'kramdown'
 gem 'rakismet'
 gem 'simple-rss'
 gem 'tzinfo'
