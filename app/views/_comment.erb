@@ -11,9 +11,11 @@
     </span>
 
     <h6>
-      <time datetime="<%= long_datetime comment.created_at %>" pubdate>
-        <%= long_date comment.created_at %>
-      </time>
+      <a href="#comment-<%= comment.id %>">
+        <time datetime="<%= long_datetime comment.created_at %>" pubdate>
+          <%= long_date comment.created_at %>
+        </time>
+      </a>
     </h6>
 
     <% if admin? and comment.hidden? %>

@@ -25,8 +25,10 @@ footer.main {color: #555;}
 article header h6,
 article.small time {color: #808080;}
 article small time {color: #777;}
-article header h6 a.comments,
-#comments li header h6 {color: #404040;}
+article header h6 a.comments {color: #404040;}
+#comments li header h6,
+#comments li header h6 a {color: #404040; text-decoration: none;}
+#comments li header h6 a:hover {text-decoration: underline;}
 
 /* code blocks */
 article code {
