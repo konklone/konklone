@@ -53,6 +53,7 @@
   <% end %>
 </article>
 
+<% if !defined?(preview); preview = false; end %>
 <% unless preview %>
   <% new_comment = nil unless defined?(new_comment) %>
   <section id="comment-form">
