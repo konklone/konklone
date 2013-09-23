@@ -101,12 +101,16 @@ post '/subscribe' do
   email = params[:email].strip
 
   subscriber = Subscriber.find_or_initialize_by email: email
+  new_subscriber = subscriber.new_record?
   # TODO: handle unsubscribed user resubscribing
   # TODO: handle currently subscribed user
   # TODO: store event on subscribe, send email to admin
 
   if subscriber.save
-    # TODO: send confirm email to user
+    if new_subscriber
+      Email.new_subscriber subscriber
+    end
+
     status 201
   else
     status 500
