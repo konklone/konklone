@@ -256,9 +256,11 @@ article .nav ul li a {
 article .nav ul li:hover,
 article .nav h6:hover {background-color: #aaa;}
 article .nav ul li:hover a,
-article .nav h6:hover a {color: #fff;}
-article .nav .active {background-color: #555;}
-article .nav .active a {color: #fff;}
+article .nav h6:hover a {color: #eee;}
+article .nav .active,
+article .nav .active:hover {background-color: #555;}
+article .nav .active a,
+article .nav .active:hover a {color: #fff;}
 
 
 /** floating things **/
