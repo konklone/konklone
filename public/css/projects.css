@@ -1,3 +1,6 @@
+.projects .project,
+.projects header {width: 700px;}
+
 /* font sizes */
 
 .projects nav ul.big {font-size: 12pt; line-height: 28px;}
@@ -32,8 +35,8 @@
 
 /** spacing **/
 
-.projects .project {width: 700px; margin: 80px auto;}
-.projects header {width: 700px; margin: 0 auto;}
+.projects .project {margin: 80px auto;}
+.projects header {margin: 0 auto;}
 .projects .project.other {margin: 50px auto;}
 
 .projects .project header,

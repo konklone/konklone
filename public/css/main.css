@@ -1,48 +1,19 @@
-header.main {font-family: "Average", "Georgia", serif;}
-
-/** Extra reset **/
-ul, ol, li {list-style-type: none;}
-h1,h2,h3,h4,h5,h6 {font-weight: normal;}
-input.placeholder, textarea.placeholder {color: #999;} /* CSS class only used for HTML5 fallback */
-
-
-/********* Colors ******/
-
-body {background-color: #f5f5f5;}
-body {color: #151515;}
-a {color: rgb(0, 53, 102);}
-
-footer.main {color: #555;}
-
-header.main,
-header.main a {color: #fff;}
-
-header.main {
-  z-index: 1000;
-  background-color: rgb(0, 53, 102);
-}
-
-
-header.main a {text-decoration: none;}
-header.main a:hover {text-decoration: underline;}
-header.main    {font-size: 13pt;} /* main header */
-footer.main    {font-size: 11pt;} /* main footer */
-
-
 /** Main structure - center and width **/
 
 header.main .inner,
+header.main .inner ul,
 footer.main,
 .error {width: 650px;}
 
 header.main .inner,
+header.main,
 footer.main,
-div.main {
-  margin: 0 auto;
-}
+.error,
+div.main {margin: 0 auto;}
 
 /* things to the left and right of center */
-.left, .right {width: 220px;}
+.left {width: 220px;}
+.right {width: 220px;}
 .left {float: left; margin-left: -260px; padding-left: 0px; text-align: right;}
 .right {float: right; margin-right: -260px; padding-right: 0px;}
 
@@ -52,15 +23,18 @@ header.main .right {width: 250px;}
 /** Main structure - everything else **/
 
 body {
-  min-width: 1000px;
+  min-width: 1150px;
   padding: 0; margin: 0;
 }
 
 header.main {
   width: 100%;
+  min-width: 1150px;
   padding: 15px 0; height: 16px;
   position: fixed; top: 0; left: 0;
 }
+
+header.main .inner.me {}
 
 header.main .inner.me {display: block;}
 header.main .inner.me a.left {display: block; text-decoration: none; }
@@ -113,10 +87,33 @@ footer.main p {
 }
 
 
+/********* Colors ******/
+
+body {background-color: #f5f5f5;}
+body {color: #151515;}
+a {color: rgb(0, 53, 102);}
+
+footer.main {color: #555;}
+
+header.main,
+header.main a {color: #fff;}
+header.main {background-color: rgb(0, 53, 102); z-index: 1000;}
+
+header.main a {text-decoration: none;}
+header.main a:hover {text-decoration: underline;}
+header.main    {font-size: 13pt;} /* main header */
+footer.main    {font-size: 11pt;} /* main footer */
+
+header.main {font-family: "Average", "Georgia", serif;}
+
+/** Extra reset **/
+ul, ol, li {list-style-type: none;}
+h1,h2,h3,h4,h5,h6 {font-weight: normal;}
+input.placeholder, textarea.placeholder {color: #999;} /* CSS class only used for HTML5 fallback */
+
 
 /* Error stuff */
 
-.error {margin: 0 auto;}
 .error h1 {font-size: 100pt;}
 .error h1 a {color: #151515; text-decoration: none}
 .error p {margin-top: 50px; font-size: 20pt; line-height: 45px;}

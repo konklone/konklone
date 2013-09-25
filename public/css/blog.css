@@ -1,3 +1,26 @@
+article p,
+article .nav,
+article .body ol, article .body ul,
+article header,
+article pre,
+article .body h2,
+article .body h3, article .body h4, article .body h5, article .body h6,
+article iframe.youtube,
+article .footer,
+article.small div.inner,
+article figure figcaption,
+#comment-form,
+#comments {width: 650px;}
+
+
+article *,
+article hr,
+#comment-form,
+#comments {
+  margin: 0 auto;
+}
+
+
 /* Fonts */
 article h2,
 #comment-form span {font-family: "Open Sans", Arial, sans-serif;}
@@ -90,31 +113,8 @@ article .unpublished {font-size: 10pt; line-height: 20px;}
 
 /* structure **/
 
-article p,
-article .nav,
-article .body ol, article .body ul,
-article header,
-article pre,
-article .body h2,
-article .body h3, article .body h4, article .body h5, article .body h6,
-article iframe.youtube,
-article .footer,
-.error,
-article.small div.inner,
-#comment-form,
-article figure figcaption,
-#comments {width: 650px;}
-
-article *,
-article hr,
-#comment-form,
-#comments {
-  margin: 0 auto;
-}
 
 article {margin-bottom: 40px;}
-
-/* Regular posts */
 
 article header {margin-bottom: 20px;}
 
