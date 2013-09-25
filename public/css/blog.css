@@ -240,22 +240,25 @@ article .nav .inner {position: fixed;}
 /* duplicate .left CSS for now, could always add {.left} to gen path */
 article .nav .inner {width: 200px; float: left; margin-left: -240px;}
 article .nav .inner {
-  border: 0px solid #c5c5c5;
-
-  padding: 0px 10px;
+  border: 1px solid #eeeeee;
+  background-color: #e5e5e5;
 }
 
-article .nav .inner h6 {margin-top: 10px; line-height: 20px;}
-
-article .nav ul li {
-  font-size: 10pt; line-height: 20px;
-  margin: 10px 0;
-}
+article .nav .inner h6,
+article .nav ul li {font-size: 10pt; line-height: 20px;}
+article .nav .inner h6 a,
 article .nav ul li a {
   text-decoration: none;
-  color: #555;
+  display: block;
+  padding: 5px 10px;
 }
-article .nav ul li a:hover {text-decoration: underline;}
+
+article .nav ul li:hover,
+article .nav h6:hover {background-color: #aaa;}
+article .nav ul li:hover a,
+article .nav h6:hover a {color: #fff;}
+article .nav .active {background-color: #555;}
+article .nav .active a {color: #fff;}
 
 
 /** floating things **/

@@ -7,9 +7,23 @@
 <% content_for(:canonical) { post_path post } %>
 
 <article class="post" data-slug="<%= post.slug %>">
+  <% if post.nav.present? %>
+    <section class="nav">
+      <div class="inner">
+        <h6>
+          <a href="#">
+            <!-- <%= h post.title %> -->
+            &uarr; top
+          </a>
+        </h6>
+        <%= post_nav post %>
+      </div>
+    </section>
+  <% end %>
+
   <%= partial "header", engine: :erb, locals: {post: post} %>
 
-  <section class="body">
+  <section class="body" id="post-top">
     <%= post_body post %>
   </section>
 

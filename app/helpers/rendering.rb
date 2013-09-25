@@ -18,6 +18,14 @@ module Helpers
       end
     end
 
+    def post_nav(post)
+      if config[:site]['cache_markdown']
+        post.nav
+      else
+        render_post_nav post.body
+      end
+    end
+
     def comment_body(comment)
       if config[:site]['cache_markdown']
         comment.body_rendered
@@ -30,6 +38,14 @@ module Helpers
       text = markdown text
       text = custom_tags text
       text
+    end
+
+    # extract post nav as isolated html fragment
+    def render_post_nav(text)
+      with_nav = "* anything\n{:toc}\n\n#{text}"
+      with_nav = markdown with_nav
+      nav = Nokogiri::HTML(with_nav).css("ul#markdown-toc").first
+      nav ? nav.to_html : nil
     end
 
     def render_post_excerpt(text, render_options = {})

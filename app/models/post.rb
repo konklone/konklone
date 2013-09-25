@@ -15,6 +15,7 @@ class Post
 
   field :body
   field :excerpt
+  field :nav # generated from body upon save
   field :header # raw html to include in header
   field :footer # raw html to include in footer
 
@@ -126,6 +127,7 @@ class Post
   before_save :render_fields
   def render_fields
     self.body_rendered = render_post_body self.body
+    self.nav = render_post_nav self.body
 
     # if there's a specific excerpt, use it for the front page and the flat text
     if self.excerpt.present?

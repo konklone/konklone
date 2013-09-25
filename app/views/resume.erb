@@ -2,6 +2,8 @@
   <%= "<link rel=\"stylesheet\" href=\"/css/resume.css?#{Time.now.to_i}\" />".html_safe %>
 <% end %>
 
+<% content_for(:independent) {true} %>
+
 <article class="resume">
   <section class="contact">
     <h1>Eric Mill</h1>

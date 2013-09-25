@@ -15,9 +15,9 @@ div.main {margin: 0 auto;}
 .left {width: 220px;}
 .right {width: 220px;}
 .left {float: left; margin-left: -260px; padding-left: 0px; text-align: right;}
-.right {float: right; margin-right: -260px; padding-right: 0px;}
+.right {float: right; margin-right: -230px; padding-right: 0px;}
 
-header.main .right {width: 250px;}
+header.main .right {width: 220px;}
 
 
 /** Main structure - everything else **/
@@ -72,9 +72,9 @@ header.main .inner a.left {text-decoration: none;}
 header.main .inner h1 {display: inline-block; display: none;}
 
 
+/* frame and any anchor get offset by 70px to accommodate fixed header */
 div.main {margin-top: 70px;}
-/* any anchor gets offset by 100px to accommodate fixed header */
-.anchor {top: -70px; position: relative; display: block; visibility: hidden;}
+*:target {padding-top: 70px;}
 
 
 

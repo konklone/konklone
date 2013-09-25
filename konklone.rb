@@ -42,7 +42,7 @@ end
 
 # if I don't support an accented é, why did I bothér
 get /\/(resume|r%C3%A9sum%C3%A9)/i do
-  erb :resume, locals: {resume: true}
+  erb :resume
 end
 
 get '/post/:slug/?' do
@@ -104,13 +104,9 @@ post '/subscribe' do
   new_subscriber = subscriber.new_record?
   # TODO: handle unsubscribed user resubscribing
   # TODO: handle currently subscribed user
-  # TODO: store event on subscribe, send email to admin
 
   if subscriber.save
-    if new_subscriber
-      Email.new_subscriber subscriber
-    end
-
+    Email.new_subscriber(subscriber) if new_subscriber
     status 201
   else
     status 500
