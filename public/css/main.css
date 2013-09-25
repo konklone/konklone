@@ -1,15 +1,10 @@
-/* Fonts */
-article h2,
-#comment-form span {font-family: "Open Sans", Arial, sans-serif;}
-
-header.main,
-input[type=text], input[type=email], textarea,
-article {font-family: "Average", "Georgia", serif;}
+header.main {font-family: "Average", "Georgia", serif;}
 
 /** Extra reset **/
 ul, ol, li {list-style-type: none;}
 h1,h2,h3,h4,h5,h6 {font-weight: normal;}
 input.placeholder, textarea.placeholder {color: #999;} /* CSS class only used for HTML5 fallback */
+
 
 /********* Colors ******/
 
@@ -17,44 +12,7 @@ body {background-color: #f5f5f5;}
 body {color: #151515;}
 a {color: rgb(0, 53, 102);}
 
-article blockquote {color: #222;}
-
-/* faded color (e.g. quotes) */
-article pre,
 footer.main {color: #555;}
-article header h6,
-article.small time {color: #808080;}
-article small time {color: #777;}
-article header h6 a.comments {color: #404040;}
-#comments li header h6,
-#comments li header h6 a {color: #404040; text-decoration: none;}
-#comments li header h6 a:hover {text-decoration: underline;}
-
-/* code blocks */
-article code {
-  padding: 2px 4px;
-  background-color: #eaeaff;
-  border: 1px solid #d5d5d5;
-  font-size: 10pt;
-  font-family: monospace;
-}
-
-/* post title, separator */
-article header h1 a,
-article.small h1 a,
-#comments li header span {
-  color: #404040;
-}
-#comments li header span a {color: #404040;}
-
-article h2,
-article h3 {color: #222;}
-
-article header h2 {
-  color: #444;
-  padding-top: 0px;
-  font-weight: normal;
-}
 
 header.main,
 header.main a {color: #fff;}
@@ -64,280 +22,32 @@ header.main {
   background-color: rgb(0, 53, 102);
 }
 
-/* error text(?) */
-#comment-form p {color: #990000;}
-
 
 header.main a {text-decoration: none;}
 header.main a:hover {text-decoration: underline;}
-article h1 a, article h2 a {text-decoration: none;}
-article h1 a:hover, article h2 a:hover {text-decoration: underline;}
-
-
-/********** Font sizes *************/
-
 header.main    {font-size: 13pt;} /* main header */
 footer.main    {font-size: 11pt;} /* main footer */
 
-article header h1  {font-size: 20pt; line-height: 40px;} /* article title */
-article header h6  {font-size: 10pt; line-height: 20px;}
-
-article sup {font-size: 10pt;}
-
-article p,
-article pre,
-article .body ol li,
-article .body ul li   {font-size: 13pt; line-height: 25px;} /* article text */
-article .callout {font-size: 11pt; line-height: 20px;}
-
-article blockquote,
-article blockquote p,
-article .body blockquote ul, article .body blockquote ol,
-article .body blockquote ul li, article .body  blockquote ol li,
-article .body blockquote * {font-size: 11pt; line-height: 20px;} /* blockquotes */
-
-article .body h2 {font-size: 16pt; line-height: 32px;}
-article .body h3 {font-size: 14pt; line-height: 29px;}
-
-article small {
-  font-size: 10pt;
-  line-height: 17px;
-} /* aside text */
-article .unpublished {font-size: 10pt; line-height: 20px;}
-
-#comments li header span {font-size: 14pt;} /* comment name */
-#comments li header h6 {font-size: 10pt; line-height: 20px;} /* comment date */
-#comments li p           {font-size: 11pt; line-height: 22px;} /* comment text */
-
-#comment-form span {
-  font-size: 14pt;
-  display: block; margin-bottom: 20px;
-}
-#comment-form form input    {font-size: 14pt;} /* comment form */
-#comment-form form textarea {font-size: 13pt;} /* comment form */
 
 /** Main structure - center and width **/
 
 header.main .inner,
 footer.main,
-article p,
-article .body ol, article .body ul,
-article header,
-article pre,
-article .body h2,
-article .body h3, article .body h4, article .body h5, article .body h6,
-article iframe.youtube,
-article .footer,
-.error,
-article.small div.inner,
-#comment-form,
-article figure figcaption,
-#comments {width: 650px;}
-
-article .body li {width: 570px;}
-
-article .body blockquote ul,
-article .body blockquote ol {width: 550px;}
-
-article .body blockquote ol li,
-article .body blockquote ul li {padding: 0 20px; width: 510px;}
-
-article .body h2 {
-  margin-top: 45px;
-  font-weight: normal;
-} article .body h2 .block {
-  xdisplay: inline-block;
-  display: none;
-  background-color: rgb(0, 53, 102);
-  height: 1px;
-  width: 180px;
-  margin-bottom: 6px;
-  margin-left: -197px;
-  margin-right: 16px;
-}
-
-article .body h3 {margin-top: 20px;}
-
-article iframe.youtube {height: 394px;}
-
-article blockquote {
-  padding: 1px 20px;
-  border: 1px solid #888;
-  border-width: 0 1px;
-  margin-top: 27px; margin-bottom: 27px;
-  background-color: #e5e5e5;
-}
-article blockquote cite {
-  width: 100%; display: block; text-align: right; margin-top: -5px;
-} article blockquote cite:before {content: "— "}
-
-article blockquote,
-article blockquote p {width: 550px;}
-
-article .callout {
-  background-color: rgb(213, 230, 255);
-  padding: 15px;
-  margin: 30px auto;
-  width: 620px;
-  font-style: italic;
-}
-
-article .body .footer-text {
-  font-size: 11pt;
-
-  background-color: #e5e5e5;
-  border: 1px solid #c5c5c5;
-
-  font-style: italic;
-  line-height: 26px;
-
-  width: 630px; padding: 10px;
-
-  margin-top: 30px;
-}
+.error {width: 650px;}
 
 header.main .inner,
 footer.main,
-div.main,
-article *,
-article hr,
-#comment-form,
-#comments {
+div.main {
   margin: 0 auto;
 }
 
-article div.image.strip {
-  background-position-y: center;
-  background-size: cover;
-  margin-top: 20px; margin-bottom: 20px;
-  width: 100%;
-}
-
-/* center those tough-to-center elements */
-article div.container {text-align: center;}
-article iframe.twitter-tweet {
-  margin-left: auto !important; margin-right: auto !important;
-}
-article canvas,
-article img {display: inline;}
-article img.block {display: block; margin: 0 auto;}
-article img.block.border {border: 1px solid #e5e5e5;}
-article img.block.upper {margin-bottom: 40px;}
-
-article figure figcaption {
-  text-align: right;
-  color: #222;
-  display: block;
-  margin-top: 7px;
-  font-size: 10pt;
-}
-
-
-/* handle gists, which embed inline, interestingly enough */
-
-article div.gist {width: 650px;}
-article div.gist-data {padding: 0px;}
-article div.gist p,
-article div.gist li {width: 570px;}
-article div.gist ul,
-article div.gist ol {padding: 0 40px; width: 570px;}
-
 /* things to the left and right of center */
-.left, .right {
-  width: 220px;
-}
+.left, .right {width: 220px;}
 .left {float: left; margin-left: -260px; padding-left: 0px; text-align: right;}
 .right {float: right; margin-right: -260px; padding-right: 0px;}
 
 header.main .right {width: 250px;}
 
-/* if in an article, pad it */
-article .right {
-  padding: 5px 7px; width: 210px;
-}
-
-article ul .right, article ol .right {margin-right: -300px;}
-
-article .unpublished {padding-top: 10px;}
-
-article sup {margin-left: 0px; margin-top: -3px; vertical-align: 8%;}
-article small span {margin-right: 3px;}
-
-
-/** front page - post index **/
-
-article.index.first {margin-bottom: 70px;}
-article.small {margin-bottom: 25px;}
-
-article.small div.inner {margin: 0 auto;}
-article.small p,
-article.small h1 {display: inline-block;}
-article.small h1 a {text-decoration: underline;}
-article.small p {width: inherit;}
-article.small time {font-size: 13pt; line-height: 30px; margin-left: 5px;}
-article.small time:after {content: "—"}
-article.small h1 {font-size: 14pt; line-height: 25px;}
-article.small span.excerpt {
-  color: #555; font-size: 13pt;
-  line-height: 30px;
-  margin-left: 5px;
-}
-
-article hr {
-  clear: both;
-  border-color: #888;
-  width: 650px;
-  border-top-width: 1px;
-  margin-top: 50px;
-  margin-bottom: 10px;
-}
-
-/*article .related {margin-top: 20px;}*/
-article .discuss {
-  margin-top: 25px;
-}
-article .author {margin-bottom: 35px;}
-
-article .footer {color: #555; font-size: 11pt;}
-article .footer a {color: #333;}
-article .discuss {color: #111; font-style: italic; color: #555}
-article .discuss a {xcolor: rgb(0, 53, 102); }
-
-article .author span.hear,
-article .author span.hear a {vertical-align:bottom;}
-article .author span.hear {margin-bottom: 3px; display: inline-block;}
-article .author input.email {
-  border: 0;
-  margin-left: 3px;
-  width: 135px;
-  background-color: #f5f5f5;
-  border-bottom: 1px solid #888;
-}
-
-article .author .to_subscribe {display: inline-block; }
-article .author .is_subscribing,
-article .author .error_subscribing,
-article .author .has_subscribed  {
-  display: none; margin-top: 15px;
-  color: #111;
-}
-article .author .has_subscribed {font-weight: normal;}
-article .author input.subscribe {visibility: hidden;}
-
-article .author a.feed {
-  background-image: url(/images/feed-12-black.png);
-  background-size: 12px 12px;
-  background-position: 0px 1px;
-  background-repeat: no-repeat;
-  padding-left: 16px;
-  margin-left: 3px;
-}
-
-article .related h5 {display: inline-block; vertical-align: top;}
-article .related ul {display: inline-block; margin-left: 10px;}
-article .related li {margin-bottom: 15px;}
-article .related li a {display: inline-block; margin-right: 5px;}
-article .related li time {display: inline-block;}
 
 /** Main structure - everything else **/
 
@@ -387,14 +97,12 @@ header.main .inner {display: none;}
 header.main .inner a.left {text-decoration: none;}
 header.main .inner h1 {display: inline-block; display: none;}
 
-/*header.main .inner a.right {display: block; text-decoration: none;}
-header.main .inner a.right .arrow {display: inline-block; margin-right: 7px;}*/
 
 div.main {margin-top: 70px;}
 /* any anchor gets offset by 100px to accommodate fixed header */
 .anchor {top: -70px; position: relative; display: block; visibility: hidden;}
 
-article {margin-bottom: 40px;}
+
 
 /** Footer */
 
@@ -404,70 +112,7 @@ footer.main p {
   padding: 30px 0;
 }
 
-/* Regular posts */
 
-article header {margin-bottom: 20px;}
-
-article .body p {margin-top: 20px; margin-bottom: 20px;}
-article .body p a {text-decoration: underline;}
-
-article .body ol, article .body ul {list-style-position: outside;}
-article .body li {padding-left: 2px;}
-article .body ol li, article .body ul li {margin-top: 15px; margin-bottom: 15px;}
-
-article .body blockquote ul, article .body blockquote ol,
-article .body blockquote ul li, article .body blockquote ol li {list-style-position: inside;}
-article .body ul, article .body ul li {list-style-type: disc;}
-article .body ol, article .body ol li {list-style-type: decimal;}
-
-article .body pre {
-  white-space: pre-wrap;
-  font-family: inherit;
-}
-
-
-/* Comment display */
-
-#comments {list-style-type: none;}
-#comments li {margin: 50px 0;}
-#comments li.hidden {background-color: #e5e5e5;}
-#comments li.hidden span.hidden {color: #a00;}
-
-#comments li header a {text-decoration: underline;}
-
-#comments li p {
-  margin: 8px 0;
-}
-
-#comments li .body {
-  background-color: #e5e5e5;
-  border: 1px solid #c5c5c5;
-  padding: 0 10px; margin: 10px 0;
-}
-
-
-/* Comment form */
-
-#comment-form p {
-  margin-bottom: 10px;
-}
-
-#comment-form form>input {
-  margin-bottom: 15px; padding: 5px;
-  width: 190px; margin-right: 5px;
-} #comment-form form>input[type=email] {width: 200px;}
-
-#comment-form form textarea {
-  clear: both; display: block;
-  width: 100%; height: 100px;
-  padding: 5px;
-}
-
-#comment-form form textarea+input {
-  display: block;
-  padding: 4px 20px 1px 20px;
-  margin-top: 10px;
-}
 
 /* Error stuff */
 
