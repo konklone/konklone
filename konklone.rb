@@ -50,7 +50,7 @@ get '/post/:slug/?' do
   raise Sinatra::NotFound unless post
   redirect(post.redirect_url, 301) if post.redirect_url.present?
 
-  comments = post.comments.visible.asc(:created_at).to_a
+  comments = post.comments.visible.desc(:created_at).to_a
 
   erb :post, locals: {post: post, new_comment: nil, comments: comments}
 end
