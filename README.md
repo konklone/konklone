@@ -1,3 +1,3 @@
-Code for [konklone.com](https://konklone.com), a small Sinatra app.
+Code for [konklone.com](https://konklone.com), a small Sinatra app for Eric Mill's blog and projects.
 
-Eric Mill's blog, projects, ideas.
+To set up, copy `config/config.yml.example` to `config/config.yml` and fill in any necessary values, such as the Mongoid database configuration.
