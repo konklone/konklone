@@ -43,7 +43,7 @@
   # prefix URLs with http:// if they exist and don't have it
   before_create :adjust_url
   def adjust_url
-    if self.author_url.present? and (self.author_url !~ /^http:\/\//)
+    if self.author_url.present? and (self.author_url !~ /^https?:\/\//)
       self.author_url = "http://#{author_url}"
     end
   end
