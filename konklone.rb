@@ -154,6 +154,11 @@ get '/comments.xml' do
   erb :comments, locals: {site: config[:site], comments: comments}, layout: false
 end
 
+# webfinger endpoint support
+# require 'sinatra/webfinger'
+require '/home/eric/konklone/sinatra-webfinger/lib/sinatra/webfinger'
+webfinger config['webfinger']
+
 helpers do
   def google?
     request.env['HTTP_USER_AGENT']["Googlebot"] if request.env['HTTP_USER_AGENT']
