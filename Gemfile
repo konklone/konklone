@@ -4,6 +4,7 @@ gem 'sinatra'
 gem 'sinatra-contrib'
 gem 'sinatra-flash', '0.3.0'
 gem 'padrino-helpers', '>=0.11.2'
+gem 'sinatra-webfinger'
 
 gem "mongoid"
 gem 'mongoid_slug'

@@ -155,8 +155,8 @@ get '/comments.xml' do
 end
 
 # webfinger endpoint support
-# require 'sinatra/webfinger'
-require '/home/eric/konklone/sinatra-webfinger/lib/sinatra/webfinger'
+require 'sinatra/webfinger'
+# require '/home/eric/konklone/sinatra-webfinger/lib/sinatra/webfinger'
 webfinger config['webfinger']
 
 helpers do
