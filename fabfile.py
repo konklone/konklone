@@ -46,7 +46,7 @@ def prune_releases():
 ## can be run on their own
 
 def start():
-  run("cd %s && unicorn -D -l %s/%s.sock -c unicorn.rb" % (current_path, shared_path, username))
+  run("cd %s && bundle exec unicorn -D -l %s/%s.sock -c unicorn.rb" % (current_path, shared_path, username))
 
 def stop():
   run("kill `cat %s/unicorn.pid`" % shared_path)
