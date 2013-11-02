@@ -12,8 +12,8 @@
     <title><%= h title %></title>
     <meta name="og:title" content="<%= escape_javascript title %>" />
   <% else %>
-    <title>Eric Mill</title>
-    <meta name="og:title" content="Eric Mill" />
+    <title>konklone</title>
+    <meta name="og:title" content="konklone" />
   <% end %>
 
   <% if (description = yield_content(:description)).present? %>
@@ -59,7 +59,7 @@
 
   <%= yield_content :head %>
 
-  <!-- rss must live on -->
+  <!-- RSS must live on -->
   <link rel="alternate" href="/rss.xml" type="application/rss+xml" title="All posts" />
 
   <!--[if lt IE 9]><script src="/js/html5.js"></script><![endif]-->
@@ -98,18 +98,6 @@
         <% end %>
       </ul>
     </div>
-
-    <!-- may be shown and filled in on an article page -->
-    <!-- <div class="inner article">
-      <a class="left" href="/">Eric Mill</a>
-      <h1></h1>
-      <div class="right">
-        <a class="feed" href="/rss.xml">feed</a>
-        <a class="twitter" rel="me" href="https://twitter.com/konklone">twitter</a>
-        <a class="email" href="mailto:eric@konklone.com">email</a>
-        <a class="key" href="/konklone-pgp-public.asc">key</a>
-      </div>
-    </div> -->
 
   </header>
 
