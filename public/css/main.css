@@ -74,7 +74,7 @@ header.main .inner h1 {display: inline-block; display: none;}
 
 /* frame and any anchor get offset by 70px to accommodate fixed header */
 div.main {margin-top: 70px;}
-*:target {padding-top: 70px;}
+*:target {padding-top: 70px !important;}
 
 
 
