@@ -1,39 +1,34 @@
 <% content_for(:title) { "Projects" } %>
 
 <section class="projects">
-  <header style="display: none"> <!-- provides a 700px width -->
-    <div class="right"> <!-- floats to the right -->
-      <nav> <!-- fixes it -->
-        <ul class="big">
-          <li>
-            <a href="#unitedstates">/unitedstates</a>
-          </li>
-          <li>
-            <a href="#fisacourt">@FISACourt</a>
-          </li>
-          <li>
-            <a href="#isitchristmas">isitchristmas.com</a>
-          </li>
-          <li>
-            <a href="#scout">Scout</a>
-          </li>
-        </ul>
 
-        <ul class="small">
-          <li>
-            <a href="#congress">Congress for Android</a>
-          </li>
-          <li>
-            <a href="#ohnomymoney">Oh No My Money</a> (retired)
-          </li>
-          <li>
-            <a href="#everyone">everyoneishereinthefuture.com</a>
-          </li>
-        </ul>
-
-      </nav>
+  <section class="nav" style="display: none">
+    <div class="inner">
+      <ul>
+        <li>
+          <a href="#unitedstates">/unitedstates</a>
+        </li>
+        <li>
+          <a href="#fisacourt">@FISACourt</a>
+        </li>
+        <li>
+          <a href="#isitchristmas">isitchristmas.com</a>
+        </li>
+        <li>
+          <a href="#scout">Scout</a>
+        </li>
+        <li>
+          <a href="#congress">Congress for Android</a>
+        </li>
+        <li>
+          <a href="#ohnomymoney">Oh No My Money</a>
+        </li>
+        <li>
+          <a href="#everyone">everyoneishereinthefuture.com</a>
+        </li>
+      </ul>
     </div>
-  </header>
+  </section>
 
   <article class="project unitedstates">
     <span class="anchor" id="unitedstates"></span>
@@ -138,8 +133,7 @@
 
   </article>
 
-  <article class="project scout">
-    <span class="anchor" id="scout"></span>
+  <article class="project scout" id="scout">
 
     <h1>
       <a class="name" target="_blank" href="https://scout.sunlightfoundation.com">Scout</a>

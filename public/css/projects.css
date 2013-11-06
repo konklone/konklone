@@ -70,3 +70,33 @@
 .projects .project.scout .icon {
   background-image: url(/images/projects/scout.png);
 }
+
+/* nav */
+
+.projects .nav li {font-family: "Average", "Georgia", serif;}
+.projects .nav {width: 700px; margin: 0 auto;}
+.projects .nav .inner {position: fixed;}
+/* duplicate .left CSS for now, could always add {.left} to gen path */
+.projects .nav .inner {width: 200px; float: left; margin-left: -240px;}
+.projects .nav .inner {
+  border: 1px solid #eeeeee;
+  background-color: #e5e5e5;
+}
+
+.projects .nav .inner h6,
+.projects .nav ul li {font-size: 10pt; line-height: 20px;}
+.projects .nav .inner h6 a,
+.projects .nav ul li a {
+  text-decoration: none;
+  display: block;
+  padding: 5px 10px;
+}
+
+.projects .nav ul li:hover,
+.projects .nav h6:hover {background-color: #aaa;}
+.projects .nav ul li:hover a,
+.projects .nav h6:hover a {color: #eee;}
+.projects .nav .active,
+.projects .nav .active:hover {background-color: #555;}
+.projects .nav .active a,
+.projects .nav .active:hover a {color: #fff;}
