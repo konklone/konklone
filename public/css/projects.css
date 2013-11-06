@@ -3,12 +3,8 @@
 
 /* font sizes */
 
-.projects nav ul.big {font-size: 12pt; line-height: 28px;}
-.projects nav ul.small {font-size: 10pt; line-height: 24px;}
-
 .projects .project h1 {font-size: 20pt;}
 .projects .project.other h1 {font-size: 16pt;}
-/*.projects .project h1 a.link {margin-top: -4px; font-size: 20pt;}*/
 .projects .project li {font-size: 10pt;}
 .projects .project.other p {font-size: 10pt; line-height: 24px;}
 
@@ -20,12 +16,6 @@
   font-family: "Open Sans", Arial, sans-serif;
   color: #444;
 }
-
-/* fixed nav */
-.projects nav {position: fixed;}
-.projects nav a {color: #444;}
-.projects nav ul.big span {margin-bottom: 10px; display: block;}
-.projects nav ul.small span {margin-top: 20px; margin-bottom: 10px; display: block;}
 
 .projects .project h1 a.name {text-decoration: underline; color: #444;}
 
