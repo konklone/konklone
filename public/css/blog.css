@@ -236,7 +236,7 @@ article div.gist ol {padding: 0 40px; width: 570px;}
 
 /* markdown-generated TOC for posts with headers */
 
-article .nav .inner {position: fixed;}
+article .nav .inner {position: fixed; margin-top: 8px;}
 /* duplicate .left CSS for now, could always add {.left} to gen path */
 article .nav .inner {width: 200px; float: left; margin-left: -240px;}
 article .nav .inner {
