@@ -11,7 +11,7 @@
   <!-- title, OG, and Twitter card stuff -->
   <% if (title = yield_content(:title)).present? %>
     <title><%= h title %></title>
-    <meta name="og:title" content="<%= escape_javascript title %>" />
+    <meta name="og:title" content="<%= escape_attribute title %>" />
   <% else %>
     <title>konklone</title>
     <meta name="og:title" content="konklone" />
