@@ -8,6 +8,7 @@ article .body h3, article .body h4, article .body h5, article .body h6,
 article iframe.youtube,
 article .footer,
 article.small div.inner,
+article figure,
 article figure figcaption,
 #comment-form,
 #comments {width: 650px;}
