@@ -82,7 +82,7 @@ article sup {font-size: 10pt;}
 article p,
 article pre,
 article .body ol li,
-article .body ul li   {font-size: 13pt; line-height: 25px;} /* article text */
+article .body ul li   {font-size: 13pt; line-height: 27px;} /* article text */
 article .callout {font-size: 11pt; line-height: 20px;}
 
 article blockquote,
@@ -91,7 +91,7 @@ article .body blockquote ul, article .body blockquote ol,
 article .body blockquote ul li, article .body  blockquote ol li,
 article .body blockquote * {font-size: 11pt; line-height: 20px;} /* blockquotes */
 
-article .body h2 {font-size: 16pt; line-height: 32px;}
+article .body h2 {font-size: 18pt; line-height: 32px;}
 article .body h3 {font-size: 14pt; line-height: 29px;}
 
 article small {
@@ -136,7 +136,7 @@ article .body pre {
   font-family: inherit;
 }
 
-article .body li {width: 570px;}
+article .body li {width: 610px;}
 
 article .body blockquote ul,
 article .body blockquote ol {width: 550px;}
