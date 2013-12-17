@@ -27,7 +27,8 @@ article h2,
 #comment-form span {font-family: "Open Sans", Arial, sans-serif;}
 
 #comments input[type=text], #comments input[type=email], #comments textarea,
-article {font-family: "Average", "Georgia", serif;}
+/*article {font-family: "Average", "Georgia", serif;}*/
+article {font-family: "Open Sans", Arial, sans-serif;}
 
 /********* Colors ******/
 
@@ -82,7 +83,7 @@ article sup {font-size: 10pt;}
 article p,
 article pre,
 article .body ol li,
-article .body ul li   {font-size: 13pt; line-height: 27px;} /* article text */
+article .body ul li   {font-size: 11pt; line-height: 25px;} /* article text */
 article .callout {font-size: 11pt; line-height: 20px;}
 
 article blockquote,
