@@ -72,6 +72,12 @@ article code {
   font-family: monospace;
 }
 
+article code.block {
+  display: block;
+  padding: 10px 20px;
+  line-height: 18px;
+}
+
 
 /********** Font sizes *************/
 
