@@ -35,7 +35,7 @@ $(function() {
         var li = $(link.parentNode);
         link = $(link);
         var anchor = link.attr("href");
-        var location = $("h2" + anchor).offset().top;
+        var location = $("h2" + anchor + ",h3" + anchor).offset().top;
         if (location < (p + 100)) {
           if (!link.hasClass("active")) {
             navItems.removeClass("active");
