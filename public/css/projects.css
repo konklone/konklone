@@ -60,6 +60,7 @@
 .projects .project.isitchristmas .icon {
   background-image: url(/images/projects/isitchristmas.png);
   background-position: center center;
+  height: 378px;
 }
 
 .projects .project.unitedstates .icon {
