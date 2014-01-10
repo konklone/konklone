@@ -16,7 +16,7 @@ GEM
     backports (3.3.1)
     big_sitemap (1.1.0)
     builder (3.0.4)
-    escape_utils (0.3.2)
+    escape_utils (1.0.0)
     eventmachine (1.0.3)
     http_router (0.11.0)
       rack (>= 1.0.0)
