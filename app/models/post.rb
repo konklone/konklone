@@ -124,12 +124,13 @@ class Post
   # mixing in the rendering methods...
   include ::Helpers::Rendering
 
-  before_save :correct_capitalization_in_title_and_body, :render_fields
-  def correct_capitalization_in_title_and_body
+  before_validation :correct_capitalization, :render_fields
+  def correct_capitalization
     self.body  = capital_H_dangit(self.body)
     self.title = capital_H_dangit(self.title)
+    self.excerpt = capital_H_dangit(self.excerpt)
   end
-  
+
   def render_fields
     self.body_rendered = render_post_body self.body
     self.nav = render_post_nav self.body
