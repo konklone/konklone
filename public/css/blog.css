@@ -241,6 +241,7 @@ article div.gist li {width: 570px;}
 article div.gist ul,
 article div.gist ol {padding: 0 40px; width: 570px;}
 
+article div.gist {font-size: 10pt; line-height: 21px;}
 
 /* markdown-generated TOC for posts with headers */
 
