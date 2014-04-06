@@ -10,7 +10,7 @@ class Post
   field :title
 
   # slug the title,
-  #   :permanent says don't re-slug automatically (except on initial create)
+  #   :permanent means: don't re-slug automatically (except on initial create)
   slug :title, permanent: true
 
   field :body
@@ -39,12 +39,18 @@ class Post
 
   field :comment_count, type: Integer, default: 0
 
-  # REFACTOR: use slugs, not IDs, make editable
-  field :related_post_ids, type: Array, default: []
-
   field :redirect_url
   field :hacker_news
   field :reddit
+
+  # if set to a github file URL, post *content* field will sync
+  field :github
+  # last github commit message and sha
+  field :github_last_message
+  field :github_last_sha
+
+  # REFACTOR: use slugs, not IDs, make editable
+  field :related_post_ids, type: Array, default: []
 
   # MARKEDFORDEATH
   field :display_title, type: Boolean, default: true
@@ -124,13 +130,14 @@ class Post
   # mixing in the rendering methods...
   include ::Helpers::Rendering
 
-  before_validation :correct_capitalization, :render_fields
+  before_validation :correct_capitalization
   def correct_capitalization
     self.body  = capital_H_dangit(self.body)
     self.title = capital_H_dangit(self.title)
     self.excerpt = capital_H_dangit(self.excerpt)
   end
 
+  before_validation :render_fields
   def render_fields
     self.body_rendered = render_post_body self.body
     self.nav = render_post_nav self.body
@@ -145,4 +152,64 @@ class Post
       self.excerpt_text = render_post_excerpt_text(self.body)
     end
   end
+
+  # parse a github url into repo, and path to contents
+  # e.g. https://github.com/konklone/konklone/blob/master/posts/testing.md
+  def self.parse_github_url(url)
+    uri = URI.parse url
+    parts = uri.path.split "/"
+    repo = parts[1..2].join "/"
+    branch = parts[4]
+    path = parts[5..-1].join "/"
+    [repo, branch, path]
+  end
+
+  # done in the controller on first publish,
+  # assumes a slug is present
+  def generate_github_url
+    prefix = config['github']['default_prefix']
+    self.github = "#{prefix}/#{slug}.md"
+  end
+
+  after_save :sync_to_github
+  def sync_to_github
+    return unless Environment.github.present?
+    return unless self.github.present?
+    return unless self.visible?
+
+    # break up URL into parts
+    repo, branch, path = Post.parse_github_url self.github
+
+    # go get the current sha
+    begin
+      item = Environment.github.contents repo, ref: branch, path: path
+      sha = item.sha
+    rescue Octokit::NotFound
+      sha = nil
+    end
+
+    message = if github_last_message.present?
+      github_last_message
+    elsif sha.blank?
+      "As first published"
+    else
+      "Updating post"
+    end
+
+    begin
+      if sha
+        puts "Updating post on github at: #{self.github}"
+        post = Environment.github.update_contents repo, path, message, sha, self.body, branch: branch
+      else
+        puts "Creating post on github at: #{self.github}"
+        post = Environment.github.create_contents repo, path, message, self.body, branch: branch
+      end
+      self.set :github_last_sha, post.content.sha
+    rescue Exception => exc
+      Email.exception exc
+    end
+
+  end
+
+  # TODO: sync from github
 end

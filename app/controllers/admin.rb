@@ -70,10 +70,14 @@ put '/admin/post/:slug' do
   post = Post.find_by_slug! params[:slug]
   raise Sinatra::NotFound unless post
 
-  # BEFORE AFFECTING POST: snap a new version if asked
   if params[:new_version].present?
+    # BEFORE AFFECTING POST: snap a new version if asked
     post.snap_version params[:new_version]
+
+    # handled a bit differently
+    post.github_last_message = params[:new_version]
   end
+
 
   params[:post]['tags'] = (params[:post]['tags'] || []).split /, ?/
 
@@ -89,6 +93,11 @@ put '/admin/post/:slug' do
 
   # the toggle buttons also store any changes made to the post
   if ["Publish", "Republish"].include?(params[:submit])
+    # on first publish, generate a github URL if it's blank
+    if !post.published_at and post.github.blank?
+      post.generate_github_url
+    end
+
     post.published_at ||= Time.now # don't overwrite this if it was published once already
     post.draft = false
   elsif params[:submit] == "Unpublish"

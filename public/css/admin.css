@@ -86,7 +86,7 @@ input[type="text"].big, input[type="password"].big {
   margin: 10px 0;
 }
 
-input.title.big {width: 100%; margin-bottom: 0;}
+input.title.big {width: 650px; margin-bottom: 0;}
 
 fieldset {
   position: relative;
@@ -94,18 +94,24 @@ fieldset {
   margin-top: 20px;
 }
 
-input[type="text"].small {
+/*input[type="text"].private {color: #888;}*/
+
+input[type="text"].small,
+input[type="text"].medium,
+input[type="text"].large {
   font-size: 10pt; padding: 5px;
-  width: 200px; margin-right: 10px;
+  margin-right: 10px;
 }
-input[type="text"].small.description {width: 430px;}
+input[type="text"].small {width: 200px;}
+input[type="text"].medium {width: 428px;}
+input[type="text"].large {width: 656px;}
 
 textarea.excerpt,
 textarea.body {font-family: "Georgia", serif;}
 
 textarea.excerpt {
   height: 83px;
-  width: 100%;
+  width: 650px;
   font-size: 12pt;
   line-height: 22px;
   padding: 10px;
@@ -114,7 +120,7 @@ textarea.excerpt {
 
 textarea.body {
   height: 400px;
-  width: 100%;
+  width: 650px;
   font-size: 12pt;
   line-height: 22px;
   padding: 10px;
@@ -122,7 +128,7 @@ textarea.body {
 }
 
 textarea.extra {
-  width: 100%;
+  width: 650px;
   font-size: 10pt;
   line-height: 22px;
   padding: 10px;
