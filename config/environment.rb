@@ -11,6 +11,7 @@ require 'tzinfo'
 require 'escape_utils'
 
 require 'octokit'
+require 'oj'
 
 require 'pony'
 require './config/email'

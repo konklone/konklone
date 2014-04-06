@@ -4,7 +4,9 @@ class Post
   include Mongoid::Slug
 
   attr_protected :_id, :slug
+
   attr_accessor :needs_sync
+  attr_accessor :was_synced
 
   has_many :comments
 
@@ -42,11 +44,17 @@ class Post
   field :hacker_news
   field :reddit
 
+  ### Github sync
+
   # if set to a github file URL, post *content* field will sync
   field :github
-  # last github commit message and sha
+  # last github commit message in outgoing sync
   field :github_last_message
-  field :github_last_sha
+  # all "known" commits through outgoing sync
+  field :github_commits, type: Array, default: []
+  # last github payload ID from incoming sync
+  field :github_last_payload
+
 
   # REFACTOR: use slugs, not IDs, make editable
   field :related_post_ids, type: Array, default: []
@@ -135,7 +143,7 @@ class Post
   end
 
   # parse a github url into repo, and path to contents
-  # e.g. https://github.com/konklone/konklone/blob/master/posts/testing.md
+  # e.g. https://github.com/konklone/writing/blob/master/blog/testing.md
   def self.parse_github_url(url)
     uri = URI.parse url
     parts = uri.path.split "/"
@@ -143,6 +151,14 @@ class Post
     branch = parts[4]
     path = parts[5..-1].join "/"
     [repo, branch, path]
+  end
+
+  # repo_url e.g. "https://github.com/konklone/writing"
+  # ref comes from payload, e.g. "refs/heads/master"
+  # path e.g. "blog/testing.md"
+  def self.github_url_for(repo_url, ref, path)
+    branch = ref.split('/').last
+    [repo_url, "blob", branch, path].join "/"
   end
 
   # done in the controller on first publish,
@@ -154,8 +170,20 @@ class Post
 
   before_save :sync_to_github?
   def sync_to_github?
-    self.needs_sync = self.changed.include? "body"
+    # if it was already directly set to false/true, don't change it
+    if self.needs_sync.nil?
+      self.needs_sync = self.changed.include? "body"
+    end
+
     true
+  end
+
+  # go fetch the current details from github
+  # 1) used when syncing TO github to know if it's create or update
+  # 2) used when syncing FROM github to get new content to save
+  def fetch_from_github
+    repo, branch, path = Post.parse_github_url self.github
+    Environment.github.contents repo, ref: branch, path: path
   end
 
   after_save :sync_to_github
@@ -165,12 +193,10 @@ class Post
     return unless self.visible?
     return unless self.needs_sync
 
-    # break up URL into parts
-    repo, branch, path = Post.parse_github_url self.github
 
     # go get the current sha
     begin
-      item = Environment.github.contents repo, ref: branch, path: path
+      item = fetch_from_github
       sha = item.sha
     rescue Octokit::NotFound
       sha = nil
@@ -184,6 +210,8 @@ class Post
       "Updating post"
     end
 
+    repo, branch, path = Post.parse_github_url self.github
+
     begin
       if sha
         puts "Updating post on github at: #{self.github}"
@@ -192,12 +220,17 @@ class Post
         puts "Creating post on github at: #{self.github}"
         post = Environment.github.create_contents repo, path, message, self.body, branch: branch
       end
-      self.set :github_last_sha, post.content.sha
-      self.needs_sync = false
+      # log commit so we know to ignore this when it comes back from github
+      self.push :github_commits, post.commit.sha
+
+      # un/re-set needs_sync
+      self.needs_sync = nil
+
+      # helpful to know post-save if this ended up working
+      self.was_synced = true
     rescue Exception => exc
       Email.exception exc
     end
   end
 
-  # TODO: sync from github
 end

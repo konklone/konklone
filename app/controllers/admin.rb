@@ -106,10 +106,15 @@ put '/admin/post/:slug' do
     post.flagged = true
   elsif params[:submit] == "Un-flag"
     post.flagged = false
-
   end
 
   if post.save
+    if post.was_synced
+      flash[:success] = "Saved, and synced to Github."
+    else
+      flash[:success] = "Saved, but not synced to Github."
+    end
+
     redirect "/admin/post/#{post.slug}"
   else
     erb :"admin/post", layout: :"admin/layout", locals: {post: post}
