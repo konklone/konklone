@@ -16,6 +16,14 @@
   :password: # admin password
   :email: # email this person when things happen
 
+# used to optionally sync posts to github
+github:
+  # generate in your user or org settings
+  token:
+
+  # e.g. https://github.com/konklone/writing/blob/master/blog
+  default_prefix:
+
 :rakismet:
   :host: rest.akismet.com
   :url: # http://yourdomain.com
