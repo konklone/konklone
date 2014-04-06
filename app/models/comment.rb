@@ -51,7 +51,7 @@
   after_save :update_post_count!
   after_destroy :update_post_count!
   def update_post_count!
-    self.post.update_count!
+    self.post.update_count! if !flagged?
   end
 
 
