@@ -93,6 +93,11 @@ put '/admin/post/:slug' do
 
   # the toggle buttons also store any changes made to the post
   if ["Publish", "Republish"].include?(params[:submit])
+    # on first publish, generate a github URL if it's blank
+    if !post.published_at and post.github.blank?
+      post.generate_github_url
+    end
+
     post.published_at ||= Time.now # don't overwrite this if it was published once already
     post.draft = false
   elsif params[:submit] == "Unpublish"

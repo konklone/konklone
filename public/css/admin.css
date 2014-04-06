@@ -94,6 +94,8 @@ fieldset {
   margin-top: 20px;
 }
 
+/*input[type="text"].private {color: #888;}*/
+
 input[type="text"].small,
 input[type="text"].medium,
 input[type="text"].large {

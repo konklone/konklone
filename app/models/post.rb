@@ -164,6 +164,13 @@ class Post
     [repo, branch, path]
   end
 
+  # done in the controller on first publish,
+  # assumes a slug is present
+  def generate_github_url
+    prefix = config['github']['default_prefix']
+    self.github = "#{prefix}/#{slug}.md"
+  end
+
   after_save :sync_to_github
   def sync_to_github
     return unless Environment.github.present?
@@ -173,7 +180,7 @@ class Post
     # break up URL into parts
     repo, branch, path = Post.parse_github_url self.github
 
-    # go get the current state
+    # go get the current sha
     begin
       item = Environment.github.contents repo, ref: branch, path: path
       sha = item.sha
@@ -181,7 +188,13 @@ class Post
       sha = nil
     end
 
-    message = github_last_message.present? ? github_last_message : "Updating post from blog, auto-save"
+    message = if github_last_message.present?
+      github_last_message
+    elsif sha.blank?
+      "As first published"
+    else
+      "Updating post"
+    end
 
     begin
       if sha
