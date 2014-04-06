@@ -27,6 +27,8 @@ gem 'tzinfo'
 gem 'rack'
 gem 'rake', '0.9.2.2'
 
+gem "octokit", "~> 2.0"
+
 group :development do
   gem 'wirble'
   gem 'unicorn'

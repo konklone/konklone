@@ -117,7 +117,7 @@
     </fieldset>
 
     <fieldset>
-      <input type="text" name="post[description]" class="small description"
+      <input type="text" name="post[description]" class="medium description"
         placeholder="description (200 chars max, triggers card)"
         value="<%= escape_attribute post.description %>"
         tabindex="6" />
@@ -142,20 +142,25 @@
         tabindex="10" />
     </fieldset>
 
+    <fieldset>
+      <input type="text" name="post[github]" class="large github"
+        placeholder="github sync URL"
+        value="<%= post.github %>"
+        tabindex="11" />
+    </fieldset>
+
+    <fieldset>
     <textarea placeholder="excerpt (html welcome)" class="excerpt"
-      name="post[excerpt]" tabindex="11"
+      name="post[excerpt]"
+      tabindex="12"
       ><%= post.excerpt %></textarea>
 
-    <!-- <textarea placeholder="header (raw html)" class="extra header"
-      name="post[header]" tabindex="12"
-      style="height: <%= post.header.present? ? "400px" : "80px" %>"
-      ><%= post.header %></textarea> -->
-
     <textarea placeholder="footer (raw html)" class="extra footer"
-      name="post[footer]" tabindex="13"
+      name="post[footer]"
+      tabindex="13"
       style="height: <%= post.footer.present? ? "400px" : "80px" %>"
       ><%= post.footer %></textarea>
-
+    </fieldset>
   </form>
 </article>
 

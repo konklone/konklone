@@ -5,11 +5,12 @@ require 'mongoid_slug'
 
 require 'rakismet'
 
-require 'escape_utils'
-
 require 'sinatra/content_for'
 require 'sinatra/flash'
 require 'tzinfo'
+require 'escape_utils'
+
+require 'octokit'
 
 require 'pony'
 require './config/email'
@@ -26,6 +27,13 @@ def config
 end
 
 class Environment
+
+  def self.github
+    if config['github'] and config['github']['token']
+      @github ||= Octokit::Client.new access_token: config['github']['token']
+    end
+  end
+
   # my own slugifier
   def self.to_url(string)
     string = string.dup
@@ -65,9 +73,6 @@ configure do
   Mongoid.configure do |c|
     c.load_configuration config['mongoid'][Sinatra::Base.environment.to_s]
   end
-
-  # Mongoid.logger.level = Logger::DEBUG
-  # Moped.logger.level = Logger::DEBUG
 
   Rakismet.key = config[:rakismet][:key]
   Rakismet.url = config[:rakismet][:url]

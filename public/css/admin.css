@@ -94,11 +94,15 @@ fieldset {
   margin-top: 20px;
 }
 
-input[type="text"].small {
+input[type="text"].small,
+input[type="text"].medium,
+input[type="text"].large {
   font-size: 10pt; padding: 5px;
-  width: 200px; margin-right: 10px;
+  margin-right: 10px;
 }
-input[type="text"].small.description {width: 430px;}
+input[type="text"].small {width: 200px;}
+input[type="text"].medium {width: 428px;}
+input[type="text"].large {width: 656px;}
 
 textarea.excerpt,
 textarea.body {font-family: "Georgia", serif;}
