@@ -101,65 +101,66 @@
       ><%= post.body %></textarea>
 
     <fieldset>
+      <input type="text" name="new_version" class="small version"
+        placeholder="save message"
+        tabindex="3"
+        />
+      <input type="text" name="post[github]" class="medium github"
+        placeholder="github sync URL"
+        value="<%= post.github %>"
+        tabindex="4" />
+    </fieldset>
+
+    <fieldset>
+      <input type="text" name="post[description]" class="large description"
+        placeholder="description (200 chars max, triggers card)"
+        value="<%= escape_attribute post.description %>"
+        tabindex="5" />
+    </fieldset>
+
+    <fieldset>
       <input type="text" placeholder="slug" id="post_slug" name="post[slug]" class="small slug" value="<%= post.slug %>"
-      tabindex="3"
+      tabindex="6"
       />
 
       <input type="text" name="post[tags]" class="small tags" placeholder="tags"
         value="<%= form_escape post.tags.join(", ") %>"
-        tabindex="4"
+        tabindex="7"
         />
 
-      <input type="text" name="new_version" class="small version"
-        placeholder="save new version because"
-        tabindex="5"
-        />
-    </fieldset>
-
-    <fieldset>
-      <input type="text" name="post[description]" class="medium description"
-        placeholder="description (200 chars max, triggers card)"
-        value="<%= escape_attribute post.description %>"
-        tabindex="6" />
       <input type="text" name="post[image]" class="small image"
         placeholder="image (absolute link)"
         value="<%= escape_attribute post.image %>"
-        tabindex="7" />
+        tabindex="8" />
+
     </fieldset>
 
     <fieldset>
       <input type="text" name="post[reddit]" class="small reddit"
         placeholder="reddit"
         value="<%= post.reddit %>"
-        tabindex="8" />
+        tabindex="9" />
       <input type="text" name="post[hacker_news]" class="small hacker_news"
         placeholder="hacker news"
         value="<%= post.hacker_news %>"
-        tabindex="9" />
+        tabindex="10" />
       <input type="text" name="post[redirect_url]" class="small redirect"
         placeholder="301 redirect URL"
         value="<%= post.redirect_url %>"
-        tabindex="10" />
-    </fieldset>
-
-    <fieldset>
-      <input type="text" name="post[github]" class="large github"
-        placeholder="github sync URL"
-        value="<%= post.github %>"
         tabindex="11" />
     </fieldset>
 
     <fieldset>
-    <textarea placeholder="excerpt (html welcome)" class="excerpt"
-      name="post[excerpt]"
-      tabindex="12"
-      ><%= post.excerpt %></textarea>
+      <textarea placeholder="excerpt (html welcome)" class="excerpt"
+        name="post[excerpt]"
+        tabindex="12"
+        ><%= post.excerpt %></textarea>
 
-    <textarea placeholder="footer (raw html)" class="extra footer"
-      name="post[footer]"
-      tabindex="13"
-      style="height: <%= post.footer.present? ? "400px" : "80px" %>"
-      ><%= post.footer %></textarea>
+      <textarea placeholder="footer (raw html)" class="extra footer"
+        name="post[footer]"
+        tabindex="13"
+        style="height: <%= post.footer.present? ? "400px" : "80px" %>"
+        ><%= post.footer %></textarea>
     </fieldset>
   </form>
 </article>

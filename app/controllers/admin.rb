@@ -70,10 +70,14 @@ put '/admin/post/:slug' do
   post = Post.find_by_slug! params[:slug]
   raise Sinatra::NotFound unless post
 
-  # BEFORE AFFECTING POST: snap a new version if asked
   if params[:new_version].present?
+    # BEFORE AFFECTING POST: snap a new version if asked
     post.snap_version params[:new_version]
+
+    # handled a bit differently
+    post.github_last_message = params[:new_version]
   end
+
 
   params[:post]['tags'] = (params[:post]['tags'] || []).split /, ?/
 

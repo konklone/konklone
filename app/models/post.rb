@@ -45,6 +45,9 @@ class Post
 
   # if set to a github file URL, post *content* field will sync
   field :github
+  # last github commit message and sha
+  field :github_last_message
+  field :github_last_sha
 
   # REFACTOR: use slugs, not IDs, make editable
   field :related_post_ids, type: Array, default: []
@@ -165,6 +168,7 @@ class Post
   def sync_to_github
     return unless Environment.github.present?
     return unless self.github.present?
+    return unless self.visible?
 
     # break up URL into parts
     repo, branch, path = Post.parse_github_url self.github
@@ -177,17 +181,17 @@ class Post
       sha = nil
     end
 
-    # TODO: carry over save message
-    message = "Updating post from blog, auto-save"
+    message = github_last_message.present? ? github_last_message : "Updating post from blog, auto-save"
 
     begin
       if sha
         puts "Updating post on github at: #{self.github}"
-        Environment.github.update_contents repo, path, message, sha, self.body, branch: branch
+        post = Environment.github.update_contents repo, path, message, sha, self.body, branch: branch
       else
         puts "Creating post on github at: #{self.github}"
-        Environment.github.create_contents repo, path, message, self.body, branch: branch
+        post = Environment.github.create_contents repo, path, message, self.body, branch: branch
       end
+      self.set :github_last_sha, post.content.sha
     rescue Exception => exc
       Email.exception exc
     end

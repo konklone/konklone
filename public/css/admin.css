@@ -86,7 +86,7 @@ input[type="text"].big, input[type="password"].big {
   margin: 10px 0;
 }
 
-input.title.big {width: 100%; margin-bottom: 0;}
+input.title.big {width: 650px; margin-bottom: 0;}
 
 fieldset {
   position: relative;
@@ -109,7 +109,7 @@ textarea.body {font-family: "Georgia", serif;}
 
 textarea.excerpt {
   height: 83px;
-  width: 100%;
+  width: 650px;
   font-size: 12pt;
   line-height: 22px;
   padding: 10px;
@@ -118,7 +118,7 @@ textarea.excerpt {
 
 textarea.body {
   height: 400px;
-  width: 100%;
+  width: 650px;
   font-size: 12pt;
   line-height: 22px;
   padding: 10px;
@@ -126,7 +126,7 @@ textarea.body {
 }
 
 textarea.extra {
-  width: 100%;
+  width: 650px;
   font-size: 10pt;
   line-height: 22px;
   padding: 10px;
