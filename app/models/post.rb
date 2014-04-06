@@ -36,8 +36,6 @@ class Post
   field :draft, type: Boolean, default: true
   field :flagged, type: Boolean, default: false
 
-  field :versions, type: Array, default: []
-
   field :comment_count, type: Integer, default: 0
 
   field :redirect_url
@@ -108,24 +106,6 @@ class Post
     regex_value = value.dup
     %w{+ ? . * ^ $ ( ) [ ] { } | \ }.each {|char| regex_value.gsub! char, "\\#{char}"}
     /#{regex_value}/i
-  end
-
-  # snap current values to the end of the versions array, but don't save
-  def snap_version(because)
-    version = {
-      replaced_at: Time.now,
-      replaced_because: because,
-
-      last_updated_at: self.updated_at,
-      draft: self.draft,
-      private: self.private,
-
-      title: self.title,
-      excerpt: self.excerpt,
-      body: self.body
-    }
-
-    self.versions << version
   end
 
   # mixing in the rendering methods...

@@ -6,14 +6,6 @@
       <%= short_date Time.now %>
     </time>
 
-    <% if defined?(version) and version %>
-      <small class="version right">
-        <strong>Replaced</strong> on <%= long_date version['replaced_at'] %> because, and I quote:
-        <br/><br/>
-        "<%= version['replaced_because'] %>"
-      </small>
-    <% end %>
-
     <h1>
       <a class="title" href="#">
         <%= h title %>

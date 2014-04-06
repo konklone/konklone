@@ -70,14 +70,8 @@ put '/admin/post/:slug' do
   post = Post.find_by_slug! params[:slug]
   raise Sinatra::NotFound unless post
 
-  if params[:new_version].present?
-    # BEFORE AFFECTING POST: snap a new version if asked
-    post.snap_version params[:new_version]
-
-    # handled a bit differently
-    post.github_last_message = params[:new_version]
-  end
-
+  # handled a bit differently
+  post.github_last_message = params[:save_message]
 
   params[:post]['tags'] = (params[:post]['tags'] || []).split /, ?/
 
@@ -152,21 +146,10 @@ get '/admin/preview/:id' do
 
   comments = post.comments.visible.asc(:created_at).to_a
 
-  if params[:version]
-    version = post.versions[params[:version].to_i]
-    erb :preview, locals: {
-      title: version['title'],
-      footer: version['footer'],
-      body: version['body'],
-      version: version,
-      comments: comments
-    }
-  else
-    erb :post, locals: {
-      post: post, comments: comments,
-      preview: true
-    }
-  end
+  erb :post, locals: {
+    post: post, comments: comments,
+    preview: true
+  }
 end
 
 # list of non-spam comments
