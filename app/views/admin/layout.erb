@@ -47,7 +47,10 @@
   </main>
 
   <script type="text/javascript">
-    $(function() { $("#flash").delay(500).fadeOut(500); });
+    $(function() {
+      $("#flash").delay(3000).fadeOut(500);
+      $("#flash").click(function() {$(this).remove()})
+    });
   </script>
 
 </body>
