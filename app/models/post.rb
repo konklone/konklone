@@ -4,6 +4,7 @@ class Post
   include Mongoid::Slug
 
   attr_protected :_id, :slug
+  attr_accessor :needs_sync
 
   has_many :comments
 
@@ -171,11 +172,18 @@ class Post
     self.github = "#{prefix}/#{slug}.md"
   end
 
+  before_save :sync_to_github?
+  def sync_to_github?
+    self.needs_sync = self.changed.include? "body"
+    true
+  end
+
   after_save :sync_to_github
   def sync_to_github
     return unless Environment.github.present?
     return unless self.github.present?
     return unless self.visible?
+    return unless self.needs_sync
 
     # break up URL into parts
     repo, branch, path = Post.parse_github_url self.github
@@ -205,10 +213,10 @@ class Post
         post = Environment.github.create_contents repo, path, message, self.body, branch: branch
       end
       self.set :github_last_sha, post.content.sha
+      self.needs_sync = false
     rescue Exception => exc
       Email.exception exc
     end
-
   end
 
   # TODO: sync from github
