@@ -21,8 +21,8 @@ github:
   # generate in your user or org settings
   token:
 
-  # set for a webhook that syncs inward
-  # as of 2014-04-06, needs to be set via API (not in-browser)
+  # set for a webhook that syncs inward.
+  # as of 2014-04-06, needs to be set via API (can't be done in-browser)
   webhook_secret:
 
   # e.g. https://github.com/konklone/writing/blob/master/blog
