@@ -62,7 +62,12 @@ post '/github/sync' do
         puts "\tUpdating post."
         post.save!
 
-        updated << {post: post.slug, url: url, commit: commit['id']}
+        updated << {
+          post: post.slug,
+          url: url,
+          message: commit['message'],
+          commit: commit['id']
+        }
 
         # quickly append commit to known commits (don't trigger callbacks)
         post.push :github_commits, commit['id']
