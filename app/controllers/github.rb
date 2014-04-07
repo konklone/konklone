@@ -90,3 +90,12 @@ end
 def github_event
   request.env['HTTP_X_GITHUB_EVENT']
 end
+
+# for future reference,
+# how to set the shared secret of a webhook via octokit:
+#
+# Environment.github.edit_hook "[USER]/[REPO]", [HOOK_ID], "web", {
+#   url: "https://[DOMAIN].com/github/sync",
+#   content_type: "form", insecure_ssl: "0",
+#   secret: "[SHARED SECRET]"
+# }
