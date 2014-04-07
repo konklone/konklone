@@ -53,10 +53,10 @@ post '/github/sync' do
         next
       end
 
-      # okay, then update the post and message without syncing
+      # okay, then update the post without syncing back out again
       post.body = body
-      post.needs_sync = false
       post.github_last_message = commit['message']
+      post.needs_sync = false
 
       begin
         puts "\tUpdating post."
@@ -64,7 +64,7 @@ post '/github/sync' do
 
         updated << {post: post.slug, url: url, commit: commit['id']}
 
-        # quickly append commit to known commits, no callbacks
+        # quickly append commit to known commits (don't trigger callbacks)
         post.push :github_commits, commit['id']
       rescue Exception => exc
         Email.exception exc
