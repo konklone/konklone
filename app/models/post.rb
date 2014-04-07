@@ -52,8 +52,6 @@ class Post
   field :github_last_message
   # all "known" commits through outgoing sync
   field :github_commits, type: Array, default: []
-  # last github payload ID from incoming sync
-  field :github_last_payload
 
 
   # REFACTOR: use slugs, not IDs, make editable
@@ -178,9 +176,9 @@ class Post
     true
   end
 
-  # go fetch the current details from github
-  # 1) used when syncing TO github to know if it's create or update
-  # 2) used when syncing FROM github to get new content to save
+  # go fetch this file's current sha and content from github
+  # 1) used when syncing TO github to know whether to create or update
+  # 2) used when syncing FROM github to get the new content to save
   def fetch_from_github
     repo, branch, path = Post.parse_github_url self.github
     Environment.github.contents repo, ref: branch, path: path
