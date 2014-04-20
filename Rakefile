@@ -98,7 +98,7 @@ namespace :cache do
       # proactive caching.
 
       # all right this is crazy, but to avoid simulating Sinatra's
-      # whole render pipeline and helper set up (including Padrino::Helper's deps)
+      # whole render pipeline and helper set up.
       # we will hit the app locally and trigger the render step for each post, at deploy time
       Post.visible.desc(:published_at).each do |post|
         puts "[#{post.slug}] Caching..."

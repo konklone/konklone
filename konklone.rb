@@ -26,23 +26,9 @@ get '/projects' do
   erb :projects
 end
 
-get '/blackout' do
-  blackout = Environment.blackouts.last
-  page = File.read "app/views/blackout/#{blackout[:file]}.html"
-  erb :blackout, locals: {page: page, current_blackout: blackout}
-end
-
-get '/blackout/:blackout' do
-  id = params[:blackout][0..3].to_i
-  blackout = Environment.blackouts[id-1]
-
-  page = File.read "app/views/blackout/#{blackout[:file]}.html"
-  erb :blackout, locals: {page: page, current_blackout: blackout}
-end
-
 # if I don't support an accented é, why did I bothér
 get /\/(resume|r%C3%A9sum%C3%A9)/i do
-  erb :resume
+  erb :resume, locals: {independent: true}
 end
 
 get '/post/:slug/?' do

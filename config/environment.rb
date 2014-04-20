@@ -5,6 +5,7 @@ require 'mongoid_slug'
 
 require 'rakismet'
 
+require 'sinatra/partial'
 require 'sinatra/content_for'
 require 'sinatra/flash'
 require 'tzinfo'
@@ -21,7 +22,8 @@ require "fileutils"
 set :logging, false
 set :views, 'app/views'
 set :public_folder, 'public'
-
+set :partial_template_engine, :erb # sinatra-partial requires this
+enable :partial_underscores # todo: ditch the underscores
 
 def config
   @config ||= YAML.load_file File.join(File.dirname(__FILE__), "config.yml")
@@ -115,6 +117,3 @@ helpers Helpers::Admin
 Dir.glob('app/models/*.rb').each {|filename| load filename}
 
 Dir.glob("./app/controllers/*.rb").each {|filename| load filename}
-
-require 'padrino-helpers'
-helpers Padrino::Helpers

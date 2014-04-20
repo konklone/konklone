@@ -1,10 +1,13 @@
 source 'http://rubygems.org'
 
 gem 'sinatra'
+# used for reloading, and content_for
 gem 'sinatra-contrib'
-gem 'sinatra-flash', '0.3.0'
-gem 'padrino-helpers', '>=0.11.2'
+gem 'sinatra-partial'
 gem 'sinatra-webfinger'
+
+# todo: switch to https://github.com/treeder/rack-flash
+gem 'sinatra-flash', '0.3.0'
 
 gem "mongoid"
 gem 'mongoid_slug'

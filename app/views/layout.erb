@@ -49,13 +49,13 @@
   <link href='https://fonts.googleapis.com/css?family=Open+Sans|Average' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="/css/html5-reset.css" />
 
-  <% unless yield_content(:independent) %>
+  <% unless defined?(independent) and independent %>
     <link rel="stylesheet" href="/css/main.css?<%= Time.now.to_i %>" />
     <link rel="stylesheet" href="/css/blog.css?<%= Time.now.to_i %>" />
   <% end %>
 
-  <% if canonical = yield_content(:canonical) %>
-  <link rel="canonical" href="<%= canonical %>" />
+  <% if (canonical = yield_content(:canonical)).present? %>
+    <link rel="canonical" href="<%= canonical %>" />
   <% end %>
 
   <%= yield_content :head %>
