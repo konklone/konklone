@@ -38,3 +38,9 @@ group :development do
   gem 'wirble'
   gem 'unicorn'
 end
+
+group :test do
+  gem 'rack-test'
+  gem 'timecop', '~> 0.7'
+  gem 'factory_girl'
+end

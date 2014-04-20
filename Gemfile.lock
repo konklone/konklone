@@ -12,6 +12,8 @@ GEM
     big_sitemap (1.1.0)
     builder (3.0.4)
     escape_utils (1.0.1)
+    factory_girl (4.4.0)
+      activesupport (>= 3.0.0)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
     i18n (0.6.9)
@@ -78,6 +80,7 @@ GEM
       sinatra (>= 1.3)
     stringex (2.5.2)
     tilt (1.4.1)
+    timecop (0.7.1)
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
@@ -94,6 +97,7 @@ PLATFORMS
 DEPENDENCIES
   big_sitemap
   escape_utils
+  factory_girl
   kramdown
   loofah
   mongoid (~> 3.1)
@@ -103,6 +107,7 @@ DEPENDENCIES
   oj
   pony
   rack
+  rack-test
   rake
   rakismet
   rinku
@@ -113,6 +118,7 @@ DEPENDENCIES
   sinatra-flash (= 0.3.0)
   sinatra-partial
   sinatra-webfinger
+  timecop (~> 0.7)
   tzinfo
   unicorn
   wirble
