@@ -64,6 +64,8 @@ article h1 a, article h2 a {text-decoration: none;}
 article h1 a:hover, article h2 a:hover {text-decoration: underline;}
 
 /* code blocks */
+
+/* inline code, <code> only */
 article code {
   padding: 2px 4px;
   background-color: #eaeaff;
@@ -72,7 +74,8 @@ article code {
   font-family: monospace;
 }
 
-article code.block {
+/* blocks of code, <pre><code> */
+article pre code {
   display: block;
   padding: 10px 20px;
   line-height: 18px;

@@ -54,6 +54,7 @@ GEM
     raindrops (0.13.0)
     rake (10.3.1)
     rakismet (1.5.0)
+    redcarpet (3.1.1)
     rinku (1.7.3)
     safe_yaml (1.0.1)
     sawyer (0.5.4)
@@ -110,6 +111,7 @@ DEPENDENCIES
   rack-test
   rake
   rakismet
+  redcarpet
   rinku
   safe_yaml
   simple-rss

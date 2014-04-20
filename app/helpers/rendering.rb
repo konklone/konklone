@@ -1,12 +1,20 @@
 require 'nokogiri'
 require 'loofah'
-require 'kramdown'
+require 'kramdown' # TODO: no
 require 'rinku'
+require 'redcarpet'
 
 # needs to be safe enough to be included into a Mongoid model
 
 module Helpers
   module Rendering
+
+    # create a custom renderer that allows highlighting of code blocks
+    # class HTMLwithPygments < Redcarpet::Render::HTML
+    #   def block_code(code, language)
+    #     Pygments.highlight(code, lexer: language)
+    #   end
+    # end
 
     # any field-specific render methods begin with "render_"
 
@@ -43,7 +51,8 @@ module Helpers
     # extract post nav as isolated html fragment
     def render_post_nav(text)
       with_nav = "* anything\n{:toc}\n\n#{text}"
-      with_nav = markdown with_nav
+      with_nav = kramdown with_nav
+
       nav = Nokogiri::HTML(with_nav).css("ul#markdown-toc").first
       nav ? nav.to_html : nil
     end
@@ -92,7 +101,27 @@ module Helpers
       text
     end
 
+    # documentation at:
+    # https://github.com/vmg/redcarpet#and-its-like-really-simple-to-use
     def markdown(text)
+      renderer = Redcarpet::Render::HTML.new(
+        with_toc_data: true
+      )
+
+      markdown = Redcarpet::Markdown.new(renderer, {
+        no_intra_emphasis: true,
+        fenced_code_blocks: true,
+        autolink: true,
+        disable_indented_code_blocks: true,
+        lax_spacing: true,
+        space_after_headers: true,
+        with_toc_data: true
+      })
+
+      markdown.render text
+    end
+
+    def kramdown(text)
       Kramdown::Document.new(text).to_html
     end
 

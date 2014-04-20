@@ -19,6 +19,8 @@ gem 'safe_yaml'
 gem 'pony'
 
 # markdown/comment/parsing/sanitization
+gem 'redcarpet'
+gem 'pygments'
 gem 'kramdown'
 gem 'rinku'
 gem 'nokogiri'
