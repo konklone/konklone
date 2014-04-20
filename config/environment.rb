@@ -22,8 +22,7 @@ require "fileutils"
 set :logging, false
 set :views, 'app/views'
 set :public_folder, 'public'
-set :partial_template_engine, :erb # sinatra-partial requires this
-enable :partial_underscores # todo: ditch the underscores
+set :partial_template_engine, :erb # required by sinatra-partial
 
 def config
   @config ||= YAML.load_file File.join(File.dirname(__FILE__), "config.yml")
