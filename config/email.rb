@@ -35,12 +35,6 @@ class Email
     send_email subject, body, Environment.config['admin']['email']
   end
 
-  def self.new_subscriber(subscriber)
-    subject = "New subscriber: #{subscriber.email}"
-    body = "Just in: #{subscriber.email}"
-
-    send_email subject, body, Environment.config['admin']['email']
-  end
 
   ## workhorse
 

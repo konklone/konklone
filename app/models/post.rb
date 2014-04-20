@@ -162,7 +162,7 @@ class Post
   # done in the controller on first publish,
   # assumes a slug is present
   def generate_github_url
-    prefix = config['github']['default_prefix']
+    prefix = Environment.config['github']['default_prefix']
     self.github = "#{prefix}/#{slug}.md"
   end
 

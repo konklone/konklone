@@ -329,28 +329,11 @@ article .discuss a {xcolor: rgb(0, 53, 102); }
 article .author span.hear,
 article .author span.hear a {vertical-align:bottom;}
 article .author span.hear {margin-bottom: 3px; display: inline-block;}
-article .author input.email {
-  border: 0;
-  margin-left: 3px;
-  width: 135px;
-  background-color: #f5f5f5;
-  border-bottom: 1px solid #888;
-}
-
-article .author .to_subscribe {display: inline-block; }
-article .author .is_subscribing,
-article .author .error_subscribing,
-article .author .has_subscribed  {
-  display: none; margin-top: 15px;
-  color: #111;
-}
-article .author .has_subscribed {font-weight: normal;}
-article .author input.subscribe {visibility: hidden;}
 
 article .author a.feed {
   background-image: url(/images/feed-12-black.png);
   background-size: 12px 12px;
-  background-position: 0px 1px;
+  background-position: 0px 4px;
   background-repeat: no-repeat;
   padding-left: 16px;
   margin-left: 3px;

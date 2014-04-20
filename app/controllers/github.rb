@@ -85,7 +85,7 @@ end
 def github?
   given_signature = request.env['HTTP_X_HUB_SIGNATURE']
 
-  secret = config['github']['webhook_secret']
+  secret = Environment.config['github']['webhook_secret']
   body = request.body.read
   required_signature = "sha1=" + OpenSSL::HMAC.hexdigest(HMAC_DIGEST, secret, body)
 
