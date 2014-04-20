@@ -53,6 +53,7 @@ GEM
     rake (10.3.1)
     rakismet (1.5.0)
     rinku (1.7.3)
+    safe_yaml (1.0.1)
     sawyer (0.5.4)
       addressable (~> 2.3.5)
       faraday (~> 0.8, < 0.10)
@@ -105,6 +106,7 @@ DEPENDENCIES
   rake
   rakismet
   rinku
+  safe_yaml
   simple-rss
   sinatra
   sinatra-contrib

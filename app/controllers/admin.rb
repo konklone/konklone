@@ -17,7 +17,7 @@ get '/admin' do
 end
 
 post '/admin/login' do
-  if params[:password] == config[:admin][:password]
+  if params[:password] == Environment.config['admin']['password']
     session[:admin] = true
     redirect '/admin/posts/published'
   else

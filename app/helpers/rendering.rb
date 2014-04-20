@@ -11,7 +11,7 @@ module Helpers
     # any field-specific render methods begin with "render_"
 
     def post_body(post)
-      if config[:site]['cache_markdown']
+      if Environment.config['site']['cache_markdown']
         post.body_rendered
       else
         render_post_body post.body
@@ -19,7 +19,7 @@ module Helpers
     end
 
     def post_nav(post)
-      if config[:site]['cache_markdown']
+      if Environment.config['site']['cache_markdown']
         post.nav
       else
         render_post_nav post.body
@@ -27,7 +27,7 @@ module Helpers
     end
 
     def comment_body(comment)
-      if config[:site]['cache_markdown']
+      if Environment.config['site']['cache_markdown']
         comment.body_rendered
       else
         render_comment_body comment.body
@@ -107,7 +107,7 @@ module Helpers
       return nil unless string
       Loofah.scrub_fragment(string, :prune).to_s.strip
     end
-    
+
     def capital_H_dangit(string)
       string.to_s
         .gsub(/(\A|\s)github(\W)/i, '\1GitHub\2') # capitalize GitHub in every occurrence.

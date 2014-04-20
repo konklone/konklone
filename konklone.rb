@@ -48,7 +48,7 @@ post '/comments/post/:slug' do
   comment = post.comments.build params[:comment]
   comment.ip = get_ip
 
-  if config[:site][:check_spam]
+  if Environment.config['site']['check_spam']
     # not saved, used only for spam checking
     comment.user_agent = request.env['HTTP_USER_AGENT']
     comment.referrer = request.referer unless request.referer == "/"
@@ -116,7 +116,7 @@ error do
 
   request = {
     method: env['REQUEST_METHOD'],
-    url: "#{config[:site][:root]}#{env['REQUEST_URI']}",
+    url: "#{Environment.config['site']['root']}#{env['REQUEST_URI']}",
     params: params.inspect,
     user_agent: env['HTTP_USER_AGENT']
   }
@@ -130,20 +130,20 @@ get '/rss.xml' do
   headers['Content-Type'] = 'application/rss+xml'
 
   posts = Post.visible.here.desc(:published_at).limit(20).to_a
-  erb :rss, locals: {site: config[:site], posts: posts}, layout: false
+  erb :rss, locals: {site: Environment.config['site'], posts: posts}, layout: false
 end
 
 get '/comments.xml' do
   headers['Content-Type'] = 'application/rss+xml'
 
   comments = Comment.visible.desc(:created_at).limit(20).to_a
-  erb :comments, locals: {site: config[:site], comments: comments}, layout: false
+  erb :comments, locals: {site: Environment.config['site'], comments: comments}, layout: false
 end
 
 # webfinger endpoint support
 require 'sinatra/webfinger'
 # require '/home/eric/konklone/sinatra-webfinger/lib/sinatra/webfinger'
-webfinger config['webfinger']
+webfinger Environment.config['webfinger']
 
 helpers do
   def google?

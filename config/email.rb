@@ -3,7 +3,7 @@
 class Email
 
   def self.message(message)
-    send_email message, message, config[:admin][:email]
+    send_email message, message, Environment.config['admin']['email']
   end
 
   def self.exception(exception, attributes = {})
@@ -19,12 +19,12 @@ class Email
 
     body += "\n\n#{JSON.pretty_generate attributes}" if attributes.any?
 
-    send_email subject, body, config[:admin][:email]
+    send_email subject, body, Environment.config['admin']['email']
   end
 
   def self.flagged_comment(comment)
     subject = "Flagged comment by \"#{comment.author}\" on recent post"
-    body = "#{config[:site][:root]}/admin/comment/#{comment.id}"
+    body = "#{Environment.config['site']['root']}/admin/comment/#{comment.id}"
     body += "\n\n"
     body += comment.author
     body += " - #{comment.author_url}" if comment.author_url.present?
@@ -32,25 +32,43 @@ class Email
     body += "\n\n"
     body += comment.body
 
-    send_email subject, body, config[:admin][:email]
+    send_email subject, body, Environment.config['admin']['email']
   end
 
   def self.new_subscriber(subscriber)
     subject = "New subscriber: #{subscriber.email}"
     body = "Just in: #{subscriber.email}"
 
-    send_email subject, body, config[:admin][:email]
+    send_email subject, body, Environment.config['admin']['email']
   end
 
   ## workhorse
 
   def self.send_email(subject, body, to)
-    if config['email'][:from]
-      Pony.mail config['email'].merge(
+    if Environment.config['email']['from']
+
+      # Pony demands symbol keys for everything, but using safe_yaml
+      # commits us to string keys.
+      options = {
+        from: Environment.config['email']['from'],
+        via: Environment.config['email']['via'].to_sym,
+        via_options: {
+          address: Environment.config['email']['via_options']['address'],
+          port: Environment.config['email']['via_options']['port'],
+          user_name: Environment.config['email']['via_options']['user_name'],
+          password: Environment.config['email']['via_options']['password'],
+          # authentication: Environment.config['email']['via_options']['authentication'],
+          # domain: Environment.config['email']['via_options']['domain'],
+          enable_starttls_auto: Environment.config['email']['via_options']['enable_starttls_auto']
+        }
+      }
+
+      Pony.mail options.merge(
         subject: subject,
         body: body,
         to: to
       )
+      puts "[REAL] Sent to #{to}:\n\n#{subject}\n\n#{body}"
     else
       puts "[FAKE] Sending to #{to}:\n\n#{subject}\n\n#{body}"
     end

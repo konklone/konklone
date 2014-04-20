@@ -14,6 +14,7 @@ gem 'mongoid_slug'
 
 gem 'big_sitemap'
 gem 'escape_utils'
+gem 'safe_yaml'
 
 gem 'pony'
 

@@ -148,3 +148,10 @@ namespace :analytics do
     end
   end
 end
+
+namespace :test do
+  desc "Test sending an email"
+  task send_email: :environment do
+    Email.message "Hello, dear admin."
+  end
+end

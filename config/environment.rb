@@ -1,4 +1,5 @@
 require 'sinatra'
+require 'safe_yaml'
 
 require 'mongoid'
 require 'mongoid_slug'
@@ -24,15 +25,15 @@ set :views, 'app/views'
 set :public_folder, 'public'
 set :partial_template_engine, :erb # required by sinatra-partial
 
-def config
-  @config ||= YAML.load_file File.join(File.dirname(__FILE__), "config.yml")
-end
-
 class Environment
 
+  def self.config
+    @config ||= YAML.safe_load_file File.join(File.dirname(__FILE__), "config.yml")
+  end
+
   def self.github
-    if config['github'] and config['github']['token']
-      @github ||= Octokit::Client.new access_token: config['github']['token']
+    if Environment.config['github'] and Environment.config['github']['token']
+      @github ||= Octokit::Client.new access_token: Environment.config['github']['token']
     end
   end
 
@@ -72,13 +73,15 @@ class Environment
 end
 
 configure do
+  SafeYAML::OPTIONS[:default_mode] = :safe
+
   Mongoid.configure do |c|
-    c.load_configuration config['mongoid'][Sinatra::Base.environment.to_s]
+    c.load_configuration Environment.config['mongoid'][Sinatra::Base.environment.to_s]
   end
 
-  Rakismet.key = config[:rakismet][:key]
-  Rakismet.url = config[:rakismet][:url]
-  Rakismet.host = config[:rakismet][:host]
+  Rakismet.key = Environment.config['rakismet']['key']
+  Rakismet.url = Environment.config['rakismet']['url']
+  Rakismet.host = Environment.config['rakismet']['host']
 
   Time.zone = ActiveSupport::TimeZone.find_tzinfo "America/New_York"
 end
@@ -90,7 +93,7 @@ unless test?
     key: 'rack.session',
     path: '/',
     expire_after: (60 * 60 * 24 * 30),
-    secret: config[:site]['session_secret']
+    secret: Environment.config['site']['session_secret']
 end
 
 

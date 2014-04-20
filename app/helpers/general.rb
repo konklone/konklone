@@ -2,11 +2,11 @@ module Helpers
   module General
 
     def twitter_name
-      config[:twitter]['username']
+      Environment.config['twitter']['username']
     end
 
     def twitter_id
-      config[:twitter]['user_id']
+      Environment.config['twitter']['user_id']
     end
 
     # post is assumed to have one social link or the other
