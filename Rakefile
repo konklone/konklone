@@ -4,41 +4,14 @@ task :environment do
   require './config/environment'
 end
 
-# load 'importers/blog0/blog0.rake'
-# load 'importers/blog1/blog1.rake'
-# load 'importers/blog2/blog2.rake'
-# load 'importers/blog3/blog3.rake'
-
-# Dir.glob("syncers/*.rake").each {|f| load f}
-
 desc "Create indexes on posts and comments"
-task :create_indexes => :define_import_indexes do
+task create_indexes: :environment do
   begin
     Mongoid.models.each &:create_indexes
-    puts "Created indexes for posts and comments."
+    puts "Created indexes for Mongoid models."
   rescue Exception => ex
     Email.exception ex
     puts "Error creating indexes, emailed report."
-  end
-end
-
-# indexes on fields used only in importing
-task :define_import_indexes => :environment do
-  class Post
-    index imported_at: 1
-    index import_source: 1
-    index import_source_filename: 1
-    index import_song_filename: 1
-    index import_id: 1
-    index import_sequence: 1 # LJ post sequence IDs
-  end
-
-  class Comment
-    index imported_at: 1
-    index import_source: 1
-    index import_source_filename: 1
-    index import_id: 1
-    index import_post_id: 1
   end
 end
 
@@ -61,7 +34,7 @@ task set_crontab: :environment do
 end
 
 desc "Generate a sitemap."
-task :sitemap => :environment do
+task sitemap: :environment do
   require 'big_sitemap'
 
   include Helpers::General
@@ -88,30 +61,6 @@ task :sitemap => :environment do
   puts "Saved sitemap with #{count} links."
 end
 
-
-namespace :cache do
-  desc "Reset post cache"
-  task reset: :environment do
-    if config[:site]['cache_enabled']
-      system "rm #{Environment.cache_dir}/*"
-
-      # proactive caching.
-
-      # all right this is crazy, but to avoid simulating Sinatra's
-      # whole render pipeline and helper set up.
-      # we will hit the app locally and trigger the render step for each post, at deploy time
-      Post.visible.desc(:published_at).each do |post|
-        puts "[#{post.slug}] Caching..."
-        system "curl --silent #{config[:site]['local_root']}/post/#{post.slug} > /dev/null"
-      end
-
-      puts
-      puts "Reset the cache. I hope you're happy."
-    else
-      puts "Cache not enabled, not resetting anything."
-    end
-  end
-end
 
 namespace :analytics do
 
