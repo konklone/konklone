@@ -3,6 +3,7 @@ article .nav,
 article .body ol, article .body ul,
 article header,
 article pre,
+article .highlight,
 article .body h2,
 article .body h3, article .body h4, article .body h5, article .body h6,
 article iframe.youtube,
@@ -66,7 +67,7 @@ article h1 a:hover, article h2 a:hover {text-decoration: underline;}
 /* code blocks */
 
 /* inline code, <code> only */
-article code {
+article code, article .highlight {
   padding: 2px 4px;
   background-color: #eaeaff;
   border: 1px solid #d5d5d5;
@@ -75,10 +76,11 @@ article code {
 }
 
 /* blocks of code, <pre><code> */
-article pre code {
+article .highlight pre {
   display: block;
-  padding: 10px 20px;
-  line-height: 18px;
+  padding: 5px 10px;
+  font-size: 13px;
+  line-height: 1.7;
 }
 
 

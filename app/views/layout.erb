@@ -52,6 +52,8 @@
   <% unless defined?(independent) and independent %>
     <link rel="stylesheet" href="/css/main.css?<%= Time.now.to_i %>" />
     <link rel="stylesheet" href="/css/blog.css?<%= Time.now.to_i %>" />
+    <link rel="stylesheet" href="/css/coderay-theme.css" />
+    <link rel="stylesheet" href="/css/pygments-theme.css" />
   <% end %>
 
   <% if (canonical = yield_content(:canonical)).present? %>

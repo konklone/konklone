@@ -1,20 +1,36 @@
 require 'nokogiri'
 require 'loofah'
-require 'kramdown' # TODO: no
 require 'rinku'
+
+require 'kramdown' # TODO: no
 require 'redcarpet'
+
+# Pygments means the running box has a PYTHON 2.X dependency.
+require 'pygments.rb'
+require 'coderay'
 
 # needs to be safe enough to be included into a Mongoid model
 
 module Helpers
   module Rendering
 
-    # create a custom renderer that allows highlighting of code blocks
-    # class HTMLwithPygments < Redcarpet::Render::HTML
-    #   def block_code(code, language)
-    #     Pygments.highlight(code, lexer: language)
-    #   end
-    # end
+    class HTMLwithPygments < Redcarpet::Render::HTML
+      def block_code(code, language)
+        Pygments.highlight(code,
+          lexer: language,
+          options: {cssclass: "highlight"}
+        )
+      end
+    end
+
+    class HTMLwithCoderay < Redcarpet::Render::HTML
+      def block_code(code, language)
+        block = CodeRay.highlight(code, language.to_sym, {
+          css: :class
+        }, "html")
+        "<pre><code class=\"CodeRay #{language}\">#{block}</pre></code>"
+      end
+    end
 
     # any field-specific render methods begin with "render_"
 
@@ -104,7 +120,7 @@ module Helpers
     # documentation at:
     # https://github.com/vmg/redcarpet#and-its-like-really-simple-to-use
     def markdown(text)
-      renderer = Redcarpet::Render::HTML.new(
+      renderer = HTMLwithPygments.new(
         with_toc_data: true
       )
 

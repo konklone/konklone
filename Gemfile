@@ -18,10 +18,10 @@ gem 'safe_yaml'
 
 gem 'pony'
 
-# markdown/comment/parsing/sanitization
 gem 'redcarpet'
-gem 'pygments'
-gem 'kramdown'
+gem 'pygments.rb'
+gem 'kramdown' # TODO: replace
+
 gem 'rinku'
 gem 'nokogiri'
 gem 'loofah'
