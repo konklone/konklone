@@ -7,7 +7,6 @@ require 'redcarpet'
 
 # Pygments means the running box has a PYTHON 2.X dependency.
 require 'pygments.rb'
-require 'coderay'
 
 # needs to be safe enough to be included into a Mongoid model
 
@@ -20,15 +19,6 @@ module Helpers
           lexer: language,
           options: {cssclass: "highlight"}
         )
-      end
-    end
-
-    class HTMLwithCoderay < Redcarpet::Render::HTML
-      def block_code(code, language)
-        block = CodeRay.highlight(code, language.to_sym, {
-          css: :class
-        }, "html")
-        "<pre><code class=\"CodeRay #{language}\">#{block}</pre></code>"
       end
     end
 

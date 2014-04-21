@@ -11,7 +11,6 @@ GEM
     backports (3.6.0)
     big_sitemap (1.1.0)
     builder (3.0.4)
-    coderay (1.1.0)
     escape_utils (1.0.1)
     factory_girl (4.4.0)
       activesupport (>= 3.0.0)
@@ -103,7 +102,6 @@ PLATFORMS
 
 DEPENDENCIES
   big_sitemap
-  coderay
   escape_utils
   factory_girl
   kramdown
