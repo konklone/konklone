@@ -1,14 +1,13 @@
 require 'nokogiri'
 require 'loofah'
 require 'rinku'
-
-require 'kramdown' # TODO: no
 require 'redcarpet'
 
 # Pygments means the running box has a PYTHON 2.X dependency.
 require 'pygments.rb'
 
-# needs to be safe enough to be included into a Mongoid model
+# needs to be safe enough to be included into a Mongoid model,
+# as the markdown rendering is cached after save for Posts.
 
 module Helpers
   module Rendering
@@ -56,10 +55,9 @@ module Helpers
 
     # extract post nav as isolated html fragment
     def render_post_nav(text)
-      with_nav = "* anything\n{:toc}\n\n#{text}"
-      with_nav = kramdown with_nav
+      with_nav = markdown_nav text
 
-      nav = Nokogiri::HTML(with_nav).css("ul#markdown-toc").first
+      nav = Nokogiri::HTML(with_nav).css("ul").first
       nav ? nav.to_html : nil
     end
 
@@ -127,8 +125,14 @@ module Helpers
       markdown.render text
     end
 
-    def kramdown(text)
-      Kramdown::Document.new(text).to_html
+    def markdown_nav(text)
+      renderer = Redcarpet::Render::HTML_TOC.new
+
+      markdown = Redcarpet::Markdown.new(renderer, {
+        space_after_headers: true
+      })
+
+      markdown.render text
     end
 
     def strip_tags(string)

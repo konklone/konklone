@@ -20,7 +20,6 @@ gem 'pony'
 
 gem 'redcarpet'
 gem 'pygments.rb'
-gem 'kramdown' # TODO: replace
 
 gem 'rinku'
 gem 'nokogiri'
