@@ -18,8 +18,9 @@ gem 'safe_yaml'
 
 gem 'pony'
 
-# markdown/comment/parsing/sanitization
-gem 'kramdown'
+gem 'redcarpet'
+gem 'pygments.rb'
+
 gem 'rinku'
 gem 'nokogiri'
 gem 'loofah'

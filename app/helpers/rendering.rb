@@ -1,12 +1,25 @@
 require 'nokogiri'
 require 'loofah'
-require 'kramdown'
 require 'rinku'
+require 'redcarpet'
 
-# needs to be safe enough to be included into a Mongoid model
+# Pygments means the running box has a PYTHON 2.X dependency.
+require 'pygments.rb'
+
+# needs to be safe enough to be included into a Mongoid model,
+# as the markdown rendering is cached after save for Posts.
 
 module Helpers
   module Rendering
+
+    class HTMLwithPygments < Redcarpet::Render::HTML
+      def block_code(code, language)
+        Pygments.highlight(code,
+          lexer: language,
+          options: {cssclass: "highlight"}
+        )
+      end
+    end
 
     # any field-specific render methods begin with "render_"
 
@@ -42,9 +55,9 @@ module Helpers
 
     # extract post nav as isolated html fragment
     def render_post_nav(text)
-      with_nav = "* anything\n{:toc}\n\n#{text}"
-      with_nav = markdown with_nav
-      nav = Nokogiri::HTML(with_nav).css("ul#markdown-toc").first
+      with_nav = markdown_nav text
+
+      nav = Nokogiri::HTML(with_nav).css("ul").first
       nav ? nav.to_html : nil
     end
 
@@ -92,8 +105,34 @@ module Helpers
       text
     end
 
+    # documentation at:
+    # https://github.com/vmg/redcarpet#and-its-like-really-simple-to-use
     def markdown(text)
-      Kramdown::Document.new(text).to_html
+      renderer = HTMLwithPygments.new(
+        with_toc_data: true
+      )
+
+      markdown = Redcarpet::Markdown.new(renderer, {
+        no_intra_emphasis: true,
+        fenced_code_blocks: true,
+        autolink: true,
+        disable_indented_code_blocks: true,
+        lax_spacing: true,
+        space_after_headers: true,
+        with_toc_data: true
+      })
+
+      markdown.render text
+    end
+
+    def markdown_nav(text)
+      renderer = Redcarpet::Render::HTML_TOC.new
+
+      markdown = Redcarpet::Markdown.new(renderer, {
+        space_after_headers: true
+      })
+
+      markdown.render text
     end
 
     def strip_tags(string)

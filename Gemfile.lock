@@ -18,7 +18,6 @@ GEM
       multipart-post (>= 1.2, < 3)
     i18n (0.6.9)
     kgio (2.9.2)
-    kramdown (1.3.3)
     loofah (1.2.1)
       nokogiri (>= 1.4.4)
     mail (2.5.4)
@@ -46,6 +45,10 @@ GEM
     polyglot (0.3.4)
     pony (1.8)
       mail (>= 2.0)
+    posix-spawn (0.3.8)
+    pygments.rb (0.5.4)
+      posix-spawn (~> 0.3.6)
+      yajl-ruby (~> 1.1.0)
     rack (1.5.2)
     rack-protection (1.5.3)
       rack
@@ -54,6 +57,7 @@ GEM
     raindrops (0.13.0)
     rake (10.3.1)
     rakismet (1.5.0)
+    redcarpet (3.1.1)
     rinku (1.7.3)
     safe_yaml (1.0.1)
     sawyer (0.5.4)
@@ -90,6 +94,7 @@ GEM
       rack
       raindrops (~> 0.7)
     wirble (0.1.3)
+    yajl-ruby (1.1.0)
 
 PLATFORMS
   ruby
@@ -98,7 +103,6 @@ DEPENDENCIES
   big_sitemap
   escape_utils
   factory_girl
-  kramdown
   loofah
   mongoid (~> 3.1)
   mongoid_slug
@@ -106,10 +110,12 @@ DEPENDENCIES
   octokit (~> 2.0)
   oj
   pony
+  pygments.rb
   rack
   rack-test
   rake
   rakismet
+  redcarpet
   rinku
   safe_yaml
   simple-rss
