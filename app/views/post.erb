@@ -7,18 +7,32 @@
 <% content_for(:canonical) { post_path post } %>
 
 <article class="post" data-slug="<%= post.slug %>">
-  <% if post.nav.present? %>
-    <section class="nav">
-      <div class="inner">
-        <h6 class="active">
-          <a href="#">
-            &uarr; top
-          </a>
-        </h6>
-        <%= post_nav post %>
-      </div>
-    </section>
-  <% end %>
+
+  <section class="nav">
+    <div class="inner">
+
+      <% if post.nav.present? %>
+        <div class="toc">
+          <h6 class="active">
+            <a href="#">
+              &uarr; top
+            </a>
+          </h6>
+
+          <%= post_nav post %>
+        </div>
+      <% end %>
+
+      <% if post.github.present? %>
+        <div class="details">
+          <h6>
+            <a href="<%= post.github %>">edit this post on github</a>
+          </h6>
+        </div>
+      <% end %>
+
+    </div>
+  </section>
 
   <%= partial "header", engine: :erb, locals: {post: post} %>
 

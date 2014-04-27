@@ -52,10 +52,12 @@ article header h2 {
 article blockquote {color: #222;}
 article pre {color: #555;}
 
+article .nav .details h6 {color: #404040;}
 article header h6,
 article.small time {color: #808080;}
 article small time {color: #777;}
-article header h6 a.comments {color: #404040;}
+article header h6 a.comments,
+article .nav .details h6 a {color: #404040;}
 #comments li header h6,
 #comments li header h6 a {color: #404040; text-decoration: none;}
 #comments li header h6 a:hover {text-decoration: underline;}
@@ -87,7 +89,8 @@ article .highlight pre {
 /********** Font sizes *************/
 
 article header h1  {font-size: 20pt; line-height: 40px;} /* article title */
-article header h6  {font-size: 10pt; line-height: 20px;}
+article header h6,
+article .nav .inner .details h6 {font-size: 10pt; line-height: 20px;}
 
 article sup {font-size: 10pt;}
 
@@ -253,28 +256,30 @@ article div.gist {font-size: 10pt; line-height: 21px;}
 article .nav .inner {position: fixed; margin-top: 8px;}
 /* duplicate .left CSS for now, could always add {.left} to gen path */
 article .nav .inner {width: 200px; float: left; margin-left: -240px;}
-article .nav .inner {
+
+article .nav .inner .details h6 {padding: 10px 12px; margin-top: 10px;}
+
+article .nav .inner .toc {
   border: 1px solid #eeeeee;
   background-color: #e5e5e5;
 }
-
-article .nav .inner h6,
-article .nav ul li {font-size: 10pt; line-height: 20px;}
-article .nav .inner h6 a,
-article .nav ul li a {
+article .nav .inner .toc h6,
+article .nav .inner .toc ul li {font-size: 10pt; line-height: 20px;}
+article .nav .inner .toc h6 a,
+article .nav .inner .toc ul li a {
   text-decoration: none;
   display: block;
   padding: 5px 10px;
 }
 
 article .nav ul li:hover,
-article .nav h6:hover {background-color: #aaa;}
-article .nav ul li:hover a,
-article .nav h6:hover a {color: #eee;}
-article .nav .active,
-article .nav .active:hover {background-color: #555;}
-article .nav .active a,
-article .nav .active:hover a {color: #fff;}
+article .nav .toc h6:hover {background-color: #aaa;}
+article .nav .toc ul li:hover a,
+article .nav .toc h6:hover a {color: #eee;}
+article .nav .toc .active,
+article .nav .toc .active:hover {background-color: #555;}
+article .nav .toc .active a,
+article .nav .toc .active:hover a {color: #fff;}
 
 
 /** floating things **/

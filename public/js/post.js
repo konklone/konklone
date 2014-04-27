@@ -1,4 +1,4 @@
-$("header.main .inner h1 a, article .nav h6 a").click(function() {
+$("header.main .inner h1 a, article .nav .toc h6 a").click(function() {
   window.location.hash = "";
   window.scrollTo(0,0);
   return false;

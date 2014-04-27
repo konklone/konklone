@@ -16,10 +16,11 @@
   <h6>
     published
     <time datetime="<%= short_datetime date %>" pubdate>
-      <%= long_date date %></time><% if post.comment_count > 0 %>,
+      <%= long_date date %><% if post.comment_count > 0 %>,
       <a href="<%= post_path post %>#comments" class="comments">
         <%= post.comment_count %> comment<%= "s" if post.comment_count > 1 %>
       </a>
-    <% end %>
-  </time>
+      <% end %>
+    </time>
+  </h6>
 </header>
