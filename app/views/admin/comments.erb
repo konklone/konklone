@@ -2,7 +2,7 @@
 
   <nav class="comments">
     <li class="left header">
-      <%= check_box_tag :select_all, id: "select_all" %>
+      <%# check_box_tag :select_all, id: "select_all" %>
     </li>
 
     <input type="hidden" name="_method" value="put" />
@@ -11,7 +11,7 @@
     <div class="controls">
       <input type="submit" name="submit" value="Hide" />
       <input type="submit" name="submit" value="Show" />
-      
+
       <% if flagged %>
         <input type="submit" name="submit" value="Ham!" />
       <% else %>
@@ -35,7 +35,7 @@
         >
 
         <span class="left checkbox">
-          <%= check_box_tag "comment_ids[]", value: comment.id %>
+          <%# check_box_tag "comment_ids[]", value: comment.id %>
         </span>
 
         <a class="author" href="/admin/comment/<%= comment.id %>">
@@ -52,7 +52,7 @@
         <span class="excerpt">
           <%= excerpt h(comment.body), 50 %>
         </span>
-      
+
         <time><%= tiny_date comment.created_at %></time>
       </li>
     <% end %>
@@ -71,7 +71,7 @@
     $(".flagged.clear").click(function() {
       if (confirm("Really clear all spam comments?"))
         $("#clear_comments").get(0).submit();
-      
+
       return false;
     });
 

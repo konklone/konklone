@@ -149,6 +149,7 @@
 
 <ol id="comments">
   <% post.comments.where(flagged: false).asc(:created_at).each do |comment| %>
+    <a href="/admin/comment/<%= comment.id %>">admin</a><br/>
     <%= partial "comment", engine: :erb, locals: {comment: comment} %>
   <% end %>
 </ol>
