@@ -73,6 +73,7 @@ put '/admin/post/:slug' do
   # handled a bit differently
   post.github_last_message = params[:save_message]
 
+  # have to split the tag string myself
   params[:post]['tags'] = (params[:post]['tags'] || []).split /, ?/
 
   post.attributes = params[:post]

@@ -188,7 +188,7 @@ class Post
   def sync_to_github
     return unless Environment.github.present?
     return unless self.github.present?
-    return unless self.visible?
+    # return unless self.visible?
     return unless self.needs_sync
 
 
