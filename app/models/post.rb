@@ -203,7 +203,11 @@ class Post
     message = if github_last_message.present?
       github_last_message
     elsif sha.blank?
-      "As first published"
+      if self.visible?
+        "As first published"
+      else
+        "As first synced"
+      end
     else
       "Updating post"
     end
