@@ -17,9 +17,8 @@ end
 # base controller
 
 get '/' do
-  per_page = 30
-  posts, page = paginate per_page, Post.visible.here.desc(:published_at)
-  erb :index, locals: {posts: posts, per_page: per_page, page: page}
+  posts = Post.visible.here.desc(:published_at)
+  erb :index, locals: {posts: posts}
 end
 
 get '/projects' do
