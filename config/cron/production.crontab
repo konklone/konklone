@@ -7,7 +7,7 @@
 
 
 # download copy of FISC website every 5 minutes
-*/5 * * * * cd /home/konklone/apps/fisa && /home/konklone/.rbenv/shims/bundle exec ruby fisa.rb > /home/konklone/apps/fisa/fisa.log 2>&1
+# */5 * * * * cd /home/konklone/apps/fisa && /home/konklone/.rbenv/shims/bundle exec ruby fisa.rb > /home/konklone/apps/fisa/fisa.log 2>&1
 
 
 
