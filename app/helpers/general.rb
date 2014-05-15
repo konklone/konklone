@@ -85,7 +85,7 @@ module Helpers
     end
 
     def rss_date(time)
-      time.strftime "%a, %d %b %Y %H:%M:%S %T"
+      time.rfc2822
     end
 
     def comment_time(time)
