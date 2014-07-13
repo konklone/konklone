@@ -141,7 +141,7 @@ class Post
   end
 
   # parse a github url into repo, and path to contents
-  # e.g. https://github.com/konklone/writing/blob/master/blog/testing.md
+  # e.g. https://github.com/konklone/writing/blob/writing/blog/testing.md
   def self.parse_github_url(url)
     uri = URI.parse url
     parts = uri.path.split "/"
@@ -152,7 +152,7 @@ class Post
   end
 
   # repo_url e.g. "https://github.com/konklone/writing"
-  # ref comes from payload, e.g. "refs/heads/master"
+  # ref comes from payload, e.g. "refs/heads/writing"
   # path e.g. "blog/testing.md"
   def self.github_url_for(repo_url, ref, path)
     branch = ref.split('/').last
