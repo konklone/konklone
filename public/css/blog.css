@@ -235,6 +235,12 @@ article img.block {display: block; margin: 0 auto;}
 article img.border {border: 1px solid #e5e5e5;}
 article img.upper {margin-bottom: 40px;}
 
+/* give figures some extra berth */
+article figure {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
 article figure figcaption {
   text-align: right;
   color: #222;
