@@ -212,6 +212,10 @@ article .body .footer-text {
   margin-top: 30px;
 }
 
+article .body .footer-text li {
+  list-style-type: circle;
+}
+
 
 article div.image.strip {
   background-position-y: center;
