@@ -19,7 +19,6 @@ $(function() {
 
   var navLinks = $(".nav ul li a").get().reverse();
   var sanitized = {};
-  window.sanitized = sanitized;
 
   // pre-calculate sanitized anchors
   $.each(navLinks, function(i, link) {
