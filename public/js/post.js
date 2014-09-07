@@ -18,6 +18,15 @@ $(function() {
   headerTitle.find("a").text(actualTitle);
 
   var navLinks = $(".nav ul li a").get().reverse();
+  var sanitized = {};
+  window.sanitized = sanitized;
+
+  // pre-calculate sanitized anchors
+  $.each(navLinks, function(i, link) {
+    var anchor = $(link).attr("href");
+    sanitized[anchor] = anchor.replace(/[^\w\-\#]/g, function(c) {return "\\" + c;});
+  });
+
   var navItems = $(".nav ul li, .nav h6");
   var navTop = $(".nav h6");
 
@@ -35,7 +44,7 @@ $(function() {
         var li = $(link.parentNode);
         link = $(link);
         var anchor = link.attr("href");
-        var location = $("h2" + anchor + ",h3" + anchor).offset().top;
+        var location = $("h2" + sanitized[anchor] + ",h3" + sanitized[anchor]).offset().top;
         if (location < (p + 100)) {
           if (!link.hasClass("active")) {
             navItems.removeClass("active");
