@@ -342,7 +342,7 @@ article .discuss {
 }
 article .author {margin-bottom: 35px;}
 
-article .footer {color: #555; font-size: 11pt;}
+article .footer {color: #555; font-size: 80%;}
 article .footer a {color: #333;}
 article .discuss {color: #111; font-style: italic; color: #555}
 article .discuss a {xcolor: rgb(0, 53, 102); }
