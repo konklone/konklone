@@ -17,8 +17,12 @@ end
 # base controller
 
 get '/' do
+  erb :index
+end
+
+get '/blog' do
   posts = Post.visible.here.desc(:published_at)
-  erb :index, locals: {posts: posts}
+  erb :blog, locals: {posts: posts}
 end
 
 get '/projects' do
