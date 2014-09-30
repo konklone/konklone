@@ -3,8 +3,14 @@
 <% content_for(:description) { %><%= post.description %><% } %>
 <% content_for(:image) { %><%= post.image %><% } %>
 
-<%# ensures current slug is used for canonical link %>
+<%# ensures most current slug is used for canonical link %>
 <% content_for(:canonical) { %><%= post_path post %><% } %>
+
+<% content_for :foot do %>
+  <script src="/js/post.js?<%= Time.now.to_i %>"></script>
+  <%= post.footer %>
+<% end %>
+
 
 <article class="post" data-slug="<%= post.slug %>">
 
@@ -102,9 +108,4 @@
       <%= partial "comment", engine: :erb, locals: {comment: comment} %>
     <% end %>
   </ol>
-<% end %>
-
-<% content_for :foot do %>
-  <script src="/js/post.js?<%= Time.now.to_i %>"></script>
-  <%= post.footer %>
 <% end %>
