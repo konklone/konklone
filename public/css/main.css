@@ -76,6 +76,9 @@ header.main .inner h1 {display: inline-block; display: none;}
 div.main {margin-top: 70px;}
 *:target {padding-top: 70px !important;}
 
+article.home p {
+  margin-top: 20px; margin-bottom: 20px;
+}
 
 
 /** Footer */
