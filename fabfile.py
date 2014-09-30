@@ -9,7 +9,7 @@ env.hosts = ["konklone.com"]
 branch = "master"
 repo = "git@github.com:konklone/konklone.com.git"
 
-keep = 5
+keep = 3
 
 username = "konklone"
 home = "/home/konklone/konklone"
