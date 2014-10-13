@@ -8,7 +8,7 @@ GEM
       i18n (~> 0.6, >= 0.6.4)
       multi_json (~> 1.0)
     addressable (2.3.6)
-    backports (3.6.0)
+    backports (3.6.3)
     big_sitemap (1.1.0)
     builder (3.0.4)
     escape_utils (1.0.1)
