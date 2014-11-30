@@ -25,6 +25,7 @@
         <h2><a href="<%= game['home'] %>">
             <%= game['title'] %>
         </a></h2>
+        <time datetime="<%= game['added'].xmlschema %>" />
         <h3><%= game['tagline'] %></h3>
         <p>
           <%= markdown game['description'] %>
