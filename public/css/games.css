@@ -20,7 +20,8 @@
 .games .game dl dd,
 .games .game dl dt {display: inline;}
 
-.games .game h2 {margin: 18px 0 13px 0;}
+.games .game h2 {margin: 0px 0 13px 0;}
+.games .game figure {margin: 18px 0 13px 0;}
 .games .game h3 {display: none;}
 .games .game dl {font-style: italic; margin-top: 7px;}
 

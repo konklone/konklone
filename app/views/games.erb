@@ -15,6 +15,9 @@
   <ul>
     <% games.each do |game| %>
       <li id="<%= game['slug'] %>" class="game">
+        <h2><a href="<%= game['home'] %>">
+            <%= game['title'] %>
+        </a></h2>
         <figure>
           <a href="<%= game['home'] %>" target="_blank">
             <img
@@ -22,9 +25,7 @@
               src="/games/<%= game['slug'] %>.jpg" />
           </a>
         </figure>
-        <h2><a href="<%= game['home'] %>">
-            <%= game['title'] %>
-        </a></h2>
+
         <time datetime="<%= game['added'].xmlschema %>" />
         <h3><%= game['tagline'] %></h3>
         <p>
