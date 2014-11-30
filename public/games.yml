@@ -44,14 +44,22 @@
   home: http://www.newgrounds.com/portal/view/529992
   added: 2014-11-28T00:00:00Z
   money: false
-  length: A mind break.
+  length: A brief mind break.
   for: Flash
   background: "http://auntiepixelante.com/?p=540"
+- slug: fez
+  title: Fez
+  tagline: Finding the cracks in the universe
+  description: "Fez is made for people who love feeling as if they've stumbled
+  onto something secret and of terrible importance. With your companion hypercube,
+  you flatten 3D into 2D, explore the folds of space, and decipher puzzles spread
+  across the entire game. Numbers, music, and treasure maps are taken very seriously.
+  It's difficult to convey how good Fez is from screens or short videos. Fez's creator,
+  Phil Fish, is the definition of a perfectionist, and Fez is the perfect definition of
+  a game greater than the sum of its parts."
+  home: http://fezgame.com
+  for: PC/Mac/Linux, PS3, Xbox 360
+  money: true
+  length: A week of discovery.
+  review: http://www.eurogamer.net/articles/2012-04-12-fez-review
 
-# - slug: fez
-#   title: Fez
-#   tagline: Finding the cracks in the universe
-#   description: Fez is made for people who love feeling as if they've stumbled
-#   onto something secret and of terrible importance. Fez' mechanic &mdash; flattening
-#   3D into 2D to navigate impossible situations &mdash; is not 100% original, but
-#   is
