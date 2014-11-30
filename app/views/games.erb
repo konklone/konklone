@@ -43,6 +43,9 @@
           <% if game['background'] %>
             Some <a href="<%= game['background'] %>">background</a>.
           <% end %>
+          <% if game['music'] %>
+            <a class="music" target="_blank" href="<%= game['music'] %>">♫</a>
+          <% end %>
         </dt>
       </li>
     <% end %>

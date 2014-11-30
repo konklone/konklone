@@ -23,3 +23,6 @@
 .games .game h2 {margin: 18px 0 13px 0;}
 .games .game h3 {display: none;}
 .games .game dl {font-style: italic; margin-top: 7px;}
+
+.games .game dl a.music {font-size: 14pt; text-decoration: none;}
+.games .game dl a.music:hover {text-decoration: underline;}
