@@ -37,6 +37,11 @@ class Environment
     end
   end
 
+  def self.games
+    # @games ||=
+    YAML.safe_load_file File.join(File.dirname(__FILE__), "../public/games.yml")
+  end
+
   # my own slugifier
   def self.to_url(string)
     string = string.dup
@@ -46,30 +51,6 @@ class Environment
     string[0..200]
   end
 
-  def self.blackouts
-    if @blackouts
-      @blackouts
-    else
-      @blackouts = {}
-      path = File.join File.dirname(__FILE__), "..", "app", "views", "blackout", "*.html"
-
-      @blackouts = Dir.glob(path).sort.map do |file|
-        file = File.basename file, ".html"
-        id = file[0..3].to_i
-        title = file.sub /^\d+ - /, ''
-        {
-          title: title,
-          id: id,
-          slug: "#{id}-#{to_url title}",
-          file: file
-        }
-      end
-
-      @blackouts
-    end
-  end
-
-  blackouts # pre-calculate
 end
 
 configure do

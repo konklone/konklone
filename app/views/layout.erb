@@ -67,7 +67,11 @@
   <%= yield_content :head %>
 
   <!-- RSS must live on -->
+  <% if (feed = yield_content(:feed)).present? %>
+  <%= feed %>
+  <% else %>
   <link rel="alternate" href="/rss.xml" type="application/rss+xml" title="All posts" />
+  <% end %>
 
   <!-- jquery is the jquery of the web -->
   <script src="/js/jquery-2.1.1.min.js"></script>

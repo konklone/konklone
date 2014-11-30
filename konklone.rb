@@ -20,6 +20,18 @@ get '/' do
   erb :index
 end
 
+get '/games' do
+  erb :games, locals: {games: Environment.games}
+end
+
+get '/games/feed/?' do
+  headers['Content-Type'] = 'application/rss+xml'
+
+  erb :rss_games,
+    locals: {site: Environment.config['site'], games: Environment.games},
+    layout: false
+end
+
 get '/blog' do
   posts = Post.visible.here.desc(:published_at)
   erb :blog, locals: {posts: posts}
