@@ -1,0 +1,59 @@
+<% content_for(:title) { %>Games to love forever<% } %>
+<% content_for(:description) { %>Eric Mill's recommendations and micro-feelings about games you really should play.<% } %>
+
+<section class="games">
+
+  <header>
+    <p>
+      Games made by <strong>other people</strong>. I want you to play them because I love them forever.
+    </p>
+    <p>
+      Here's an <a href="/games/feed">RSS feed</a> so you can subscribe forever.
+    </p>
+  </header>
+
+  <ul>
+    <% games.each do |game| %>
+      <li id="<%= game['slug'] %>" class="game">
+        <figure>
+          <a href="<%= game['home'] %>" target="_blank">
+            <img
+              title="<%= game['tagline'] %>"
+              src="/games/<%= game['slug'] %>.jpg" />
+          </a>
+        </figure>
+        <h2><a href="<%= game['home'] %>">
+            <%= game['title'] %>
+        </a></h2>
+        <h3><%= game['tagline'] %></h3>
+        <p>
+          <%= markdown game['description'] %>
+        </p>
+        <dl>
+          <% if game['money'] %>
+            <a href="<%= game['home'] %>">Go buy it.</a>
+          <% else %>
+            <a href="<%= game['home'] %>">Play it for free.</a>
+          <% end %>
+          (<%= game['for'] %>)
+          <%= game['length'] %>
+          <% if game['review'] %>
+            Read a <a href="<%= game['review'] %>">review</a>.
+          <% end %>
+          <% if game['background'] %>
+            Some <a href="<%= game['background'] %>">background</a>.
+          <% end %>
+        </dt>
+      </li>
+    <% end %>
+  </ul>
+
+</section>
+
+<% content_for :head do %>
+  <link rel="stylesheet" href="/css/games.css?<%= Time.now.to_i %>"/>
+<% end %>
+
+<% content_for :feed do %>
+  <link rel="alternate" href="/games/feed" type="application/rss+xml" title="Games Eric will love forever" />
+<% end %>
