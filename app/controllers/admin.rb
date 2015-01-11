@@ -373,6 +373,7 @@ post '/admin/key/login' do
   end
 
   authenticated = false
+  failure = nil
   begin
     Environment.u2f.authenticate!(
       session[:challenges],
@@ -384,8 +385,14 @@ post '/admin/key/login' do
       device.counter
     )
     authenticated = true
+
+  rescue U2F::CounterToLowError => exc
+    Email.exception exc
+    failure = "Your device has gotten out of sync with the server. Your device may have been compromised. You will need to use other means to invalidate this device and re-authorize it or add a new one."
+    nil
   rescue U2F::Error => exc
     Email.exception exc
+    failure = "Failed to log in. Try again or something?"
     nil
   ensure
     session.delete :challenges
@@ -400,7 +407,7 @@ post '/admin/key/login' do
 
     redirect "/admin"
   else
-    flash[:failure] = "Failed to log in. Try again or something?"
+    flash[:failure] = failure
     redirect "/admin/key/login"
   end
 end
