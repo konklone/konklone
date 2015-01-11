@@ -42,6 +42,7 @@ end
 
 group :test do
   gem 'rack-test'
-  gem 'timecop', '~> 0.7'
+  gem 'test-unit'
+  gem 'timecop'
   gem 'factory_girl'
 end
