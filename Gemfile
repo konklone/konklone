@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
-gem 'sinatra'
+# todo: hoo boy
+gem 'sinatra', git: 'git@github.com:sinatra/sinatra.git'
+
 # used for reloading, and content_for
 gem 'sinatra-contrib'
 gem 'sinatra-partial'
@@ -9,7 +11,11 @@ gem 'sinatra-webfinger'
 # todo: switch to https://github.com/treeder/rack-flash
 gem 'sinatra-flash', '0.3.0'
 
-gem "mongoid", "~> 3.1"
+# todo: switch to strong-parameters, controller-managed attr protection.
+# this gem won't be supported after Rails 5.0 releases.
+gem 'protected_attributes'
+
+gem "mongoid", "~> 4.0"
 gem 'mongoid_slug'
 
 gem 'big_sitemap'

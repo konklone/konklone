@@ -1,6 +1,7 @@
  class Comment
   include Mongoid::Document
   include Mongoid::Timestamps
+  include ActiveModel::MassAssignmentSecurity
 
   belongs_to :post
 
@@ -35,9 +36,9 @@
   validates_presence_of :author
   validates_presence_of :author_email
 
-  scope :visible, where(hidden: false, flagged: false)
-  scope :flagged, where(flagged: true)
-  scope :ham, where(flagged: false)
+  scope :visible, -> { where(hidden: false, flagged: false) }
+  scope :flagged, -> { where(flagged: true) }
+  scope :ham, -> { where(flagged: false) }
 
 
   # prefix URLs with http:// if they exist and don't have it
