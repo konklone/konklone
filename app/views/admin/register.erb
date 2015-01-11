@@ -1,0 +1,85 @@
+
+<!--
+  for now, requires Chrome extension:
+  https://chrome.google.com/webstore/detail/fido-u2f-universal-2nd-fa/pfboblefjcgdjicmnffhdgionmgcdmne
+-->
+<script src="chrome-extension://pfboblefjcgdjicmnffhdgionmgcdmne/u2f-api.js"></script>
+
+<article>
+  <ul>
+    <% if devices.size > 0 %>
+      <% devices.each do |device| %>
+        <li>
+          <%= device.created_at.strftime "%Y-%m-%d" %>
+          -
+          ...<%= device.key_handle[-10..-1] %>
+        </li>
+      <% end %>
+    <% else %>
+      No registered U2F devices.
+    <% end %>
+  </ul>
+
+  <p>
+    <strong>Hit the button to register a new device anytime.</strong>
+  </p>
+
+  <form id="register" action="/admin/key/register" method="post">
+    <input type="hidden" name="response" />
+  </form>
+
+  <p class="console">
+  </p>
+</article>
+
+<script>
+/*
+  Adapted from https://github.com/userbin/ruby-u2f
+*/
+
+var registerRequests = <%= registration_requests.as_json.to_json.html_safe %>;
+var signRequests = <%= sign_requests.as_json.to_json.html_safe %>;
+
+console.log("Register request:");
+console.log(registerRequests[0]);
+console.log("Sign requests:");
+console.log(signRequests);
+
+console.log("Issuing registration command.")
+
+// reference: https://github.com/userbin/ruby-u2f/blob/master/lib/u2f/errors.rb
+var codes = {
+  "1": "Other",
+  "2": "Bad request",
+  "3": "Configuration unsupported",
+  "4": "Device ineligible",
+  "5": "Timeout"
+};
+
+u2f.register(registerRequests, signRequests, function(registerResponse) {
+  var form, reg;
+
+  if (registerResponse.errorCode)
+    return console.log("Registration error: " + codes[registerResponse.errorCode]);
+
+  console.log("Successful! Registration response:");
+  console.log(registerResponse);
+
+  // test out screwing it up
+  // registerResponse.registrationData += "eric";
+
+  form = document.getElementById("register");
+  response = document.querySelector('[name=response]');
+  response.value = JSON.stringify(registerResponse);
+
+  console.log("Prepared form with registration response.");
+
+  console.log("Run: 'document.forms[0].submit()' to submit to /admin/registrations");
+  form.submit();
+});
+
+var submit = function() {
+  document.getElementById("register").submit();
+}
+
+</script>

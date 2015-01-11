@@ -15,6 +15,9 @@ gem 'sinatra-flash', '0.3.0'
 # this gem won't be supported after Rails 5.0 releases.
 gem 'protected_attributes'
 
+# FIDO key, woo!
+gem 'u2f'
+
 gem "mongoid", "~> 4.0"
 gem 'mongoid_slug'
 

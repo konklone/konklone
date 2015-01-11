@@ -1,5 +1,5 @@
 before '/admin/*' do
-  if ["", "login", "logout"].include?(params[:captures].first)
+  if ["", "login", "login/key", "logout"].include?(params[:captures].first)
     pass
   elsif params[:captures].first =~ /^preview/
     pass
@@ -260,4 +260,59 @@ put '/admin/comments' do
 
   flash[:success] = "Updated #{comment_ids.size} comments."
   redirect params[:redirect_to]
+end
+
+# FIDO U2F support. Using the code and documentation at:
+# https://github.com/userbin/ruby-u2f
+get '/admin/key/register' do
+  # Generate one for each version of U2F, currently only `U2F_V2`
+  registration_requests = Environment.u2f.registration_requests
+
+  # Keep challenges around for verification
+  session[:challenges] = registration_requests.map &:challenge
+
+  # Key handles for all registered devices (to me: which is all of them)
+  devices = Device.all
+  key_handles = devices.map &:key_handle
+  sign_requests = Environment.u2f.authentication_requests key_handles
+
+  erb :"admin/register", layout: :"admin/layout", locals: {
+    registration_requests: registration_requests,
+    sign_requests: sign_requests,
+    devices: devices
+  }
+end
+
+post '/admin/key/register' do
+  response = U2F::RegisterResponse.load_from_json params[:response]
+
+  reg = begin
+    Environment.u2f.register!(session[:challenges], response)
+  rescue U2F::Error => exc
+    Email.exception exc
+    nil
+  ensure
+    session.delete :challenges
+  end
+
+  if reg
+    flash[:success] = "DEVICE REGISTERED."
+
+    # save a reference to your database
+    Device.create!(certificate: reg.certificate,
+                   key_handle:  reg.key_handle,
+                   public_key:  reg.public_key,
+                   counter:     reg.counter)
+  else
+    flash[:failure] = "DEVICE NOT REGISTERED. EMAIL SENT WITH YOUR FAILURE."
+  end
+
+  redirect "/admin/key/register"
+end
+
+get '/admin/key/login' do
+
+end
+
+post '/admin/key/login' do
 end
