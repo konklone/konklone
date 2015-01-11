@@ -292,7 +292,13 @@ get '/admin/key/register' do
 end
 
 post '/admin/key/register' do
-  response = U2F::RegisterResponse.load_from_json params[:response]
+  begin
+    response = U2F::RegisterResponse.load_from_json params[:response]
+  rescue Exception => exc
+    Email.exception exc, {response: params[:response]}
+    flash[:failure] = "Invalid registration data."
+    redirect "/admin/key/register"
+  end
 
   reg = begin
     Environment.u2f.register!(session[:challenges], response)
