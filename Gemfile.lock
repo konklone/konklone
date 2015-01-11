@@ -1,10 +1,10 @@
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
-    activemodel (3.2.19)
-      activesupport (= 3.2.19)
+    activemodel (3.2.21)
+      activesupport (= 3.2.21)
       builder (~> 3.0.0)
-    activesupport (3.2.19)
+    activesupport (3.2.21)
       i18n (~> 0.6, >= 0.6.4)
       multi_json (~> 1.0)
     addressable (2.3.6)
@@ -16,7 +16,7 @@ GEM
       activesupport (>= 3.0.0)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
-    i18n (0.6.11)
+    i18n (0.7.0)
     kgio (2.9.2)
     loofah (2.0.0)
       nokogiri (>= 1.5.9)
@@ -57,7 +57,7 @@ GEM
     rakismet (1.5.0)
     redcarpet (3.1.2)
     rinku (1.7.3)
-    safe_yaml (1.0.3)
+    safe_yaml (1.0.4)
     sawyer (0.5.4)
       addressable (~> 2.3.5)
       faraday (~> 0.8, < 0.10)
@@ -83,7 +83,7 @@ GEM
     stringex (2.5.2)
     tilt (1.4.1)
     timecop (0.7.1)
-    tzinfo (0.3.40)
+    tzinfo (0.3.42)
     unicorn (4.8.3)
       kgio (~> 2.6)
       rack
