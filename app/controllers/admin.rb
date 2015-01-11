@@ -1,5 +1,5 @@
 before '/admin/*' do
-  if ["login", "logout"].include?(params[:captures].first)
+  if ["", "login", "logout"].include?(params[:captures].first)
     pass
   elsif params[:captures].first =~ /^preview/
     pass
@@ -8,7 +8,7 @@ before '/admin/*' do
   end
 end
 
-get '/admin' do
+get "/admin/?" do
   if admin?
     redirect '/admin/posts/published'
   else
