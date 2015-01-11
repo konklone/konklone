@@ -270,8 +270,11 @@ put '/admin/comments' do
   redirect params[:redirect_to]
 end
 
+########################################################
 # FIDO U2F support. Using the code and documentation at:
 # https://github.com/userbin/ruby-u2f
+########################################################
+
 get '/admin/key/register' do
   # Generate one for each version of U2F, currently only `U2F_V2`
   registration_requests = Environment.u2f.registration_requests
