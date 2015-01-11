@@ -33,6 +33,11 @@ class BlogTest < Test::Unit::TestCase
     assert_response 200
   end
 
+  def test_visiting_admin_with_slash
+    get "/admin/"
+    assert_response 200
+  end
+
   def test_visiting_admin_post
     post = create :published_post
     get "/admin/post/#{post.slug}"
