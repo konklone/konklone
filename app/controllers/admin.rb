@@ -8,35 +8,6 @@ before '/admin/*' do
   end
 end
 
-get "/admin/?" do
-  if admin?
-    redirect '/admin/posts/published'
-  elsif half_admin?
-    redirect '/admin/key/login'
-  else
-    erb :"admin/login", layout: :"admin/layout", locals: {message: nil}
-  end
-end
-
-post '/admin/login' do
-  if params[:password] == Environment.config['admin']['password']
-
-    if Device.count > 0
-      session[:half_admin] = true
-      redirect '/admin/key/login'
-    else
-      session[:admin] = true
-      redirect '/admin/posts/published'
-    end
-  else
-    erb :"admin/login", layout: :"admin/layout", locals: {message: "Invalid credentials."}
-  end
-end
-
-get '/admin/logout' do
-  session[:admin] = false
-  redirect '/admin'
-end
 
 get %r{^/admin/posts/(all|published|drafts|flagged)$} do
   # explicitly remove the public default scope in the admin area
@@ -270,6 +241,37 @@ put '/admin/comments' do
   redirect params[:redirect_to]
 end
 
+get "/admin/?" do
+  if admin?
+    redirect '/admin/posts/published'
+  elsif half_admin?
+    redirect '/admin/key/login'
+  else
+    erb :"admin/login", layout: :"admin/layout", locals: {message: nil}
+  end
+end
+
+post '/admin/login' do
+  if params[:password] == Environment.config['admin']['password']
+
+    if Device.count > 0
+      session[:half_admin] = true
+      redirect '/admin/key/login'
+    else
+      session[:admin] = true
+      redirect '/admin/posts/published'
+    end
+  else
+    erb :"admin/login", layout: :"admin/layout", locals: {message: "Invalid credentials."}
+  end
+end
+
+get '/admin/logout' do
+  session[:admin] = false
+  redirect '/admin'
+end
+
+
 ########################################################
 # FIDO U2F support. Using the code and documentation at:
 # https://github.com/userbin/ruby-u2f
@@ -287,7 +289,7 @@ get '/admin/key/register' do
   key_handles = devices.map &:key_handle
   sign_requests = Environment.u2f.authentication_requests key_handles
 
-  erb :"admin/register", layout: :"admin/layout", locals: {
+  erb :"admin/key_register", layout: :"admin/layout", locals: {
     registration_requests: registration_requests,
     sign_requests: sign_requests,
     devices: devices
@@ -295,6 +297,11 @@ get '/admin/key/register' do
 end
 
 post '/admin/key/register' do
+  unless (name = params[:name]).present?
+    flash[:failure] = "I need a device name."
+    redirect "/admin/key/register"
+  end
+
   begin
     response = U2F::RegisterResponse.load_from_json params[:response]
   rescue Exception => exc
@@ -316,10 +323,13 @@ post '/admin/key/register' do
     flash[:success] = "DEVICE REGISTERED."
 
     # save a reference to your database
-    Device.create!(certificate: reg.certificate,
-                   key_handle:  reg.key_handle,
-                   public_key:  reg.public_key,
-                   counter:     reg.counter)
+    Device.create!(
+      certificate: reg.certificate,
+      key_handle:  reg.key_handle,
+      public_key:  reg.public_key,
+      counter:     reg.counter,
+      name: name
+    )
   else
     flash[:failure] = "DEVICE NOT REGISTERED. EMAIL SENT WITH YOUR FAILURE."
   end
@@ -344,7 +354,7 @@ get '/admin/key/login' do
 
   session[:challenges] = sign_requests.map &:challenge
 
-  erb :"admin/key", layout: :"admin/layout", locals: {
+  erb :"admin/key_login", layout: :"admin/layout", locals: {
     sign_requests: sign_requests
   }
 end
@@ -392,5 +402,12 @@ post '/admin/key/login' do
   else
     flash[:failure] = "Failed to log in. Try again or something?"
     redirect "/admin/key/login"
+  end
+end
+
+delete "/admin/key/:key_handle" do
+  unless (device = Device.where(key_handle: params[:key_handle]).first)
+    flash[:failure] = "Couldn't find the specified device."
+    redirect "/admin/key/register"
   end
 end
