@@ -60,9 +60,6 @@ u2f.register(registerRequests, signRequests, function(registerResponse) {
   console.log("Successful! Registration response:");
   console.log(registerResponse);
 
-  // test out screwing it up
-  // registerResponse.registrationData += "eric";
-
   var form = document.getElementById("register");
   var response = document.querySelector('[name=response]');
   response.value = JSON.stringify(registerResponse);
