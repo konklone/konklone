@@ -27,9 +27,6 @@
   <form id="register" action="/admin/key/register" method="post">
     <input type="hidden" name="response" />
   </form>
-
-  <p class="console">
-  </p>
 </article>
 
 <script>
@@ -57,8 +54,6 @@ var codes = {
 };
 
 u2f.register(registerRequests, signRequests, function(registerResponse) {
-  var form, reg;
-
   if (registerResponse.errorCode)
     return console.log("Registration error: " + codes[registerResponse.errorCode]);
 
@@ -68,13 +63,10 @@ u2f.register(registerRequests, signRequests, function(registerResponse) {
   // test out screwing it up
   // registerResponse.registrationData += "eric";
 
-  form = document.getElementById("register");
-  response = document.querySelector('[name=response]');
+  var form = document.getElementById("register");
+  var response = document.querySelector('[name=response]');
   response.value = JSON.stringify(registerResponse);
 
-  console.log("Prepared form with registration response.");
-
-  console.log("Run: 'document.forms[0].submit()' to submit to /admin/registrations");
   form.submit();
 });
 

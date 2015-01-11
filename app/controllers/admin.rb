@@ -1,5 +1,5 @@
 before '/admin/*' do
-  if ["", "login", "login/key", "logout"].include?(params[:captures].first)
+  if ["", "login", "key/login", "logout"].include?(params[:captures].first)
     pass
   elsif params[:captures].first =~ /^preview/
     pass
@@ -11,6 +11,8 @@ end
 get "/admin/?" do
   if admin?
     redirect '/admin/posts/published'
+  elsif half_admin?
+    redirect '/admin/key/login'
   else
     erb :"admin/login", layout: :"admin/layout", locals: {message: nil}
   end
@@ -18,8 +20,14 @@ end
 
 post '/admin/login' do
   if params[:password] == Environment.config['admin']['password']
-    session[:admin] = true
-    redirect '/admin/posts/published'
+
+    if Device.count > 0
+      session[:half_admin] = true
+      redirect '/admin/key/login'
+    else
+      session[:admin] = true
+      redirect '/admin/posts/published'
+    end
   else
     erb :"admin/login", layout: :"admin/layout", locals: {message: "Invalid credentials."}
   end
@@ -311,8 +319,69 @@ post '/admin/key/register' do
 end
 
 get '/admin/key/login' do
+  unless half_admin?
+    flash[:failure] = "You need to know the password before you get to show the token."
+    redirect "/admin"
+  end
 
+  key_handles = Device.all.map &:key_handle
+
+  if key_handles.empty?
+    flash[:failure] = "Weird: no keys registered. Why are you here?"
+    redirect "/admin"
+  end
+
+  sign_requests = Environment.u2f.authentication_requests key_handles
+
+  session[:challenges] = sign_requests.map &:challenge
+
+  erb :"admin/key", layout: :"admin/layout", locals: {
+    sign_requests: sign_requests
+  }
 end
 
 post '/admin/key/login' do
+  unless half_admin?
+    flash[:failure] = "You need to know the password before you get to show the token."
+    redirect "/admin"
+  end
+
+  response = U2F::SignResponse.load_from_json params[:response]
+
+  unless device = Device.where(key_handle: response.key_handle).first
+    flash[:failure] = "This device has never been registered."
+    redirect "/admin/key/login"
+  end
+
+  authenticated = false
+  begin
+    Environment.u2f.authenticate!(
+      session[:challenges],
+      response,
+
+      # database stores base64-encoded version - library needs real binary string
+      Base64.strict_decode64(device.public_key),
+
+      device.counter
+    )
+    authenticated = true
+  rescue U2F::Error => exc
+    Email.exception exc
+    nil
+  ensure
+    session.delete :challenges
+  end
+
+  if authenticated
+    device.update(counter: response.counter)
+    flash[:success] = "Welcome, token bearer."
+
+    session.delete :half_admin
+    session[:admin] = true
+
+    redirect "/admin"
+  else
+    flash[:failure] = "Failed to log in. Try again or something?"
+    redirect "/admin/key/login"
+  end
 end

@@ -38,6 +38,9 @@
         <%= link_to_current "Spam", "/admin/comments/flagged" %>
         <%= link_to_current "U2F", "/admin/key/register" %>
       </nav>
+    <% elsif session[:half_admin] %>
+      <p>Almost there. Gotta show the token.</p>
+      <br/>
     <% else %>
       <p>Not logged in.</p>
       <br/>
