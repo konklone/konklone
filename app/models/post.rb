@@ -2,6 +2,7 @@ class Post
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Slug
+  include ActiveModel::MassAssignmentSecurity
 
   attr_protected :_id, :slug
 
@@ -80,12 +81,12 @@ class Post
 
   validates_uniqueness_of :slug, allow_nil: true
 
-  scope :visible, where(private: false, draft: false)
-  scope :here, where(redirect_url: {"$in" => [nil, ""]})
+  scope :visible, -> { where(private: false, draft: false) }
+  scope :here, -> { where(redirect_url: {"$in" => [nil, ""]}) }
 
-  scope :drafts, where(draft: true)
-  scope :private, where(private: true)
-  scope :flagged, where(flagged: true)
+  scope :drafts, -> { where(draft: true) }
+  scope :private, -> { where(private: true) }
+  scope :flagged, -> { where(flagged: true) }
 
   scope :admin_search, lambda {|query|
     where({"$or" =>

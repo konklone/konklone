@@ -53,8 +53,6 @@ mongoid:
         database: konklone
         hosts:
           - "localhost:27017"
-        options:
-          safe: true
     options:
       raise_not_found_error: false
 
@@ -64,8 +62,6 @@ mongoid:
         database: konklone-test
         hosts:
           - "localhost:27017"
-        options:
-          safe: true
     options:
       raise_not_found_error: false
 
@@ -75,8 +71,6 @@ mongoid:
         database: konklone
         hosts:
           - "localhost:27017"
-        options:
-          safe: true
     options:
       raise_not_found_error: false
 

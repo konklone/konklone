@@ -11,6 +11,7 @@ require 'sinatra/content_for'
 require 'sinatra/flash'
 require 'tzinfo'
 require 'escape_utils'
+require 'protected_attributes'
 
 require 'octokit'
 require 'oj'
