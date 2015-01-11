@@ -3,17 +3,6 @@
 require './config/environment'
 
 
-# log google hits in a database, to understand behavior better
-
-before do
-  @start_time = Time.now
-end
-
-after do
-  Event.google!(env, @start_time) if @start_time and google?
-end
-
-
 # base controller
 
 get '/' do
@@ -136,8 +125,3 @@ require 'sinatra/webfinger'
 # require '/home/eric/konklone/sinatra-webfinger/lib/sinatra/webfinger'
 webfinger Environment.config['webfinger']
 
-helpers do
-  def google?
-    request.env['HTTP_USER_AGENT']["Googlebot"] if request.env['HTTP_USER_AGENT']
-  end
-end
