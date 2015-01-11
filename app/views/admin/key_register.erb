@@ -19,6 +19,9 @@
           <a href="#" class="show" data-handle="<%= device.key_handle %>">
             details
           </a>
+          <a href="#" class="delete" data-name="<%= device.name %>" data-handle="<%= device.key_handle %>">
+            delete
+          </a>
           <div class="more" data-handle="<%= device.key_handle %>">
             <div class="handle">
               <strong>Handle</strong>
@@ -37,6 +40,10 @@
               <%= device.counter %>
             </div>
           </div>
+          <form class="delete_key" data-handle="<%= device.key_handle %>" method="post" action="/admin/key/<%= device.key_handle %>">
+            <input type="hidden" name="_method" value="delete" />
+            <input type="submit" style="display: none" />
+          </form>
         </li>
       <% end %>
     <% else %>
@@ -75,7 +82,7 @@ console.log(signRequests);
 // reference: https://github.com/userbin/ruby-u2f/blob/master/lib/u2f/errors.rb
 var codes = {
   "1": "Other, unknown error.",
-  "2": "Bad request of some kind.",
+  "2": "Bad request, or blocked USB access.",
   "3": "Configuration unsupported.",
   "4": "Device already registered, or ineligible.",
   "5": "Timeout when waiting for device interaction."
@@ -121,6 +128,15 @@ $(function() {
   $(".show").on('click', function() {
     var handle = $(this).data("handle");
     $(".more[data-handle=" + handle + "]").toggle();
+    return false;
+  });
+
+  $(".keys ol li a.delete").click(function() {
+    var name = $(this).data("name");
+    var handle = $(this).data("handle");
+    if (confirm("Really delete the key \"" + name + "\"?"))
+      $("form.delete_key[data-handle=" + handle + "]").get(0).submit();
+
     return false;
   });
 });

@@ -320,7 +320,7 @@ post '/admin/key/register' do
   end
 
   if reg
-    flash[:success] = "DEVICE REGISTERED."
+    flash[:success] = "DEVICE REGISTERED. THANK YOU, TOKEN BEARER."
 
     # save a reference to your database
     Device.create!(
@@ -393,7 +393,7 @@ post '/admin/key/login' do
 
   if authenticated
     device.update(counter: response.counter)
-    flash[:success] = "Welcome, token bearer."
+    flash[:success] = "WELCOME, TOKEN BEARER."
 
     session.delete :half_admin
     session[:admin] = true
@@ -410,4 +410,8 @@ delete "/admin/key/:key_handle" do
     flash[:failure] = "Couldn't find the specified device."
     redirect "/admin/key/register"
   end
+
+  device.delete
+  flash[:success] = "Device \"#{device.name}\" deleted."
+  redirect "/admin/key/register"
 end

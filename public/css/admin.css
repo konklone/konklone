@@ -215,6 +215,11 @@ article.comment input.big {width: 180px; margin-right: 10px;}
 } .keys ol li .more div {
   margin-top: 5px;
 } .keys ol li .more strong {display: block;}
+.keys ol li a.delete {
+  color: #900;
+  display: inline-block;
+  margin-left: 5px;
+}
 
 .keys .register {margin-top: 10px;}
 .keys .register .button,
