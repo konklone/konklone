@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # todo: hoo boy
-gem 'sinatra', git: 'git@github.com:sinatra/sinatra.git'
+gem 'sinatra', git: 'https://github.com/sinatra/sinatra'
 
 # used for reloading, and content_for
 gem 'sinatra-contrib'

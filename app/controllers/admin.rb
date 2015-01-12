@@ -275,6 +275,9 @@ end
 ########################################################
 # FIDO U2F support. Using the code and documentation at:
 # https://github.com/userbin/ruby-u2f
+#
+# See the explanation of the original implementation at:
+# https://github.com/konklone/konklone.com/pull/144
 ########################################################
 
 get '/admin/key/register' do
@@ -284,7 +287,7 @@ get '/admin/key/register' do
   # Keep challenges around for verification
   session[:challenges] = registration_requests.map &:challenge
 
-  # Key handles for all registered devices (to me: which is all of them)
+  # Key handles for all devices registered (to me: which is all of them)
   devices = Device.all
   key_handles = devices.map &:key_handle
   sign_requests = Environment.u2f.authentication_requests key_handles
@@ -322,7 +325,6 @@ post '/admin/key/register' do
   if reg
     flash[:success] = "DEVICE REGISTERED. THANK YOU, TOKEN BEARER."
 
-    # save a reference to your database
     Device.create!(
       certificate: reg.certificate,
       key_handle:  reg.key_handle,
