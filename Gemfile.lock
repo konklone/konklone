@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:sinatra/sinatra.git
+  remote: https://github.com/sinatra/sinatra
   revision: 5f6168bfc92280892e819df524d4508cf9032f6d
   specs:
     sinatra (1.4.5)
@@ -107,6 +107,7 @@ GEM
     timecop (0.7.1)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
+    u2f (0.0.5)
     unicorn (4.8.3)
       kgio (~> 2.6)
       rack
@@ -146,5 +147,6 @@ DEPENDENCIES
   test-unit
   timecop
   tzinfo
+  u2f
   unicorn
   wirble

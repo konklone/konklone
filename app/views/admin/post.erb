@@ -16,9 +16,6 @@
     <section class="controls right">
       <input type="submit" name="submit" class="update" value="Save" tabindex="30"/>
 
-      <button class="preview" tabindex="31">Preview &raquo;</button>
-
-
       <% if post.draft? %>
         <% if post.published_at %>
           <input type="submit" name="submit" value="Republish" tabindex="32" />
@@ -159,29 +156,13 @@
   <input type="submit" style="display: none" />
 </form>
 
-<form id="preview" method="post" target="_blank" action="/admin/preview">
-  <input type="submit" style="display: none" />
-  <input type="hidden" class="title" name="title" />
-  <input type="hidden" class="body" name="body" />
-  <input type="hidden" class="footer" name="footer" />
-</form>
-
-
 <script type="text/javascript">
-$(function() {
-  $("a.post.delete").click(function() {
-    if (confirm("Really delete this post?"))
-      $("#delete_post").get(0).submit();
+  $(function() {
+    $("a.post.delete").click(function() {
+      if (confirm("Really delete this post?"))
+        $("#delete_post").get(0).submit();
 
-    return false;
+      return false;
+    });
   });
-
-  $("button.preview").click(function() {
-    $("#preview .title").val($("input.title").val());
-    $("#preview .body").val($("textarea.body").val());
-    $("#preview .footer").val($("textarea.footer").val());
-    $("#preview").get(0).submit();
-    return false;
-  });
-});
 </script>

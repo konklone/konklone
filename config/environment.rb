@@ -16,6 +16,8 @@ require 'protected_attributes'
 require 'octokit'
 require 'oj'
 
+require 'u2f'
+
 require 'pony'
 require './config/email'
 
@@ -36,6 +38,11 @@ class Environment
     if Environment.config['github'] and Environment.config['github']['token']
       @github ||= Octokit::Client.new access_token: Environment.config['github']['token']
     end
+  end
+
+  # used to register and validate u2f devices
+  def self.u2f
+    @u2f ||= U2F::U2F.new(Environment.config['site']['root'])
   end
 
   def self.games

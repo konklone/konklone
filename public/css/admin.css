@@ -30,7 +30,7 @@ nav.posts a.active {font-weight: bold; color: #444;}
 nav.posts div.search {display: inline-block;}
 nav.posts div.search input {width: 100px; margin-top: -2px;}
 
-ol.posts li {
+ol li {
   padding: 3px 0px; margin: 0;
   font-size: 12pt;
   line-height: 25px;
@@ -196,3 +196,43 @@ ul.versions li .because {margin-left: 5px; color: #888;}
 /* comment form */
 
 article.comment input.big {width: 180px; margin-right: 10px;}
+
+/* key section */
+
+.keys ol li {
+  padding: 3px 0px; margin: 0;
+  font-size: 12pt;
+  line-height: 21px;
+  word-wrap: break-word;
+} .keys ol li .name {
+  display: inline-block;
+  font-weight: bold;
+} .keys ol li .show {
+  display: inline-block;
+  margin-left: 10px;
+} .keys ol li .more {
+  display: none;
+} .keys ol li .more div {
+  margin-top: 5px;
+} .keys ol li .more strong {display: block;}
+.keys ol li a.delete {
+  color: #900;
+  display: inline-block;
+  margin-left: 5px;
+}
+
+.keys .register {margin-top: 10px;}
+.keys .register .button,
+.keys .register form {display: inline-block;}
+.keys .register button {padding: 3px 5px;}
+.keys .register input[type=text] {padding: 3px 5px;}
+
+.keys .login {
+  margin-top: 10px;
+}
+
+.keys .console {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #900;
+}

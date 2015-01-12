@@ -1,5 +1,5 @@
 before '/admin/*' do
-  if ["", "login", "logout"].include?(params[:captures].first)
+  if ["", "login", "key/login", "logout"].include?(params[:captures].first)
     pass
   elsif params[:captures].first =~ /^preview/
     pass
@@ -8,27 +8,6 @@ before '/admin/*' do
   end
 end
 
-get "/admin/?" do
-  if admin?
-    redirect '/admin/posts/published'
-  else
-    erb :"admin/login", layout: :"admin/layout", locals: {message: nil}
-  end
-end
-
-post '/admin/login' do
-  if params[:password] == Environment.config['admin']['password']
-    session[:admin] = true
-    redirect '/admin/posts/published'
-  else
-    erb :"admin/login", layout: :"admin/layout", locals: {message: "Invalid credentials."}
-  end
-end
-
-get '/admin/logout' do
-  session[:admin] = false
-  redirect '/admin'
-end
 
 get %r{^/admin/posts/(all|published|drafts|flagged)$} do
   # explicitly remove the public default scope in the admin area
@@ -260,4 +239,188 @@ put '/admin/comments' do
 
   flash[:success] = "Updated #{comment_ids.size} comments."
   redirect params[:redirect_to]
+end
+
+get "/admin/?" do
+  if admin?
+    redirect '/admin/posts/published'
+  elsif half_admin?
+    redirect '/admin/key/login'
+  else
+    erb :"admin/login", layout: :"admin/layout", locals: {message: nil}
+  end
+end
+
+post '/admin/login' do
+  if params[:password] == Environment.config['admin']['password']
+
+    if Device.count > 0
+      session[:half_admin] = true
+      redirect '/admin/key/login'
+    else
+      session[:admin] = true
+      redirect '/admin/posts/published'
+    end
+  else
+    erb :"admin/login", layout: :"admin/layout", locals: {message: "Invalid credentials."}
+  end
+end
+
+get '/admin/logout' do
+  session[:admin] = false
+  redirect '/admin'
+end
+
+
+########################################################
+# FIDO U2F support. Using the code and documentation at:
+# https://github.com/userbin/ruby-u2f
+#
+# See the explanation of the original implementation at:
+# https://github.com/konklone/konklone.com/pull/144
+########################################################
+
+get '/admin/key/register' do
+  # Generate one for each version of U2F, currently only `U2F_V2`
+  registration_requests = Environment.u2f.registration_requests
+
+  # Keep challenges around for verification
+  session[:challenges] = registration_requests.map &:challenge
+
+  # Key handles for all devices registered (to me: which is all of them)
+  devices = Device.all
+  key_handles = devices.map &:key_handle
+  sign_requests = Environment.u2f.authentication_requests key_handles
+
+  erb :"admin/key_register", layout: :"admin/layout", locals: {
+    registration_requests: registration_requests,
+    sign_requests: sign_requests,
+    devices: devices
+  }
+end
+
+post '/admin/key/register' do
+  unless (name = params[:name]).present?
+    flash[:failure] = "I need a device name."
+    redirect "/admin/key/register"
+  end
+
+  begin
+    response = U2F::RegisterResponse.load_from_json params[:response]
+  rescue Exception => exc
+    Email.exception exc, {response: params[:response]}
+    flash[:failure] = "Invalid registration data."
+    redirect "/admin/key/register"
+  end
+
+  reg = begin
+    Environment.u2f.register!(session[:challenges], response)
+  rescue U2F::Error => exc
+    Email.exception exc
+    nil
+  ensure
+    session.delete :challenges
+  end
+
+  if reg
+    flash[:success] = "DEVICE REGISTERED. THANK YOU, TOKEN BEARER."
+
+    Device.create!(
+      certificate: reg.certificate,
+      key_handle:  reg.key_handle,
+      public_key:  reg.public_key,
+      counter:     reg.counter,
+      name: name
+    )
+  else
+    flash[:failure] = "DEVICE NOT REGISTERED. EMAIL SENT WITH YOUR FAILURE."
+  end
+
+  redirect "/admin/key/register"
+end
+
+get '/admin/key/login' do
+  unless half_admin?
+    flash[:failure] = "You need to know the password before you get to show the token."
+    redirect "/admin"
+  end
+
+  key_handles = Device.all.map &:key_handle
+
+  if key_handles.empty?
+    flash[:failure] = "Weird: no keys registered. Why are you here?"
+    redirect "/admin"
+  end
+
+  sign_requests = Environment.u2f.authentication_requests key_handles
+
+  session[:challenges] = sign_requests.map &:challenge
+
+  erb :"admin/key_login", layout: :"admin/layout", locals: {
+    sign_requests: sign_requests
+  }
+end
+
+post '/admin/key/login' do
+  unless half_admin?
+    flash[:failure] = "You need to know the password before you get to show the token."
+    redirect "/admin"
+  end
+
+  response = U2F::SignResponse.load_from_json params[:response]
+
+  unless device = Device.where(key_handle: response.key_handle).first
+    flash[:failure] = "This device has never been registered."
+    redirect "/admin/key/login"
+  end
+
+  authenticated = false
+  failure = nil
+  begin
+    Environment.u2f.authenticate!(
+      session[:challenges],
+      response,
+
+      # database stores base64-encoded version - library needs real binary string
+      Base64.strict_decode64(device.public_key),
+
+      device.counter
+    )
+    authenticated = true
+
+  rescue U2F::CounterToLowError => exc
+    Email.exception exc
+    failure = "Your device has gotten out of sync with the server. Your device may have been compromised. You will need to use other means to invalidate this device and re-authorize it or add a new one."
+    nil
+  rescue U2F::Error => exc
+    Email.exception exc
+    failure = "Failed to log in. Try again or something?"
+    nil
+  ensure
+    session.delete :challenges
+  end
+
+  if authenticated
+    device.update(counter: response.counter)
+    flash[:success] = "WELCOME, TOKEN BEARER."
+
+    session.delete :half_admin
+    session[:admin] = true
+
+    redirect "/admin"
+  else
+    flash[:failure] = failure
+    redirect "/admin/key/login"
+  end
+end
+
+delete "/admin/key/:key_handle" do
+  unless (device = Device.where(key_handle: params[:key_handle]).first)
+    flash[:failure] = "Couldn't find the specified device."
+    redirect "/admin/key/register"
+  end
+
+  device.delete
+  flash[:success] = "Device \"#{device.name}\" deleted."
+  redirect "/admin/key/register"
 end

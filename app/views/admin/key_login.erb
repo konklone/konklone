@@ -1,0 +1,53 @@
+
+<!--
+  for now, requires Chrome extension:
+  https://chrome.google.com/webstore/detail/fido-u2f-universal-2nd-fa/pfboblefjcgdjicmnffhdgionmgcdmne
+-->
+<script src="chrome-extension://pfboblefjcgdjicmnffhdgionmgcdmne/u2f-api.js"></script>
+
+<article class="keys">
+  <section class="login">
+    Log in with your key now by hitting the button.
+  </section>
+
+  <form id="authenticate" action="/admin/key/login" method="post">
+    <input type="hidden" name="response" />
+  </form>
+</article>
+
+<script>
+
+// reference: https://github.com/userbin/ruby-u2f/blob/master/lib/u2f/errors.rb
+var codes = {
+  "1": "Other",
+  "2": "Bad request",
+  "3": "Configuration unsupported",
+  "4": "Device ineligible",
+  "5": "Timeout"
+};
+
+var signRequests = <%= sign_requests.as_json.to_json.html_safe %>;
+
+console.log("Sign requests:");
+console.log(signRequests);
+console.log("Ready for authentication attempt.")
+
+u2f.sign(signRequests, function(signResponse) {
+  if (signResponse.errorCode)
+    return console.log("Authentication error: " + codes[signResponse.errorCode]);
+
+  console.log("Authentication message received.")
+  console.log(signResponse);
+
+  var form = document.getElementById("authenticate");
+  var response = document.querySelector('[name=response]');
+  response.value = JSON.stringify(signResponse);
+
+  form.submit();
+});
+
+var submit = function() {
+  document.getElementById("authenticate").submit();
+}
+
+</script>

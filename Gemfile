@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # todo: hoo boy
-gem 'sinatra', git: 'git@github.com:sinatra/sinatra.git'
+gem 'sinatra', git: 'https://github.com/sinatra/sinatra'
 
 # used for reloading, and content_for
 gem 'sinatra-contrib'
@@ -14,6 +14,9 @@ gem 'sinatra-flash', '0.3.0'
 # todo: switch to strong-parameters, controller-managed attr protection.
 # this gem won't be supported after Rails 5.0 releases.
 gem 'protected_attributes'
+
+# FIDO key, woo!
+gem 'u2f'
 
 gem "mongoid", "~> 4.0"
 gem 'mongoid_slug'

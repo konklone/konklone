@@ -1,0 +1,144 @@
+
+<!--
+  for now, requires Chrome extension:
+  https://chrome.google.com/webstore/detail/fido-u2f-universal-2nd-fa/pfboblefjcgdjicmnffhdgionmgcdmne
+-->
+<script src="chrome-extension://pfboblefjcgdjicmnffhdgionmgcdmne/u2f-api.js"></script>
+
+<article class="keys">
+  <ol>
+    <% if devices.size > 0 %>
+      <% devices.each do |device| %>
+        <li>
+          <time class="left">
+            <%= short_date device.created_at %>
+          </time>
+          <span class="name">
+            <%= device.name %>
+          </span>
+          <a href="#" class="show" data-handle="<%= device.key_handle %>">
+            details
+          </a>
+          <a href="#" class="delete" data-name="<%= device.name %>" data-handle="<%= device.key_handle %>">
+            delete
+          </a>
+          <div class="more" data-handle="<%= device.key_handle %>">
+            <div class="handle">
+              <strong>Handle</strong>
+              <%= device.key_handle %>
+            </div>
+            <div class="certificate">
+              <strong>Certificate</strong>
+              <%= device.certificate %>
+            </div>
+            <div class="public_key">
+              <strong>Public Key (Base 64)</strong>
+              <%= device.public_key %>
+            </div>
+            <div class="counter">
+              <strong>Counter</strong>
+              <%= device.counter %>
+            </div>
+          </div>
+          <form class="delete_key" data-handle="<%= device.key_handle %>" method="post" action="/admin/key/<%= device.key_handle %>">
+            <input type="hidden" name="_method" value="delete" />
+            <input type="submit" style="display: none" />
+          </form>
+        </li>
+      <% end %>
+    <% else %>
+      No registered U2F devices.
+    <% end %>
+  </ol>
+
+  <section class="register">
+
+    <button disabled onclick="startRegister()">Register a new device:</button>
+
+    <form id="register" action="/admin/key/register" method="post">
+      <input type="hidden" name="response" />
+      <input type="text" placeholder="device name" required name="name" />
+    </form>
+  </section>
+
+  <section class="console">
+  </section>
+</article>
+
+<script>
+/*
+  Adapted from https://github.com/userbin/ruby-u2f
+*/
+
+var registerRequests = <%= registration_requests.as_json.to_json.html_safe %>;
+var signRequests = <%= sign_requests.as_json.to_json.html_safe %>;
+
+console.log("Register request:");
+console.log(registerRequests[0]);
+console.log("Sign requests:");
+console.log(signRequests);
+
+
+// reference: https://github.com/userbin/ruby-u2f/blob/master/lib/u2f/errors.rb
+var codes = {
+  "1": "Other, unknown error.",
+  "2": "Bad request, or blocked USB access.",
+  "3": "Configuration unsupported.",
+  "4": "Device already registered, or ineligible.",
+  "5": "Timeout when waiting for device interaction."
+};
+
+var startRegister = function() {
+  if ($.trim($(".register input[name=name]").val()) == "")
+    return log("You gotta name the device.");
+
+  console.log("Issuing registration command.")
+
+  u2f.register(registerRequests, signRequests, function(registerResponse) {
+    if (registerResponse.errorCode) {
+      log("Registration error: " + codes[registerResponse.errorCode]);
+      return console.log("Registration error: " + codes[registerResponse.errorCode]);
+    }
+
+    console.log("Successful! Registration response:");
+    console.log(registerResponse);
+
+    var form = document.getElementById("register");
+    var response = document.querySelector('[name=response]');
+    response.value = JSON.stringify(registerResponse);
+
+    form.submit();
+  });
+};
+
+var log = function(msg) {
+  $(".console").html(msg);
+};
+
+// debugging, for manual submission
+var submit = function() {
+  document.getElementById("register").submit();
+};
+
+$(function() {
+  $("input[name=name]").keyup(function() {
+    $(".register button").attr("disabled", ($.trim($(this).val()) == ""));
+  });
+
+  $(".show").on('click', function() {
+    var handle = $(this).data("handle");
+    $(".more[data-handle=" + handle + "]").toggle();
+    return false;
+  });
+
+  $(".keys ol li a.delete").click(function() {
+    var name = $(this).data("name");
+    var handle = $(this).data("handle");
+    if (confirm("Really delete the key \"" + name + "\"?"))
+      $("form.delete_key[data-handle=" + handle + "]").get(0).submit();
+
+    return false;
+  });
+});
+
+</script>
