@@ -111,15 +111,6 @@ delete '/admin/post/:slug' do
   redirect "/admin/posts/published"
 end
 
-# post preview page (doesn't work for pages with iframes...)
-post '/admin/preview' do
-  erb :preview, locals: {
-    title: params[:title],
-    body: params[:body],
-    footer: params[:footer]
-  }
-end
-
 get '/admin/preview/:id' do
   # we do our own admin check - allow it for draft posts, but not private posts
   post = Post.find params[:id]
