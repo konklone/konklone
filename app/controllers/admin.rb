@@ -116,7 +116,7 @@ get '/admin/preview/:id' do
   post = Post.find params[:id]
   raise Sinatra::NotFound unless post
 
-  unless post.draft?
+  if post.private?
     halt 404 unless admin?
   end
 

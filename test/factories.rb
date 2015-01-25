@@ -9,6 +9,11 @@ FactoryGirl.define do
       self.private false
       draft false
     end
+
+    factory :draft_post do
+      self.private false
+      draft true
+    end
   end
 
   factory :comment do

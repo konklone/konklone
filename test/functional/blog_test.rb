@@ -44,6 +44,26 @@ class BlogTest < Test::Unit::TestCase
     assert_response 404
   end
 
+  def test_visiting_preview_published
+    post = create :published_post
+    get "/admin/preview/#{post.id}"
+    assert_response 200
+  end
+
+  def test_visiting_preview_draft
+    post = create :draft_post
+    get "/admin/preview/#{post.id}"
+    assert_response 200
+  end
+
+  def test_visiting_preview_draft_but_private
+    post = create :draft_post
+    post.private = true
+    post.save!
+    get "/admin/preview/#{post.id}"
+    assert_response 404
+  end
+
   # TODO: ensure admin area is accessible to admin
 
 end
