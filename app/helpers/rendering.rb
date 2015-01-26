@@ -70,9 +70,10 @@ module Helpers
 
     # sanitize comments pre-markdown
     def render_comment_body(text)
-      sanitized = strip_tags sanitize(text)
+      sanitized = markdown text
+      sanitized = sanitize sanitized
       sanitized = Rinku.auto_link sanitized, :all, "rel='nofollow'"
-      markdown sanitized
+      sanitized
     end
 
     # sanitize text-only excerpt post-markdown
@@ -144,7 +145,7 @@ module Helpers
 
     def sanitize(string)
       return nil unless string
-      Loofah.scrub_fragment(string, :prune).to_s.strip
+      Loofah.scrub_fragment(string, :escape).to_s.strip
     end
 
     def capital_H_dangit(string)
