@@ -224,7 +224,7 @@ class Post
         post = Environment.github.create_contents repo, path, message, self.body, branch: branch
       end
       # log commit so we know to ignore this when it comes back from github
-      self.push :github_commits, post.commit.sha
+      self.push(github_commits: post.commit.sha)
 
       # un/re-set needs_sync
       self.needs_sync = nil
