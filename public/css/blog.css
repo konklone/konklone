@@ -92,7 +92,7 @@ article header h1  {font-size: 20pt; line-height: 40px;} /* article title */
 article header h6,
 article .nav .inner .details h6 {font-size: 10pt; line-height: 20px;}
 
-article sup {font-size: 10pt;}
+article sup {font-size: 9pt; vertical-align: super;}
 
 article p,
 article pre,
@@ -303,7 +303,6 @@ article ul .right, article ol .right {margin-right: -300px;}
 
 article .unpublished {padding-top: 10px;}
 
-article sup {margin-left: 0px; margin-top: -3px; vertical-align: 8%;}
 article small span {margin-right: 3px;}
 
 
