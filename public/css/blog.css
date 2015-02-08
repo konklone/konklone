@@ -86,6 +86,7 @@ article pre.highlight, #comments pre.highlight {
 /* disable border when code is used inside pre block */
 article pre code, #comments pre code {
   border: 0;
+  padding: 0;
 }
 
 /* blocks of code, <pre><code> */
@@ -93,7 +94,7 @@ article pre.highlight,
 #comments pre.highlight {
   display: block;
   margin-top: 10px;
-  margin: bottom: 10px;
+  margin-bottom: 10px;
   padding: 5px 10px;
   font-size: 13px;
   line-height: 1.7;
