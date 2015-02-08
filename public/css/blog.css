@@ -75,7 +75,7 @@ article iframe.twitter-tweet {
 
 /* inline code, <code> only */
 article code, #comments code,
-article .highlight, #comments .highlight {
+article pre.highlight, #comments pre.highlight {
   padding: 2px 4px;
   background-color: #eaeaff;
   border: 1px solid #d5d5d5;
@@ -83,15 +83,22 @@ article .highlight, #comments .highlight {
   font-family: monospace;
 }
 
+/* disable border when code is used inside pre block */
+article pre code, #comments pre code {
+  border: 0;
+}
+
 /* blocks of code, <pre><code> */
-article .highlight pre,
-#comments .highlight pre {
+article pre.highlight,
+#comments pre.highlight {
   display: block;
+  margin-top: 10px;
+  margin: bottom: 10px;
   padding: 5px 10px;
   font-size: 13px;
   line-height: 1.7;
   width: 630px;
-} #comments .highlight pre {width: 580px;}
+} #comments pre.highlight {width: 580px;}
 
 
 /********** Font sizes *************/

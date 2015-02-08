@@ -28,7 +28,7 @@ gem 'safe_yaml'
 gem 'pony'
 
 gem 'redcarpet'
-gem 'pygments.rb'
+gem 'rouge'
 
 gem 'rinku'
 gem 'nokogiri'
