@@ -147,12 +147,5 @@ module Helpers
       return nil unless string
       Loofah.scrub_fragment(string, :escape).to_s.strip
     end
-
-    def capital_H_dangit(string)
-      string.to_s
-        .gsub(/(\A|\s)github(\W)/i, '\1GitHub\2') # capitalize GitHub in every occurrence.
-        .gsub(/github\.(com|io)/i, 'github.\1')   # reset URL's.
-    end
-
   end
 end
