@@ -200,14 +200,21 @@ article .body h3 {margin-top: 35px;}
 
 article iframe.youtube {height: 394px;}
 
-article blockquote,
-#comments blockquote {
+article blockquote {
   padding: 1px 20px;
   border: 1px solid #888;
   border-width: 0 1px;
   margin-top: 27px; margin-bottom: 27px;
   background-color: #e5e5e5;
-} #comments blockquote {border-width: 0 0 0 1px;}
+}
+
+#comments blockquote {
+  padding: 1px 20px;
+  border: 1px solid #888;
+  border-width: 0 0 0 1px;
+  margin-top: 27px; margin-bottom: 27px;
+  background-color: #eaeaff;
+}
 
 article blockquote cite {
   width: 100%; display: block; text-align: right; margin-top: -5px;
