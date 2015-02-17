@@ -70,7 +70,7 @@ post '/github/sync' do
         }
 
         # quickly append commit to known commits (don't trigger callbacks)
-        post.push :github_commits, commit['id']
+        post.push github_commits: commit['id']
       rescue Exception => exc
         Email.exception exc
       end
