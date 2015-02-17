@@ -1,10 +1,10 @@
 require 'nokogiri'
 require 'loofah'
 require 'rinku'
-require 'redcarpet'
 
-# Pygments means the running box has a PYTHON 2.X dependency.
-require 'pygments.rb'
+require 'redcarpet'
+require 'rouge'
+require 'rouge/plugins/redcarpet'
 
 # needs to be safe enough to be included into a Mongoid model,
 # as the markdown rendering is cached after save for Posts.
@@ -12,11 +12,13 @@ require 'pygments.rb'
 module Helpers
   module Rendering
 
-    class HTMLwithPygments < Redcarpet::Render::HTML
-      def block_code(code, language)
-        Pygments.highlight(code,
-          lexer: language,
-          options: {cssclass: "highlight"}
+    class RougeHTML < Redcarpet::Render::HTML
+      include Rouge::Plugins::Redcarpet # yep, that's it.
+
+      def rouge_formatter(lexer)
+        Rouge::Formatters::HTML.new(
+          css_class: "highlight",
+          wrap: true
         )
       end
     end
@@ -109,7 +111,7 @@ module Helpers
     # documentation at:
     # https://github.com/vmg/redcarpet#and-its-like-really-simple-to-use
     def markdown(text)
-      renderer = HTMLwithPygments.new(
+      renderer = RougeHTML.new(
         with_toc_data: true
       )
 
@@ -147,12 +149,5 @@ module Helpers
       return nil unless string
       Loofah.scrub_fragment(string, :escape).to_s.strip
     end
-
-    def capital_H_dangit(string)
-      string.to_s
-        .gsub(/(\A|\s)github(\W)/i, '\1GitHub\2') # capitalize GitHub in every occurrence.
-        .gsub(/github\.(com|io)/i, 'github.\1')   # reset URL's.
-    end
-
   end
 end

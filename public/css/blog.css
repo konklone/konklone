@@ -28,8 +28,7 @@ article h2,
 #comment-form span {font-family: "Open Sans", Arial, sans-serif;}
 
 #comments input[type=text], #comments input[type=email], #comments textarea,
-/*article {font-family: "Average", "Georgia", serif;}*/
-article {font-family: "Open Sans", Arial, sans-serif;}
+article, #comments {font-family: "Open Sans", Arial, sans-serif;}
 
 /********* Colors ******/
 
@@ -66,24 +65,40 @@ article .nav .details h6 a {color: #404040;}
 article h1 a, article h2 a {text-decoration: none;}
 article h1 a:hover, article h2 a:hover {text-decoration: underline;}
 
+article iframe.twitter-tweet {
+  margin-top: 30px !important;
+  margin-bottom: 30px !important;
+}
+
 /* code blocks */
 
 /* inline code, <code> only */
-article code, article .highlight {
+article code, #comments code,
+article pre.highlight, #comments pre.highlight {
   padding: 2px 4px;
   background-color: #eaeaff;
   border: 1px solid #d5d5d5;
   font-size: 10pt;
-  font-family: monospace;
+  font-family: "Ubuntu Mono", monospace;
+}
+
+/* disable border when code is used inside pre block */
+article pre code, #comments pre code {
+  border: 0;
+  padding: 0;
 }
 
 /* blocks of code, <pre><code> */
-article .highlight pre {
+article pre.highlight,
+#comments pre.highlight {
   display: block;
+  margin-top: 10px;
+  margin-bottom: 10px;
   padding: 5px 10px;
   font-size: 13px;
   line-height: 1.7;
-}
+  width: 630px;
+} #comments pre.highlight {width: 580px;}
 
 
 /********** Font sizes *************/
@@ -92,7 +107,8 @@ article header h1  {font-size: 20pt; line-height: 40px;} /* article title */
 article header h6,
 article .nav .inner .details h6 {font-size: 10pt; line-height: 20px;}
 
-article sup {font-size: 10pt;}
+article sup {font-size: 9pt; vertical-align: super; line-height: 17px;}
+article sup code {font-size: 9pt; padding: 1px 2px;}
 
 article p,
 article pre,
@@ -102,6 +118,8 @@ article .callout {font-size: 11pt; line-height: 20px;}
 
 article blockquote,
 article blockquote p,
+#comments blockquote,
+#comments blockquote p,
 article .body blockquote ul, article .body blockquote ol,
 article .body blockquote ul li, article .body  blockquote ol li,
 article .body blockquote * {font-size: 11pt; line-height: 20px;} /* blockquotes */
@@ -146,18 +164,24 @@ article .body blockquote ul li, article .body blockquote ol li {list-style-posit
 article .body ul, article .body ul li {list-style-type: disc;}
 article .body ol, article .body ol li {list-style-type: decimal;}
 
-article .body pre {
+article .body pre,
+#comments .body pre {
   white-space: pre-wrap;
   font-family: inherit;
+  word-break: break-word;
 }
 
 article .body li {width: 610px;}
 
 article .body blockquote ul,
-article .body blockquote ol {width: 550px;}
+article .body blockquote ol,
+#comments .body blockquote ul,
+#comments .body blockquote ol {width: 550px;}
 
 article .body blockquote ol li,
-article .body blockquote ul li {padding: 0 20px; width: 510px;}
+article .body blockquote ul li,
+#comments .body blockquote ol li,
+#comments .body blockquote ul li {padding: 0 20px; width: 510px;}
 
 article .body h2 {
   margin-top: 45px;
@@ -183,12 +207,28 @@ article blockquote {
   margin-top: 27px; margin-bottom: 27px;
   background-color: #e5e5e5;
 }
+
+#comments blockquote {
+  padding: 1px 20px;
+  border: 1px solid #888;
+  border-width: 0 0 0 1px;
+  margin-top: 27px; margin-bottom: 27px;
+  background-color: #eaeaff;
+}
+
 article blockquote cite {
   width: 100%; display: block; text-align: right; margin-top: -5px;
 } article blockquote cite:before {content: "— "}
 
 article blockquote,
-article blockquote p {width: 550px;}
+article blockquote p,
+#comments blockquote,
+#comments blockquote p {width: 550px;}
+
+article blockquote blockquote,
+article blockquote blockquote p,
+#comments blockquote blockquote,
+#comments blockquote blockquote p {width: 500px;}
 
 article .callout {
   background-color: rgb(213, 230, 255);
@@ -303,7 +343,6 @@ article ul .right, article ol .right {margin-right: -300px;}
 
 article .unpublished {padding-top: 10px;}
 
-article sup {margin-left: 0px; margin-top: -3px; vertical-align: 8%;}
 article small span {margin-right: 3px;}
 
 
@@ -383,7 +422,7 @@ article .related li time {display: inline-block;}
 #comments li .body {
   background-color: #e5e5e5;
   border: 1px solid #c5c5c5;
-  padding: 0 10px; margin: 10px 0;
+  padding: 10px 20px; margin: 10px 0;
 }
 
 
