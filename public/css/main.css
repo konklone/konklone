@@ -120,3 +120,40 @@ input.placeholder, textarea.placeholder {color: #999;} /* CSS class only used fo
 .error h1 {font-size: 100pt;}
 .error h1 a {color: #151515; text-decoration: none}
 .error p {margin-top: 50px; font-size: 20pt; line-height: 45px;}
+
+
+/* mobile view of frame */
+
+@media (max-width: 600px)  {
+  body, header.main {
+    min-width: 100%;
+  }
+
+  .left, .right {display: none;}
+
+  header.main .inner,
+  header.main .inner ul,
+  footer.main,
+  header.main,
+  .error {
+    width: inherit;
+  }
+
+  footer.main {
+    font-size: 8pt;
+  }
+
+  header.main {
+    padding-left: 10px; padding-right: 5px;
+    height: inherit;
+    line-height: 25px;
+  }
+
+  header.main .inner.me li a {
+    padding: 5px 7px 5px 0;
+    text-transform: uppercase; text-decoration: none;
+    color: #aaa;
+    font-size: 12pt;
+  }
+
+}

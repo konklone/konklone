@@ -124,8 +124,8 @@ article .body blockquote ul, article .body blockquote ol,
 article .body blockquote ul li, article .body  blockquote ol li,
 article .body blockquote * {font-size: 11pt; line-height: 20px;} /* blockquotes */
 
-article .body h2 {font-size: 18pt; line-height: 32px;}
-article .body h3 {font-size: 14pt; line-height: 29px;}
+article .body h2 {font-size: 18pt; line-height: 32px; font-weight: bold;}
+article .body h3 {font-size: 14pt; line-height: 29px; font-weight: bold;}
 
 article small {
   font-size: 10pt;
@@ -185,7 +185,6 @@ article .body blockquote ul li,
 
 article .body h2 {
   margin-top: 45px;
-  font-weight: normal;
 } article .body h2 .block {
   display: none;
   background-color: rgb(0, 53, 102);
@@ -384,7 +383,6 @@ article .author {margin-bottom: 35px;}
 article .footer {color: #555; font-size: 80%;}
 article .footer a {color: #333;}
 article .discuss {color: #111; font-style: italic; color: #555}
-article .discuss a {xcolor: rgb(0, 53, 102); }
 
 article .author span.hear,
 article .author span.hear a {vertical-align:bottom;}
@@ -447,4 +445,80 @@ article .related li time {display: inline-block;}
   display: block;
   padding: 4px 20px 1px 20px;
   margin-top: 10px;
+}
+
+
+/* mobile view of articles */
+
+@media (max-width: 600px)  {
+
+  article .nav {
+    display: none;
+  }
+
+  article p,
+  article .nav,
+  article .body ol, article .body ul,
+  article header,
+  article pre,
+  article .highlight,
+  article .body h2,
+  article .body h3, article .body h4, article .body h5, article .body h6,
+  article iframe.youtube,
+  article .footer,
+  article.small div.inner,
+  article figure,
+  article figure figcaption,
+  article hr,
+  article pre.highlight,
+  article .body li,
+  article .body blockquote ul,
+  article .body blockquote ol,
+  article .body blockquote ol li,
+  article .body blockquote ul li,
+  article blockquote,
+  article blockquote p,
+  article blockquote blockquote,
+  article blockquote blockquote p,
+  article .callout,
+  article .body .footer-text,
+  article div.gist,
+  article div.gist ul,
+  article div.gist ol,
+  #comments blockquote blockquote,
+  #comments blockquote blockquote p,
+  #comments blockquote,
+  #comments blockquote p,
+  #comments .body blockquote ol li,
+  #comments .body blockquote ul li,
+  #comments .body blockquote ul,
+  #comments .body blockquote ol,
+  #comments pre.highlight,
+  #comment-form,
+  #comment-form form>input,
+  #comment-form form textarea,
+  #comments {
+    width: inherit;
+    padding-left: 10px; padding-right: 5px;
+  }
+
+  article header h6 {
+    margin-top: 10px;
+  }
+
+  article .body p {
+    line-height: 24px;
+  }
+
+  article .body ul,
+  article .body ol {
+    padding-left: 30px;
+  }
+  article .body li {
+    padding-left: 0;
+  }
+
+  figure img,
+  img.block {width: 100%;}
+
 }

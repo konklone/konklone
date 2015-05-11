@@ -1,0 +1,61 @@
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: 400;
+  src: local("Open Sans Italic"), 
+    local("OpenSans-Italic"), 
+    url("../fonts/opensans-e75607ba1417181397c700775b84303d5a2957b9.woff2") format("woff2"), 
+    url("../fonts/opensans-547f34805e4d8b3b99b5583749ab28185b47e980.woff") format("woff"), 
+    url("../fonts/opensans-1395a31469a458f6e2069017b504be065ff44897.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: 700;
+  src: local("Open Sans Bold Italic"), 
+    local("OpenSans-BoldItalic"), 
+    url("../fonts/opensans-e1ca258adf7bb56c8e0fa8528d31e17e0932945a.woff2") format("woff2"), 
+    url("../fonts/opensans-21c2e703b012927ae51251c6ae55fae22c5a82d2.woff") format("woff"), 
+    url("../fonts/opensans-926612b6b077ab82a2aed764299292f6a8363dd2.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  /* IE6-8 compat */
+  src: url("../fonts/opensans-f0cc9c782f41b44a31392230103f5b4e101a944a.eot");
+  src: local("Open Sans"), 
+    local("OpenSans"), 
+    url("../fonts/opensans-afc44700053c9a28f9ab26f6aec4862ac1d0795d.woff2") format("woff2"), 
+    url("../fonts/opensans-84f97fc997632d2fffb788cd07c92241f178a9a1.woff") format("woff"), 
+    url("../fonts/opensans-f0cc9c782f41b44a31392230103f5b4e101a944a.eot") format("embedded-opentype"), 
+    url("../fonts/opensans-3e193feab52524db86cd1508693f2e5086102669.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local("Open Sans Bold"), 
+    local("OpenSans-Bold"), 
+    url("../fonts/opensans-578d7b5ff3816f7f666984e303364c81be0771d0.woff2") format("woff2"), 
+    url("../fonts/opensans-4bd3f3f26f7a8eb357a09da8636390a28a21f826.woff") format("woff"), 
+    url("../fonts/opensans-3954f1cc512d376e366c33802aecc5e80c1a1f33.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: 'Ubuntu Mono';
+  font-style: normal;
+  font-weight: 400;
+  /* IE6-8 compat */
+  src: url("../fonts/ubuntumono-984071d42ae365f45a992ee42b940ef8df1a3fe7.eot");
+  src: local("Ubuntu Mono"), 
+    local("UbuntuMono-Regular"), 
+    url("../fonts/ubuntumono-84b73f5b59a742a668f218d10172f8dd66738a4d.woff2") format("woff2"), 
+    url("../fonts/ubuntumono-828b42bb81d9d1d12bedd533d93cc466ebb59bac.woff") format("woff"), 
+    url("../fonts/ubuntumono-984071d42ae365f45a992ee42b940ef8df1a3fe7.eot") format("embedded-opentype"), 
+    url("../fonts/ubuntumono-b3462a376e9d5a5a245f770a8d3b78e8717850a2.ttf") format("truetype");
+}
+
