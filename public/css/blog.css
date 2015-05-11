@@ -518,4 +518,7 @@ article .related li time {display: inline-block;}
     padding-left: 0;
   }
 
+  figure img,
+  img.block {width: 100%;}
+
 }
