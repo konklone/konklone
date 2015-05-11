@@ -521,6 +521,7 @@ article .related li time {display: inline-block;}
   }
 
   figure img,
+  article figure img,
   img.block {width: 100%;}
 
 }
