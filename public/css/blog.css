@@ -185,7 +185,6 @@ article .body blockquote ul li,
 
 article .body h2 {
   margin-top: 45px;
-  font-weight: normal;
 } article .body h2 .block {
   display: none;
   background-color: rgb(0, 53, 102);
@@ -482,6 +481,10 @@ article .related li time {display: inline-block;}
   article blockquote blockquote,
   article blockquote blockquote p,
   article .callout,
+  article .body .footer-text,
+  article div.gist,
+  article div.gist ul,
+  article div.gist ol,
   #comments blockquote blockquote,
   #comments blockquote blockquote p,
   #comments blockquote,
