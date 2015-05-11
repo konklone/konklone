@@ -280,6 +280,8 @@ article figure {
   margin-bottom: 30px;
 }
 
+article figure img {width: 650px;}
+
 article figure figcaption {
   text-align: right;
   color: #222;
