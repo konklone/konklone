@@ -69,7 +69,7 @@ article pre {
 .resume .contact ul {
   margin-top: 0; margin-left: 20px;
   display: inline-block;
-  position: absolute; right: 15px; top: 7px;
+  position: absolute; top: auto; right: auto;
 }
 .resume .contact h1 {display: inline-block;}
 .resume .contact ul li {
