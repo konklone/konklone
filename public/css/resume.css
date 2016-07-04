@@ -21,9 +21,10 @@ a {color: rgb(0, 53, 102);}
 .resume h1 {font-size: 20pt; line-height: 40px;}
 .resume h2 {font-size: 16pt; line-height: 32px;}
 .resume h3 {font-size: 16pt; line-height: 33px;}
-.resume h4 {font-size: 12pt; xfont-weight: bold;}
+.resume h4 {font-size: 12pt;}
 .resume ul li {font-size: 12pt;}
 .resume .summary {font-size: 14pt; line-height: 30px;}
+.resume .before ul li {font-size: 12pt; line-height: 25px;}
 
 /** Main structure **/
 
@@ -100,3 +101,48 @@ article pre {
 .resume .bsd ul li,
 .resume .thoughtbot ul,
 .resume .thoughtbot ul li {xlist-style-type: disc; }
+
+/* Some real basic mobile-friendliness */
+
+@media (max-width: 600px)  {
+  body {min-width: 100%;}
+
+  .resume {
+    width: inherit;
+    padding-left: 10px; padding-right: 5px;
+  }
+
+  .resume ul li,
+  .resume .personal ul li,
+  .resume .before ul li,
+  .resume td {width: inherit;}
+
+  .resume .contact {
+    position: static;
+  }
+  .resume .contact li.other {display: none;}
+
+  .resume .contact ul {
+    margin: 0;
+    display: block;
+    position: static;
+  }
+  .resume .contact h1 {
+    display: block;
+  }
+
+  .resume .contact ul li {
+    display: block;
+    margin: 4px 2px;
+  }
+
+  .resume, .resume * ul li {
+    line-height: 23px !important;
+  }
+
+  .resume * ul li {
+    padding-top: 5px; padding-bottom: 5px;
+    margin-top: 0px; margin-bottom: 0px;
+  }
+
+}
