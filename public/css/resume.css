@@ -82,7 +82,8 @@ article pre {
 }
 
 .resume .sunlight ul {margin-top: 0px;}
-.resume .sunlight ul li {line-height: 25px;}
+.resume .sunlight ul li,
+.resume .eighteen-f ul li {line-height: 25px;}
 
 .summary {padding: 20px 0;}
 
