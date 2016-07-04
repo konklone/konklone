@@ -124,7 +124,7 @@ input.placeholder, textarea.placeholder {color: #999;} /* CSS class only used fo
 
 /* mobile view of frame */
 
-@media (max-width: 600px)  {
+@media (max-width: 1000px)  {
   body, header.main {
     min-width: 100%;
   }
