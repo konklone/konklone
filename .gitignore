@@ -25,3 +25,5 @@
 /unicorn.pid
 /unicorn.rb
 
+.python-version
+.ruby-version

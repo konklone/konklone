@@ -119,9 +119,3 @@ get '/comments.xml' do
   comments = Comment.visible.desc(:created_at).limit(20).to_a
   erb :comments, locals: {site: Environment.config['site'], comments: comments}, layout: false
 end
-
-# webfinger endpoint support
-require 'sinatra/webfinger'
-# require '/home/eric/konklone/sinatra-webfinger/lib/sinatra/webfinger'
-webfinger Environment.config['webfinger']
-

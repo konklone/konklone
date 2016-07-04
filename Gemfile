@@ -1,12 +1,10 @@
 source 'https://rubygems.org'
 
-# todo: hoo boy
-gem 'sinatra', git: 'https://github.com/sinatra/sinatra'
+gem 'sinatra'
 
 # used for reloading, and content_for
 gem 'sinatra-contrib'
 gem 'sinatra-partial'
-gem 'sinatra-webfinger'
 
 # todo: switch to https://github.com/treeder/rack-flash
 gem 'sinatra-flash', '0.3.0'
@@ -15,11 +13,11 @@ gem 'sinatra-flash', '0.3.0'
 # this gem won't be supported after Rails 5.0 releases.
 gem 'protected_attributes'
 
-# FIDO key, woo!
+# todo: update to latest code, broken in modern chrome
 gem 'u2f'
 
 gem "mongoid", "~> 4.0"
-gem 'mongoid_slug'
+gem 'mongoid-slug'
 
 gem 'big_sitemap'
 gem 'escape_utils'

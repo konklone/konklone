@@ -73,13 +73,3 @@ mongoid:
           - "localhost:27017"
     options:
       raise_not_found_error: false
-
-# Optional: fill in webfinger details. Webfinger is an HTTPS-only feature, this will not
-# meet spec unless your website is run under HTTPS.
-webfinger:
-- acct: name@domain.com
-  properties:
-    # name:
-    # website:
-  links:
-    website: http://localhost:8080

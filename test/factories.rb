@@ -4,6 +4,7 @@ FactoryGirl.define do
 
   factory :post do
     sequence(:title) {|n| "Fake Post #{n}"}
+    body ""
 
     factory :published_post do
       self.private false

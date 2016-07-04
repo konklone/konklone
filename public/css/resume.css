@@ -41,7 +41,7 @@ article pre {
 .resume {margin: 0 auto;}
 .resume ul li {width: 390px;}
 .resume .before ul li,
-.resume .personal ul li {width: 815px;}
+.resume .personal ul li {width: 815px; margin: 7px 0;}
 .resume td {width: 425px;}
 .resume td.right {padding-left: 20px;}
 
@@ -67,9 +67,10 @@ article pre {
 .resume .contact {position: relative;}
 
 .resume .contact ul {
-  margin-top: 0; margin-left: 20px;
+  margin-top: 7px; margin-left: 20px;
   display: inline-block;
-  position: absolute; top: auto; right: auto;
+  position: absolute;
+  top: auto; right: auto;
 }
 .resume .contact h1 {display: inline-block;}
 .resume .contact ul li {
@@ -81,7 +82,9 @@ article pre {
 }
 
 .resume .sunlight ul {margin-top: 0px;}
-.resume .sunlight ul li {line-height: 25px;}
+.resume .personal ul li,
+.resume .sunlight ul li,
+.resume .eighteen-f ul li {line-height: 25px;}
 
 .summary {padding: 20px 0;}
 
