@@ -18,7 +18,7 @@ a {color: rgb(0, 53, 102);}
 
 
 .resume {font-size: 12pt; line-height: 25px;}
-.resume h1 {font-size: 20pt; line-height: 40px;}
+.resume h1 {font-size: 36pt; line-height: 40px;}
 .resume h2 {font-size: 16pt; line-height: 32px;}
 .resume h3 {font-size: 16pt; line-height: 33px;}
 .resume h4 {font-size: 12pt; xfont-weight: bold;}
@@ -67,7 +67,7 @@ article pre {
 .resume .contact {position: relative;}
 
 .resume .contact ul {
-  margin-top: 0; margin-left: 20px;
+  margin-top: -8px; margin-left: 20px;
   display: inline-block;
   position: absolute; top: auto; right: auto;
 }
