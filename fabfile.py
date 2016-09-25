@@ -11,8 +11,8 @@ repo = "git@github.com:konklone/konklone.com.git"
 
 keep = 3
 
-username = "konklone"
-home = "/home/konklone/konklone"
+socket = "konklone"
+home = "/home/eric/konklone.com" 
 shared_path = "%s/shared" % home
 versions_path = "%s/versions" % home
 version_path = "%s/%s" % (versions_path, time.strftime("%Y%m%d%H%M%S"))
@@ -35,7 +35,6 @@ def checkout():
 def links():
   run("ln -s %s/config.yml %s/config/config.yml" % (shared_path, version_path))
   run("ln -s %s/config.ru %s/config.ru" % (shared_path, version_path))
-  run("ln -s %s/unicorn.rb %s/unicorn.rb" % (shared_path, version_path))
   run("ln -s %s/cache %s/cache" % (shared_path, version_path))
 
 def dependencies():
@@ -54,14 +53,12 @@ def set_crontab():
 ## can be run on their own
 
 def start():
-  run("cd %s && bundle exec unicorn -D -l %s/%s.sock -c unicorn.rb" % (current_path, shared_path, username))
+  run("cd %s && bundle exec unicorn -D -l %s/%s.sock -c unicorn.rb" % (current_path, shared_path, socket))
 
 def stop():
   run("kill `cat %s/unicorn.pid`" % shared_path)
 
-# :(
 def restart():
-  # run("kill -USR2 `cat %s/unicorn.pid`" % shared_path)
   stop()
   start()
 
@@ -73,8 +70,6 @@ def deploy():
   execute(create_indexes)
   execute(make_current)
   execute(set_crontab)
-  # execute(stop)
-  # execute(start)
   execute(restart)
   execute(cleanup)
 
