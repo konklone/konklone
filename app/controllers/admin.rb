@@ -245,13 +245,13 @@ end
 post '/admin/login' do
   if params[:password] == Environment.config['admin']['password']
 
-    if Device.count > 0
-      session[:half_admin] = true
-      redirect '/admin/key/login'
-    else
+    # if Device.count > 0
+    #   session[:half_admin] = true
+    #   redirect '/admin/key/login'
+    # else
       session[:admin] = true
       redirect '/admin/posts/published'
-    end
+    # end
   else
     erb :"admin/login", layout: :"admin/layout", locals: {message: "Invalid credentials."}
   end
