@@ -1,21 +1,12 @@
 # start unicorn on boot
-@reboot  /home/konklone/konklone/shared/cron/start.sh
-
+@reboot  /home/eric/konklone.com/shared/cron/start.sh
 
 # update sitemap each morning
-0 8 * * * /home/konklone/konklone/shared/cron/rake.sh sitemap
-
-
-# download copy of FISC website every 5 minutes
-*/5 * * * * cd /home/konklone/apps/fisa && /home/konklone/.rbenv/shims/bundle exec ruby check > /home/konklone/apps/fisa/fisa.log 2>&1
-
-
+0 8 * * * /home/eric/konklone.com/shared/cron/rake.sh sitemap
 
 # daily db backups, monthly asset backups
 
-@daily /home/konklone/backup/mongo.sh > /home/konklone/backup/output-mongo.txt 2>&1
-
-@monthly /home/konklone/backup/assets.sh > /home/konklone/backup/output-assets.txt 2>&1
-
+@daily /home/eric/backup/mongo.sh > /home/eric/backup/output-mongo.txt 2>&1
+@monthly /home/eric/backup/assets.sh > /home/eric/backup/output-assets.txt 2>&1
 
 # keep trailing newline
