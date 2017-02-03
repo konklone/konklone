@@ -46,44 +46,47 @@ get '/post/:slug/?' do
 end
 
 post '/comments/post/:slug' do
-  redirect '/' unless params[:comment].present?
-  raise Sinatra::NotFound unless post = Post.visible.find_by_slug!(params[:slug])
 
-  comment = post.comments.build params[:comment]
-  comment.ip = get_ip
+  redirect '/' # no more comments, for now
 
-  if Environment.config['site']['check_spam']
-    # not saved, used only for spam checking
-    comment.user_agent = request.env['HTTP_USER_AGENT']
-    comment.referrer = request.referer unless request.referer == "/"
+  # redirect '/' unless params[:comment].present?
+  # raise Sinatra::NotFound unless post = Post.visible.find_by_slug!(params[:slug])
 
-    comment.flagged = comment.spam?
-  end
+  # comment = post.comments.build params[:comment]
+  # comment.ip = get_ip
 
-  saved = false
-  begin
-    saved = comment.save
-  rescue ArgumentError => ex
-    # broken utf-8, get out the hatchet (don't want to use
-    # this unless I must, as it kills valid unicode too)
+  # if Environment.config['site']['check_spam']
+  #   # not saved, used only for spam checking
+  #   comment.user_agent = request.env['HTTP_USER_AGENT']
+  #   comment.referrer = request.referer unless request.referer == "/"
 
-    # if this proves too blunt, then the next solution would be:
-    # .force_encoding("ISO-8859-1").encode("utf-8", replace: nil)
-    # as in http://stackoverflow.com/questions/9607554/ruby-invalid-byte-sequence-in-utf-8
-    # which works, but it's not clear to me whether it properly preserves real unicode.
+  #   comment.flagged = comment.spam?
+  # end
 
-    ['body', 'author', 'author_url', 'author_email'].each do |field|
-      comment[field].encode!('utf-8', 'binary', invalid: :replace, undef: :replace, replace: "") if comment[field]
-    end
-    saved = comment.save # if it still will crash, let it crash
-  end
+  # saved = false
+  # begin
+  #   saved = comment.save
+  # rescue ArgumentError => ex
+  #   # broken utf-8, get out the hatchet (don't want to use
+  #   # this unless I must, as it kills valid unicode too)
 
-  if saved
-    redirect "#{post_path post}#comment-#{comment.id}"
-  else
-    comments = post.comments.visible.asc(:created_at).to_a
-    erb :post, locals: {post: post, new_comment: comment, comments: comments}
-  end
+  #   # if this proves too blunt, then the next solution would be:
+  #   # .force_encoding("ISO-8859-1").encode("utf-8", replace: nil)
+  #   # as in http://stackoverflow.com/questions/9607554/ruby-invalid-byte-sequence-in-utf-8
+  #   # which works, but it's not clear to me whether it properly preserves real unicode.
+
+  #   ['body', 'author', 'author_url', 'author_email'].each do |field|
+  #     comment[field].encode!('utf-8', 'binary', invalid: :replace, undef: :replace, replace: "") if comment[field]
+  #   end
+  #   saved = comment.save # if it still will crash, let it crash
+  # end
+
+  # if saved
+  #   redirect "#{post_path post}#comment-#{comment.id}"
+  # else
+  #   comments = post.comments.visible.asc(:created_at).to_a
+  #   erb :post, locals: {post: post, new_comment: comment, comments: comments}
+  # end
 end
 
 
