@@ -147,3 +147,14 @@ article pre {
   }
 
 }
+
+
+@media print {
+  .noprint {display: none;}
+
+  .sunlight {margin-top: 15px;}
+  .sunlight, .work {margin-bottom: 15px;}
+  .before {margin-bottom: 0px;}
+
+  .resume .summary {line-height: 32px; letter-spacing: 0.5px; font-size: 16pt;}
+}
