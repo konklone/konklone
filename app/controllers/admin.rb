@@ -1,4 +1,5 @@
 before '/admin/*' do
+  # puts params[:captures]
   if ["", "login", "key/login", "logout"].include?(params[:captures].first)
     pass
   elsif params[:captures].first =~ /^preview/
@@ -9,7 +10,7 @@ before '/admin/*' do
 end
 
 
-get %r{^/admin/posts/(all|published|drafts|flagged)$} do
+get %r{/admin/posts/(all|published|drafts|flagged)} do
   # explicitly remove the public default scope in the admin area
   posts = Post.desc :created_at
 
