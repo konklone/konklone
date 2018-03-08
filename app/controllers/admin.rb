@@ -1,5 +1,4 @@
 before '/admin/*' do
-  # puts params[:captures]
   if ["", "login", "key/login", "logout"].include?(params[:captures].first)
     pass
   elsif params[:captures].first =~ /^preview/
