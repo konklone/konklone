@@ -1,8 +1,6 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <!-- so help me, I am using chartbeat -->
-  <script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>
 
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -139,22 +137,5 @@
 
   <%= yield_content :foot %>
 
-  <!-- yes, I use chartbeat, that's the kind of person I am -->
-  <script type="text/javascript">
-    var _sf_async_config = { uid: 49764, domain: 'konklone.com', useCanonical: true };
-    (function() {
-      function loadChartbeat() {
-        window._sf_endpt = (new Date()).getTime();
-        var e = document.createElement('script');
-        e.setAttribute('language', 'javascript');
-        e.setAttribute('type', 'text/javascript');
-        e.setAttribute('src','https://static.chartbeat.com/js/chartbeat.js');
-        document.body.appendChild(e);
-      };
-      var oldonload = window.onload;
-      window.onload = (typeof window.onload != 'function') ?
-        loadChartbeat : function() { oldonload(); loadChartbeat(); };
-    })();
-  </script>
 </body>
 </html>
