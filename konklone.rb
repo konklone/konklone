@@ -97,10 +97,13 @@ end
 error do
   exception = env['sinatra.error']
 
+  cleaned = params
+  [:password, "password"].each {|p| cleaned.delete p }
+
   request = {
     method: env['REQUEST_METHOD'],
     url: "#{Environment.config['site']['root']}#{env['REQUEST_URI']}",
-    params: params.inspect,
+    params: cleaned.inspect,
     user_agent: env['HTTP_USER_AGENT']
   }
 
