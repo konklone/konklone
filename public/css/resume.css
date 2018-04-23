@@ -152,9 +152,21 @@ article pre {
 @media print {
   .noprint {display: none;}
 
+  body {background-color: #fff; color: #151515;}
+
+  .resume section h2 .date, .resume section h3 .date {
+    color: #252525;
+  }
+
   .sunlight {margin-top: 15px;}
-  .sunlight, .work {margin-bottom: 15px;}
+  .sunlight, .work {margin-bottom: 5px;}
   .before {margin-bottom: 0px;}
 
-  .resume .summary {line-height: 32px; letter-spacing: 0.5px; font-size: 16pt;}
+  .resume .summary {
+    line-height: 32px; letter-spacing: 0.5px; font-size: 16pt;
+    padding: 10px 0;
+  }
 }
+
+.meta {border-bottom: 1px solid #aaa;}
+.meta span {display: inline-block; margin-right: 50px;}
