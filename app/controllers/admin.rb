@@ -1,7 +1,7 @@
 before '/admin/*' do
-  if ["", "login", "key/login", "logout"].include?(params[:captures].first)
+  if ["", "login", "key/login", "logout"].include?(params[:splat].first)
     pass
-  elsif params[:captures].first =~ /^preview/
+  elsif params[:splat].first =~ /^preview/
     pass
   else
     halt 404 unless admin?
