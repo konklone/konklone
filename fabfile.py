@@ -12,7 +12,7 @@ repo = "git@github.com:konklone/konklone.com.git"
 keep = 3
 
 socket = "konklone"
-home = "/home/eric/konklone.com" 
+home = "/home/eric/konklone.com"
 shared_path = "%s/shared" % home
 versions_path = "%s/versions" % home
 version_path = "%s/%s" % (versions_path, time.strftime("%Y%m%d%H%M%S"))
