@@ -45,6 +45,8 @@ gem "oj"
 group :development do
   gem 'wirble'
   gem 'unicorn'
+  gem 'pry'
+  gem 'pry-remote'
 end
 
 group :test do

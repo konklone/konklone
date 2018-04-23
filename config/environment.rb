@@ -94,6 +94,8 @@ configure(:development) do |config|
   config.also_reload "./app/models/*.rb"
   config.also_reload "./app/controllers/*.rb"
   config.also_reload "./app/helpers/*.rb"
+
+  require 'pry-remote'
 end
 
 

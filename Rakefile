@@ -68,6 +68,11 @@ namespace :test do
   task send_email: :environment do
     Email.message "Hello, dear admin."
   end
+
+  desc "Test sending an email from an exception"
+  task send_error_email: :environment do
+    Email.exception(Exception.new("oh no"), {test: "this"})
+  end
 end
 
 # sanity test suite
