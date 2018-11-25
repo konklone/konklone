@@ -45,11 +45,6 @@ class Environment
     @u2f ||= U2F::U2F.new(Environment.config['site']['root'])
   end
 
-  def self.games
-    # @games ||=
-    YAML.safe_load_file File.join(File.dirname(__FILE__), "../public/games.yml")
-  end
-
   # my own slugifier
   def self.to_url(string)
     string = string.dup
