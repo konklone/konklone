@@ -1,0 +1,38 @@
+
+
+body {
+  font-family: "Open Sans", Arial, sans-serif;
+  font-size: 11pt;
+  line-height: 25px;
+}
+
+.sidebar .inner {
+  margin: 0px 10px;
+}
+.sidebar img {width: 100%;}
+.sidebar figure {margin: 0;}
+
+
+@media (min-width: 1001px) {
+
+  body {
+    padding: 50px;
+  }
+}
+
+@media (max-width: 1000px) {
+
+  body {
+    padding: 5px;
+  }
+}
+
+
+/** colors **/
+
+body {background-color: #f5f5f5;}
+body {color: #151515;}
+a {color: rgb(0, 53, 102);}
+
+ul, ol, li {list-style-type: none;}
+h1,h2,h3,h4,h5,h6 {font-weight: normal;}

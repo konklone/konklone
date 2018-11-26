@@ -63,9 +63,10 @@
   <link href='/css/google-fonts.css' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="/css/html5-reset.css" />
 
-
-  <link rel="stylesheet" href="/css/main.css?<%= Time.now.to_i %>" />
-  <link rel="stylesheet" href="/css/blog.css?<%= Time.now.to_i %>" />
+  <link rel="stylesheet" href="/css/pure-base-min.css" />
+  <link rel="stylesheet" href="/css/pure-grids-min.css" />
+  <link rel="stylesheet" href="/css/pure-grids-responsive-min.css" />
+  <link rel="stylesheet" href="/css/home.css?<%= Time.now.to_i %>" />
 
   <%= yield_content :head %>
 
@@ -78,12 +79,6 @@
   <div class="main" role="main">
     <%= yield %>
   </div>
-
-  <footer class="main">
-    <p>
-      Everything written is licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>.
-    </p>
-  </footer>
 
   <!--
     yes, I'd like to switch to Piwik or something, it's a bit hard,
