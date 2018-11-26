@@ -47,20 +47,9 @@
 
   <link rel="vcs-git" href="https://github.com/konklone/konklone.com.git" title="blog code" />
 
-  <link href='/css/google-fonts.css' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="/css/html5-reset.css" />
-
-  <% unless defined?(independent) and independent %>
-    <link rel="stylesheet" href="/css/main.css?<%= Time.now.to_i %>" />
-    <link rel="stylesheet" href="/css/blog.css?<%= Time.now.to_i %>" />
-    <link rel="stylesheet" href="/css/pygments-theme.css" />
-  <% end %>
-
   <% if (canonical = yield_content(:canonical)).present? %>
     <link rel="canonical" href="<%= canonical %>" />
   <% end %>
-
-  <%= yield_content :head %>
 
   <!-- RSS must live on -->
   <% if (feed = yield_content(:feed)).present? %>
@@ -69,36 +58,22 @@
   <link rel="alternate" href="/rss.xml" type="application/rss+xml" title="All posts" />
   <% end %>
 
+  <!-- Styles -->
+
+  <link href='/css/google-fonts.css' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/html5-reset.css" />
+
+
+  <link rel="stylesheet" href="/css/main.css?<%= Time.now.to_i %>" />
+  <link rel="stylesheet" href="/css/blog.css?<%= Time.now.to_i %>" />
+
+  <%= yield_content :head %>
+
   <!-- jquery is the jquery of the web -->
   <script src="/js/jquery-2.1.1.min.js"></script>
 </head>
 
 <body>
-  <header class="main">
-    <div class="inner me">
-      <a rel="me" class="me left" href="/">Eric Mill</a>
-
-      <!-- important: this needs to go before main ul block,
-           or it can get knocked down below the ul block on first load -->
-      <div class="right">
-
-      </div>
-
-      <h1>
-        <a href="#"></a>
-      </h1>
-
-      <ul>
-        <li><%= header_link "about", "/" %></li>
-        <li><%= header_link "blog", ["/blog", /^\/post\//] %></li>
-        <li><%= header_link "resume", "/resume" %></li>
-        <% if admin? %>
-          <li><a href="/admin">Admin</a></li>
-        <% end %>
-      </ul>
-    </div>
-
-  </header>
 
   <div class="main" role="main">
     <%= yield %>
@@ -129,7 +104,7 @@
   </script>
 
   <script type="text/javascript">
-  // workaround for chrome bug: http://code.google.com/p/chromium/issues/detail?id=35980#c12
+  // workaround for chrome bug: https://bugs.chromium.org/p/chromium/issues/detail?id=35980#c12
   if ( window.innerWidth === 0 ) { window.innerWidth = parent.innerWidth; window.innerHeight = parent.innerHeight; }
   </script>
 
