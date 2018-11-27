@@ -12,6 +12,14 @@ body {
 .sidebar img {width: 100%;}
 .sidebar figure {margin: 0;}
 
+article p {
+  padding: 10px;
+}
+
+article p.me {
+  font-size: 24pt;
+}
+
 
 @media (min-width: 1001px) {
 
@@ -36,3 +44,6 @@ a {color: rgb(0, 53, 102);}
 
 ul, ol, li {list-style-type: none;}
 h1,h2,h3,h4,h5,h6 {font-weight: normal;}
+
+
+h1 {font-size: 48pt;}
