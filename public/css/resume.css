@@ -6,7 +6,7 @@ body {
 
 
 
-.resume {font-family: "Average", "Georgia", serif;}
+.resume {font-family: "Merriweather", "Average", "Georgia", serif;}
 
 ul, ol, li {list-style-type: none;}
 h1,h2,h3,h4,h5,h6 {font-weight: normal;}
@@ -16,14 +16,17 @@ a {color: rgb(0, 53, 102);}
 
 
 
-.resume {font-size: 12pt; line-height: 25px;}
+.resume {line-height: 25px;}
 .resume h1 {font-size: 20pt; line-height: 40px;}
-.resume h2 {font-size: 16pt; line-height: 32px;}
-.resume h3 {font-size: 16pt; line-height: 33px;}
-.resume h4 {font-size: 12pt; font-style: italic;}
-.resume ul li {font-size: 12pt;}
-.resume .summary {font-size: 14pt; line-height: 30px;}
-.resume .before ul li {font-size: 12pt; line-height: 25px;}
+.resume h2, .resume h3 {font-size: 16pt; line-height: 32px;}
+.resume h4 {font-style: italic;}
+
+.resume,
+.resume h4,
+.resume ul li {font-size: 10pt;}
+
+.resume .summary {font-size: 12pt; line-height: 30px;}
+.resume .before ul li {line-height: 25px;}
 
 /** Main structure **/
 
@@ -60,7 +63,7 @@ article pre {
 .resume ol, .resume ol li {list-style-type: decimal;}
 
 .resume ul {margin-top: 10px;}
-.resume ul li {line-height: 19px; padding-left: 10px;}
+.resume ul li {line-height: 19px; padding-left: 15px;}
 
 /** section-specific **/
 
@@ -86,9 +89,10 @@ article pre {
 .resume .sunlight ul li,
 .resume .eighteen-f ul li {line-height: 25px;}
 
-.summary {padding: 20px 0;}
+.resume .summary {padding: 20px 0;}
+.resume .eighteen-f {margin-top: 0px;}
 
-.eighteen-f {margin-top: 0px;}
+/*.resume .eighteen-f p {margin: 5px 0 5px 0}*/
 
 .sunlight {margin-top: 35px;}
 .sunlight, .work {margin-bottom: 25px;}

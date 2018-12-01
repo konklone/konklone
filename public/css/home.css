@@ -1,9 +1,12 @@
 
 
 body {
-  font-family: "Open Sans", Arial, sans-serif;
-  font-size: 11pt;
-  line-height: 25px;
+  font-size: 12pt;
+  line-height: 28px;
+}
+
+body * {
+  font-family: "Lato", "Open Sans", Arial, sans-serif;
 }
 
 .sidebar .inner {
@@ -11,28 +14,72 @@ body {
 }
 .sidebar img {width: 100%;}
 .sidebar figure {margin: 0;}
+.sidebar ul li {
+  text-align: center;
+}
+
+.sidebar ul li a {
+  text-decoration: none;
+}
+.sidebar ul li a:hover {
+  text-decoration: underline;
+}
 
 article p {
-  padding: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 0;
+  padding-bottom: 20px;
 }
+
+article p a {font-weight: normal;}
 
 article p.me {
-  font-size: 24pt;
+  font-family: "Lato", "Open Sans", Arial, sans-serif;
 }
 
 
-@media (min-width: 1001px) {
+@media (min-width: 769px) {
 
   body {
-    padding: 50px;
+    padding: 5%;
+  }
+
+  .sidebar ul li {
+    line-height: 48px;
+    font-size: 18pt;
+  }
+
+  article p.me {
+    font-size: 24pt;
+    line-height: 42px;
+  }
+
+  .sidebar img {
+    padding-top: 3%;
   }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 768px) {
 
   body {
-    padding: 5px;
+    padding: 1%;
   }
+
+  .sidebar img {
+    padding-top: 7%;
+  }
+
+  .sidebar ul li {
+    line-height: 28px;
+    font-size: 12pt;
+  }
+
+  article p.me {
+    font-size: 18pt;
+    line-height: 32px;
+  }
+
 }
 
 
