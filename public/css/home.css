@@ -25,11 +25,17 @@ body * {
   text-decoration: underline;
 }
 
-article p {
+article p,
+article h4,
+article .projects ul li {
   padding-left: 10px;
   padding-right: 10px;
   padding-top: 0;
   padding-bottom: 20px;
+}
+
+article h4 {
+  padding-top: 20px;
 }
 
 article p a {font-weight: normal;}
@@ -42,7 +48,7 @@ article p.me {
 @media (min-width: 769px) {
 
   body {
-    padding: 5%;
+    padding: 3%;
   }
 
   .sidebar ul li {
@@ -94,3 +100,5 @@ h1,h2,h3,h4,h5,h6 {font-weight: normal;}
 
 
 h1 {font-size: 48pt;}
+h4 {font-size: 18pt;}
+
