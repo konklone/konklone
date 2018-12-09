@@ -12,26 +12,26 @@
   <!-- title, OG, and Twitter card stuff -->
   <% if (title = yield_content(:title)).present? %>
     <title><%= h title %></title>
-    <meta name="og:title" content="<%= escape_attribute title %>" />
+    <meta name="og:title" property="og:title" content="<%= escape_attribute title %>" />
   <% else %>
     <title>Eric Mill</title>
-    <meta name="og:title" content="Eric Mill" />
+    <meta name="og:title" property="og:title" content="Eric Mill" />
   <% end %>
 
   <% if (description = yield_content(:description)).present? %>
     <meta name="description" content="<%= escape_attribute description %>" />
-    <meta name="og:description" content="<%= escape_attribute description %>" />
+    <meta name="og:description" property="og:description" content="<%= escape_attribute description %>" />
   <% else %>
     <meta name="description" content="Eric Mill is a leader and technology expert in Washington, DC." />
-    <meta name="og:description" content="Eric Mill is a leader and technology expert in Washington, DC." />
+    <meta name="og:description" property="og:description" content="Eric Mill is a leader and technology expert in Washington, DC." />
   <% end %>
 
   <!-- assumes any post-provided image will be appropriate for large format -->
   <% if (image = yield_content(:image)).present? %>
-    <meta name="og:image" content="<%= image %>" />
+    <meta name="og:image" property="og:image" content="<%= image %>" />
     <meta name="twitter:card" content="summary_large_image" />
   <% else %>
-    <meta name="og:image" content="https://konklone.com/images/eric-mill-headshot.jpg" />
+    <meta name="og:image" property="og:image" content="https://konklone.com/images/eric-mill-headshot.jpg" />
     <meta name="twitter:card" content="summary" />
   <% end %>
 
