@@ -43,8 +43,8 @@ article pre {
 
 .resume {margin: 0 auto;}
 .resume ul li {width: 390px;}
-.resume .before ul li,
-.resume .personal ul li {width: 815px; margin: 7px 0;}
+/*.resume .personal ul li,*/
+.resume .before ul li {width: 815px; margin: 7px 0;}
 .resume td {width: 425px;}
 .resume td.right {padding-left: 20px;}
 
@@ -163,7 +163,7 @@ article pre {
 
   .sunlight {margin-top: 15px;}
   .sunlight, .work {margin-bottom: 5px;}
-  .before {margin-bottom: 0px;}
+  /*.personal {margin-bottom: 0px;}*/
 
   .resume .summary {
     line-height: 32px; letter-spacing: 0.5px; font-size: 16pt;
