@@ -1,13 +1,16 @@
 
 
 body {
-  font-size: 12pt;
-  line-height: 28px;
+  font-size: 15pt;
+  line-height: 1.75;
 }
 
 body * {
   font-family: "Lato", "Open Sans", Arial, sans-serif;
 }
+
+/* Needs work! */
+/*.sidebar {position: fixed;}*/
 
 .sidebar .inner {
   margin: 0px 10px;
@@ -52,13 +55,13 @@ article p.me {
   }
 
   .sidebar ul li {
-    line-height: 48px;
-    font-size: 18pt;
+    line-height: 2;
+    font-size: 1.25em;
   }
 
   article p.me {
-    font-size: 22pt;
-    line-height: 40px;
+    font-size: 1.9em;
+    line-height: 1.25;
   }
 
   .sidebar img {
@@ -70,6 +73,7 @@ article p.me {
 
   body {
     padding: 1%;
+    font-size: 12pt;
   }
 
   .sidebar img {
@@ -77,13 +81,13 @@ article p.me {
   }
 
   .sidebar ul li {
-    line-height: 28px;
-    font-size: 12pt;
+    line-height: 1.75;
+    font-size: 1em;
   }
 
   article p.me {
-    font-size: 18pt;
-    line-height: 32px;
+    font-size: 1.5em;
+    line-height: 1.3;
   }
 
 }
@@ -99,6 +103,6 @@ ul, ol, li {list-style-type: none;}
 h1,h2,h3,h4,h5,h6 {font-weight: normal;}
 
 
-h1 {font-size: 48pt;}
-h4 {font-size: 18pt;}
+h1 {font-size: 4em;}
+h4 {font-size: 1.5em;}
 
