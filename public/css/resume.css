@@ -90,9 +90,10 @@ article pre {
 .resume .summary {padding: 20px 0;}
 .resume .eighteen-f {margin-top: 0px;}
 
-/*.resume .eighteen-f p {margin: 5px 0 5px 0}*/
+.resume .techcongress,
+.resume .eighteen-f,
+.resume .sunlight {margin-top: 30px;}
 
-.sunlight {margin-top: 35px;}
 .sunlight, .work {margin-bottom: 25px;}
 .before {margin-bottom: 35px;}
 .sunlight table td {padding-bottom: 10px;}
@@ -159,6 +160,7 @@ article pre {
     color: #252525;
   }
 
+  .resume .techcongress {margin-top: 35px;}
   .resume .eighteen-f {margin-top: 35px;}
   .resume .sunlight {margin-top: 35px;}
   .sunlight, .work {margin-bottom: 5px;}
