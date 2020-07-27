@@ -9,7 +9,6 @@ body {
 }
 
 /* Needs work! */
-/*.sidebar {position: fixed;}*/
 
 .sidebar .inner {
   margin: 0px 10px;
@@ -22,6 +21,7 @@ body {
 
 .sidebar ul li a {
   text-decoration: none;
+  font-family: "EB Garamond", "Lato", "Open Sans", Arial, sans-serif;
 }
 .sidebar ul li a:hover {
   text-decoration: underline;
@@ -83,16 +83,24 @@ article p.me {
     font-size: 12pt;
   }
 
-  .sidebar img {
+  .sidebar img, .sidebar ul {
     padding-top: 7%;
   }
 
   .sidebar ul li {
     line-height: 1.75;
-    font-size: 1em;
+    font-size: 1.5em;
+    text-align: left;
+    padding-left: 5%;
+  }
+
+  .sidebar ul li a {
+    text-decoration: underline;
+
   }
 
   article p.me {
+    padding-top: 20px;
     font-size: 1.5em;
     line-height: 1.35;
   }

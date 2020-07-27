@@ -1,0 +1,18 @@
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: normal;
+  font-weight: 400;
+  /* IE6-8 compat */
+  src: url("ebgaramond-aeee97ceb479bfbf8cd5a92a2f42c17cb1553272.eot");
+  src: url("ebgaramond-80015e191f1fbd517c8c90beebe6ae674893d926.woff") format("woff"), 
+    url("ebgaramond-25e11a7dece1bc88495a694c03d7b37a81c65abf.woff") format("woff"), 
+    url("ebgaramond-3cc28a97ccb6d1843e721715ac28f2fe64b49790.woff") format("woff"), 
+    url("ebgaramond-24dc0ac7b46f51f6c4ff322a8235e91dea7a1cce.woff") format("woff"), 
+    url("ebgaramond-7725e07352321198c7bf06a2386ca3b8f6d015d3.woff") format("woff"), 
+    url("ebgaramond-b97a11220d4340a27dfd3e62059d9472e74e7931.woff") format("woff"), 
+    url("ebgaramond-ec43a8ea6be2e33d2c9765c59b3c0e247729a806.woff") format("woff"), 
+    url("ebgaramond-49e03531f3ec8874ffa04456da69aac916482e50.woff") format("woff"), 
+    url("ebgaramond-aeee97ceb479bfbf8cd5a92a2f42c17cb1553272.eot") format("embedded-opentype"), 
+    url("ebgaramond-4cfd53009646b5a6626404cad0fb537c67c2539f.ttf") format("truetype");
+}
+
