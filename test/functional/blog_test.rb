@@ -66,28 +66,4 @@ class BlogTest < Test::Unit::TestCase
 
   # TODO: ensure admin area is accessible to admin
 
-  def test_comment_sanitization
-
-    full_tests = {
-      "hey `there`" => "<p>hey <code>there</code></p>",
-
-      "hey `<b>`" => "<p>hey <code>&lt;b&gt;</code></p>",
-
-      # this one is not desired, but it's safe and acceptable
-      "hey `<script>`" => "<p>hey <code>&lt;script&gt;</code></p>",
-
-      "hey `<link href=\"what\">`" => "<p>hey <code>&lt;link href=\"what\"&gt;</code></p>",
-
-      "hey <script>" => "<p>hey &lt;script&gt;&lt;/script&gt;</p>",
-      "hey <script>yes</script>" => "<p>hey &lt;script&gt;yes&lt;/script&gt;</p>",
-      "hey <b>yes</b>" => "<p>hey <b>yes</b></p>",
-    }
-
-    full_tests.each do |input, output|
-      assert_equal output, routing.render_comment_body(input).strip
-    end
-
-
-  end
-
 end

@@ -4,22 +4,22 @@ require 'safe_yaml'
 require 'mongoid'
 require 'mongoid_slug'
 
-require 'rakismet'
+# require 'rakismet'
 
 require 'sinatra/partial'
 require 'sinatra/content_for'
 require 'sinatra/flash'
 require 'tzinfo'
 require 'escape_utils'
-require 'protected_attributes'
+# require 'protected_attributes'
 
-require 'octokit'
-require 'oj'
+# require 'octokit'
+# require 'oj'
 
-require 'u2f'
+# require 'u2f'
 
-require 'pony'
-require './config/email'
+# require 'pony'
+# require './config/email'
 
 require "fileutils"
 
@@ -34,16 +34,16 @@ class Environment
     @config ||= YAML.safe_load_file File.join(File.dirname(__FILE__), "config.yml")
   end
 
-  def self.github
-    if Environment.config['github'] and Environment.config['github']['token']
-      @github ||= Octokit::Client.new access_token: Environment.config['github']['token']
-    end
-  end
+  # def self.github
+  #   if Environment.config['github'] and Environment.config['github']['token']
+  #     @github ||= Octokit::Client.new access_token: Environment.config['github']['token']
+  #   end
+  # end
 
   # used to register and validate u2f devices
-  def self.u2f
-    @u2f ||= U2F::U2F.new(Environment.config['site']['root'])
-  end
+  # def self.u2f
+  #   @u2f ||= U2F::U2F.new(Environment.config['site']['root'])
+  # end
 
   # my own slugifier
   def self.to_url(string)
@@ -63,9 +63,9 @@ configure do
     c.load_configuration Environment.config['mongoid'][Sinatra::Base.environment.to_s]
   end
 
-  Rakismet.key = Environment.config['rakismet']['key']
-  Rakismet.url = Environment.config['rakismet']['url']
-  Rakismet.host = Environment.config['rakismet']['host']
+  # Rakismet.key = Environment.config['rakismet']['key']
+  # Rakismet.url = Environment.config['rakismet']['url']
+  # Rakismet.host = Environment.config['rakismet']['host']
 
   Time.zone = ActiveSupport::TimeZone.find_tzinfo "America/New_York"
 end
@@ -90,7 +90,7 @@ configure(:development) do |config|
   config.also_reload "./app/controllers/*.rb"
   config.also_reload "./app/helpers/*.rb"
 
-  require 'pry-remote'
+  # require 'pry-remote'
 end
 
 

@@ -14,6 +14,7 @@
 /public/assets
 /public/sitemap
 
+/config/mongoid.yml
 /config/config.yml
 /vendor/gems
 /config.ru

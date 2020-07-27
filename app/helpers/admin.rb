@@ -6,11 +6,7 @@ module Helpers
     def admin?
       session[:admin] == true
     end
-
-    def half_admin?
-      session[:half_admin] == true
-    end
-
+    
     def form_escape(string)
       string ? string.gsub("\"", "&quot;") : nil
     end

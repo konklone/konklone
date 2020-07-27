@@ -144,13 +144,6 @@
   </form>
 </article>
 
-<ol id="comments">
-  <% post.comments.where(flagged: false).asc(:created_at).each do |comment| %>
-    <a href="/admin/comment/<%= comment.id %>">admin</a><br/>
-    <%= partial "comment", engine: :erb, locals: {comment: comment} %>
-  <% end %>
-</ol>
-
 <form id="delete_post" method="post" action="/admin/post/<%= post.slug %>">
   <input type="hidden" name="_method" value="delete" />
   <input type="submit" style="display: none" />

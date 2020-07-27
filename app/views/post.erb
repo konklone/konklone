@@ -70,12 +70,3 @@
     </section>
   <% end %>
 </article>
-
-<% if !defined?(preview); preview = false; end %>
-<% unless preview %>
-  <ol id="comments">
-    <% comments.each do |comment| %>
-      <%= partial "comment", engine: :erb, locals: {comment: comment} %>
-    <% end %>
-  </ol>
-<% end %>

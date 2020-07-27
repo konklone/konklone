@@ -41,13 +41,13 @@ module Helpers
       end
     end
 
-    def comment_body(comment)
-      if Environment.config['site']['cache_markdown']
-        comment.body_rendered
-      else
-        render_comment_body comment.body
-      end
-    end
+    # def comment_body(comment)
+    #   if Environment.config['site']['cache_markdown']
+    #     comment.body_rendered
+    #   else
+    #     render_comment_body comment.body
+    #   end
+    # end
 
     def render_post_body(text)
       text = markdown text
@@ -71,12 +71,12 @@ module Helpers
     end
 
     # sanitize comments pre-markdown
-    def render_comment_body(text)
-      sanitized = markdown text
-      sanitized = sanitize sanitized
-      sanitized = Rinku.auto_link sanitized, :all, "rel='nofollow'"
-      sanitized
-    end
+    # def render_comment_body(text)
+    #   sanitized = markdown text
+    #   sanitized = sanitize sanitized
+    #   sanitized = Rinku.auto_link sanitized, :all, "rel='nofollow'"
+    #   sanitized
+    # end
 
     # sanitize text-only excerpt post-markdown
     def render_post_excerpt_text(text)

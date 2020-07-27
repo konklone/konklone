@@ -4,7 +4,7 @@ task :environment do
   require './config/environment'
 end
 
-desc "Create indexes on posts and comments"
+desc "Create indexes on posts"
 task create_indexes: :environment do
   begin
     Mongoid.models.each &:create_indexes
@@ -63,17 +63,17 @@ end
 
 
 
-namespace :test do
-  desc "Test sending an email"
-  task send_email: :environment do
-    Email.message "Hello, dear admin."
-  end
+# namespace :test do
+#   desc "Test sending an email"
+#   task send_email: :environment do
+#     Email.message "Hello, dear admin."
+#   end
 
-  desc "Test sending an email from an exception"
-  task send_error_email: :environment do
-    Email.exception(Exception.new("oh no"), {test: "this"})
-  end
-end
+#   desc "Test sending an email from an exception"
+#   task send_error_email: :environment do
+#     Email.exception(Exception.new("oh no"), {test: "this"})
+#   end
+# end
 
 # sanity test suite
 

@@ -17,8 +17,4 @@ FactoryGirl.define do
     end
   end
 
-  factory :comment do
-    email "fake-user@example.com"
-  end
-
 end

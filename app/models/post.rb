@@ -1,15 +1,14 @@
 class Post
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Attributes::Dynamic
   include Mongoid::Slug
-  include ActiveModel::MassAssignmentSecurity
+  # include ActiveModel::MassAssignmentSecurity
 
-  attr_protected :_id, :slug
+  # attr_protected :_id, :slug
 
   attr_accessor :needs_sync
   attr_accessor :was_synced
-
-  has_many :comments
 
   field :title
 
@@ -38,8 +37,6 @@ class Post
   field :private, type: Boolean, default: false
   field :draft, type: Boolean, default: true
   field :flagged, type: Boolean, default: false
-
-  field :comment_count, type: Integer, default: 0
 
   field :redirect_url
   field :hacker_news
@@ -70,7 +67,6 @@ class Post
   index private: 1
   index draft: 1
   index created_at: 1
-  index comment_count: 1
   index related_post_ids: 1
 
   # index the way posts are found
@@ -95,11 +91,6 @@ class Post
   }
 
   scope :tagged, lambda {|tag| where(tags: tag)}
-
-  def update_count!
-    self.comment_count = self.comments.ham.count
-    self.save!
-  end
 
   def visible?
     !private and !draft
@@ -131,101 +122,6 @@ class Post
     # otherwise, well we still need some flat (no HTML) text for glimpses, so use the body
     else
       self.excerpt_text = render_post_excerpt_text(self.body)
-    end
-  end
-
-  # parse a github url into repo, and path to contents
-  # e.g. https://github.com/konklone/writing/blob/writing/blog/testing.md
-  def self.parse_github_url(url)
-    uri = URI.parse url
-    parts = uri.path.split "/"
-    repo = parts[1..2].join "/"
-    branch = parts[4]
-    path = parts[5..-1].join "/"
-    [repo, branch, path]
-  end
-
-  # repo_url e.g. "https://github.com/konklone/writing"
-  # ref comes from payload, e.g. "refs/heads/writing"
-  # path e.g. "blog/testing.md"
-  def self.github_url_for(repo_url, ref, path)
-    branch = ref.split('/').last
-    [repo_url, "blob", branch, path].join "/"
-  end
-
-  # done in the controller on first publish,
-  # assumes a slug is present
-  def generate_github_url
-    prefix = Environment.config['github']['default_prefix']
-    self.github = "#{prefix}/#{slug}.md"
-  end
-
-  before_save :sync_to_github?
-  def sync_to_github?
-    # if it was already directly set to false/true, don't change it
-    if self.needs_sync.nil?
-      self.needs_sync = self.changed.include? "body"
-    end
-
-    true
-  end
-
-  # go fetch this file's current sha and content from github
-  # 1) used when syncing TO github to know whether to create or update
-  # 2) used when syncing FROM github to get the new content to save
-  def fetch_from_github
-    repo, branch, path = Post.parse_github_url self.github
-    Environment.github.contents repo, ref: branch, path: path
-  end
-
-  after_save :sync_to_github
-  def sync_to_github
-    return unless Environment.github.present?
-    return unless self.github.present?
-    # return unless self.visible?
-    return unless self.needs_sync
-
-
-    # go get the current sha
-    begin
-      item = fetch_from_github
-      sha = item.sha
-    rescue Octokit::NotFound
-      sha = nil
-    end
-
-    message = if github_last_message.present?
-      github_last_message
-    elsif sha.blank?
-      if self.visible?
-        "As first published"
-      else
-        "As first synced"
-      end
-    else
-      "Updating post"
-    end
-
-    repo, branch, path = Post.parse_github_url self.github
-
-    begin
-      if sha
-        puts "Updating post on github at: #{self.github}"
-        post = Environment.github.update_contents repo, path, message, sha, self.body, branch: branch
-      else
-        puts "Creating post on github at: #{self.github}"
-        post = Environment.github.create_contents repo, path, message, self.body, branch: branch
-      end
-      # log commit so we know to ignore this when it comes back from github
-      self.push(github_commits: post.commit.sha)
-
-      # un/re-set needs_sync
-      self.needs_sync = nil
-
-      # helpful to know post-save if this ended up working
-      self.was_synced = true
-    rescue Exception => exc
-      Email.exception exc
     end
   end
 

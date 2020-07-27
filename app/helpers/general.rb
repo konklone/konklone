@@ -56,9 +56,9 @@ module Helpers
       "/post/#{post.slug}"
     end
 
-    def comment_path(post)
-      "/comments/post/#{post.slug}"
-    end
+    # def comment_path(post)
+    #   "/comments/post/#{post.slug}"
+    # end
 
     def h(text)
       Rack::Utils.escape_html text
@@ -88,13 +88,13 @@ module Helpers
       time.rfc2822
     end
 
-    def comment_time(time)
-      # Aug 21, 12:03pm
-      meridian = time.strftime "%p"
-      hour = time.strftime "%I"
-      day = time.strftime "%d"
-      time.strftime "%b #{day.to_i}, #{hour.to_i}:%M#{meridian.downcase}"
-    end
+    # def comment_time(time)
+    #   # Aug 21, 12:03pm
+    #   meridian = time.strftime "%p"
+    #   hour = time.strftime "%I"
+    #   day = time.strftime "%d"
+    #   time.strftime "%b #{day.to_i}, #{hour.to_i}:%M#{meridian.downcase}"
+    # end
 
     # general rendering - only used for on-display things
     def excerpt(text, max)

@@ -14,10 +14,6 @@
         </strong>
       <% end %>
 
-      <% if post.comment_count > 0 %>
-        <a class="flag count"><%= post.comment_count %></a>
-      <% end %>
-
       <% if filter == "all" %>
         <% if post.draft? %>
           <a class="flag draft"
