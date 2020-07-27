@@ -3,9 +3,6 @@ class Post
   include Mongoid::Timestamps
   include Mongoid::Attributes::Dynamic
   include Mongoid::Slug
-  # include ActiveModel::MassAssignmentSecurity
-
-  # attr_protected :_id, :slug
 
   attr_accessor :needs_sync
   attr_accessor :was_synced
@@ -42,23 +39,9 @@ class Post
   field :hacker_news
   field :reddit
 
-  ### Github sync
-
-  # if set to a github file URL, post *content* field will sync
-  field :github
-  # last github commit message in outgoing sync
-  field :github_last_message
-  # all "known" commits through outgoing sync
-  field :github_commits, type: Array, default: []
-
-
+  
   # REFACTOR: use slugs, not IDs, make editable
   field :related_post_ids, type: Array, default: []
-
-  # MARKEDFORDEATH
-  field :display_title, type: Boolean, default: true
-  field :post_type, type: Array, default: ["blog"]
-
 
   index _slugs: 1
   index published_at: 1

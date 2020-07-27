@@ -2,9 +2,6 @@
 
 require './config/environment'
 
-
-# base controller
-
 get '/' do
   erb :index, layout: :layout_home
 end
